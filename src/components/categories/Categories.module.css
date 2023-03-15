@@ -1,0 +1,16 @@
+/* .categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.categories div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 20%;
+  height: 100px;
+  border-radius: 10px;
+  background-color: var(--secondary-color);
+  color: white;
+} */

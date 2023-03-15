@@ -1,0 +1,11 @@
+.course a {
+  text-decoration: none;
+  color: black; /* Temporary */
+}
+.course .thumbnail {
+  width: 200px;
+}
+
+.course .thumbnail img {
+  width: 100%;
+}

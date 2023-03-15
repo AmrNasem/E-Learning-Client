@@ -1,0 +1,48 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 8%;
+  box-shadow: 0 1px 5px #ccc;
+}
+
+.categories {
+  align-self: stretch;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.search {
+  flex: 1;
+}
+
+.cart {
+  border: 2px solid var(--main-color);
+  color: var(--main-color);
+
+  border-radius: 10px;
+  padding: 10px 5px;
+  cursor: pointer;
+}
+
+.cart > * {
+  margin: 0 3px;
+}
+
+.cart span:nth-child(3) {
+  color: white;
+  background-color: var(--main-color);
+  padding: 0 6px;
+  border-radius: 10px;
+}
+
+.actions button {
+  border-radius: 5px;
+  margin: 3px;
+}
+
+.actions .signup {
+  background-color: var(--secondary-color);
+}
