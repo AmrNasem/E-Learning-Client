@@ -5,10 +5,16 @@ import SignUp from "./pages/SignUp";
 import MainHeader from "./components/MainHeader";
 import Footer from "./components/Footer";
 import LandingPage from "./pages/LandingPage";
+import { useContext } from "react";
+import HeaderContext from "./store/header-context";
 
 function App() {
+  const headerCtx = useContext(HeaderContext);
+  const blurCategoriesHandler = () => {
+    headerCtx.setVisibleCategories(false);
+  };
   return (
-    <div className="App">
+    <div className="App" onClick={blurCategoriesHandler}>
       <MainHeader />
       <Routes>
         <Route path="/" element={<LandingPage />} />

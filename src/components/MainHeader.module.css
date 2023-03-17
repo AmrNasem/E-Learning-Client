@@ -5,6 +5,7 @@ header {
   gap: 20px;
   padding: 10px 8%;
   box-shadow: 0 1px 5px #ccc;
+  position: relative;
 }
 
 .categories {
@@ -12,6 +13,15 @@ header {
   border: none;
   background-color: transparent;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.active {
+  color: var(--secondary-color);
+}
+
+.categories:hover {
+  color: var(--secondary-color);
 }
 
 .search {
