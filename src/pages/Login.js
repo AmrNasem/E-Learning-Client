@@ -6,16 +6,17 @@ import { Link } from "react-router-dom";
 const Login = (props) => {
   return (
     <main>
-      <form>
-        <FormInput type="email" placeholder="E-Mail" />
-        <FormInput type="password" placeholder="Password" />
-        <Button type="submit">Login</Button>
-      </form>
+      <form className={classes.form}>
+        <FormInput type="email" placeholder="E-Mail" className={classes.email}/>
+        <FormInput type="password" placeholder="Password" className={classes.password}/>
+        <Button className={classes.login} type="submit">Login</Button>
+      
       <div className={classes.note}>
         <p>
-          Don't have an account?<Link to="/signup">Sign Up</Link>
+          Don't have an account?<Link to="/signup"><span>Sign Up</span></Link>
         </p>
       </div>
+      </form>
     </main>
   );
 };

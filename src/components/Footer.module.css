@@ -1,5 +1,9 @@
 footer {
   display: flex;
+  position:fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
   align-items: center;
   justify-content: space-around;
   background-color: var(--secondary-color);
@@ -7,4 +11,9 @@ footer {
 
 footer a {
   display: block;
+  text-decoration: none;
+  padding: 7px;
+  font-family: Poppins;
+  font-weight: 555;
+  color: var(--main-color);
 }
