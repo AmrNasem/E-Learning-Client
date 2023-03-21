@@ -1,5 +1,19 @@
 .categories a {
-  display: block;
+  text-decoration: none;
+  display: flex;
+  padding: 6px;
+  right: 0;
+  min-width: 170px;
+  z-index: 1;
+  border-left: solid var(--main-color) 3px;
+  border-bottom: solid #ccc 1px;
+  font-family: Poppins;
+  font-weight: 520;
+  color: var(--main-color);
+}
+.activeClass{
+  text-decoration: none;
+  
 }
 
 .active {
