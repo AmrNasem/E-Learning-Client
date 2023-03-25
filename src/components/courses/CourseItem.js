@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const CourseItem = (props) => {
   return (
     <div className={classes.course}>
-      <Link to={props.id}>
+      <Link to={`course/${props.id}`}>
         <div className={classes.thumbnail}>
           <img src={props.src || landingPage} alt="thumbnail" />
         </div>

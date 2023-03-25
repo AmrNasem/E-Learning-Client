@@ -11,5 +11,6 @@
   display: block;
 }
 
-/* .active {
-} */
+.active {
+  color: var(--secondary-color);
+}

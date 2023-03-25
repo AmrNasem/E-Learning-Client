@@ -6,6 +6,8 @@ import HeaderContext from "../store/header-context";
 import Cart from "./Cart/Cart";
 import Categories from "./categories/Categories";
 import classes from "./MainHeader.module.css";
+import SearchIcon from "./SearchIcon";
+import CartIcon from "./Cart/CartIcon";
 import Button from "./UI/Button";
 
 const MainHeader = (props) => {
@@ -32,17 +34,17 @@ const MainHeader = (props) => {
         Categories
       </button>
       {headerCtx.visibleCategories && <Categories />}
-      <div className={classes.search}>
-        <i></i>
-        <form>
-          <input type="search" placeholder="Search for anything" />
-        </form>
-      </div>
+      <form className={classes.search}>
+        <button className={classes["search-icon"]}>
+          <SearchIcon />
+        </button>
+        <input type="search" placeholder="Search for anything" />
+      </form>
       <div
         onClick={() => dispatch(cartActions.toggleCart())}
         className={classes.cart}
       >
-        <i></i>
+        <CartIcon />
         <span>Your Cart</span>
         <span>0</span>
       </div>
