@@ -1,19 +1,24 @@
 header {
+  background-color: #ffffff;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
-  padding: 10px 8%;
-  box-shadow: 0 1px 5px #ccc;
-  position: relative;
+  position: fixed;
+  width: 100%;
+  padding: 15px;
+  margin-left: auto;
+  margin-right: auto;
 }
-
 .categories {
-  align-self: stretch;
   border: none;
   background-color: transparent;
   cursor: pointer;
   transition: 0.3s;
+  border: #000 solid 2px;
+  border-radius: 10px;
+  height: 40px;
+  width: 90px;
 }
 
 .active {
@@ -23,7 +28,6 @@ header {
 .categories:hover {
   color: var(--secondary-color);
 }
-
 .search {
   flex: 1;
   display: flex;
@@ -76,4 +80,20 @@ header {
 
 .actions .signup {
   background-color: var(--secondary-color);
+}
+@media screen and (max-width: 973px) {
+  .search {
+    width: 200px;
+  }
+}
+@media screen and (max-width: 745px) {
+  .search {
+    width: 120px;
+  }
+  .cart {
+    width: inherit 70%;
+  }
+  .categories {
+    width: inherit 70%;
+  }
 }
