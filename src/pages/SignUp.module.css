@@ -1,0 +1,60 @@
+.form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #000;
+    border-radius: 10px;
+    flex-direction: column;
+    gap: 20px;
+    background-color: rgb(72, 63, 8);
+    position:relative;
+    width: 300px;
+    height: 370px;
+    margin: auto;
+    margin-top: 11%;
+}
+.name{
+    padding: 0 10px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 45px;
+    border-radius: 8px;
+}
+.email{
+    padding: 0 10px;
+    /* margin-top: 70px; */
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 45px;
+    color: rgba(62, 54, 33, 0.5);
+    border-radius: 8px;
+}
+.password{
+    padding: 0 10px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 45px;
+    border-radius: 8px;
+}
+.signup{
+    border-radius: 50px;
+    width: 80px;
+    height: 35px;
+}
+.note span{
+    text-decoration: none;
+    font-size:large;
+    text-decoration: none;
+    color: #baab04;
+}
+@media screen and (max-width: 973px) {
+    .form{
+        width: 300px;
+    }
+}
