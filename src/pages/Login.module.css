@@ -8,15 +8,14 @@ flex-direction: column;
 gap: 20px;
 background-color: rgb(72, 63, 8);
 position:relative;
-width: 480px;
-height: 445px;
-left: 530px;
-top: 100px;
-z-index: -1;
+width: 300px;
+height: 270px;
+margin: auto;
+margin-top: 10%;
 }
 .email{
 padding: 0 10px;
-margin-top: 150px;
+/* margin-top: 70px; */
 font-family: 'Poppins';
 font-style: normal;
 font-weight: 500;
@@ -35,13 +34,17 @@ line-height: 45px;
 border-radius: 8px;
 }
 .login{
-    
-    border-radius: 50px;
-    width: 80px;
-    height: 35px;
+border-radius: 50px;
+width: 80px;
+height: 35px;
 }
 .note span{
-    font-size:large;
-    text-decoration: none;
-    color: #baab04;
+font-size:large;
+text-decoration: none;
+color: #baab04;
+}
+@media screen and (max-width: 973px) {
+    .form{
+        width: 300px;
+    }
 }

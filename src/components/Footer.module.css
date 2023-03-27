@@ -1,12 +1,11 @@
 footer {
   display: flex;
-  position:fixed;
-  left: 0;
-  bottom: 0;
+  position:relative;
   width: 100%;
   align-items: center;
   justify-content: space-around;
   background-color: var(--secondary-color);
+  transform: translatey(100%);
 }
 
 footer a {
