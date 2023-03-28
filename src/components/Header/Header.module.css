@@ -13,6 +13,7 @@ header {
 }
 
 .categories {
+  align-self: stretch;
   border: none;
   background-color: transparent;
   cursor: pointer;
