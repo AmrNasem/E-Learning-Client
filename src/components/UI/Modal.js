@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import ReactDOM from "react-dom";
 import classes from "./Modal.module.css";
 
-const OutLayer = (props) => {
+export const OutLayer = (props) => {
   return <div onClick={props.onClick} className={classes.outlayer}></div>;
 };
 

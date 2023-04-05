@@ -1,12 +1,3 @@
-.categories {
-  position: absolute;
-  top: calc(100% + 5px);
-  left: 10%;
-  background-color: white;
-  box-shadow: 0 1px 5px #ccc;
-  transform: translateX(35%);
-}
-
 .categories a {
   display: block;
 }

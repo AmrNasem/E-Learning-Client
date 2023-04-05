@@ -5,7 +5,7 @@ import { cartActions } from "../store/cart-slice";
 import HeaderContext from "../store/header-context";
 import Cart from "./Cart/Cart";
 import Categories from "./categories/Categories";
-import classes from "./MainHeader.module.css";
+import classes from "./Header.module.css";
 import SearchIcon from "./SearchIcon";
 import CartIcon from "./Cart/CartIcon";
 import Button from "./UI/Button";
@@ -21,7 +21,7 @@ const MainHeader = (props) => {
     e.stopPropagation();
   };
   return (
-    <header>
+    <header className={classes["main-header"]}>
       <div className={classes.logo}>
         <Link to="/">E-Learning</Link>
       </div>
@@ -33,7 +33,9 @@ const MainHeader = (props) => {
       >
         Categories
       </button>
-      {headerCtx.visibleCategories && <Categories />}
+      {headerCtx.visibleCategories && (
+        <Categories className={classes["main-categories"]} />
+      )}
       <form className={classes.search}>
         <button className={classes["search-icon"]}>
           <SearchIcon />
@@ -45,8 +47,8 @@ const MainHeader = (props) => {
         className={classes.cart}
       >
         <CartIcon />
-        <span>Your Cart</span>
-        <span>0</span>
+        <span className={classes.title}>Your Cart</span>
+        <span className={classes.amount}>0</span>
       </div>
       {isCartOpened && <Cart />}
       <div className={classes.actions}>

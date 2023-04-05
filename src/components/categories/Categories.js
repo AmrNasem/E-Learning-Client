@@ -3,7 +3,7 @@ import classes from "./Categories.module.css";
 
 const Categories = (props) => {
   return (
-    <div className={classes.categories}>
+    <div className={`${classes.categories} ${props.className}`}>
       <NavLink
         className={(activeClass) =>
           activeClass.isActive ? classes.active : ""
