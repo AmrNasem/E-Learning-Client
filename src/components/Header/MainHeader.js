@@ -1,14 +1,14 @@
 import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { cartActions } from "../store/cart-slice";
-import HeaderContext from "../store/header-context";
-import Cart from "./Cart/Cart";
-import Categories from "./categories/Categories";
+import { cartActions } from "../../store/cart-slice";
+import HeaderContext from "../../store/header-context";
+import Cart from "../Cart/Cart";
+import Categories from "../categories/Categories";
 import classes from "./Header.module.css";
-import SearchIcon from "./SearchIcon";
-import CartIcon from "./Cart/CartIcon";
-import Button from "./UI/Button";
+import SearchIcon from "../Icons/SearchIcon";
+import CartIcon from "../Icons/CartIcon";
+import Button from "../UI/Button";
 
 const MainHeader = (props) => {
   const navigate = useNavigate();
@@ -33,9 +33,11 @@ const MainHeader = (props) => {
       >
         Categories
       </button>
-      {headerCtx.visibleCategories && (
-        <Categories className={classes["main-categories"]} />
-      )}
+      <Categories
+        className={`${classes["main-categories"]} ${
+          headerCtx.visibleCategories && classes["show-categories"]
+        }`}
+      />
       <form className={classes.search}>
         <button className={classes["search-icon"]}>
           <SearchIcon />
