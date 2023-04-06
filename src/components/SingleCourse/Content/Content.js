@@ -1,0 +1,28 @@
+import { useParams } from "react-router";
+import Container from "../../UI/Container";
+import classes from "./Content.module.css";
+import SectionList from "./SectionList";
+
+const Content = (props) => {
+  const { courseId } = useParams();
+  const course = props.dummyData.find((course) => course.id === courseId);
+  const numOfLectures = course.sections
+    .map((section) => section.lectures.length)
+    .reduce((previous, current) => previous + current);
+
+  return (
+    <Container>
+      <div className={classes.content}>
+        <h2>Course content</h2>
+        <p className={classes.info}>
+          {course.sections.length} sections &bull; {numOfLectures} lectures
+          &bull; 65h 33m total length
+        </p>
+        <SectionList sections={course.sections} dummyData={props.dummyData} />
+      </div>
+      <button>32 more sections</button>
+    </Container>
+  );
+};
+
+export default Content;

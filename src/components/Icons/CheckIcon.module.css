@@ -1,0 +1,8 @@
+.check-icon {
+  display: block;
+  width: 12px;
+  height: 5px;
+  border-bottom: 2px solid var(--main-color);
+  border-left: 2px solid var(--main-color);
+  transform: rotate(-45deg);
+}

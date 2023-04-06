@@ -9,8 +9,8 @@ const LandingPage = (props) => {
         <img src={landingImage} alt="Nice Desktop" />
       </div>
       <div className={classes["landing-courses"]}>
-        <CourseList class="Best Seller" />
-        <CourseList class="Recommends" />
+        <CourseList class="Best Seller" dummyData={props.dummyData} />
+        <CourseList class="Recommends" dummyData={props.dummyData} />
       </div>
     </main>
   );
