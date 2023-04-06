@@ -1,0 +1,32 @@
+.menu-bar {
+  cursor: pointer;
+  width: 30px;
+  height: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.menu-bar:hover span {
+  background-color: var(--secondary-color);
+  width: 100% !important;
+}
+
+.mob-active span {
+  width: 100% !important;
+  background-color: var(--secondary-color) !important;
+}
+
+.menu-bar span {
+  display: block;
+  height: 2px;
+  border: none;
+  width: 100%;
+  border-radius: 20px;
+  background-color: var(--main-color);
+  transition: 0.3s;
+}
+
+.menu-bar span:not(:nth-child(2)) {
+  width: 60%;
+}

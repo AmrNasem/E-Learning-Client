@@ -1,4 +1,30 @@
+.courses-section {
+  position: relative;
+}
+
+.courses-section:hover .forward,
+.courses-section:hover .backward {
+  opacity: 1;
+}
+
 .course-list {
   display: flex;
   gap: 20px;
+  overflow: auto;
+}
+
+.forward {
+  top: 30%;
+  right: -1.5%;
+  opacity: 0;
+}
+
+.backward {
+  top: 30%;
+  left: -1.5%;
+  opacity: 0;
+}
+
+.course-list::-webkit-scrollbar {
+  display: none;
 }

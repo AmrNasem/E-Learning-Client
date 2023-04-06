@@ -1,0 +1,74 @@
+@media (min-width: 660px) {
+  .mobile-header {
+    display: none;
+  }
+}
+
+.main-categories {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 10%;
+  background-color: white;
+  box-shadow: 0 1px 5px #ccc;
+  transform: translateX(35%);
+}
+
+.outlayer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+}
+
+aside {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  background-color: white;
+  height: 100vh;
+  z-index: 100;
+  transition: 0.2s;
+}
+
+.show {
+  left: 0;
+}
+
+.mobile-logo {
+  flex: 1;
+  text-align: center;
+}
+
+.search-content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  z-index: 100;
+}
+.mobile-search {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 5px;
+  padding: 5px 10px;
+}
+
+.mobile-search input[type="search"] {
+  flex: 1;
+  background-color: white;
+}
+.mobile-search input[type="search"]::-webkit-search-cancel-button {
+  display: none;
+}
+
+.close-icon {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
