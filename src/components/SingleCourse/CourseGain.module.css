@@ -1,3 +1,9 @@
+.course-gain {
+  width: 55%;
+  border: 1px solid #ddd;
+  padding: 30px;
+}
+
 .course-gain ul {
   list-style: none;
 }

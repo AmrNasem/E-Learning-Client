@@ -17,6 +17,7 @@ const DUMMY_DATA = [
     category: "Web Development",
     categoryId: "web",
     instructor: "Maximilian",
+    discount: 50,
     gain: [
       "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
       "After the course you will be able to build ANY website you want.",
@@ -51,6 +52,7 @@ const DUMMY_DATA = [
     category: "Mobile Development",
     categoryId: "mobile",
     instructor: "Osama Elzero",
+    discount: 84,
     gain: [
       "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
       "After the course you will be able to build ANY website you want.",
@@ -126,6 +128,21 @@ const DUMMY_DATA = [
       "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
       "After the course you will be able to build ANY website you want.",
     ],
+    sections: [
+      {
+        title: "Introduction to HTML",
+        duration: "1hr 19min",
+        lectures: [
+          { title: "Using HTML Tags", type: "article", duration: "08:04" },
+        ],
+      },
+      {
+        title: "Intermediate HTML",
+        duration: "57min",
+        lectures: [{ title: "HTML Tables", type: "video", duration: "11:57" }],
+      },
+    ],
+    discount: 20,
     price: 1400,
   },
   {
@@ -138,6 +155,29 @@ const DUMMY_DATA = [
       "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
       "After the course you will be able to build ANY website you want.",
     ],
+    sections: [
+      {
+        title: "Introduction to HTML",
+        duration: "1hr 19min",
+        lectures: [
+          { title: "Introduction to HTML", type: "video", duration: "04:18" },
+          { title: "Using HTML Tags", type: "video", duration: "08:04" },
+        ],
+      },
+      {
+        title: "Intermediate HTML",
+        duration: "57min",
+        lectures: [
+          { title: "HTML Tables", type: "video", duration: "11:57" },
+          {
+            title: "Download the course syllabus",
+            type: "video",
+            duration: "02:17",
+          },
+        ],
+      },
+    ],
+    discount: 84,
     price: 1400,
   },
   {
@@ -150,6 +190,29 @@ const DUMMY_DATA = [
       "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
       "After the course you will be able to build ANY website you want.",
     ],
+    sections: [
+      {
+        title: "Introduction to HTML",
+        duration: "1hr 19min",
+        lectures: [
+          { title: "Introduction to HTML", type: "video", duration: "04:18" },
+          { title: "Using HTML Tags", type: "video", duration: "08:04" },
+        ],
+      },
+      {
+        title: "Intermediate HTML",
+        duration: "57min",
+        lectures: [
+          { title: "HTML Tables", type: "video", duration: "11:57" },
+          {
+            title: "Download the course syllabus",
+            type: "video",
+            duration: "02:17",
+          },
+        ],
+      },
+    ],
+    discount: 84,
     price: 1400,
   },
   {
@@ -162,6 +225,29 @@ const DUMMY_DATA = [
       "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
       "After the course you will be able to build ANY website you want.",
     ],
+    sections: [
+      {
+        title: "Introduction to HTML",
+        duration: "1hr 19min",
+        lectures: [
+          { title: "Introduction to HTML", type: "video", duration: "04:18" },
+          { title: "Using HTML Tags", type: "video", duration: "08:04" },
+        ],
+      },
+      {
+        title: "Intermediate HTML",
+        duration: "57min",
+        lectures: [
+          { title: "HTML Tables", type: "video", duration: "11:57" },
+          {
+            title: "Download the course syllabus",
+            type: "video",
+            duration: "02:17",
+          },
+        ],
+      },
+    ],
+    discount: 84,
     price: 1400,
   },
   {
@@ -174,6 +260,29 @@ const DUMMY_DATA = [
       "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
       "After the course you will be able to build ANY website you want.",
     ],
+    sections: [
+      {
+        title: "Introduction to HTML",
+        duration: "1hr 19min",
+        lectures: [
+          { title: "Introduction to HTML", type: "video", duration: "04:18" },
+          { title: "Using HTML Tags", type: "video", duration: "08:04" },
+        ],
+      },
+      {
+        title: "Intermediate HTML",
+        duration: "57min",
+        lectures: [
+          { title: "HTML Tables", type: "video", duration: "11:57" },
+          {
+            title: "Download the course syllabus",
+            type: "video",
+            duration: "02:17",
+          },
+        ],
+      },
+    ],
+    discount: 84,
     price: 1400,
   },
   {
@@ -186,6 +295,29 @@ const DUMMY_DATA = [
       "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
       "After the course you will be able to build ANY website you want.",
     ],
+    sections: [
+      {
+        title: "Introduction to HTML",
+        duration: "1hr 19min",
+        lectures: [
+          { title: "Introduction to HTML", type: "video", duration: "04:18" },
+          { title: "Using HTML Tags", type: "video", duration: "08:04" },
+        ],
+      },
+      {
+        title: "Intermediate HTML",
+        duration: "57min",
+        lectures: [
+          { title: "HTML Tables", type: "video", duration: "11:57" },
+          {
+            title: "Download the course syllabus",
+            type: "video",
+            duration: "02:17",
+          },
+        ],
+      },
+    ],
+    discount: 84,
     price: 1400,
   },
   {
@@ -198,6 +330,29 @@ const DUMMY_DATA = [
       "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
       "After the course you will be able to build ANY website you want.",
     ],
+    sections: [
+      {
+        title: "Introduction to HTML",
+        duration: "1hr 19min",
+        lectures: [
+          { title: "Introduction to HTML", type: "video", duration: "04:18" },
+          { title: "Using HTML Tags", type: "video", duration: "08:04" },
+        ],
+      },
+      {
+        title: "Intermediate HTML",
+        duration: "57min",
+        lectures: [
+          { title: "HTML Tables", type: "video", duration: "11:57" },
+          {
+            title: "Download the course syllabus",
+            type: "video",
+            duration: "02:17",
+          },
+        ],
+      },
+    ],
+    discount: 84,
     price: 1400,
   },
   {
@@ -210,6 +365,29 @@ const DUMMY_DATA = [
       "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
       "After the course you will be able to build ANY website you want.",
     ],
+    sections: [
+      {
+        title: "Introduction to HTML",
+        duration: "1hr 19min",
+        lectures: [
+          { title: "Introduction to HTML", type: "video", duration: "04:18" },
+          { title: "Using HTML Tags", type: "video", duration: "08:04" },
+        ],
+      },
+      {
+        title: "Intermediate HTML",
+        duration: "57min",
+        lectures: [
+          { title: "HTML Tables", type: "video", duration: "11:57" },
+          {
+            title: "Download the course syllabus",
+            type: "video",
+            duration: "02:17",
+          },
+        ],
+      },
+    ],
+    discount: 84,
     price: 1400,
   },
 ];
