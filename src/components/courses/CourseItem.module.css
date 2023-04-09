@@ -1,6 +1,22 @@
 .course a {
   text-decoration: none;
-  color: black; /* Temporary */
+  color: var(--third-color); /* Temporary */
+}
+.course{
+  background-color: var(--main-color);
+  display: flex;
+  border: 2px var(--fourth-color) solid;  
+  border-radius: 20px;
+  height: 260px;
+  width: 220px;
+  align-items: center;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  transition: .3s;
+}
+.course:hover{
+  scale: 110%;
 }
 .course .thumbnail {
   width: 150px;
@@ -8,4 +24,7 @@
 
 .course .thumbnail img {
   width: 100%;
+  border-radius: 10px;
+  position: relative;
+  left: 8px;
 }
