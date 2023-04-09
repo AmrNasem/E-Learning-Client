@@ -4,15 +4,15 @@ footer {
   width: 100%;
   align-items: center;
   justify-content: space-around;
-  background-color: var(--secondary-color);
+  background-color: #202525;
   transform: translatey(100%);
 }
 
 footer a {
   display: block;
   text-decoration: none;
-  padding: 7px;
+  padding: 10px;
   font-family: Poppins;
   font-weight: 555;
-  color: var(--main-color);
+  color: var(--third-color);
 }

@@ -8,6 +8,7 @@
 }
 
 .course-list {
+  /* flex-wrap: wrap;  make it in query media */
   display: flex;
   gap: 20px;
   overflow: auto;

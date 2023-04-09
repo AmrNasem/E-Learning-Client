@@ -13,7 +13,7 @@ const Login = (props) => {
       
       <div className={classes.note}>
         <p>
-          Don't have an account?<Link to="/signup"><span>Sign Up</span></Link>
+          Don't have an account?<Link to="/signup" className={classes.link}><span> Sign Up</span></Link>
         </p>
       </div>
       </form>
