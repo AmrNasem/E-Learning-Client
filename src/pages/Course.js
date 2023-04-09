@@ -6,10 +6,29 @@ import Overview from "../components/SingleCourse/Overview";
 import { useParams } from "react-router-dom";
 import Container from "../components/UI/Container";
 import { useState } from "react";
+import Requirements from "../components/SingleCourse/Requirements";
+import Description from "../components/SingleCourse/Description";
+import Instructor from "../components/SingleCourse/Instructor";
 
 const Course = (props) => {
   const { courseId } = useParams();
-  const course = props.dummyData.find((course) => course.id === courseId);
+  const { dummyCourses, dummyInstructors } = props;
+
+  let course;
+  for (const key in dummyCourses) {
+    if (key === courseId) {
+      course = dummyCourses[key];
+      break;
+    }
+  }
+
+  let instructor;
+  for (const key in dummyInstructors) {
+    if (key === course.instructor) {
+      instructor = dummyInstructors[key];
+      break;
+    }
+  }
 
   const [scrollY, setScrollY] = useState(0);
   window.onscroll = () => setScrollY(window.scrollY);
@@ -19,13 +38,16 @@ const Course = (props) => {
       <div className={classes.background}>
         <Container>
           {scrollY < 400 && <Overview course={course} />}
-          <CourseHeader course={course} />
+          <CourseHeader instructor={instructor} course={course} />
         </Container>
       </div>
       <Container>
         {scrollY >= 400 && <Overview course={course} hide={true} />}
         <CourseGain course={course} />
         <Content course={course} />
+        <Requirements course={course} />
+        <Description course={course} />
+        <Instructor instructor={instructor} />
       </Container>
     </main>
   );

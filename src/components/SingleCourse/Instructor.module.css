@@ -1,0 +1,31 @@
+.instructor {
+  width: 55%;
+}
+
+.image {
+  width: 80px;
+  height: 80px;
+}
+
+.image img {
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.courses .play-icon {
+  width: 15px;
+  height: 15px;
+  background-color: black;
+  position: relative;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.courses .play-icon svg {
+  position: absolute;
+  top: 50%;
+  left: calc(50% + 1px);
+  transform: translate(-50%, -50%);
+}

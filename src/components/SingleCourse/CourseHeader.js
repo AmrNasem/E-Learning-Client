@@ -2,7 +2,7 @@ import classes from "./CourseHeader.module.css";
 import { Link } from "react-router-dom";
 
 const CourseHeader = (props) => {
-  const { course } = props;
+  const { course, instructor } = props;
 
   return (
     <div className={classes["course-header"]}>
@@ -24,7 +24,7 @@ const CourseHeader = (props) => {
         <span className={classes.students}>933,032 students</span>
       </div>
       <p>
-        Created by <a href="/">{course.instructor}</a>
+        Created by <a href="#instructor">{instructor.name}</a>
       </p>
     </div>
   );

@@ -6,6 +6,7 @@ import { useRef } from "react";
 
 const CourseList = (props) => {
   const coursesRef = useRef();
+  const { class: listClass, dummyCourses, dummyInstructors } = props;
 
   const moveForwardHandler = () => {
     coursesRef.current.scrollBy({
@@ -29,15 +30,15 @@ const CourseList = (props) => {
         onClick={moveBackwardHandler}
         className={classes.backward}
       />
-      <h3>{props.class}</h3>
+      <h3>{listClass}</h3>
       <div ref={coursesRef} className={classes["course-list"]}>
-        {props.dummyData.map((course) => (
+        {Object.keys(dummyCourses).map((course) => (
           <CourseItem
-            key={course.id}
-            id={course.id}
-            title={course.title}
-            instructor={course.instructor}
-            price={course.price}
+            key={course}
+            id={course}
+            title={dummyCourses[course].title}
+            instructor={dummyInstructors[dummyCourses[course].instructor].name}
+            price={dummyCourses[course].price}
             className={classes.course}
           />
         ))}
