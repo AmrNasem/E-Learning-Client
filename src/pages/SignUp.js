@@ -13,7 +13,7 @@ const SignUp = (props) => {
         <Button type="submit" className={classes.signup}>Sign Up</Button>
         <div className={classes.note}>
           <p>
-            Already have an account?<Link to="/login"><span>Login</span></Link>
+            Already have an account?<Link to="/login" className={classes.link}><span> Login</span></Link>
           </p>
         </div>
       </form>
