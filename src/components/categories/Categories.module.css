@@ -1,14 +1,13 @@
-.categories {
+/* .categories {
   position: absolute;
   top: 100%;
-  /* left: 10%; */
   background-color: white;
   box-shadow: 0 1px 5px #ccc;
   transform: translateX(35%);
   z-index: 1;
   transition: 0.3s;
   width: 180px;
-}
+} */
 
 .categories::before{
   content: "";
@@ -38,9 +37,7 @@
 .categories a:hover{
   padding-left: 20px;  
 }
-.activeClass{
+
+.active {
   text-decoration: none;
 }
-
-/* .active {
-} */
