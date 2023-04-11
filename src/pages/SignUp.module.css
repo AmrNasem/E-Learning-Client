@@ -11,7 +11,8 @@
     width: 500px;
     height: 470px;
     margin: auto;
-    margin-top: 11%;
+    margin-top: 5%;
+    margin-bottom: 8%;
 }
 .name{
     width: 450px;
@@ -75,11 +76,35 @@
     text-decoration: none;
     color: #222;
     }
-    span:hover{
+    .link span:hover{
         color: var(--fourth-color);
     }
-@media screen and (max-width: 973px) {
-    .form{
-        width: 300px;
+    @media screen and (max-width: 973px) {
+        .form{
+            width: 400px;
+        }
+        .name{
+            width: 350px;
+        }
+        .email{
+            width: 350px;
+        }
+        .password{
+            width: 350px;
+        }
     }
-}
+    @media screen and (max-width: 767px) {
+        .form{
+            width: 300px;
+            border: none;
+        }
+        .name{
+            width: 300px;
+        }
+        .email{
+            width: 300px;
+        }
+        .password{
+            width: 300px;
+        }
+    }

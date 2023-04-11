@@ -11,7 +11,8 @@ position:relative;
 width: 500px;
 height: 420px;
 margin: auto;
-margin-top: 10%;
+margin-top: 5%;
+margin-bottom: 8%;
 }
 .email{
 width: 450px;
@@ -62,11 +63,29 @@ text-decoration: none;
 color: #222;
 transition: .3s;
 }
-span:hover{
+.link span:hover{
     color: var(--fourth-color);
 }
 @media screen and (max-width: 973px) {
     .form{
+        width: 400px;
+    }
+    .email{
+        width: 350px;
+    }
+    .password{
+        width: 350px;
+    }
+}
+@media screen and (max-width: 767px) {
+    .form{
+        width: 300px;
+        border: none;
+    }
+    .email{
+        width: 300px;
+    }
+    .password{
         width: 300px;
     }
 }

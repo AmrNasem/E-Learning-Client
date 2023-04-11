@@ -8,10 +8,9 @@
   border: 2px var(--fourth-color) solid;  
   border-radius: 20px;
   height: 260px;
-  width: 220px;
   align-items: center;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 13px;
   margin-bottom: 30px;
   transition: .3s;
 }
@@ -19,12 +18,11 @@
   scale: 110%;
 }
 .course .thumbnail {
-  width: 150px;
+  width: 210px;
 }
 
 .course .thumbnail img {
-  width: 100%;
+  width: 95%;
   border-radius: 10px;
   position: relative;
-  left: 8px;
 }
