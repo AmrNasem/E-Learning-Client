@@ -49,7 +49,7 @@ const MainHeader = (props) => {
         className={classes.cart}
       >
         <CartIcon />
-        <span className={classes.title}>Your Cart</span>
+        <span className={classes.title}></span>
         <span className={classes.amount}>0</span>
       </div>
       {isCartOpened && <Cart />}

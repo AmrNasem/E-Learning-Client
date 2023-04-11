@@ -4,8 +4,7 @@ footer {
   width: 100%;
   align-items: center;
   justify-content: space-around;
-  background-color: #202525;
-  transform: translatey(100%);
+  background-color: var(--fifth-color);
 }
 
 footer a {

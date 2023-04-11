@@ -7,7 +7,7 @@ const CourseHeader = (props) => {
   return (
     <div className={classes["course-header"]}>
       <h5>
-        <Link to={`/category/${course.categoryId}`}>{course.category}</Link>
+        <Link to={`/category/${course.categoryId}`} className={classes.link}>{course.category}</Link>
       </h5>
       <h1>{course.title}</h1>
       <p>
@@ -23,7 +23,7 @@ const CourseHeader = (props) => {
         </span>
         <span className={classes.students}>933,032 students</span>
       </div>
-      <p>
+      <p className={classes.instructor}>
         Created by <a href="#instructor">{instructor.name}</a>
       </p>
     </div>

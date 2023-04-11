@@ -1,7 +1,9 @@
 .requirements {
   width: 55%;
+  margin: 20px 0 20px 0;
 }
 
-/* .requirements ul {
-  Bullets of <li> elements are preferred according to Udemy UI
-} */
+.requirements ul {
+  padding: 5px;
+  margin-left: 13px;
+}

@@ -9,7 +9,7 @@ const LandingPage = (props) => {
         <img src={landingImage} alt="Nice Desktop" />
       </div>
       <div className={classes["landing-courses"]}>
-        <CourseList
+        <CourseList 
           class="Best Seller"
           dummyInstructors={props.dummyInstructors}
           dummyCourses={props.dummyCourses}

@@ -1,10 +1,14 @@
 .instructor {
   width: 55%;
 }
-
+.instructorName{
+  color: var(--sixth-color);
+}
 .image {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  margin-right: 20px;
 }
 
 .image img {
@@ -12,9 +16,12 @@
   object-fit: cover;
   height: 100%;
   border-radius: 50%;
+  
 }
 
 .courses .play-icon {
+  /* margin-right: 10px; */
+  margin-left: 2px;
   width: 15px;
   height: 15px;
   background-color: black;
@@ -28,4 +35,26 @@
   top: 50%;
   left: calc(50% + 1px);
   transform: translate(-50%, -50%);
+}
+.groub{
+  display: flex;
+  margin: 10px;
+  
+}
+.groubDetails{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+span{
+  padding:5px ;
+  margin-left: 10px;
+  
+}
+.profile button{
+  background-color: var(--main-color);
+  border: none;
+  border-bottom: 2px solid #000;
+  cursor: pointer;
+  margin-bottom: 20px;
 }

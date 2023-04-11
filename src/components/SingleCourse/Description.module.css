@@ -1,3 +1,11 @@
 .description {
   width: 55%;
+  margin: 20px 0 20px 0;
+}
+.description button{
+  background-color: var(--main-color);
+  border: none;
+  border-bottom: 2px solid #000;
+  cursor: pointer;
+
 }
