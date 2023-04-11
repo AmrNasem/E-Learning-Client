@@ -18,15 +18,15 @@ const Instructor = (props) => {
     <div id="instructor" className={classes.instructor}>
       <h2>Instructor</h2>
       <div className={classes.profile}>
-        <Link to={`/user/${user.id}`}>{instructor.name}</Link>
+        <Link to={`/user/${user.id}`} className={classes.instructorName}>{instructor.name}</Link>
         <p>{instructor.job}</p>
-        <div>
+        <div className={classes.groub}>
           <div className={classes.image}>
             <Link to={`/user/${user.id}`}>
               <img src={instructorImage} alt={instructor.name} />
             </Link>
           </div>
-          <div>
+          <div className={classes.groubDetails}>
             <div>
               <StarIcon width={16} height={16} />
               <span>4.7 Instructor Rating</span>
@@ -46,9 +46,10 @@ const Instructor = (props) => {
               <span>{instructor.courses.length} Courses</span>
             </div>
           </div>
-          <div className={classes.about}>{instructor.about}</div>
-          <button>See more</button>
+          
         </div>
+        <div className={classes.about}>{instructor.about}</div>
+          <button>See more</button>
       </div>
     </div>
   );

@@ -1,5 +1,22 @@
 .course-header {
   width: 55%;
+  background-color: var(--fifth-color);
+}
+.course-header .link {
+  text-decoration: none;
+  color: var(--sixth-color);
+}
+.rates a {
+  color: var(--sixth-color);
+}
+.info {
+  margin-top: 15px;
+}
+.instructor {
+  margin-top: 15px;
+}
+.instructor a {
+  color: var(--sixth-color);
 }
 
 @media (max-width: 850px) {

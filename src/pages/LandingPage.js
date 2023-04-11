@@ -123,7 +123,7 @@ const LandingPage = (props) => {
         </div>
       </div>
       <div className={classes["landing-courses"]}>
-        <CourseList
+        <CourseList 
           class="Best Seller"
           dummyInstructors={props.dummyInstructors}
           dummyCourses={props.dummyCourses}
