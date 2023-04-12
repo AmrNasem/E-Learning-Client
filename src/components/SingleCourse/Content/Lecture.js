@@ -11,7 +11,7 @@ const Lecture = (props) => {
   return (
     <div className={classes.lecture}>
       {icon}
-      <p>{props.title}</p>
+      <p className={classes.title}>{props.title}</p>
       <span>{props.duration}</span>
     </div>
   );

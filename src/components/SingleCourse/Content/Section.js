@@ -9,11 +9,11 @@ const Section = (props) => {
       <div className={classes["section-header"]}>
         <ArrowIcon />
         <h4>{props.title}</h4>
-        <span>
+        <span className={classes.lecture}>
           {lectures.length} lectures &bull; {props.duration}
         </span>
       </div>
-      <div>
+      <div className={classes.details}>
         {lectures.map((lecture, index) => (
           <Lecture key={index} {...lecture} />
         ))}

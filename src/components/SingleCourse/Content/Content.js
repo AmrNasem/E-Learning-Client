@@ -14,7 +14,7 @@ const Content = (props) => {
         {course.sections.length} sections &bull; {numOfLectures} lectures &bull;
         65h 33m total length
       </p>
-      <SectionList sections={course.sections} />
+      <SectionList sections={course.sections} className={classes.section}/>
       <button>32 more sections</button>
     </div>
   );
