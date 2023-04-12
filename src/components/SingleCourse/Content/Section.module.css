@@ -1,5 +1,20 @@
 .section-header {
+  margin-top: 2px;
+  display: flex;
   cursor: pointer;
+  justify-content: space-between;
+}
+
+.section{
+  margin-top: 10px;
+  flex-direction: column;
+  display: flex;
+}
+
+.section .lecture{
+  color: aliceblue;
+  text-align: right;
+  width: 70%; 
 }
 
 .rotate {

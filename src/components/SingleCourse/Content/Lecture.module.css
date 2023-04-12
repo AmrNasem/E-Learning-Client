@@ -1,7 +1,13 @@
-.lecture {
-  display: block;
+.lecture{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .active {
   background-color: #ddd;
+}
+
+.title{
+    width: 90%;
 }
