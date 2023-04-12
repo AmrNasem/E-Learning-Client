@@ -26,12 +26,12 @@ const Section = (props) => {
       >
         <ArrowIcon className={isListed ? classes.rotate : ""} />
         <h4>{title}</h4>
-        <span>
+        <span className={classes.lecture}>
           {lectures.length} lectures &bull; {duration}
         </span>
       </div>
       {isListed && (
-        <div>
+        <div className={classes.details}>
           {lectures.map((lecture, index) => (
             <Lecture
               active={lecId === index.toString() && active}

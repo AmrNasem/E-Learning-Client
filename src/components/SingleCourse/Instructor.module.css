@@ -25,7 +25,6 @@
 }
 
 .courses .play-icon {
-  /* margin-right: 10px; */
   margin-left: 2px;
   width: 15px;
   height: 15px;
@@ -43,14 +42,14 @@
 }
 .groub {
   display: flex;
-  margin: 10px;
+  margin: 10px 10px 10px -10px;
 }
 .groubDetails {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-span {
+.instructor span {
   padding: 5px;
   margin-left: 10px;
 }
