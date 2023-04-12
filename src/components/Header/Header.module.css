@@ -81,12 +81,6 @@ input[type="search"] {
   cursor: pointer;
 }
 
-@media (max-width: 800px) {
-  .cart span.title {
-    display: none;
-  }
-}
-
 .cart span.amount {
   color: white;
   background-color: var(--main-color);

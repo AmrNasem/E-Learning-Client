@@ -6,16 +6,24 @@ import FileIcon from "../Icons/FileIcon";
 import InfinityIcon from "../Icons/InfinityIcon";
 import TVIcon from "../Icons/TVIcon";
 import CupIcon from "../Icons/CupIcon";
+import { useDispatch, useSelector } from "react-redux";
+import { cartActions } from "../../store/cart-slice";
 
 const Overview = (props) => {
   const { course } = props;
   let numOfArticles = 0;
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.items);
 
   course.sections.forEach((section) =>
     section.lectures.forEach((lecture) =>
       lecture.type === "article" ? numOfArticles++ : ""
     )
   );
+
+  const addToCartHandler = () => {
+    dispatch(cartActions.addToCart(course));
+  };
 
   return (
     <div className={classes.track}>
@@ -39,7 +47,9 @@ const Overview = (props) => {
             </span>
             <span className={classes.discount}>{course.discount}% off</span>
           </div>
-          <button className={classes["add-to-cart"]}>Add to cart</button>
+          <button onClick={addToCartHandler} className={classes["add-to-cart"]}>
+            {cartItems[course.id] ? "Remove from cart" : "Add to cart"}
+          </button>
           <button className={classes["buy"]}>Buy now</button>
           <span>30-Day Money-Back Guarantee</span>
           <div className={classes["course-features"]}>

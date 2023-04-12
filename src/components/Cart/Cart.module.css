@@ -1,11 +1,12 @@
-.cart {
-  width: 500px; /* Temporary property */
-}
-
 .cart .total-price {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 15px 0;
+}
+
+.total-price span {
+  font-size: 1.4rem;
 }
 
 .cart .actions {

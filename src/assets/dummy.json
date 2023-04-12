@@ -20,7 +20,9 @@
 
   "courses": {
     "c1": {
+      "id": "c1",
       "title": "The complete guide to React",
+      "thumbnail": "./landing-page.jfif",
       "category": "Web Development",
       "categoryId": "web",
       "instructor": "i1",
@@ -65,7 +67,9 @@
       "price": 1400
     },
     "c2": {
+      "id": "c2",
       "title": "The complete guide to JavaScript",
+      "thumbnail": "./landing-page.jfif",
       "category": "Mobile Development",
       "categoryId": "mobile",
       "instructor": "i2",
@@ -151,7 +155,9 @@
       "price": 0
     },
     "c3": {
+      "id": "c3",
       "title": "The complete guide to React",
+      "thumbnail": "./landing-page.jfif",
       "category": "Web Development",
       "categoryId": "web",
       "instructor": "i1",
@@ -191,7 +197,9 @@
       "price": 1400
     },
     "c4": {
+      "id": "c4",
       "title": "The complete guide to React",
+      "thumbnail": "./landing-page.jfif",
       "category": "Web Development",
       "categoryId": "web",
       "instructor": "i1",
@@ -237,7 +245,9 @@
       "price": 1400
     },
     "c5": {
+      "id": "c5",
       "title": "The complete guide to React",
+      "thumbnail": "./landing-page.jfif",
       "category": "Web Development",
       "categoryId": "web",
       "instructor": "i1",
@@ -283,7 +293,9 @@
       "price": 1400
     },
     "c6": {
+      "id": "c6",
       "title": "The complete guide to React",
+      "thumbnail": "./landing-page.jfif",
       "category": "Web Development",
       "categoryId": "web",
       "instructor": "i1",
@@ -329,7 +341,9 @@
       "price": 1400
     },
     "c7": {
+      "id": "c7",
       "title": "The complete guide to React",
+      "thumbnail": "./landing-page.jfif",
       "category": "Web Development",
       "categoryId": "web",
       "instructor": "i1",
@@ -375,7 +389,9 @@
       "price": 1400
     },
     "c8": {
+      "id": "c8",
       "title": "The complete guide to React",
+      "thumbnail": "./landing-page.jfif",
       "category": "Web Development",
       "categoryId": "web",
       "instructor": "i1",
@@ -423,6 +439,7 @@
     "c9": {
       "id": "c9",
       "title": "The complete guide to React",
+      "thumbnail": "./landing-page.jfif",
       "category": "Web Development",
       "categoryId": "web",
       "instructor": "i1",
@@ -470,6 +487,7 @@
     "c10": {
       "id": "c10",
       "title": "The complete guide to React",
+      "thumbnail": "./landing-page.jfif",
       "category": "Web Development",
       "categoryId": "web",
       "instructor": "i1",

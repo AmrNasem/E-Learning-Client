@@ -8,8 +8,13 @@ export const OutLayer = (props) => {
 
 const PopupBox = (props) => {
   return (
-    <div className={`${classes["popup-box"]} ${props.className}`}>
-      {props.children}
+    <div onClick={props.onClick} className={classes.container}>
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className={`${classes["popup-box"]} ${props.className}`}
+      >
+        {props.children}
+      </div>
     </div>
   );
 };
@@ -22,7 +27,9 @@ const Modal = (props) => {
         document.getElementById("outlayer-root")
       )}
       {ReactDOM.createPortal(
-        <PopupBox className={props.className}>{props.children}</PopupBox>,
+        <PopupBox onClick={props.onClick} className={props.className}>
+          {props.children}
+        </PopupBox>,
         document.getElementById("popup-root")
       )}
     </Fragment>

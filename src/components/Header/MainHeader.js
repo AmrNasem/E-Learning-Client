@@ -14,6 +14,7 @@ const MainHeader = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isCartOpened = useSelector((state) => state.cart.isOpened);
+  const totalAmount = useSelector((state) => state.cart.totalAmount);
   const headerCtx = useContext(HeaderContext);
 
   const toggleCategoriesHandler = (e) => {
@@ -49,8 +50,7 @@ const MainHeader = (props) => {
         className={classes.cart}
       >
         <CartIcon />
-        <span className={classes.title}>Your Cart</span>
-        <span className={classes.amount}>0</span>
+        <span className={classes.amount}>{totalAmount}</span>
       </div>
       {isCartOpened && <Cart />}
       <div className={classes.actions}>

@@ -18,6 +18,7 @@ const MobileHeader = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isCartOpened = useSelector((state) => state.cart.isOpened);
+  const totalAmount = useSelector((state) => state.cart.totalAmount);
   const headerCtx = useContext(HeaderContext);
   const [openedSearch, setOpenedSearch] = useState(false);
 
@@ -77,7 +78,7 @@ const MobileHeader = (props) => {
         className={classes.cart}
       >
         <CartIcon />
-        <span className={classes.amount}>0</span>
+        <span className={classes.amount}>{totalAmount}</span>
       </div>
       {isCartOpened && <Cart />}
     </header>

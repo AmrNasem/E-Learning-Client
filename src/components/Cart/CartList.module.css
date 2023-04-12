@@ -1,0 +1,8 @@
+.cart-list {
+  max-height: 500px;
+  overflow: auto;
+}
+
+.cart-list::-webkit-scrollbar {
+  display: none;
+}
