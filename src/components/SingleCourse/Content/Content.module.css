@@ -13,8 +13,9 @@
 }
 .content button {
   background-color: var(--main-color);
+  color: var(--secondary-color);
   border: none;
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid var(--secondary-color);
   cursor: pointer;
   align-self: flex-start;
   margin-top: -30px;

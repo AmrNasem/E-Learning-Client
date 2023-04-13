@@ -12,9 +12,10 @@
 }
 
 .section .lecture{
-  color: aliceblue;
+  color: var(--secondary-color);
   text-align: right;
   width: 70%; 
+  
 }
 
 .rotate {
