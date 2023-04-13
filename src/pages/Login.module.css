@@ -80,12 +80,16 @@ transition: .3s;
 @media screen and (max-width: 767px) {
     .form{
         width: 300px;
-        border: none;
+        /* border: none; */
+        /* background-color: var(--main-color); */
+        
     }
     .email{
-        width: 300px;
+        width: 280px;
+        border: none;
     }
     .password{
-        width: 300px;
+        width: 280px;
+        border: none;
     }
 }
