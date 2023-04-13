@@ -6,6 +6,12 @@
   z-index: 2;
 }
 
+@media (max-width: 850px) {
+  .track {
+    display: none;
+  }
+}
+
 .overview {
   position: sticky;
   top: 30px;

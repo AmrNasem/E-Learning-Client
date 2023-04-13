@@ -2,6 +2,12 @@
   width: 55%;
 }
 
+@media (max-width: 850px) {
+  .requirements {
+    width: 100%;
+  }
+}
+
 /* .requirements ul {
   Bullets of <li> elements are preferred according to Udemy UI
 } */

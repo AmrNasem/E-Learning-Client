@@ -1,6 +1,4 @@
 import classes from "./Overview.module.css";
-import thumbnail from "../../assets/landing-page.jfif";
-import PlayIcon from "../Icons/PlayIcon";
 import VideoIcon from "../Icons/VideoIcon";
 import FileIcon from "../Icons/FileIcon";
 import InfinityIcon from "../Icons/InfinityIcon";
@@ -9,13 +7,14 @@ import CupIcon from "../Icons/CupIcon";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
 import { useState } from "react";
+import Preview from "./Preview";
 
 const Overview = (props) => {
   const { course } = props;
   let numOfArticles = 0;
   const dispatch = useDispatch();
-  const cartItems = useSelector((state) => state.cart.items);
   const [applyCoupon, setApplyCoupon] = useState(false);
+  const cartItems = useSelector((state) => state.cart.items);
 
   course.sections.forEach((section) =>
     section.lectures.forEach((lecture) =>
@@ -30,15 +29,7 @@ const Overview = (props) => {
   return (
     <div className={classes.track}>
       <div className={`${classes.overview} ${props.hide && classes.float}`}>
-        <div className={`${classes.thumbnail} ${props.hide && classes.hide}`}>
-          <div className={classes.overlay}>
-            <span>
-              <PlayIcon />
-            </span>
-            <h5>Preview this course</h5>
-          </div>
-          <img src={thumbnail} alt="Thumbnail" />
-        </div>
+        <Preview className={props.hide ? classes.hide : ""} />
         <div className={classes.body}>
           <div className={classes.price}>
             <span className={classes["final-price"]}>

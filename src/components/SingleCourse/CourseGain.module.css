@@ -4,6 +4,12 @@
   padding: 30px;
 }
 
+@media (max-width: 850px) {
+  .course-gain {
+    width: 100%;
+  }
+}
+
 .course-gain ul {
   list-style: none;
 }
