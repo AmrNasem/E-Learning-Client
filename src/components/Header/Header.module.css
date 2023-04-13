@@ -12,6 +12,14 @@ header {
     display: none;
   }
 }
+.logo{
+  font-family:abril fatface;
+}
+.logolink{
+  text-decoration: none;
+  color: var(--sixth-color);
+  font-family:cursive;
+}
 
 .categories {
   color: var(--third-color);
