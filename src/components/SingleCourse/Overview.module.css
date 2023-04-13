@@ -115,14 +115,13 @@
 .final-price {
   font-size: 2rem;
   font-weight: bold;
-  margin-left: -10px;
 }
 .initial-price {
   margin-left: 8px;
 }
 .discount {
-  display: inline;
-  margin-left: 60%;
+  display: block;
+  
 }
 
 .body > button {
@@ -142,7 +141,7 @@
 .share {
   border: none;
   padding-bottom: 3px;
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid var(--secondary-color);
   background-color: #fff;
   margin: 20px 20px 15px 65px;
   cursor: pointer;
@@ -151,7 +150,7 @@
 .coupon {
   border: none;
   padding-bottom: 3px;
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid var(--secondary-color);
   background-color: #fff;
   cursor: pointer;
   color: var(--secondary-color);

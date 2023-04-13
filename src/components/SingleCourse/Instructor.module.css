@@ -8,7 +8,7 @@
   }
 }
 .instructorName {
-  color: var(--sixth-color);
+  color: hsl(17, 92%, 57%);
 }
 .image {
   width: 100px;

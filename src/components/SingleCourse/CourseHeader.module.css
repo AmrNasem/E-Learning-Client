@@ -4,10 +4,10 @@
 }
 .course-header .link {
   text-decoration: none;
-  color: var(--sixth-color);
+  color: var(--fifth-color);
 }
 .rates a {
-  color: var(--sixth-color);
+  color: var(--fifth-color);
 }
 .info {
   margin-top: 15px;
@@ -16,7 +16,7 @@
   margin-top: 15px;
 }
 .instructor a {
-  color: var(--sixth-color);
+  color: var(--fifth-color);
 }
 
 @media (max-width: 850px) {
