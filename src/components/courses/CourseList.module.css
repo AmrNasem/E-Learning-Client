@@ -18,12 +18,14 @@
   top: 30%;
   right: -1.5%;
   opacity: 0;
+  background-color: var(--third-color);
 }
 
 .backward {
   top: 30%;
   left: -1.5%;
   opacity: 0;
+  background-color: var(--third-color);
 }
 
 .course-list::-webkit-scrollbar {
