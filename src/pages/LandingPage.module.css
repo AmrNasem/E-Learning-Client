@@ -1,4 +1,4 @@
-.landing-image {
+/* .landing-image {
   height: calc(100vh - 64px);
   overflow: hidden;
   position: relative;
@@ -16,7 +16,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
+} */
 .landing-courses {
   padding: 50px 4%;
 }

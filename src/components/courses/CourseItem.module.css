@@ -3,7 +3,7 @@
   color: var(--third-color); /* Temporary */
 }
 .course{
-  background-color: var(--main-color);
+  background-color: var(--secondary-color);
   display: flex;
   border: 2px var(--fourth-color) solid;  
   border-radius: 20px;
