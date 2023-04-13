@@ -1,3 +1,7 @@
 .section-header {
   cursor: pointer;
 }
+
+.rotate {
+  transform: rotate(225deg);
+}

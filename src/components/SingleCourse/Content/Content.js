@@ -1,11 +1,23 @@
+import { useEffect } from "react";
 import classes from "./Content.module.css";
 import SectionList from "./SectionList";
+import { useDispatch } from "react-redux";
+import { courseActions } from "../../../store/course-slice";
 
 const Content = (props) => {
   const { course } = props;
+  const dispatch = useDispatch();
+
   const numOfLectures = course.sections
     .map((section) => section.lectures.length)
     .reduce((previous, current) => previous + current);
+
+  // Load course sections to course slice
+  useEffect(() => {
+    course.sections.map((section) =>
+      dispatch(courseActions.addSection(section))
+    );
+  }, [dispatch, course]);
 
   return (
     <div className={classes.content}>

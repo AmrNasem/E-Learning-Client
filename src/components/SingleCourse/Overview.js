@@ -8,12 +8,14 @@ import TVIcon from "../Icons/TVIcon";
 import CupIcon from "../Icons/CupIcon";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
+import { useState } from "react";
 
 const Overview = (props) => {
   const { course } = props;
   let numOfArticles = 0;
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
+  const [applyCoupon, setApplyCoupon] = useState(false);
 
   course.sections.forEach((section) =>
     section.lectures.forEach((lecture) =>
@@ -80,12 +82,19 @@ const Overview = (props) => {
             </ul>
             <div>
               <button className={classes.share}>Share</button>
-              <button className={classes.coupon}>Apply Coupon</button>
+              <button
+                onClick={() => setApplyCoupon((prevState) => !prevState)}
+                className={classes.coupon}
+              >
+                Apply Coupon
+              </button>
             </div>
-            <form>
-              <input placeholder="Enter coupon" type="text" />
-              <button>Apply</button>
-            </form>
+            {applyCoupon && (
+              <form>
+                <input placeholder="Enter coupon" type="text" />
+                <button>Apply</button>
+              </form>
+            )}
           </div>
         </div>
       </div>
