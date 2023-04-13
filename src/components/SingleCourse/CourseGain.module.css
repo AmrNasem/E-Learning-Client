@@ -1,6 +1,6 @@
 .course-gain {
   width: 55%;
-  border: 1px solid #ddd;
+  border: 1px solid var(--secondary-color);
   padding: 30px;
 }
 
