@@ -36,7 +36,9 @@ const CourseHeader = (props) => {
   return (
     <div className={classes["course-header"]}>
       <h5>
-        <Link to={`/category/${course.categoryId}`} className={classes.link}>{course.category}</Link>
+        <Link to={`/category/${course.categoryId}`} className={classes.link}>
+          {course.category}
+        </Link>
       </h5>
       <Preview className={classes.preview} />
       <h1>{course.title}</h1>
