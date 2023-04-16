@@ -86,9 +86,9 @@ const CourseHeader = (props) => {
           </button>
         </div>
         {applyCoupon && (
-          <form>
-            <input placeholder="Enter coupon" type="text" />
-            <button>Apply</button>
+          <form className={classes.couponform}>
+            <input placeholder="Enter coupon" type="text" className={classes.ApplyCoupon}/>
+            <button className={classes.ApplyCouponButton}>Apply</button>
           </form>
         )}
       </div>

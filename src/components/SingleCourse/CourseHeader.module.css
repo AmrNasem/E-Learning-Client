@@ -23,6 +23,9 @@
   .course-header {
     width: 100%;
   }
+  .preview{
+    margin-top: 30px;
+  }
   .body{
     display: flex;
     flex-direction: column;
@@ -34,12 +37,14 @@
     height: 50px;
     align-items: center;
     margin-bottom: 5px;
+    cursor: pointer;
   }
   .buy{
     width: 100%;
     height: 50px;
     display: block;
     margin-bottom: 30px;
+    cursor: pointer;
   }
   .price{
     margin: 20px 0 20px 0;
@@ -63,18 +68,46 @@
     display: flex;
     justify-content: center;
     justify-content: space-between;
+    cursor: pointer;
   }
   .buyButtons button{
     border: none;
     border-bottom: 1px solid aliceblue;
     background-color: var(--sixth-color);
     color: aliceblue;
+    cursor: pointer;
   }
   .share{
     margin-left: 25%;
+    cursor: pointer;
   }
   .coupon{
     margin-right: 25%;
+    cursor: pointer;
+  }
+  .couponform{
+    display: flex;
+    justify-content: center;
+  }
+  .ApplyCoupon{
+    font-size: 18px;
+    height: 45px;
+    width: 100%;
+    min-width: 260px;
+    margin-top: 20px;
+    border: 1px solid var(--secondary-color);
+    text-align: center;
+    justify-content: center;
+  }
+  .ApplyCouponButton{
+    font-size: large;
+    min-width: 70px;
+    height: 45px;
+    margin-top: 20px;
+    cursor: pointer;
+    border: 2px solid var(--secondary-color);
+    background-color: var(--secondary-color);
+    cursor: pointer;
   }
 }
 
