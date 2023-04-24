@@ -12,9 +12,6 @@ header {
     display: none;
   }
 }
-.logo{
-  font-family:abril fatface;
-}
 .logolink{
   text-decoration: none;
   color: var(--sixth-color);
@@ -28,6 +25,7 @@ header {
   background-color: transparent;
   cursor: pointer;
   transition: 0.3s;
+  font-size: 16px;
 }
 
 .active {
@@ -103,12 +101,15 @@ input[type="search"] {
 .actions button {
   border-radius: 5px;
   margin: 3px;
+  
 }
 
 .actions .signup {
   background-color: var(--main-color);
   color: var(--third-color);
+  font-size: 16px;
 }
 .actions .login {
   background-color: var(--third-color);
+  font-size: 16px;
 }

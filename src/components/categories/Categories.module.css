@@ -1,14 +1,3 @@
-/* .categories {
-  position: absolute;
-  top: 100%;
-  background-color: white;
-  box-shadow: 0 1px 5px #ccc;
-  transform: translateX(35%);
-  z-index: 1;
-  transition: 0.3s;
-  width: 180px;
-} */
-
 .categories::before{
   content: "";
     border-width: 10px;
@@ -24,7 +13,7 @@
   display: flex;
   padding: 12px 8px 12px;
   right: 0;
-  min-width: 170px;
+  min-width: 173px;
   z-index: 1;
   border-left: solid var(--third-color) 3px;
   border-bottom: solid var(--third-color) 1px;
