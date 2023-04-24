@@ -32,7 +32,11 @@ aside {
   flex: 1;
   text-align: center;
 }
-
+.mobile-logo a{
+  text-decoration: none;
+  color: var(--sixth-color);
+  font-family:cursive;
+}
 .search-content {
   position: fixed;
   top: 0;
