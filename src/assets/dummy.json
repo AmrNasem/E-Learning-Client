@@ -1,20 +1,53 @@
 {
+  "users": {
+    "u1": {
+      "name": "Maximilian",
+      "instructor": "i1",
+      "enrolled-courses": ["c2"],
+      "avatar": ""
+    },
+    "u2": {
+      "name": "Osama Elzero",
+      "instructor": "i2",
+      "enrolled-courses": ["c3", "c5", "c9"],
+      "avatar": ""
+    },
+    "u3": {
+      "name": "Amr Naseem",
+      "instructor": null,
+      "enrolled-courses": ["c2", "c3", "c5", "c9"],
+      "avatar": ""
+    }
+  },
   "instructors": {
     "i1": {
+      "id": "i1",
       "name": "Maximilian",
       "job": "Developer and Lead Instructor",
       "reviews": 607233,
       "students": 2003800,
       "courses": ["c1", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10"],
-      "about": "I'm Maximilian, I'm a developer with a passion for teaching. I'm the lead instructor at the London App Brewery, London's leading Programming Bootcamp. I've helped hundreds of thousands of students learn to code and change their lives by becoming a developer. I've been invited by companies such as Twitter, Facebook and Google to teach their employees."
+      "about": "I'm Maximilian, I'm a developer with a passion for teaching. I'm the lead instructor at the London App Brewery, London's leading Programming Bootcamp. I've helped hundreds of thousands of students learn to code and change their lives by becoming a developer. I've been invited by companies such as Twitter, Facebook and Google to teach their employees.",
+      "social-media": {
+        "website": "https://www.google.com",
+        "twitter": "https://www.twitter.com",
+        "facebook": "https://www.facebook.com",
+        "youtube": "https://www.youtube.com"
+      }
     },
     "i2": {
+      "id": "i2",
       "name": "Osama Elzero",
       "job": "Developer, Lead Instructor and greatness creator",
       "reviews": 722149,
       "students": 3500217,
       "courses": ["c2"],
-      "about": "I'm Osama, I'm a developer with a passion for teaching. I'm the lead instructor at the London App Brewery, London's leading Programming Bootcamp. I've helped hundreds of thousands of students learn to code and change their lives by becoming a developer. I've been invited by companies such as Twitter, Facebook and Google to teach their employees."
+      "about": "I'm Osama, I'm a developer with a passion for teaching. I'm the lead instructor at the London App Brewery, London's leading Programming Bootcamp. I've helped hundreds of thousands of students learn to code and change their lives by becoming a developer. I've been invited by companies such as Twitter, Facebook and Google to teach their employees.",
+      "social-media": {
+        "twitter": "https://www.twitter.com",
+        "facebook": "https://www.facebook.com",
+        "youtube": "https://www.youtube.com"
+      }
     }
   },
 

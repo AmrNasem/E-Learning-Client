@@ -7,17 +7,17 @@ import MedalIcon from "../Icons/MedalIcon";
 import GroupIcon from "../Icons/GroupIcon";
 
 const Instructor = (props) => {
-  const { instructor } = props;
+  const { instructor, userId } = props;
 
   return (
     <div id="instructor" className={classes.instructor}>
       <h2>Instructor</h2>
       <div className={classes.profile}>
-        <Link to="/user/:userId">{instructor.name}</Link>
+        <Link to={`/user/${userId}`}>{instructor.name}</Link>
         <p>{instructor.job}</p>
         <div>
           <div className={classes.image}>
-            <Link to="/user/:userId">
+            <Link to={`/user/${userId}`}>
               <img src={instructorImage} alt={instructor.name} />
             </Link>
           </div>

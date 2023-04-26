@@ -10,9 +10,11 @@ import { useContext } from "react";
 import HeaderContext from "./store/header-context";
 import Course from "./pages/Course";
 import jsonFile from "./assets/dummy.json";
+import User from "./pages/User";
 
 const dummyCourses = jsonFile.courses;
 const dummyInstructors = jsonFile.instructors;
+const dummyUsers = jsonFile.users;
 
 function App() {
   const headerCtx = useContext(HeaderContext);
@@ -39,11 +41,23 @@ function App() {
           path="/course/:courseId/*"
           element={
             <Course
+              dummyUsers={dummyUsers}
               dummyInstructors={dummyInstructors}
               dummyCourses={dummyCourses}
             />
           }
         />
+        <Route
+          path="/user/:userId/*"
+          element={
+            <User
+              dummyUsers={dummyUsers}
+              dummyInstructors={dummyInstructors}
+              dummyCourses={dummyCourses}
+            />
+          }
+        />
+        <Route path="*" element={<h1>Page Not Found</h1>} />
       </Routes>
       <Footer />
     </div>

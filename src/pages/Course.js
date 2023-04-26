@@ -11,8 +11,9 @@ import Description from "../components/SingleCourse/Description";
 import Instructor from "../components/SingleCourse/Instructor";
 
 const Course = (props) => {
+  const [scrollY, setScrollY] = useState(0);
   const { courseId } = useParams();
-  const { dummyCourses, dummyInstructors } = props;
+  const { dummyCourses, dummyInstructors, dummyUsers } = props;
 
   let course;
   for (const key in dummyCourses) {
@@ -20,6 +21,10 @@ const Course = (props) => {
       course = dummyCourses[key];
       break;
     }
+  }
+
+  if (!course) {
+    return <h1>Course Not Found</h1>;
   }
 
   let instructor;
@@ -30,7 +35,13 @@ const Course = (props) => {
     }
   }
 
-  const [scrollY, setScrollY] = useState(0);
+  let userId;
+  for (const key in dummyUsers) {
+    if (dummyUsers[key].instructor === instructor.id) {
+      userId = key;
+    }
+  }
+
   window.onscroll = () => setScrollY(window.scrollY);
 
   return (
@@ -47,7 +58,7 @@ const Course = (props) => {
         <Content course={course} />
         <Requirements course={course} />
         <Description course={course} />
-        <Instructor instructor={instructor} />
+        <Instructor userId={userId} instructor={instructor} />
       </Container>
     </main>
   );

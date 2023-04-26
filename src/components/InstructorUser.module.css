@@ -1,0 +1,56 @@
+.introduction {
+  display: flex;
+  justify-content: space-between;
+  gap: 100px;
+}
+.achievements {
+  display: flex;
+}
+.aside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.aside .photo {
+  width: 150px;
+  height: 150px;
+}
+.aside .photo img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.aside .social-media {
+  align-self: stretch;
+  text-align: center;
+}
+@media (max-width: 600px) {
+  .aside {
+    align-items: unset !important;
+  }
+  .aside .social-media {
+    display: none;
+  }
+  .introduction {
+    flex-direction: column-reverse;
+    gap: 20px !important;
+  }
+}
+.social-media a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.social-media a span {
+  text-transform: capitalize;
+}
+
+@media (min-width: 600px) {
+  .courses .social-media {
+    display: none;
+  }
+}
