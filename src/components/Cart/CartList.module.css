@@ -3,6 +3,17 @@
   overflow: auto;
 }
 
+@media (max-width: 550px) {
+  .cart-list {
+    max-height: 340px !important;
+  }
+}
+@media (max-width: 450px) {
+  .cart-list {
+    max-height: 250px !important;
+  }
+}
+
 .cart-list::-webkit-scrollbar {
   display: none;
 }

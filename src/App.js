@@ -11,6 +11,7 @@ import HeaderContext from "./store/header-context";
 import Course from "./pages/Course";
 import jsonFile from "./assets/dummy.json";
 import User from "./pages/User";
+import CourseView from "./pages/CourseView";
 
 const dummyCourses = jsonFile.courses;
 const dummyInstructors = jsonFile.instructors;
@@ -32,6 +33,7 @@ function App() {
             <LandingPage
               dummyInstructors={dummyInstructors}
               dummyCourses={dummyCourses}
+              dummyUsers={dummyUsers}
             />
           }
         />
@@ -46,6 +48,10 @@ function App() {
               dummyCourses={dummyCourses}
             />
           }
+        />
+        <Route
+          path="/course/:courseId/preview/*"
+          element={<CourseView dummyCourses={dummyCourses} />}
         />
         <Route
           path="/user/:userId/*"

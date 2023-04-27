@@ -1,13 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { sections: [] };
+const initialState = { course: {} };
 const courseSlice = createSlice({
   name: "course",
   initialState,
   reducers: {
-    addSection(state, action) {
-      const section = action.payload;
-      state.sections.push(section);
+    resetState(state, action) {
+      state.course = action.payload;
     },
   },
 });

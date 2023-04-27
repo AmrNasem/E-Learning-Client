@@ -32,16 +32,17 @@ const CourseList = (props) => {
       />
       <h3>{listClass}</h3>
       <div ref={coursesRef} className={classes["course-list"]}>
-        {Object.keys(dummyCourses).map((course) => (
-          <CourseItem
-            key={course}
-            id={course}
-            title={dummyCourses[course].title}
-            instructor={dummyInstructors[dummyCourses[course].instructor].name}
-            price={dummyCourses[course].price}
-            className={classes.course}
-          />
-        ))}
+        {Object.keys(dummyCourses).map((course) => {
+          const instructor = dummyInstructors[dummyCourses[course].instructor];
+          return (
+            <CourseItem
+              key={course}
+              id={course}
+              course={dummyCourses[course]}
+              instructor={instructor}
+            />
+          );
+        })}
       </div>
       <ForwardIcon onClick={moveForwardHandler} className={classes.forward} />
     </section>

@@ -1,0 +1,7 @@
+.lecture {
+  display: block;
+}
+
+.active {
+  background-color: #ddd;
+}

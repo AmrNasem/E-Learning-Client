@@ -1,28 +1,45 @@
 import classes from "./Section.module.css";
 import Lecture from "./Lecture";
 import ArrowIcon from "../../Icons/ArrowIcon";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router";
 
 const Section = (props) => {
-  const { lectures } = props;
+  const { lectures, title, active, duration, id } = props;
   const [isListed, setIsListed] = useState(false);
 
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const lecId = queryParams.get("lec") || "0";
+
+  useEffect(() => {
+    if (active) {
+      setIsListed(true);
+    }
+  }, [active]);
+
   return (
-    <div className={classes.section}>
+    <div className={`${classes.section} ${props.className}`}>
       <div
         onClick={() => setIsListed((prevState) => !prevState)}
         className={classes["section-header"]}
       >
         <ArrowIcon className={isListed ? classes.rotate : ""} />
-        <h4>{props.title}</h4>
+        <h4>{title}</h4>
         <span>
-          {lectures.length} lectures &bull; {props.duration}
+          {lectures.length} lectures &bull; {duration}
         </span>
       </div>
       {isListed && (
         <div>
           {lectures.map((lecture, index) => (
-            <Lecture key={index} {...lecture} />
+            <Lecture
+              active={lecId === index.toString() && active}
+              key={index}
+              id={index}
+              parentId={id}
+              {...lecture}
+            />
           ))}
         </div>
       )}

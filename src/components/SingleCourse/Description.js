@@ -1,7 +1,9 @@
+import React from "react";
 import classes from "./Description.module.css";
+import { useSelector } from "react-redux";
 
 const Description = (props) => {
-  const { course } = props;
+  const course = useSelector((state) => state.course.course);
 
   return (
     <div className={classes.description}>
@@ -12,4 +14,4 @@ const Description = (props) => {
   );
 };
 
-export default Description;
+export default React.memo(Description);

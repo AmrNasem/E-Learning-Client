@@ -1,0 +1,10 @@
+.playing-lecture {
+  background-color: #333;
+}
+.playing-lecture video {
+  width: 100%;
+  max-height: 550px;
+  display: block;
+  margin: auto;
+  outline: none;
+}

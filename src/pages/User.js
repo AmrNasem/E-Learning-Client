@@ -1,20 +1,21 @@
 import classes from "./User.module.css";
 import Container from "../components/UI/Container";
 import CourseItem from "../components/courses/CourseItem";
-import { useParams } from "react-router-dom";
 import InstructorUser from "../components/InstructorUser";
+import { userActions } from "../store/user-slice";
+import { useParams } from "react-router";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 const User = (props) => {
+  const { dummyInstructors, dummyCourses, dummyUsers } = props;
   const { userId } = useParams();
-  const { dummyUsers, dummyInstructors, dummyCourses } = props;
+  const dispatch = useDispatch();
+  const user = dummyUsers[userId];
 
-  let user;
-  for (const key in dummyUsers) {
-    if (key === userId) {
-      user = dummyUsers[key];
-      break;
-    }
-  }
+  useEffect(() => {
+    dispatch(userActions.resetState(user));
+  }, [dispatch, user]);
 
   if (!user) {
     return <h1>User Not Found</h1>;
@@ -24,7 +25,6 @@ const User = (props) => {
     <Container className={classes.container}>
       <InstructorUser
         user={user}
-        instructor={dummyInstructors[user.instructor]}
         dummyCourses={dummyCourses}
         dummyInstructors={dummyInstructors}
       />
@@ -42,9 +42,8 @@ const User = (props) => {
               <CourseItem
                 key={id}
                 id={id}
-                title={dummyCourses[id].title}
+                course={dummyCourses[id]}
                 instructor={dummyInstructors[dummyCourses[id].instructor].name}
-                price={dummyCourses[id].price}
               />
             ))}
           </div>

@@ -3,15 +3,15 @@ import { Link } from "react-router-dom";
 import Preview from "./Preview";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
-import { useState } from "react";
+import React, { useState } from "react";
 
 const CourseHeader = (props) => {
-  const { course, instructor } = props;
   const [applyCoupon, setApplyCoupon] = useState(false);
-
   const dispatch = useDispatch();
-
+  const course = useSelector((state) => state.course.course);
+  const instructor = useSelector((state) => state.instructor.instructor);
   const cartItems = useSelector((state) => state.cart.items);
+
   const addToCartHandler = () => {
     dispatch(cartActions.addToCart(course));
   };
@@ -74,4 +74,4 @@ const CourseHeader = (props) => {
   );
 };
 
-export default CourseHeader;
+export default React.memo(CourseHeader);

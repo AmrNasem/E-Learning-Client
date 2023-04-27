@@ -3,43 +3,37 @@ import CourseHeader from "../components/SingleCourse/CourseHeader";
 import CourseGain from "../components/SingleCourse/CourseGain";
 import Content from "../components/SingleCourse/Content/Content";
 import Overview from "../components/SingleCourse/Overview";
-import { useParams } from "react-router-dom";
 import Container from "../components/UI/Container";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Requirements from "../components/SingleCourse/Requirements";
 import Description from "../components/SingleCourse/Description";
 import Instructor from "../components/SingleCourse/Instructor";
+import { useDispatch } from "react-redux";
+import { courseActions } from "../store/course-slice";
+import { useParams } from "react-router";
+import { instructorActions } from "../store/instructor-slice";
+import { userActions } from "../store/user-slice";
 
 const Course = (props) => {
-  const [scrollY, setScrollY] = useState(0);
-  const { courseId } = useParams();
   const { dummyCourses, dummyInstructors, dummyUsers } = props;
+  const [scrollY, setScrollY] = useState(0);
+  const dispatch = useDispatch();
+  const { courseId } = useParams();
 
-  let course;
-  for (const key in dummyCourses) {
-    if (key === courseId) {
-      course = dummyCourses[key];
-      break;
-    }
-  }
+  const course = dummyCourses[courseId];
+  const instructor = dummyInstructors[dummyCourses[courseId].instructor];
+  const user = Object.values(dummyUsers).find(
+    (u) => u.instructor === instructor.id
+  );
+
+  useEffect(() => {
+    dispatch(courseActions.resetState(course));
+    dispatch(instructorActions.resetState(instructor));
+    dispatch(userActions.resetState(user));
+  }, [dispatch, courseId, course, user, instructor]);
 
   if (!course) {
     return <h1>Course Not Found</h1>;
-  }
-
-  let instructor;
-  for (const key in dummyInstructors) {
-    if (key === course.instructor) {
-      instructor = dummyInstructors[key];
-      break;
-    }
-  }
-
-  let userId;
-  for (const key in dummyUsers) {
-    if (dummyUsers[key].instructor === instructor.id) {
-      userId = key;
-    }
   }
 
   window.onscroll = () => setScrollY(window.scrollY);
@@ -48,20 +42,20 @@ const Course = (props) => {
     <main className={classes.course}>
       <div className={classes.background}>
         <Container>
-          {scrollY < 400 && <Overview course={course} />}
-          <CourseHeader instructor={instructor} course={course} />
+          {scrollY < 400 && <Overview />}
+          <CourseHeader />
         </Container>
       </div>
       <Container>
-        {scrollY >= 400 && <Overview course={course} hide={true} />}
-        <CourseGain course={course} />
-        <Content course={course} />
-        <Requirements course={course} />
-        <Description course={course} />
-        <Instructor userId={userId} instructor={instructor} />
+        {scrollY >= 400 && <Overview hide={true} />}
+        <CourseGain />
+        <Content />
+        <Requirements />
+        <Description />
+        <Instructor />
       </Container>
     </main>
   );
 };
 
-export default Course;
+export default React.memo(Course);

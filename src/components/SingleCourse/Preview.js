@@ -1,10 +1,11 @@
 import classes from "./Preview.module.css";
 import PlayIcon from "../Icons/PlayIcon";
 import thumbnail from "../../assets/landing-page.jfif";
+import { Link } from "react-router-dom";
 
 const Preview = (props) => {
   return (
-    <div className={`${classes.preview} ${props.className}`}>
+    <Link to="preview" className={`${classes.preview} ${props.className}`}>
       <div className={classes.overlay}>
         <span>
           <PlayIcon />
@@ -12,7 +13,7 @@ const Preview = (props) => {
         <h5>Preview this course</h5>
       </div>
       <img src={thumbnail} alt="Thumbnail" />
-    </div>
+    </Link>
   );
 };
 

@@ -41,6 +41,9 @@
 .hide {
   display: none;
 }
+.display {
+  display: block;
+}
 
 .thumbnail img {
   width: 100%;

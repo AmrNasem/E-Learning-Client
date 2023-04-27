@@ -5,19 +5,24 @@ import PlayIcon from "../Icons/PlayIcon";
 import StarIcon from "../Icons/StarIcon";
 import MedalIcon from "../Icons/MedalIcon";
 import GroupIcon from "../Icons/GroupIcon";
+import React from "react";
+import { useSelector } from "react-redux";
 
 const Instructor = (props) => {
-  const { instructor, userId } = props;
+  const instructor = useSelector((state) => state.instructor.instructor);
+  const user = useSelector((state) => state.user.user);
+
+  if (!instructor.courses) return; // Because this compnent renders multiple times without instructor content existence
 
   return (
     <div id="instructor" className={classes.instructor}>
       <h2>Instructor</h2>
       <div className={classes.profile}>
-        <Link to={`/user/${userId}`}>{instructor.name}</Link>
+        <Link to={`/user/${user.id}`}>{instructor.name}</Link>
         <p>{instructor.job}</p>
         <div>
           <div className={classes.image}>
-            <Link to={`/user/${userId}`}>
+            <Link to={`/user/${user.id}`}>
               <img src={instructorImage} alt={instructor.name} />
             </Link>
           </div>
@@ -49,4 +54,4 @@ const Instructor = (props) => {
   );
 };
 
-export default Instructor;
+export default React.memo(Instructor);

@@ -6,15 +6,17 @@ import TVIcon from "../Icons/TVIcon";
 import CupIcon from "../Icons/CupIcon";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
-import { useState } from "react";
+import React, { useState } from "react";
 import Preview from "./Preview";
 
 const Overview = (props) => {
-  const { course } = props;
   let numOfArticles = 0;
-  const dispatch = useDispatch();
   const [applyCoupon, setApplyCoupon] = useState(false);
+  const dispatch = useDispatch();
+  const course = useSelector((state) => state.course.course);
   const cartItems = useSelector((state) => state.cart.items);
+
+  if (!course.sections) return; // Because this compnent renders multiple times without course content existence
 
   course.sections.forEach((section) =>
     section.lectures.forEach((lecture) =>
@@ -29,7 +31,7 @@ const Overview = (props) => {
   return (
     <div className={classes.track}>
       <div className={`${classes.overview} ${props.hide && classes.float}`}>
-        <Preview className={props.hide ? classes.hide : ""} />
+        <Preview className={props.hide ? classes.hide : classes.display} />
         <div className={classes.body}>
           <div className={classes.price}>
             <span className={classes["final-price"]}>
@@ -93,4 +95,4 @@ const Overview = (props) => {
   );
 };
 
-export default Overview;
+export default React.memo(Overview);

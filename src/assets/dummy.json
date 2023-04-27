@@ -1,18 +1,21 @@
 {
   "users": {
     "u1": {
+      "id": "u1",
       "name": "Maximilian",
       "instructor": "i1",
       "enrolled-courses": ["c2"],
       "avatar": ""
     },
     "u2": {
+      "id": "u2",
       "name": "Osama Elzero",
       "instructor": "i2",
       "enrolled-courses": ["c3", "c5", "c9"],
       "avatar": ""
     },
     "u3": {
+      "id": "u3",
       "name": "Amr Naseem",
       "instructor": null,
       "enrolled-courses": ["c2", "c3", "c5", "c9"],
@@ -71,6 +74,7 @@
           "lectures": [
             {
               "title": "Introduction to HTML",
+              "available": true,
               "type": "video",
               "duration": "04:18"
             },
@@ -79,6 +83,7 @@
         },
         {
           "title": "Intermediate HTML",
+          "available": true,
           "duration": "57min",
           "lectures": [
             { "title": "HTML Tables", "type": "video", "duration": "11:57" },
@@ -124,11 +129,13 @@
           "lectures": [
             {
               "title": "What you'll get in this course",
+              "available": true,
               "type": "video",
               "duration": "03:08"
             },
             {
               "title": "Download the course syllabus",
+              "available": true,
               "type": "article",
               "duration": "00:12"
             },
@@ -145,6 +152,7 @@
           "lectures": [
             {
               "title": "Introduction to HTML",
+              "available": true,
               "type": "video",
               "duration": "04:18"
             },
@@ -164,7 +172,12 @@
           "title": "Intermediate HTML",
           "duration": "57min",
           "lectures": [
-            { "title": "HTML Tables", "type": "video", "duration": "11:57" },
+            {
+              "title": "HTML Tables",
+              "available": true,
+              "type": "video",
+              "duration": "11:57"
+            },
             {
               "title": "Download the course syllabus",
               "type": "video",
@@ -205,6 +218,7 @@
           "lectures": [
             {
               "title": "Using HTML Tags",
+              "available": true,
               "type": "article",
               "duration": "08:04"
             }
@@ -247,6 +261,7 @@
           "lectures": [
             {
               "title": "Introduction to HTML",
+              "available": true,
               "type": "video",
               "duration": "04:18"
             },
@@ -295,6 +310,7 @@
           "lectures": [
             {
               "title": "Introduction to HTML",
+              "available": true,
               "type": "video",
               "duration": "04:18"
             },
@@ -343,6 +359,7 @@
           "lectures": [
             {
               "title": "Introduction to HTML",
+              "available": true,
               "type": "video",
               "duration": "04:18"
             },
@@ -391,6 +408,7 @@
           "lectures": [
             {
               "title": "Introduction to HTML",
+              "available": true,
               "type": "video",
               "duration": "04:18"
             },
@@ -439,6 +457,7 @@
           "lectures": [
             {
               "title": "Introduction to HTML",
+              "available": true,
               "type": "video",
               "duration": "04:18"
             },
@@ -487,6 +506,7 @@
           "lectures": [
             {
               "title": "Introduction to HTML",
+              "available": true,
               "type": "video",
               "duration": "04:18"
             },
@@ -535,6 +555,7 @@
           "lectures": [
             {
               "title": "Introduction to HTML",
+              "available": true,
               "type": "video",
               "duration": "04:18"
             },

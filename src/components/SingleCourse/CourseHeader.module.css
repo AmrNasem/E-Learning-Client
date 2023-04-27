@@ -10,6 +10,7 @@
 
 .preview {
   height: 300px !important;
+  display: block;
 }
 
 @media (min-width: 850px) {

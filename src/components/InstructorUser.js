@@ -38,9 +38,11 @@ const SocialMedia = (props) => {
 };
 
 const InstructorUser = (props) => {
-  const { user, instructor, dummyCourses, dummyInstructors } = props;
-  const socialMedia = dummyInstructors[user.instructor]["social-media"];
-  const coursesIds = dummyInstructors[user.instructor].courses;
+  const { user, dummyInstructors, dummyCourses } = props;
+  const instructor = dummyInstructors[user.instructor];
+
+  const socialMedia = instructor["social-media"];
+  const coursesIds = instructor.courses;
 
   return (
     <Fragment>
@@ -75,9 +77,8 @@ const InstructorUser = (props) => {
             <CourseItem
               key={id}
               id={id}
-              title={dummyCourses[id].title}
+              course={dummyCourses[id]}
               instructor={dummyInstructors[dummyCourses[id].instructor].name}
-              price={dummyCourses[id].price}
             />
           ))}
         </div>

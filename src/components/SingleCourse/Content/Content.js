@@ -1,23 +1,16 @@
-import { useEffect } from "react";
+import React from "react";
 import classes from "./Content.module.css";
-import SectionList from "./SectionList";
-import { useDispatch } from "react-redux";
-import { courseActions } from "../../../store/course-slice";
+import Section from "./Section";
+import { useSelector } from "react-redux";
 
 const Content = (props) => {
-  const { course } = props;
-  const dispatch = useDispatch();
+  const course = useSelector((state) => state.course.course);
+
+  if (!course.sections) return; // Because this compnent renders multiple times without course content existence
 
   const numOfLectures = course.sections
     .map((section) => section.lectures.length)
     .reduce((previous, current) => previous + current);
-
-  // Load course sections to course slice
-  useEffect(() => {
-    course.sections.map((section) =>
-      dispatch(courseActions.addSection(section))
-    );
-  }, [dispatch, course]);
 
   return (
     <div className={classes.content}>
@@ -26,7 +19,11 @@ const Content = (props) => {
         {course.sections.length} sections &bull; {numOfLectures} lectures &bull;
         65h 33m total length
       </p>
-      <SectionList sections={course.sections} />
+      <div>
+        {course.sections.map((section, index) => (
+          <Section key={index} id={index} {...section} />
+        ))}
+      </div>
       <button>32 more sections</button>
     </div>
   );
