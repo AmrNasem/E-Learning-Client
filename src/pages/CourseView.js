@@ -34,6 +34,7 @@ const CourseView = (props) => {
               key={index}
               id={index}
               {...section}
+              className={classes.Section}
             />
           ))}
         </div>

@@ -75,6 +75,7 @@ const InstructorUser = (props) => {
           </div>
         </div>
         <div className={classes.courses}>
+          <SocialMedia socialMedia={socialMedia} />
           <h3>My courses ({coursesIds.length})</h3>
           <div className={classes["course-list"]}>
             {coursesIds.map((id) => (
@@ -86,7 +87,7 @@ const InstructorUser = (props) => {
                 />
             ))}
           </div>
-          <SocialMedia socialMedia={socialMedia} />
+          
         </div>
       </div>  
     </Fragment>
