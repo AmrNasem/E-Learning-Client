@@ -9,9 +9,9 @@
   outline: none;
 }
 .content{
-  margin: 20px 0 20px 15%;
+  margin: 20px auto;
   border: 2px dotted var(--third-color);
   border-radius: 20px;
   padding: 20px;
-  width: 70%;
+  max-width: 1000px;
 }

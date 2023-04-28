@@ -9,11 +9,6 @@
   z-index: 50;
 }
 
-.forward:hover,
-.forward:active {
-  background-color: var(--secondary-color);
-}
-
 .forward span {
   display: block;
   width: 10px;
