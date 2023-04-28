@@ -13,6 +13,8 @@ height: 420px;
 margin: auto;
 margin-top: 5%;
 margin-bottom: 8%;
+box-shadow: #a38d8dac 3px 3px 20px 2px;
+
 }
 .email{
 width: 450px;

@@ -46,44 +46,49 @@ const InstructorUser = (props) => {
 
   return (
     <Fragment>
-      <div className={classes.introduction}>
-        <div className={classes.brief}>
-          <h4>INSTRUCTOR</h4>
-          <h1>{user.name}</h1>
-          <p>{instructor.job}</p>
-          <div className={classes.achievements}>
-            <div className={classes.students}>
-              <h4>Total students</h4>
-              <h3>{instructor.students}</h3>
+      <div className={classes.allPage}>
+        <div className={classes.introduction}>
+          <div className={classes.brief}>
+            <div>
+              <h4>INSTRUCTOR</h4>
+              <h1>{user.name}</h1>
+              <p>{instructor.job}</p>
             </div>
-            <div className={classes.reviews}>
-              <h4>Reviews</h4>
-              <h3>{instructor.reviews}</h3>
+            <div className={classes.achievements}>
+              <div className={classes.students}>
+                <h4>Total students</h4>
+                <h3>{instructor.students}</h3>
+              </div>
+              <div className={classes.reviews}>
+                <h4>Reviews</h4>
+                <h3>{instructor.reviews}</h3>
+              </div>
             </div>
+            <h3>About me</h3>
+            <p className={classes["about-me"]}>{instructor.about}</p>
           </div>
-          <p className={classes["about-me"]}>{instructor.about}</p>
+          <div className={classes.aside}>
+            <div className={classes.photo}>
+              <img src={user.photo || photo} alt={user.name} />
+            </div>
+            <SocialMedia socialMedia={socialMedia} className={classes.links}/>
+          </div>
         </div>
-        <div className={classes.aside}>
-          <div className={classes.photo}>
-            <img src={user.photo || photo} alt={user.name} />
+        <div className={classes.courses}>
+          <h3>My courses ({coursesIds.length})</h3>
+          <div className={classes["course-list"]}>
+            {coursesIds.map((id) => (
+              <CourseItem
+                key={id}
+                id={id}
+                course={dummyCourses[id]}
+                instructor={dummyInstructors[dummyCourses[id].instructor].name}
+                />
+            ))}
           </div>
           <SocialMedia socialMedia={socialMedia} />
         </div>
-      </div>
-      <div className={classes.courses}>
-        <h3>My courses ({coursesIds.length})</h3>
-        <div className={classes["course-list"]}>
-          {coursesIds.map((id) => (
-            <CourseItem
-              key={id}
-              id={id}
-              course={dummyCourses[id]}
-              instructor={dummyInstructors[dummyCourses[id].instructor].name}
-            />
-          ))}
-        </div>
-        <SocialMedia socialMedia={socialMedia} />
-      </div>
+      </div>  
     </Fragment>
   );
 };
