@@ -11,7 +11,7 @@
 
 .forward:hover,
 .forward:active {
-  background-color: #312b1a;
+  background-color: var(--secondary-color);
 }
 
 .forward span {

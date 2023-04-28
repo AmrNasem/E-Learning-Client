@@ -2,20 +2,29 @@
   margin-top: 2px;
   display: flex;
   cursor: pointer;
-  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.lecture {
+  flex: 1;
 }
 
 .section{
   margin-top: 10px;
+  border: 2px solid var(--third-color);
+  border-radius: 10px;
+  padding: 10px;
   flex-direction: column;
   display: flex;
 }
-
+.details a{
+  color: var(--secondary-color);
+}
 .section .lecture{
   color: var(--secondary-color);
   text-align: right;
-  width: 70%; 
-  
+  width: 70%;
 }
 
 .rotate {

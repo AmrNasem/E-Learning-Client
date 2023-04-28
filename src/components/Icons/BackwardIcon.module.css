@@ -11,7 +11,7 @@
 
 .backward:hover,
 .backward:active {
-  background-color: #312b1a;
+  background-color: var(--secondary-color);
 }
 
 .backward span {

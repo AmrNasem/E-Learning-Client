@@ -8,3 +8,10 @@
   margin: auto;
   outline: none;
 }
+.content{
+  margin: 20px 0 20px 15%;
+  border: 2px dotted var(--third-color);
+  border-radius: 20px;
+  padding: 20px;
+  width: 70%;
+}

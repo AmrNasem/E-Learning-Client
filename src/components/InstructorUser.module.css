@@ -43,11 +43,11 @@
   border-radius: 50%;
   object-fit: cover;
 }
-.aside .social-media {
+.social-media {
   align-self: stretch;
   text-align: center;
 }
-.aside .social-media a{
+.social-media a{
   display: flex;
   font-weight: bold;
   color: var(--secondary-color);
@@ -61,7 +61,7 @@
   gap: 10px;
   transition: .2s;
 }
-.aside .social-media a:hover{
+.social-media a:hover{
   background-color: var(--secondary-color);
   color: var(--main-color);
 }
@@ -93,5 +93,5 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 20px;
-  max-width: 541px;
+  /* max-width: 541px; */
 }

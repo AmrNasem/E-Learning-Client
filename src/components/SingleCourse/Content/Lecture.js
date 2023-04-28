@@ -19,7 +19,7 @@ const Lecture = (props) => {
         to={`/course/${courseId}/preview?sec=${parentId}&lec=${id}`}
       >
         {icon}
-        <p>{title}</p>
+        <p className={classes.title}>{title}</p>
         <span>{duration}</span>
       </Link>
     );
