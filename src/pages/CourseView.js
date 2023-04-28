@@ -22,23 +22,23 @@ const CourseView = (props) => {
 
   return (
     <main>
-      <div className={classes["playing-lecture"]}>
-        <video src={lecture} controls autoPlay />
-      </div>
-      <div className={classes.content}>
-        <h3>Content</h3>
-        <div>
-          {course.sections.map((section, index) => (
-            <Section
-              active={secId === index.toString()}
-              key={index}
-              id={index}
-              {...section}
-              className={classes.Section}
-            />
-          ))}
+        <div className={classes["playing-lecture"]}>
+          <video src={lecture} controls autoPlay />
         </div>
-      </div>
+        <div className={classes.content}>
+          <h3>Content</h3>
+          <div>
+            {course.sections.map((section, index) => (
+              <Section
+                active={secId === index.toString()}
+                key={index}
+                id={index}
+                {...section}
+                className={classes.Section}
+              />
+            ))}
+          </div>
+        </div>
     </main>
   );
 };

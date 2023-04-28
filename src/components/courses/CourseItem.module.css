@@ -18,7 +18,7 @@
   max-width: 250px;
 }
 .course:hover{
-  scale: 110%;
+  scale: 105%;
   box-shadow: none;
 }
 .course .thumbnail {
