@@ -6,11 +6,16 @@ header {
   padding: 10px 4%;
   position: relative;
   background-color: var(--secondary-color);
+  box-shadow: #ab64648e 1px 1px 20px 1px;
+
 }
 @media (max-width: 660px) {
   .main-header {
     display: none;
   }
+}
+.logo{
+  font-family:abril fatface;
 }
 .logolink{
   text-decoration: none;
@@ -25,7 +30,6 @@ header {
   background-color: transparent;
   cursor: pointer;
   transition: 0.3s;
-  font-size: 16px;
 }
 
 .active {
@@ -101,15 +105,12 @@ input[type="search"] {
 .actions button {
   border-radius: 5px;
   margin: 3px;
-  
 }
 
 .actions .signup {
   background-color: var(--main-color);
   color: var(--third-color);
-  font-size: 16px;
 }
 .actions .login {
   background-color: var(--third-color);
-  font-size: 16px;
 }

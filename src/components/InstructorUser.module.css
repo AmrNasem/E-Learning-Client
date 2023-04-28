@@ -1,10 +1,31 @@
+.allPage{
+  margin-top: 50px;
+}
 .introduction {
   display: flex;
   justify-content: space-between;
   gap: 100px;
 }
-.achievements {
+.brief{
   display: flex;
+  gap: 20px;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+.achievements{
+  display: flex;
+  gap: 50px;
+  margin-bottom: 20px;
+}
+.students{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.reviews{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 .aside {
   display: flex;
@@ -26,6 +47,27 @@
   align-self: stretch;
   text-align: center;
 }
+.aside .social-media a{
+  display: flex;
+  font-weight: bold;
+  color: var(--secondary-color);
+  text-decoration: none;
+  padding: 12px 40px;
+  margin: 10px 0;
+  border: 1px solid var(--third-color);
+  border-radius: 2px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  transition: .2s;
+}
+.aside .social-media a:hover{
+  background-color: var(--secondary-color);
+  color: var(--main-color);
+}
+.social-media a span {
+  text-transform: capitalize;
+}
 @media (max-width: 600px) {
   .aside {
     align-items: unset !important;
@@ -38,19 +80,18 @@
     gap: 20px !important;
   }
 }
-.social-media a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-.social-media a span {
-  text-transform: capitalize;
-}
-
 @media (min-width: 600px) {
   .courses .social-media {
     display: none;
   }
+}
+.courses h3{
+  margin-bottom: 10px;
+}
+.course-list{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 541px;
 }
