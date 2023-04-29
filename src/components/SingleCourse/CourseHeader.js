@@ -72,8 +72,8 @@ const CourseHeader = (props) => {
           {cartItems[course.id] ? "Remove from cart" : "Add to cart"}
         </button>
         <button className={classes["buy"]}>Buy now</button>
-        <span>30-Day Money-Back Guarantee</span>
-        <div>
+        <span className={classes.refund}>30-Day Money-Back Guarantee</span>
+        <div className={classes.buyButtons}>
           {isCopied && <div className={classes.popup}>Link Copied!</div>}
           <button onClick={copyURL} className={classes.share}>
             Share
@@ -87,7 +87,11 @@ const CourseHeader = (props) => {
         </div>
         {applyCoupon && (
           <form className={classes.couponform}>
-            <input placeholder="Enter coupon" type="text" className={classes.ApplyCoupon}/>
+            <input
+              placeholder="Enter coupon"
+              type="text"
+              className={classes.ApplyCoupon}
+            />
             <button className={classes.ApplyCouponButton}>Apply</button>
           </form>
         )}

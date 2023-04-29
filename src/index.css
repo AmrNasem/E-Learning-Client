@@ -1,10 +1,10 @@
 :root {
-  --main-color: #FFF4E0;
-  --secondary-color: #FFBF9B;
-  --third-color:#B46060;
-  --fourth-color: #B46060;
-  --fifth-color:#FDEDEC;
-  --sixth-color: #4D4D4D;
+  --main-color: #fff4e0;
+  --secondary-color: #ffbf9b;
+  --third-color: #b46060;
+  --fourth-color: #b46060;
+  --fifth-color: #fdedec;
+  --sixth-color: #4d4d4d;
 }
 
 * {
@@ -13,10 +13,6 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 body {
@@ -32,5 +28,5 @@ body {
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-  monospace;
+    monospace;
 }

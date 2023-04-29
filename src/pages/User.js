@@ -14,6 +14,7 @@ const User = (props) => {
   const user = dummyUsers[userId];
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(userActions.resetState(user));
   }, [dispatch, user]);
 
@@ -44,6 +45,7 @@ const User = (props) => {
                 id={id}
                 course={dummyCourses[id]}
                 instructor={dummyInstructors[dummyCourses[id].instructor].name}
+                available={true}
               />
             ))}
           </div>

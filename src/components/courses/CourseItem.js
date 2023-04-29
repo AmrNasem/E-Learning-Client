@@ -3,11 +3,11 @@ import thumbnail from "../../assets/landing-page.jfif";
 import { Link } from "react-router-dom";
 
 const CourseItem = (props) => {
-  const { className, id, course, instructor } = props;
+  const { className, id, course, available, instructor } = props;
 
   return (
     <div className={`${classes.course} ${className}`}>
-      <Link to={`/course/${id}`}>
+      <Link to={available ? `/course/${id}/preview` : `/course/${id}`}>
         <div className={classes.thumbnail}>
           <img src={course.src || thumbnail} alt="thumbnail" />
         </div>
