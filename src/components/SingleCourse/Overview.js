@@ -6,17 +6,34 @@ import TVIcon from "../Icons/TVIcon";
 import CupIcon from "../Icons/CupIcon";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Preview from "./Preview";
 
 const Overview = (props) => {
   let numOfArticles = 0;
   const [applyCoupon, setApplyCoupon] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
   const dispatch = useDispatch();
   const course = useSelector((state) => state.course.course);
   const cartItems = useSelector((state) => state.cart.items);
 
+  useEffect(() => {
+    const time = setTimeout(() => {
+      setIsCopied(false);
+    }, 3900);
+    return () => clearTimeout(time);
+  }, [isCopied]);
+
   if (!course.sections) return; // Because this compnent renders multiple times without course content existence
+
+  const copyURL = () => {
+    const url = window.location.href;
+    navigator.clipboard
+      .writeText(url)
+      .then(() => console.log("Text copied to clipboard"))
+      .catch((err) => console.error("Error in copying text: ", err));
+    setIsCopied(true);
+  };
 
   course.sections.forEach((section) =>
     section.lectures.forEach((lecture) =>
@@ -74,7 +91,10 @@ const Overview = (props) => {
               </li>
             </ul>
             <div>
-              <button className={classes.share}>Share</button>
+              {isCopied && <div className={classes.popup}>Link Copied!</div>}
+              <button onClick={copyURL} className={classes.share}>
+                Share
+              </button>
               <button
                 onClick={() => setApplyCoupon((prevState) => !prevState)}
                 className={classes.coupon}

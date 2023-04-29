@@ -3,14 +3,31 @@ import { Link } from "react-router-dom";
 import Preview from "./Preview";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const CourseHeader = (props) => {
   const [applyCoupon, setApplyCoupon] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
   const dispatch = useDispatch();
   const course = useSelector((state) => state.course.course);
   const instructor = useSelector((state) => state.instructor.instructor);
   const cartItems = useSelector((state) => state.cart.items);
+
+  useEffect(() => {
+    const time = setTimeout(() => {
+      setIsCopied(false);
+    }, 3900);
+    return () => clearTimeout(time);
+  }, [isCopied]);
+
+  const copyURL = () => {
+    const url = window.location.href;
+    navigator.clipboard
+      .writeText(url)
+      .then(() => console.log("Text copied to clipboard"))
+      .catch((err) => console.error("Error in copying text: ", err));
+    setIsCopied(true);
+  };
 
   const addToCartHandler = () => {
     dispatch(cartActions.addToCart(course));
@@ -55,7 +72,10 @@ const CourseHeader = (props) => {
         <button className={classes["buy"]}>Buy now</button>
         <span>30-Day Money-Back Guarantee</span>
         <div>
-          <button className={classes.share}>Share</button>
+          {isCopied && <div className={classes.popup}>Link Copied!</div>}
+          <button onClick={copyURL} className={classes.share}>
+            Share
+          </button>
           <button
             onClick={() => setApplyCoupon((prevState) => !prevState)}
             className={classes.coupon}
