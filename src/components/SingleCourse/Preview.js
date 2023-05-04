@@ -1,6 +1,6 @@
 import classes from "./Preview.module.css";
 import PlayIcon from "../Icons/PlayIcon";
-import thumbnail from "../../assets/landing-page.jfif";
+import thumbnail from "../../assets/desktop.jfif";
 import { Link } from "react-router-dom";
 
 const Preview = (props) => {

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import classes from "./Instructor.module.css";
-import instructorImage from "../../assets/landing-page.jfif";
+import instructorImage from "../../assets/desktop.jfif";
 import PlayIcon from "../Icons/PlayIcon";
 import StarIcon from "../Icons/StarIcon";
 import MedalIcon from "../Icons/MedalIcon";

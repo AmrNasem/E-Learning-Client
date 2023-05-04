@@ -1,6 +1,6 @@
 import classes from "./InstructorUser.module.css";
 import CourseItem from "./courses/CourseItem";
-import photo from "../assets/landing-page.jfif";
+import photo from "../assets/desktop.jfif";
 import TwitterIcon from "../components/Icons/TwitterIcon";
 import FacebookIcon from "../components/Icons/FacebookIcon";
 import YoutubeIcon from "../components/Icons/YoutubeIcon";

@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import classes from "./CartList.module.css";
 import CartItem from "./CartItem";
 import jsonFile from "../../assets/dummy.json";
-import thumbnail from "../../assets/landing-page.jfif";
+import thumbnail from "../../assets/desktop.jfif";
 
 const CartList = (props) => {
   const cartItems = useSelector((state) => state.cart.items);
