@@ -71,7 +71,7 @@ const InstructorUser = (props) => {
             <div className={classes.photo}>
               <img src={user.photo || photo} alt={user.name} />
             </div>
-            <SocialMedia socialMedia={socialMedia} className={classes.links}/>
+            <SocialMedia socialMedia={socialMedia} className={classes.links} />
           </div>
         </div>
         <div className={classes.courses}>
@@ -84,12 +84,11 @@ const InstructorUser = (props) => {
                 id={id}
                 course={dummyCourses[id]}
                 instructor={dummyInstructors[dummyCourses[id].instructor].name}
-                />
+              />
             ))}
           </div>
-          
         </div>
-      </div>  
+      </div>
     </Fragment>
   );
 };

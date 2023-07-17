@@ -1,13 +1,14 @@
 import classes from "./CourseItem.module.css";
 import thumbnail from "../../assets/desktop.jfif";
 import { Link } from "react-router-dom";
+import React from "react";
 
-const CourseItem = (props) => {
-  const { className, id, course, instructor } = props;
+const CourseItem = React.forwardRef((props, ref) => {
+  const { className, id, course, available, instructor } = props;
 
   return (
-    <div className={`${classes.course} ${className}`}>
-      <Link to={`/course/${id}`}>
+    <div ref={ref && ref} className={`${classes.course} ${className}`}>
+      <Link to={available ? `/course/${id}/preview` : `/course/${id}`}>
         <div className={classes.thumbnail}>
           <img src={course.src || thumbnail} alt="thumbnail" />
         </div>
@@ -17,6 +18,6 @@ const CourseItem = (props) => {
       </Link>
     </div>
   );
-};
+});
 
 export default CourseItem;

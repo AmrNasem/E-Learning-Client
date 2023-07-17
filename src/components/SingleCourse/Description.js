@@ -9,7 +9,6 @@ const Description = (props) => {
     <div className={classes.description}>
       <h2>Description</h2>
       <p>{course.description}</p>
-      <button>See more</button>
     </div>
   );
 };

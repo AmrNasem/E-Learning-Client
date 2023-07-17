@@ -17,28 +17,29 @@ const CourseView = (props) => {
   const secId = queryParams.get("sec") || "0";
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(courseActions.resetState(course));
   }, [dispatch, course]);
 
   return (
     <main>
-        <div className={classes["playing-lecture"]}>
-          <video src={lecture} controls autoPlay />
+      <div className={classes["playing-lecture"]}>
+        <video src={lecture} controls autoPlay />
+      </div>
+      <div className={classes.content}>
+        <h3>Content</h3>
+        <div>
+          {course.sections.map((section, index) => (
+            <Section
+              active={secId === index.toString()}
+              key={index}
+              id={index}
+              {...section}
+              className={classes.Section}
+            />
+          ))}
         </div>
-        <div className={classes.content}>
-          <h3>Content</h3>
-          <div>
-            {course.sections.map((section, index) => (
-              <Section
-                active={secId === index.toString()}
-                key={index}
-                id={index}
-                {...section}
-                className={classes.Section}
-              />
-            ))}
-          </div>
-        </div>
+      </div>
     </main>
   );
 };

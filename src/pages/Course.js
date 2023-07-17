@@ -27,6 +27,7 @@ const Course = (props) => {
   );
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(courseActions.resetState(course));
     dispatch(instructorActions.resetState(instructor));
     dispatch(userActions.resetState(user));

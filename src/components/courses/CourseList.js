@@ -7,19 +7,14 @@ import { useRef } from "react";
 const CourseList = (props) => {
   const coursesRef = useRef();
   const { class: listClass, dummyCourses, dummyInstructors } = props;
+  const courseItemRef = useRef();
 
-  const moveForwardHandler = () => {
+  const swipeHandler = (direction = true) => {
     coursesRef.current.scrollBy({
       top: 0,
-      left: 170,
-      behavior: "smooth",
-    });
-  };
-
-  const moveBackwardHandler = () => {
-    coursesRef.current.scrollBy({
-      top: 0,
-      left: -170,
+      left: direction
+        ? courseItemRef.current.offsetWidth + 20
+        : -courseItemRef.current.offsetWidth - 20,
       behavior: "smooth",
     });
   };
@@ -27,7 +22,7 @@ const CourseList = (props) => {
   return (
     <section className={classes["courses-section"]}>
       <BackwardIcon
-        onClick={moveBackwardHandler}
+        onClick={() => swipeHandler(false)}
         className={classes.backward}
       />
       <h3>{listClass}</h3>
@@ -40,11 +35,12 @@ const CourseList = (props) => {
               id={course}
               course={dummyCourses[course]}
               instructor={instructor}
+              ref={courseItemRef}
             />
           );
         })}
       </div>
-      <ForwardIcon onClick={moveForwardHandler} className={classes.forward} />
+      <ForwardIcon onClick={swipeHandler} className={classes.forward} />
     </section>
   );
 };

@@ -18,7 +18,9 @@ const Instructor = (props) => {
     <div id="instructor" className={classes.instructor}>
       <h2>Instructor</h2>
       <div className={classes.profile}>
-        <Link to={`/user/${user.id}`} className={classes.instructorName}>{instructor.name}</Link>
+        <Link to={`/user/${user.id}`} className={classes.instructorName}>
+          {instructor.name}
+        </Link>
         <p>{instructor.job}</p>
         <div className={classes.groub}>
           <div className={classes.image}>
@@ -46,10 +48,8 @@ const Instructor = (props) => {
               <span>{instructor.courses.length} Courses</span>
             </div>
           </div>
-          
         </div>
         <div className={classes.about}>{instructor.about}</div>
-          <button>See more</button>
       </div>
     </div>
   );

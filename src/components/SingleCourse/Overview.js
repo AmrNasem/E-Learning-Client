@@ -68,8 +68,10 @@ const Overview = (props) => {
             <h5>This course includes:</h5>
             <ul>
               <li>
-                <VideoIcon/>
-                <span className={classes.ListItem}>65 hours on-demand video</span>
+                <VideoIcon />
+                <span className={classes.ListItem}>
+                  65 hours on-demand video
+                </span>
               </li>
               {numOfArticles > 0 && (
                 <li>
@@ -79,15 +81,19 @@ const Overview = (props) => {
               )}
               <li>
                 <InfinityIcon />
-                <span className={classes.ListItem}> Full lifetime access</span>
+                <span className={classes.ListItem}>Full lifetime access</span>
               </li>
               <li>
                 <TVIcon />
-                <span className={classes.ListItem}>  Access on mobile and TV</span>
+                <span className={classes.ListItem}>
+                  Access on mobile and TV
+                </span>
               </li>
               <li>
                 <CupIcon />
-                <span className={classes.ListItem}>  Certifictate of completion</span>
+                <span className={classes.ListItem}>
+                  Certifictate of completion
+                </span>
               </li>
             </ul>
             <div>
@@ -104,7 +110,11 @@ const Overview = (props) => {
             </div>
             {applyCoupon && (
               <form className={classes.couponform}>
-                <input placeholder="Enter coupon" type="text" className={classes.ApplyCoupon} />
+                <input
+                  placeholder="Enter coupon"
+                  type="text"
+                  className={classes.ApplyCoupon}
+                />
                 <button className={classes.ApplyCouponButton}>Apply</button>
               </form>
             )}

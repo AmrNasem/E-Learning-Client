@@ -78,7 +78,7 @@
 }
 .landing-image .content a {
   text-decoration: none;
-  background-color: var(--main-color);
+  background-color: var(--fourth-color);
   color: white;
   padding: 10px;
   border-radius: 5px;
