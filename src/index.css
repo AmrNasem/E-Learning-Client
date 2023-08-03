@@ -5,6 +5,7 @@
   --fourth-color: #b46060;
   --fifth-color: #fdedec;
   --sixth-color: #4d4d4d;
+  --star-color: #e59819;
 }
 
 * {
@@ -22,11 +23,15 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: var(--third-color);
-  background-color: var(--main-color);
+  color: var(--third-color) !important;
+  background-color: var(--main-color) !important;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+ul {
+  padding: 0 !important;
 }

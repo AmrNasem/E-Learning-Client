@@ -2,10 +2,3 @@
   max-width: 1000px !important;
   display: flex;
 }
-.course-list{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-

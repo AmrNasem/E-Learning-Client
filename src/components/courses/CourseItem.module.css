@@ -1,33 +1,16 @@
-.course a {
-  text-decoration: none;
-  color: var(--third-color); /* Temporary */
-  width: 98%;
-}
-.course{
+div.course {
   background-color: var(--secondary-color);
-  display: flex;
-  border: 2px var(--fourth-color) solid;  
+  border: 2px var(--fourth-color) solid;
   border-radius: 20px;
-  height: 280px;
-  align-items: center;
-  text-align: center;
-  margin-top: 14px;
-  margin-bottom: 30px;
-  transition: .3s;
+  transition: 0.3s;
   box-shadow: #e4bdbddc 1px 1px 10px 2px;
-  max-width: 250px;
+  overflow: hidden;
+  min-width: 250px;
 }
-.course:hover{
+.course:hover {
   scale: 105%;
   box-shadow: none;
 }
-.course .thumbnail {
-  width: 250px;
-}
-
-.course .thumbnail img {
-  width: 95%;
-  margin-right: 3px;
-  border-radius: 12px;
-  position: relative;
+.course a {
+  color: var(--third-color);
 }

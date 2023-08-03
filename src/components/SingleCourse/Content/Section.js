@@ -25,7 +25,7 @@ const Section = (props) => {
         className={classes["section-header"]}
       >
         <ArrowIcon className={isListed ? classes.rotate : ""} />
-        <h4>{title}</h4>
+        <h5 className="m-0">{title}</h5>
         <span className={classes.lecture}>
           {lectures.length} lectures &bull; {duration}
         </span>

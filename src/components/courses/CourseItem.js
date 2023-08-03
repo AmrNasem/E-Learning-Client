@@ -2,21 +2,25 @@ import classes from "./CourseItem.module.css";
 import thumbnail from "../../assets/desktop.jfif";
 import { Link } from "react-router-dom";
 import React from "react";
+import { Card } from "react-bootstrap";
 
 const CourseItem = React.forwardRef((props, ref) => {
   const { className, id, course, available, instructor } = props;
 
   return (
-    <div ref={ref && ref} className={`${classes.course} ${className}`}>
-      <Link to={available ? `/course/${id}/preview` : `/course/${id}`}>
-        <div className={classes.thumbnail}>
-          <img src={course.src || thumbnail} alt="thumbnail" />
-        </div>
-        <h3>{course.title}</h3>
-        <p>{instructor.name}</p>
-        <span>${course.price}</span>
+    <Card ref={ref && ref} className={`${classes.course} ${className}`}>
+      <Link
+        to={available ? `/course/${id}/preview` : `/course/${id}`}
+        className="text-decoration-none"
+      >
+        <Card.Img variant="top" src={course.src || thumbnail} alt="Thumbnail" />
+        <Card.Body>
+          <Card.Title>{course.title}</Card.Title>
+          <Card.Text>{instructor.name}</Card.Text>
+          <span>${course.price}</span>
+        </Card.Body>
       </Link>
-    </div>
+    </Card>
   );
 });
 

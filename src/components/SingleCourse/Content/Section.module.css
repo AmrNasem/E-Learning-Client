@@ -9,12 +9,12 @@
 .lecture {
   flex: 1;
 }
-@media (max-width: 850px) {
+@media (max-width: 992px) {
   .lecture {
-    display:none;
+    display: none;
   }
 }
-.section{
+.section {
   margin-top: 10px;
   border: 2px solid var(--third-color);
   border-radius: 10px;
@@ -22,10 +22,10 @@
   flex-direction: column;
   display: flex;
 }
-.details a{
+.details a {
   color: var(--secondary-color);
 }
-.section .lecture{
+.section .lecture {
   color: var(--secondary-color);
   text-align: right;
   width: 70%;

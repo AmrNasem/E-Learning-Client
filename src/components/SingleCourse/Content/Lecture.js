@@ -15,20 +15,22 @@ const Lecture = (props) => {
   if (available) {
     return (
       <Link
-        className={`${classes.lecture} ${active && classes.active}`}
+        className={`d-flex align-items-center gap-1 p-1 rounded-1 mt-2 ${
+          active && classes.active
+        }`}
         to={`/course/${courseId}/preview?sec=${parentId}&lec=${id}`}
       >
         {icon}
-        <p className={classes.title}>{title}</p>
+        <p className="m-0 flex-grow-1">{title}</p>
         <span>{duration}</span>
       </Link>
     );
   }
 
   return (
-    <div className={classes.lecture}>
+    <div className="d-flex align-items-center gap-1 p-1 rounded-1 mt-2">
       {icon}
-      <p className={classes.title}>{title}</p>
+      <p className="m-0 flex-grow-1">{title}</p>
       <span>{duration}</span>
     </div>
   );

@@ -1,0 +1,25 @@
+.social-media {
+  align-self: stretch;
+  text-align: center;
+}
+.social-media a {
+  display: flex;
+  font-weight: bold;
+  color: var(--secondary-color);
+  text-decoration: none;
+  padding: 12px 40px;
+  margin: 10px 0;
+  border: 1px solid var(--third-color);
+  border-radius: 2px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  transition: 0.2s;
+}
+.social-media a:hover {
+  background-color: var(--secondary-color);
+  color: var(--main-color);
+}
+.social-media a span {
+  text-transform: capitalize;
+}
