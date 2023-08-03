@@ -1,6 +1,6 @@
 .content {
   margin-top: 20px;
-  width: 55% ;
+  width: 60%;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -8,7 +8,7 @@
   border-radius: 20px;
   padding: 20px;
 }
-@media (max-width: 850px) {
+@media (max-width: 992px) {
   .content {
     width: 100%;
   }

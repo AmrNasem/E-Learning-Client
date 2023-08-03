@@ -13,6 +13,7 @@ import { courseActions } from "../store/course-slice";
 import { useParams } from "react-router";
 import { instructorActions } from "../store/instructor-slice";
 import { userActions } from "../store/user-slice";
+import Reviews from "../components/SingleCourse/Reviews";
 
 const Course = (props) => {
   const { dummyCourses, dummyInstructors, dummyUsers } = props;
@@ -37,7 +38,7 @@ const Course = (props) => {
     return <h1>Course Not Found</h1>;
   }
 
-  window.onscroll = () => setScrollY(window.scrollY);
+  window.addEventListener("scroll", () => setScrollY(window.scrollY));
 
   return (
     <main className={classes.course}>
@@ -54,6 +55,7 @@ const Course = (props) => {
         <Requirements />
         <Description />
         <Instructor />
+        <Reviews />
       </Container>
     </main>
   );
