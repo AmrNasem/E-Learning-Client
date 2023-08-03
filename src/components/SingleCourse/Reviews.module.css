@@ -1,0 +1,18 @@
+.reviews {
+  width: 60%;
+  margin: 20px 0;
+}
+@media (max-width: 992px) {
+  .reviews {
+    width: 100%;
+  }
+}
+.close-button {
+  color: var(--third-color);
+}
+button.show-all-reviews,
+button.show-all-reviews:hover,
+button.show-all-reviews:active {
+  color: var(--third-color);
+  border-color: var(--third-color);
+}

@@ -52,7 +52,7 @@ const Overview = (props) => {
         <div className={classes.body}>
           <div className={classes.price}>
             <span className={classes["final-price"]}>
-              ${course.price * (course.discount / 100)}
+              ${course.price - course.price * (course.discount / 100)}
             </span>
             <span className={classes["initial-price"]}>
               <del>${course.price}</del>

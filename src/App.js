@@ -12,6 +12,7 @@ import Course from "./pages/Course";
 import jsonFile from "./assets/dummy.json";
 import User from "./pages/User";
 import CourseView from "./pages/CourseView";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const dummyCourses = jsonFile.courses;
 const dummyInstructors = jsonFile.instructors;

@@ -1,11 +1,13 @@
 import classes from "./User.module.css";
 import Container from "../components/UI/Container";
 import CourseItem from "../components/courses/CourseItem";
-import InstructorUser from "../components/InstructorUser";
+import InstructorUser from "../components/InstructorUser/InstructorUser";
 import { userActions } from "../store/user-slice";
 import { useParams } from "react-router";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 const User = (props) => {
   const { dummyInstructors, dummyCourses, dummyUsers } = props;
@@ -38,17 +40,19 @@ const User = (props) => {
       <Container className={classes.container}>
         <div className={classes["enrolled-courses"]}>
           <h3>Courses you're enrolled in</h3>
-          <div className={classes["course-list"]}>
+          <Row className="my-3">
             {user["enrolled-courses"].map((id) => (
-              <CourseItem
-                key={id}
-                id={id}
-                course={dummyCourses[id]}
-                instructor={dummyInstructors[dummyCourses[id].instructor].name}
-                available={true}
-              />
+              <Col sm={6} lg={4} key={id} className="mb-4">
+                <CourseItem
+                  key={id}
+                  id={id}
+                  course={dummyCourses[id]}
+                  instructor={dummyInstructors[dummyCourses[id].instructor]}
+                  available={true}
+                />
+              </Col>
             ))}
-          </div>
+          </Row>
         </div>
       </Container>
     </main>
