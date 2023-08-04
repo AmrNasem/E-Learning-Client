@@ -1,6 +1,6 @@
 .course-header {
-  width: 60%;
   background-color: var(--sixth-color);
+  width: calc(100% - 330px - 3rem);
 }
 .course-header .link {
   text-decoration: none;
