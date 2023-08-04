@@ -14,6 +14,7 @@ import { useParams } from "react-router";
 import { instructorActions } from "../store/instructor-slice";
 import { userActions } from "../store/user-slice";
 import Reviews from "../components/SingleCourse/Reviews";
+import Preview from "../components/SingleCourse/Preview";
 
 const Course = (props) => {
   const { dummyCourses, dummyInstructors, dummyUsers } = props;
@@ -44,18 +45,30 @@ const Course = (props) => {
     <main className={classes.course}>
       <div className={classes.background}>
         <Container>
-          {scrollY < 400 && <Overview />}
+          {scrollY < 400 && (
+            <Overview
+              className={classes["header-overview"]}
+              Preview={<Preview />}
+            />
+          )}
           <CourseHeader />
         </Container>
       </div>
-      <Container>
-        {scrollY >= 400 && <Overview hide={true} />}
-        <CourseGain />
-        <Content />
-        <Requirements />
-        <Description />
-        <Instructor />
-        <Reviews />
+      <Container className="d-flex flex-row-reverse align-items-start gap-5 my-3">
+        <Overview
+          className={`${classes.overview} ${
+            scrollY >= 400 ? "" : classes.hide
+          }`}
+          hide={true}
+        />
+        <div>
+          <CourseGain />
+          <Content />
+          <Requirements />
+          <Description />
+          <Instructor />
+          <Reviews />
+        </div>
       </Container>
     </main>
   );

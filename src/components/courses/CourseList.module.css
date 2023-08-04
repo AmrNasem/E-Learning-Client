@@ -5,10 +5,6 @@
 .courses-section h3 {
   color: var(--third-color);
 }
-.courses-section:hover .forward,
-.courses-section:hover .backward {
-  opacity: 1;
-}
 
 .course-list {
   /* flex-wrap: wrap;  make it in query media */
@@ -21,14 +17,12 @@
 .forward {
   top: 30%;
   right: 5px;
-  opacity: 0;
   background-color: var(--third-color);
 }
 
 .backward {
   top: 30%;
   left: 5px;
-  opacity: 0;
   background-color: var(--third-color);
 }
 
