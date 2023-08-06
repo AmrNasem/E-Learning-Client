@@ -8,10 +8,12 @@
   margin: auto;
   outline: none;
 }
-.content{
+.content {
   margin: 20px auto;
+  max-width: 1000px;
+}
+.course-content {
   border: 2px dotted var(--third-color);
   border-radius: 20px;
   padding: 20px;
-  max-width: 1000px;
 }

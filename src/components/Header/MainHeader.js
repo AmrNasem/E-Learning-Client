@@ -24,7 +24,9 @@ const MainHeader = (props) => {
   return (
     <header className={classes["main-header"]}>
       <div className={classes.logo}>
-        <Link to="/" className={classes.logolink}>E-Learning</Link>
+        <Link to="/" className={classes.logolink}>
+          E-Learning
+        </Link>
       </div>
       <button
         onClick={toggleCategoriesHandler}

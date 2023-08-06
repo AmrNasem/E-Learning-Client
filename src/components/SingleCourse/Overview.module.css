@@ -6,18 +6,6 @@
   z-index: 2;
 }
 
-.float {
-  animation-name: fade-in;
-  animation-duration: 1s;
-  animation-iteration-count: 0.5;
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-}
-
 .thumbnail {
   height: 200px;
   cursor: pointer;

@@ -19,6 +19,18 @@
   top: 30px;
 }
 
+.float {
+  animation-name: fade-in;
+  animation-duration: 0.6s;
+  animation-iteration-count: 1;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+}
+
 .hide {
   visibility: hidden;
 }
