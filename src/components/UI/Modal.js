@@ -1,9 +1,22 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import ReactDOM from "react-dom";
 import classes from "./Modal.module.css";
+import { useSelector } from "react-redux";
 
 export const OutLayer = (props) => {
-  return <div onClick={props.onClick} className={classes.outlayer}></div>;
+  useEffect(() => {
+    if (props.isOpen) {
+      document.body.classList.add(classes["block-scrolling"]);
+    } else {
+      document.body.classList.remove(classes["block-scrolling"]);
+    }
+    return () => document.body.classList.remove(classes["block-scrolling"]);
+  }, [props.isOpen]);
+  return (
+    <div onClick={props.onClick} className={classes.outlayer}>
+      {props.children}
+    </div>
+  );
 };
 
 const PopupBox = (props) => {
@@ -20,10 +33,11 @@ const PopupBox = (props) => {
 };
 
 const Modal = (props) => {
+  const isCartOpen = useSelector((state) => state.cart.isOpened);
   return (
     <Fragment>
       {ReactDOM.createPortal(
-        <OutLayer onClick={props.onClick} />,
+        <OutLayer onClick={props.onClick} isOpen={isCartOpen} />,
         document.getElementById("outlayer-root")
       )}
       {ReactDOM.createPortal(
