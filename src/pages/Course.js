@@ -18,14 +18,10 @@ import Preview from "../components/SingleCourse/Preview";
 import { reviewsActions } from "../store/reviews-slice";
 import ReviewsModal from "../components/UI/ReviewsModal";
 
-const reviewsPerPage = 5;
-
 const Course = (props) => {
   const { dummyCourses, dummyInstructors, dummyUsers } = props;
   const [scrollY, setScrollY] = useState(0);
-  const [page, setPage] = useState(0);
-  const isPaginated = useSelector((state) => state.reviews.isPaginated);
-  const reviews = useSelector((state) => state.reviews.items);
+  const { items: reviews, isPaginated } = useSelector((state) => state.reviews);
   const dispatch = useDispatch();
   const { courseId } = useParams();
 
@@ -41,24 +37,6 @@ const Course = (props) => {
     dispatch(instructorActions.resetState(instructor));
     dispatch(userActions.resetState(user));
   }, [dispatch, courseId, course, user, instructor]);
-
-  useEffect(() => {
-    dispatch(reviewsActions.loadItems([]));
-  }, [dispatch]);
-
-  useEffect(() => {
-    // Send request
-    if (course.reviews && page > 0) {
-      dispatch(
-        reviewsActions.getMoreReviews(
-          course.reviews.slice(
-            (page - 1) * reviewsPerPage,
-            page * reviewsPerPage
-          )
-        )
-      );
-    }
-  }, [page, dispatch, course]);
 
   if (!course) {
     return <h1>Course Not Found</h1>;
@@ -95,7 +73,6 @@ const Course = (props) => {
             reviews={course.reviews
               .filter((review) => review.comment)
               .slice(0, 4)}
-            setPage={setPage}
           />
         </div>
         {isPaginated && (
@@ -104,12 +81,7 @@ const Course = (props) => {
               dispatch(reviewsActions.toggleIsPaginated());
             }}
           >
-            <Reviews
-              modal={true}
-              reviews={reviews}
-              setPage={setPage}
-              wrap={true}
-            />
+            <Reviews modal reviews={reviews} wrap />
           </ReviewsModal>
         )}
       </Container>
