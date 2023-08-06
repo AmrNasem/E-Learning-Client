@@ -3,6 +3,7 @@ import cartSlice from "./cart-slice";
 import courseSlice from "./course-slice";
 import instructorSlice from "./instructor-slice";
 import userSlice from "./user-slice";
+import reviewsSlice from "./reviews-slice";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     course: courseSlice,
     instructor: instructorSlice,
     user: userSlice,
+    reviews: reviewsSlice,
   },
 });
 

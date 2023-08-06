@@ -45,11 +45,7 @@ const Overview = (props) => {
   };
 
   return (
-    <div
-      className={`d-none d-lg-block ${classes.overview} ${props.className} ${
-        props.hide && classes.float
-      }`}
-    >
+    <div className={`d-none d-lg-block ${classes.overview} ${props.className}`}>
       {props.Preview}
       <div className={classes.body}>
         <div className={classes.price}>
