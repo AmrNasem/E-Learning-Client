@@ -8,6 +8,14 @@
   margin: auto;
   outline: none;
 }
+.navbar {
+  border-bottom: 1px solid var(--secondary-color) !important;
+}
+.navbar a {
+  color: var(--third-color);
+  border-bottom: 2px solid transparent;
+  transition: 0.3s;
+}
 .content {
   margin: 20px auto;
   max-width: 1000px;
@@ -16,4 +24,7 @@
   border: 2px dotted var(--third-color);
   border-radius: 20px;
   padding: 20px;
+}
+.navbar .active {
+  border-bottom-color: var(--third-color);
 }

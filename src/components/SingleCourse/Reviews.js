@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classes from "./Reviews.module.css";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
@@ -10,11 +10,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { reviewsActions } from "../../store/reviews-slice";
 
+const reviewsPerPage = 5;
+
 const Reviews = (props) => {
   const course = useSelector((state) => state.course.course);
-  // let reviews = useSelector((state) => state.reviews.items);
-  const reviews = props.reviews;
+  const page = useSelector((state) => state.reviews.page);
+  const items = useSelector((state) => state.reviews.items);
+  const { reviews, wrap } = props;
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!wrap) dispatch(reviewsActions.resetPages());
+  }, [dispatch, wrap]);
+
+  useEffect(() => {
+    if (!items.length && course.reviews) {
+      dispatch(
+        reviewsActions.getMoreReviews(course.reviews.slice(0, reviewsPerPage))
+      );
+    }
+  }, [items, course, dispatch]);
 
   if (!course.reviews) return; // Because this component renders multiple times before collecting 'the reviews'
 
@@ -31,25 +46,44 @@ const Reviews = (props) => {
   else if (ratings >= 1000)
     ratings = `${Math.floor((ratings / 1000) * 10) / 10}K`;
 
+  const getMoreHandler = () => {
+    if (!wrap) dispatch(reviewsActions.toggleIsPaginated(true));
+    else {
+      dispatch(
+        reviewsActions.getMoreReviews(
+          course.reviews.slice(
+            page * reviewsPerPage,
+            (page + 1) * reviewsPerPage
+          )
+        )
+      );
+    }
+  };
+
   return (
     <div className={classes.reviews}>
       <div className="my-4 d-flex gap-2 align-items-center">
-        <FontAwesomeIcon className="text-warning fs-3" icon={faStar} />
-        <h3 className="flex-grow-1 m-0">
-          {ratingAverage.toFixed(1)} course rating &bull; {ratings} ratings
-        </h3>
-        {props.modal && (
-          <button
-            className={`btn fs-5 ${classes["close-button"]}`}
-            onClick={() => dispatch(reviewsActions.toggleIsPaginated())}
-          >
-            <FontAwesomeIcon icon={faClose} />
-          </button>
+        {!props.title && (
+          <>
+            <FontAwesomeIcon className="text-warning fs-3" icon={faStar} />
+            <h3 className="flex-grow-1 m-0">
+              {ratingAverage.toFixed(1)} course rating &bull; {ratings} ratings
+            </h3>
+            {props.modal && (
+              <button
+                className={`btn fs-5 ${classes["close-button"]}`}
+                onClick={() => dispatch(reviewsActions.toggleIsPaginated())}
+              >
+                <FontAwesomeIcon icon={faClose} />
+              </button>
+            )}
+          </>
         )}
+        {props.title && <h3>Reviews</h3>}
       </div>
       <Row className="gy-3">
         {reviews.map((review, id) => {
-          if (props.wrap) {
+          if (wrap) {
             return <SingleReview key={id} {...review} />;
           }
 
@@ -60,17 +94,14 @@ const Reviews = (props) => {
           );
         })}
       </Row>
-      {course.reviews.length !== reviews.length && (
+      {course.reviews.length > reviews.length && (
         <Button
           className={`bg-transparent rounded-0 p-3 my-4 ${
             classes["show-all-reviews"]
-          } ${props.wrap && "w-100"}`}
-          onClick={() => {
-            if (!props.wrap) dispatch(reviewsActions.toggleIsPaginated(true));
-            props.setPage((prevState) => prevState + 1);
-          }}
+          } ${wrap && "w-100"}`}
+          onClick={getMoreHandler}
         >
-          {props.wrap ? "Show more reviews" : "Show all reviews"}
+          {wrap ? "Show more reviews" : "Show all reviews"}
         </Button>
       )}
     </div>
