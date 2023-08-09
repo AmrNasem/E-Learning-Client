@@ -5,19 +5,32 @@ import React from "react";
 import { Card } from "react-bootstrap";
 
 const CourseItem = React.forwardRef((props, ref) => {
-  const { className, id, course, available, instructor } = props;
+  const {
+    className,
+    id,
+    src,
+    title,
+    sections,
+    price,
+    available,
+    instructorName,
+  } = props;
 
   return (
     <Card ref={ref && ref} className={`${classes.course} ${className}`}>
       <Link
-        to={available ? `/course/${id}/preview` : `/course/${id}`}
+        to={
+          available
+            ? `/course/${id}/preview/${sections[0].lectures[0].id}`
+            : `/course/${id}`
+        }
         className="text-decoration-none"
       >
-        <Card.Img variant="top" src={course.src || thumbnail} alt="Thumbnail" />
+        <Card.Img variant="top" src={src || thumbnail} alt="Thumbnail" />
         <Card.Body>
-          <Card.Title>{course.title}</Card.Title>
-          <Card.Text>{instructor.name}</Card.Text>
-          <span>${course.price}</span>
+          <Card.Title>{title}</Card.Title>
+          <Card.Text>{instructorName}</Card.Text>
+          <span>${price}</span>
         </Card.Body>
       </Link>
     </Card>

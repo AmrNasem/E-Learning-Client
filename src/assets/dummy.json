@@ -1,29 +1,29 @@
 {
-  "users": {
-    "u1": {
+  "users": [
+    {
       "id": "u1",
       "name": "Maximilian",
       "instructor": "i1",
       "enrolled-courses": ["c2"],
       "avatar": ""
     },
-    "u2": {
+    {
       "id": "u2",
       "name": "Osama Elzero",
       "instructor": "i2",
       "enrolled-courses": ["c3", "c5", "c9"],
       "avatar": ""
     },
-    "u3": {
+    {
       "id": "u3",
       "name": "Amr Naseem",
       "instructor": null,
       "enrolled-courses": ["c2", "c3", "c5", "c9"],
       "avatar": ""
     }
-  },
-  "instructors": {
-    "i1": {
+  ],
+  "instructors": [
+    {
       "id": "i1",
       "name": "Maximilian",
       "job": "Developer and Lead Instructor",
@@ -38,7 +38,7 @@
         "youtube": "https://www.youtube.com"
       }
     },
-    "i2": {
+    {
       "id": "i2",
       "name": "Osama Elzero",
       "job": "Developer, Lead Instructor and greatness creator",
@@ -52,10 +52,10 @@
         "youtube": "https://www.youtube.com"
       }
     }
-  },
+  ],
 
-  "courses": {
-    "c1": {
+  "courses": [
+    {
       "id": "c1",
       "title": "The complete guide to React",
       "thumbnail": "./landing-page.jfif",
@@ -75,10 +75,56 @@
             {
               "title": "Introduction to HTML",
               "available": true,
+              "id": "l1",
               "type": "video",
-              "duration": "04:18"
+              "duration": "04:18",
+
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ]
             },
-            { "title": "Using HTML Tags", "type": "video", "duration": "08:04" }
+            {
+              "title": "Using HTML Tags",
+              "id": "l2",
+              "type": "video",
+              "duration": "08:04",
+
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ]
+            }
           ]
         },
         {
@@ -86,11 +132,55 @@
           "available": true,
           "duration": "57min",
           "lectures": [
-            { "title": "HTML Tables", "type": "video", "duration": "11:57" },
+            {
+              "title": "HTML Tables",
+              "id": "l3",
+              "type": "video",
+              "duration": "11:57",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ]
+            },
             {
               "title": "Download the course syllabus",
+              "id": "l4",
               "type": "video",
-              "duration": "02:17"
+              "duration": "02:17",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
@@ -140,7 +230,7 @@
         }
       ]
     },
-    "c2": {
+    {
       "id": "c2",
       "title": "The complete guide to JavaScript",
       "thumbnail": "./landing-page.jfif",
@@ -166,19 +256,234 @@
             {
               "title": "What you'll get in this course",
               "available": true,
+              "id": "l5",
               "type": "video",
-              "duration": "03:08"
+              "duration": "03:08",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                },
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "What you know about rolling down in the deep when your brain goes numb you can call that mental freeze.",
+                  "date": "Jul 1, 2022",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                },
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Feb 23, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                },
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Aug 10, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                },
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Sep 8, 2020",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                },
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                },
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                },
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                },
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                },
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Download the course syllabus",
               "available": true,
+              "id": "l6",
               "type": "article",
-              "duration": "00:12"
+              "duration": "00:12",
+
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Kareem",
+                  "title": "Your health",
+                  "content": "How are you, Instructor?",
+                  "date": "May 13, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Omar",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Download the course resources",
+              "id": "l7",
               "type": "article",
-              "duration": "00:17"
+              "duration": "00:17",
+
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Heggy",
+                  "title": "Time you created the course within",
+                  "content": "How long have you been creating this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Ibrahim",
+                      "date": "Aug 7, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -189,18 +494,81 @@
             {
               "title": "Introduction to HTML",
               "available": true,
+              "id": "l8",
               "type": "video",
-              "duration": "04:18"
+              "duration": "04:18",
+
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Using HTML Tags",
+              "id": "l9",
               "type": "video",
-              "duration": "08:04"
+              "duration": "08:04",
+
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "The Anatomy of an HTML Tag",
+              "id": "l10",
               "type": "video",
-              "duration": "10:53"
+              "duration": "10:53",
+
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -211,18 +579,81 @@
             {
               "title": "HTML Tables",
               "available": true,
+              "id": "l11",
               "type": "video",
-              "duration": "11:57"
+              "duration": "11:57",
+
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "Download the course syllabus",
+              "id": "l12",
               "type": "video",
-              "duration": "02:17"
+              "duration": "02:17",
+
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "title": "HTML Tables Code Challenge",
+              "id": "l13",
               "type": "video",
-              "duration": "01:44"
+              "duration": "01:44",
+
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
@@ -360,7 +791,7 @@
         }
       ]
     },
-    "c3": {
+    {
       "id": "c3",
       "title": "The complete guide to React",
       "thumbnail": "./landing-page.jfif",
@@ -379,7 +810,27 @@
             {
               "title": "Using HTML Tags",
               "available": true,
+              "id": "l14",
               "type": "article",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
               "duration": "08:04"
             }
           ]
@@ -388,7 +839,31 @@
           "title": "Intermediate HTML",
           "duration": "57min",
           "lectures": [
-            { "title": "HTML Tables", "type": "video", "duration": "11:57" }
+            {
+              "title": "HTML Tables",
+              "id": "l15",
+              "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
+              "duration": "11:57"
+            }
           ]
         }
       ],
@@ -437,7 +912,7 @@
         }
       ]
     },
-    "c4": {
+    {
       "id": "c4",
       "title": "The complete guide to React",
       "thumbnail": "./landing-page.jfif",
@@ -456,20 +931,108 @@
             {
               "title": "Introduction to HTML",
               "available": true,
+              "id": "l16",
               "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
               "duration": "04:18"
             },
-            { "title": "Using HTML Tags", "type": "video", "duration": "08:04" }
+            {
+              "title": "Using HTML Tags",
+              "id": "l17",
+              "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
+              "duration": "08:04"
+            }
           ]
         },
         {
           "title": "Intermediate HTML",
           "duration": "57min",
           "lectures": [
-            { "title": "HTML Tables", "type": "video", "duration": "11:57" },
+            {
+              "title": "HTML Tables",
+              "id": "l18",
+              "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
+              "duration": "11:57"
+            },
             {
               "title": "Download the course syllabus",
+              "id": "l19",
               "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
               "duration": "02:17"
             }
           ]
@@ -519,7 +1082,7 @@
         }
       ]
     },
-    "c5": {
+    {
       "id": "c5",
       "title": "The complete guide to React",
       "thumbnail": "./landing-page.jfif",
@@ -538,20 +1101,108 @@
             {
               "title": "Introduction to HTML",
               "available": true,
+              "id": "l20",
               "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
               "duration": "04:18"
             },
-            { "title": "Using HTML Tags", "type": "video", "duration": "08:04" }
+            {
+              "title": "Using HTML Tags",
+              "id": "l21",
+              "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
+              "duration": "08:04"
+            }
           ]
         },
         {
           "title": "Intermediate HTML",
           "duration": "57min",
           "lectures": [
-            { "title": "HTML Tables", "type": "video", "duration": "11:57" },
+            {
+              "title": "HTML Tables",
+              "id": "l22",
+              "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
+              "duration": "11:57"
+            },
             {
               "title": "Download the course syllabus",
+              "id": "l23",
               "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
               "duration": "02:17"
             }
           ]
@@ -602,7 +1253,7 @@
         }
       ]
     },
-    "c6": {
+    {
       "id": "c6",
       "title": "The complete guide to React",
       "thumbnail": "./landing-page.jfif",
@@ -621,20 +1272,108 @@
             {
               "title": "Introduction to HTML",
               "available": true,
+              "id": "l24",
               "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
               "duration": "04:18"
             },
-            { "title": "Using HTML Tags", "type": "video", "duration": "08:04" }
+            {
+              "title": "Using HTML Tags",
+              "id": "l25",
+              "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
+              "duration": "08:04"
+            }
           ]
         },
         {
           "title": "Intermediate HTML",
           "duration": "57min",
           "lectures": [
-            { "title": "HTML Tables", "type": "video", "duration": "11:57" },
+            {
+              "title": "HTML Tables",
+              "id": "l26",
+              "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
+              "duration": "11:57"
+            },
             {
               "title": "Download the course syllabus",
+              "id": "l27",
               "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
               "duration": "02:17"
             }
           ]
@@ -683,7 +1422,7 @@
         }
       ]
     },
-    "c7": {
+    {
       "id": "c7",
       "title": "The complete guide to React",
       "thumbnail": "./landing-page.jfif",
@@ -702,20 +1441,108 @@
             {
               "title": "Introduction to HTML",
               "available": true,
+              "id": "l28",
               "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
               "duration": "04:18"
             },
-            { "title": "Using HTML Tags", "type": "video", "duration": "08:04" }
+            {
+              "title": "Using HTML Tags",
+              "id": "l29",
+              "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
+              "duration": "08:04"
+            }
           ]
         },
         {
           "title": "Intermediate HTML",
           "duration": "57min",
           "lectures": [
-            { "title": "HTML Tables", "type": "video", "duration": "11:57" },
+            {
+              "title": "HTML Tables",
+              "id": "l30",
+              "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
+              "duration": "11:57"
+            },
             {
               "title": "Download the course syllabus",
+              "id": "l31",
               "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
               "duration": "02:17"
             }
           ]
@@ -764,7 +1591,7 @@
         }
       ]
     },
-    "c8": {
+    {
       "id": "c8",
       "title": "The complete guide to React",
       "thumbnail": "./landing-page.jfif",
@@ -783,20 +1610,108 @@
             {
               "title": "Introduction to HTML",
               "available": true,
+              "id": "l32",
               "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
               "duration": "04:18"
             },
-            { "title": "Using HTML Tags", "type": "video", "duration": "08:04" }
+            {
+              "title": "Using HTML Tags",
+              "id": "l33",
+              "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
+              "duration": "08:04"
+            }
           ]
         },
         {
           "title": "Intermediate HTML",
           "duration": "57min",
           "lectures": [
-            { "title": "HTML Tables", "type": "video", "duration": "11:57" },
+            {
+              "title": "HTML Tables",
+              "id": "l34",
+              "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
+              "duration": "11:57"
+            },
             {
               "title": "Download the course syllabus",
+              "id": "l35",
               "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
               "duration": "02:17"
             }
           ]
@@ -845,7 +1760,7 @@
         }
       ]
     },
-    "c9": {
+    {
       "id": "c9",
       "title": "The complete guide to React",
       "thumbnail": "./landing-page.jfif",
@@ -864,20 +1779,108 @@
             {
               "title": "Introduction to HTML",
               "available": true,
+              "id": "l36",
               "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
               "duration": "04:18"
             },
-            { "title": "Using HTML Tags", "type": "video", "duration": "08:04" }
+            {
+              "title": "Using HTML Tags",
+              "id": "l37",
+              "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
+              "duration": "08:04"
+            }
           ]
         },
         {
           "title": "Intermediate HTML",
           "duration": "57min",
           "lectures": [
-            { "title": "HTML Tables", "type": "video", "duration": "11:57" },
+            {
+              "title": "HTML Tables",
+              "id": "l38",
+              "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
+              "duration": "11:57"
+            },
             {
               "title": "Download the course syllabus",
+              "id": "l39",
               "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
               "duration": "02:17"
             }
           ]
@@ -926,7 +1929,7 @@
         }
       ]
     },
-    "c10": {
+    {
       "id": "c10",
       "title": "The complete guide to React",
       "thumbnail": "./landing-page.jfif",
@@ -945,20 +1948,108 @@
             {
               "title": "Introduction to HTML",
               "available": true,
+              "id": "l40",
               "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
               "duration": "04:18"
             },
-            { "title": "Using HTML Tags", "type": "video", "duration": "08:04" }
+            {
+              "title": "Using HTML Tags",
+              "id": "l41",
+              "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
+              "duration": "08:04"
+            }
           ]
         },
         {
           "title": "Intermediate HTML",
           "duration": "57min",
           "lectures": [
-            { "title": "HTML Tables", "type": "video", "duration": "11:57" },
+            {
+              "title": "HTML Tables",
+              "id": "l42",
+              "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
+              "duration": "11:57"
+            },
             {
               "title": "Download the course syllabus",
+              "id": "l43",
               "type": "video",
+              "questions": [
+                {
+                  "photo": null,
+                  "name": "Amr",
+                  "title": "Projects of the course",
+                  "content": "How many projects are there in this course?",
+                  "date": "Jun 8, 2023",
+                  "likes": 0,
+                  "replies": [
+                    {
+                      "photo": null,
+                      "name": "Khaled",
+                      "date": "Jun 22, 2023",
+                      "likes": 0,
+                      "content": "I'm good, How about you?"
+                    }
+                  ]
+                }
+              ],
               "duration": "02:17"
             }
           ]
@@ -1007,5 +2098,5 @@
         }
       ]
     }
-  }
+  ]
 }

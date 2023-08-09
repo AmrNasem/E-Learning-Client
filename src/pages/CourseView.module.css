@@ -11,6 +11,11 @@
 .navbar {
   border-bottom: 1px solid var(--secondary-color) !important;
 }
+@media (min-width: 768px) {
+  .navbar {
+    font-size: 1.1rem;
+  }
+}
 .navbar a {
   color: var(--third-color);
   border-bottom: 2px solid transparent;
