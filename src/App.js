@@ -51,7 +51,7 @@ function App() {
           }
         />
         <Route
-          path="/course/:courseId/preview/*"
+          path="/course/:courseId/preview/:lectureId/*"
           element={<CourseView dummyCourses={dummyCourses} />}
         />
         <Route

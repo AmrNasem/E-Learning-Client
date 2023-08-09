@@ -2,21 +2,16 @@ import classes from "./Section.module.css";
 import Lecture from "./Lecture";
 import ArrowIcon from "../../Icons/ArrowIcon";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router";
+import { useParams } from "react-router-dom";
 
 const Section = (props) => {
-  const { lectures, title, active, duration, id } = props;
+  const { lectures, title, duration } = props;
   const [isListed, setIsListed] = useState(false);
-
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const lecId = queryParams.get("lec") || "0";
+  const { lectureId } = useParams();
 
   useEffect(() => {
-    if (active) {
-      setIsListed(true);
-    }
-  }, [active]);
+    if (lectures.find((lec) => lec.id === lectureId)) setIsListed(true);
+  }, [lectureId, lectures]);
 
   return (
     <div className={`${classes.section} ${props.className}`}>
@@ -33,13 +28,7 @@ const Section = (props) => {
       {isListed && (
         <div className={classes.details}>
           {lectures.map((lecture, index) => (
-            <Lecture
-              active={lecId === index.toString() && active}
-              key={index}
-              id={index}
-              parentId={id}
-              {...lecture}
-            />
+            <Lecture key={index} {...lecture} />
           ))}
         </div>
       )}

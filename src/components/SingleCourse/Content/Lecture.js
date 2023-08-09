@@ -4,8 +4,8 @@ import FileIcon from "../../Icons/FileIcon";
 import { Link, useParams } from "react-router-dom";
 
 const Lecture = (props) => {
-  const { type, available, id, parentId, active, title, duration } = props;
-  const { courseId } = useParams();
+  const { type, available, id, title, duration } = props;
+  const { courseId, lectureId } = useParams();
 
   let icon = <VideoIcon />;
   if (type === "article") {
@@ -16,9 +16,9 @@ const Lecture = (props) => {
     return (
       <Link
         className={`d-flex align-items-center gap-1 p-1 rounded-1 mt-2 ${
-          active && classes.active
+          lectureId === id && classes.active
         }`}
-        to={`/course/${courseId}/preview?sec=${parentId}&lec=${id}`}
+        to={`/course/${courseId}/preview/${id}`}
       >
         {icon}
         <p className="m-0 flex-grow-1">{title}</p>

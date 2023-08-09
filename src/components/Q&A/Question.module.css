@@ -1,0 +1,15 @@
+.question:hover {
+  background-color: #eee;
+  cursor: pointer;
+}
+.avatar {
+  width: 40px;
+  height: 40px;
+  background-color: var(--sixth-color);
+}
+.reaction svg {
+  color: var(--sixth-color);
+}
+.reaction:hover svg {
+  color: black;
+}

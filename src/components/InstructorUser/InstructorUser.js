@@ -8,7 +8,9 @@ import SocialMedia from "./SocialMedia";
 
 const InstructorUser = (props) => {
   const { user, dummyInstructors, dummyCourses } = props;
-  const instructor = dummyInstructors[user.instructor];
+  const instructor = dummyInstructors.find(
+    (instructor) => instructor.id === user.instructor
+  );
 
   const socialMedia = instructor["social-media"];
   const coursesIds = instructor.courses;
@@ -56,8 +58,8 @@ const InstructorUser = (props) => {
               <Col sm={6} lg={4} key={id} className="mb-4">
                 <CourseItem
                   id={id}
-                  course={dummyCourses[id]}
-                  instructor={dummyInstructors[dummyCourses[id].instructor]}
+                  {...dummyCourses.find((course) => course.id === id)}
+                  instructorName={instructor.name}
                   className="mx-auto"
                 />
               </Col>

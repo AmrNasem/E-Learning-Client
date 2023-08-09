@@ -16,7 +16,7 @@ const Reviews = (props) => {
   const course = useSelector((state) => state.course.course);
   const page = useSelector((state) => state.reviews.page);
   const items = useSelector((state) => state.reviews.items);
-  const { reviews, wrap } = props;
+  const { reviews, wrap, modal } = props;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,12 +24,12 @@ const Reviews = (props) => {
   }, [dispatch, wrap]);
 
   useEffect(() => {
-    if (!items.length && course.reviews) {
+    if (!items.length && !modal && course.reviews) {
       dispatch(
         reviewsActions.getMoreReviews(course.reviews.slice(0, reviewsPerPage))
       );
     }
-  }, [items, course, dispatch]);
+  }, [items, course, dispatch, modal]);
 
   if (!course.reviews) return; // Because this component renders multiple times before collecting 'the reviews'
 
@@ -69,7 +69,7 @@ const Reviews = (props) => {
             <h3 className="flex-grow-1 m-0">
               {ratingAverage.toFixed(1)} course rating &bull; {ratings} ratings
             </h3>
-            {props.modal && (
+            {modal && (
               <button
                 className={`btn fs-5 ${classes["close-button"]}`}
                 onClick={() => dispatch(reviewsActions.toggleIsPaginated())}
