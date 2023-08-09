@@ -5,7 +5,10 @@ import { Link } from "react-router-dom";
 
 const Preview = (props) => {
   return (
-    <Link to="preview" className={`${classes.preview} ${props.className}`}>
+    <Link
+      to={`preview/${props.lecId}`}
+      className={`${classes.preview} ${props.className}`}
+    >
       <div className={classes.overlay}>
         <span>
           <PlayIcon />

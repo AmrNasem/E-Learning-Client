@@ -27,14 +27,16 @@ const CourseList = (props) => {
       />
       <h3>{listClass}</h3>
       <div ref={coursesRef} className={classes["course-list"]}>
-        {Object.keys(dummyCourses).map((course) => {
-          const instructor = dummyInstructors[dummyCourses[course].instructor];
+        {dummyCourses.map((course) => {
+          const instructor = dummyInstructors.find(
+            (instructor) => instructor.id === course.instructor
+          );
+
           return (
             <CourseItem
-              key={course}
-              id={course}
-              course={dummyCourses[course]}
-              instructor={instructor}
+              key={course.id}
+              instructorName={instructor.name}
+              {...course}
               ref={courseItemRef}
             />
           );

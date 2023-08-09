@@ -25,11 +25,11 @@ const Course = (props) => {
   const dispatch = useDispatch();
   const { courseId } = useParams();
 
-  const course = dummyCourses[courseId];
-  const instructor = dummyInstructors[dummyCourses[courseId].instructor];
-  const user = Object.values(dummyUsers).find(
-    (u) => u.instructor === instructor.id
+  const course = dummyCourses.find((course) => course.id === courseId);
+  const instructor = dummyInstructors.find(
+    (instructor) => instructor.id === course.instructor
   );
+  const user = dummyUsers.find((u) => u.instructor === instructor.id);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
@@ -51,7 +51,7 @@ const Course = (props) => {
           {scrollY < 400 && (
             <Overview
               className={classes["header-overview"]}
-              Preview={<Preview />}
+              Preview={<Preview lecId={course.sections[0].lectures[0].id} />}
             />
           )}
           <CourseHeader />

@@ -13,7 +13,7 @@ const User = (props) => {
   const { dummyInstructors, dummyCourses, dummyUsers } = props;
   const { userId } = useParams();
   const dispatch = useDispatch();
-  const user = dummyUsers[userId];
+  const user = dummyUsers.find((user) => user.id === userId);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
@@ -45,9 +45,12 @@ const User = (props) => {
               <Col sm={6} lg={4} key={id} className="mb-4">
                 <CourseItem
                   key={id}
-                  id={id}
-                  course={dummyCourses[id]}
-                  instructor={dummyInstructors[dummyCourses[id].instructor]}
+                  {...dummyCourses.find((course) => course.id === id)}
+                  instructorName={
+                    dummyInstructors.find(
+                      (instructor) => instructor.id === user.instructor
+                    ).name
+                  }
                   available={true}
                 />
               </Col>
