@@ -4,7 +4,7 @@ import CourseGain from "../components/SingleCourse/CourseGain";
 import Content from "../components/SingleCourse/Content/Content";
 import Overview from "../components/SingleCourse/Overview";
 import Container from "../components/UI/Container";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Requirements from "../components/SingleCourse/Requirements";
 import Description from "../components/SingleCourse/Description";
 import Instructor from "../components/SingleCourse/Instructor";
@@ -30,6 +30,10 @@ const Course = (props) => {
     (instructor) => instructor.id === course.instructor
   );
   const user = dummyUsers.find((u) => u.instructor === instructor.id);
+  const initialReviews = useMemo(
+    () => course.reviews.filter((review) => review.comment).slice(0, 4),
+    [course]
+  );
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
@@ -37,6 +41,10 @@ const Course = (props) => {
     dispatch(instructorActions.resetState(instructor));
     dispatch(userActions.resetState(user));
   }, [dispatch, courseId, course, user, instructor]);
+
+  const closeModalHandler = useCallback(() => {
+    dispatch(reviewsActions.toggleIsPaginated());
+  }, [dispatch]);
 
   if (!course) {
     return <h1>Course Not Found</h1>;
@@ -69,18 +77,10 @@ const Course = (props) => {
           <Requirements />
           <Description />
           <Instructor />
-          <Reviews
-            reviews={course.reviews
-              .filter((review) => review.comment)
-              .slice(0, 4)}
-          />
+          <Reviews reviews={initialReviews} />
         </div>
         {isPaginated && (
-          <ReviewsModal
-            onClick={() => {
-              dispatch(reviewsActions.toggleIsPaginated());
-            }}
-          >
+          <ReviewsModal onClick={closeModalHandler}>
             <Reviews modal reviews={reviews} wrap />
           </ReviewsModal>
         )}

@@ -7,7 +7,7 @@ const reviewsSlice = createSlice({
     toggleIsPaginated(state, action = { payload: false }) {
       state.isPaginated = action.payload;
     },
-    getMoreReviews(state, action) {
+    getReviews(state, action) {
       state.items = [...state.items, ...action.payload];
       state.page++;
     },

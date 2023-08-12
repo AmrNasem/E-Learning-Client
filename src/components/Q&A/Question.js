@@ -2,14 +2,16 @@ import classes from "./Question.module.css";
 import { faCircleUp as regVote } from "@fortawesome/free-regular-svg-icons";
 import {
   faCircleUp as solVote,
-  faCommentAlt,
+  faComments,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Question = (props) => {
   const [isVoted, setIsVoted] = useState(false);
+  const navigate = useNavigate();
+
   // Avatar
   const arr = props.name.split(" ");
   const avatar = `${arr[0][0]}${
@@ -17,26 +19,38 @@ const Question = (props) => {
   }`.toUpperCase();
 
   // Date
-  const diff = new Date().getTime() - new Date(props.date).getTime();
-  const secs = Math.floor(diff / 1000);
-  const mins = Math.floor(secs / 60);
-  const hours = Math.floor(mins / 60);
-  const days = Math.floor(hours / 24);
-  const months = Math.floor(days / 30);
-  const years = Math.floor(days / 365);
+  const units = useMemo(
+    () => [
+      { val: 60, unit: "Seconds" },
+      { val: 60, unit: "Minutes" },
+      { val: 24, unit: "Hours" },
+      { val: 30, unit: "Days" },
+      { val: 12, unit: "Months" },
+    ],
+    []
+  );
 
-  const units = [
-    { val: secs, unit: "Seconds" },
-    { val: mins, unit: "Minutes" },
-    { val: hours, unit: "Hours" },
-    { val: days, unit: "Days" },
-    { val: months, unit: "Months" },
-    { val: years, unit: "Years" },
-  ];
-  let questionDate = units.pop();
-  while (questionDate.val <= 0) {
-    questionDate = units.pop();
-  }
+  const [date, setDate] = useState({
+    val: (new Date().getTime() - new Date(props.date).getTime()) / 31104000000,
+    unit: "Years",
+  });
+
+  useEffect(() => {
+    if (Math.floor(date.val) === 0) {
+      const unit = units.pop();
+      if (unit)
+        setDate((prevState) => {
+          return { val: prevState.val * unit.val, unit: unit.unit };
+        });
+      else setDate({ val: 1, unit: "Seconds" });
+    }
+  }, [date, units]);
+
+  // Handlers
+  const voteQuestionHandler = () => {
+    // Post request here
+    setIsVoted((prevState) => !prevState);
+  };
 
   return (
     <div className={`my-4 d-flex gap-4 py-3 px-sm-4 px-2 ${classes.question}`}>
@@ -55,12 +69,14 @@ const Question = (props) => {
         <div className="d-flex flex-column flex-sm-row gap-sm-3">
           <div className="flex-grow-1">
             <h5>{props.title}</h5>
-            <p className="m-0 d-none d-sm-block">{props.content}</p>
+            {props.content && (
+              <p className="m-0 d-none d-sm-block">{props.content}</p>
+            )}
           </div>
           <div>
             <button
               className={`d-sm-block border-0 fs-5 fw-bold my-2 ms-2 bg-transparent ${classes.reaction}`}
-              onClick={() => setIsVoted((prevState) => !prevState)}
+              onClick={voteQuestionHandler}
             >
               <span>{isVoted ? props.likes + 1 : props.likes}</span>
               <FontAwesomeIcon
@@ -70,19 +86,20 @@ const Question = (props) => {
             </button>
             <button
               className={`d-sm-block border-0 fs-5 fw-bold my-2 ms-2 bg-transparent ${classes.reaction}`}
+              onClick={() => navigate(props.id)}
             >
               <span>{props.replies.length}</span>
-              <FontAwesomeIcon className="ms-2" icon={faCommentAlt} />
+              <FontAwesomeIcon className="ms-2" icon={faComments} />
             </button>
           </div>
         </div>
         <div>
           <Link to="/">{props.name}</Link> .{" "}
           <span>
-            {questionDate.val}{" "}
-            {questionDate.val > 1
-              ? questionDate.unit
-              : questionDate.unit.slice(0, questionDate.unit.length - 1)}
+            {Math.floor(date.val)}{" "}
+            {Math.floor(date.val) > 1
+              ? date.unit
+              : date.unit.slice(0, date.unit.length - 1)}
           </span>
         </div>
       </div>
