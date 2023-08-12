@@ -1,0 +1,30 @@
+.tips {
+  border: 1px solid var(--secondary-color);
+}
+.tips ul {
+  padding-left: 2rem !important;
+}
+.new form input:focus,
+.new form textarea:focus {
+  border-color: var(--secondary-color);
+}
+.new form textarea {
+  min-height: 80px;
+  max-height: 250px;
+}
+.back-to-questions {
+  color: var(--third-color) !important;
+  border: 1px solid var(--third-color) !important;
+  font-size: 1.1rem;
+}
+
+.submit {
+  border: 1px solid var(--third-color);
+  font-size: 1.1rem;
+  background-color: var(--third-color);
+}
+
+.submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed !important;
+}

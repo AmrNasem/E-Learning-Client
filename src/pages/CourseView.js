@@ -15,7 +15,7 @@ const CourseView = (props) => {
   const { courseId, lectureId } = useParams();
   const dispatch = useDispatch();
   const course = dummyCourses.find((course) => course.id === courseId);
-  const reviews = useSelector((state) => state.reviews.items);
+  let reviews = useSelector((state) => state.reviews.items);
 
   let questions = [];
   for (const sec of course.sections) {
@@ -80,6 +80,7 @@ const CourseView = (props) => {
               }
             />
             <Route path="questions" element={<QAndA questions={questions} />} />
+            <Route path="questions/:questionId" element={<h3>Question</h3>} />
             <Route
               path="reviews"
               element={<Reviews reviews={reviews} wrap title />}

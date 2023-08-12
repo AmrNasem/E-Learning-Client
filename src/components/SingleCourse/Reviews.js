@@ -26,7 +26,7 @@ const Reviews = (props) => {
   useEffect(() => {
     if (!items.length && !modal && course.reviews) {
       dispatch(
-        reviewsActions.getMoreReviews(course.reviews.slice(0, reviewsPerPage))
+        reviewsActions.getReviews(course.reviews.slice(0, reviewsPerPage))
       );
     }
   }, [items, course, dispatch, modal]);
@@ -50,7 +50,7 @@ const Reviews = (props) => {
     if (!wrap) dispatch(reviewsActions.toggleIsPaginated(true));
     else {
       dispatch(
-        reviewsActions.getMoreReviews(
+        reviewsActions.getReviews(
           course.reviews.slice(
             page * reviewsPerPage,
             (page + 1) * reviewsPerPage

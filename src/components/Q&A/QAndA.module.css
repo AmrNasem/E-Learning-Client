@@ -5,3 +5,8 @@
   border: 1px solid var(--third-color) !important;
   color: var(--third-color) !important;
 }
+.new-question {
+  border: 1px solid var(--third-color) !important;
+  color: var(--third-color) !important;
+  font-size: 1.1rem;
+}

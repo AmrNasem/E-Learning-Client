@@ -2,6 +2,7 @@ import ReactDOM from "react-dom";
 import classes from "./ReviewsModal.module.css";
 import { OutLayer } from "./Modal";
 import { useSelector } from "react-redux";
+import React from "react";
 
 const ReviewsModal = (props) => {
   const isPaginated = useSelector((state) => state.reviews.isPaginated);
@@ -21,4 +22,4 @@ const ReviewsModal = (props) => {
     </>
   );
 };
-export default ReviewsModal;
+export default React.memo(ReviewsModal);
