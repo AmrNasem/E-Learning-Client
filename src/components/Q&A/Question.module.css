@@ -1,6 +1,8 @@
+.question {
+  transition: 0.3s;
+}
 .question:hover {
-  background-color: #eee;
-  cursor: pointer;
+  background-color: #ffe9dd;
 }
 .avatar {
   width: 40px;

@@ -2,6 +2,7 @@ import classes from "./Preview.module.css";
 import PlayIcon from "../Icons/PlayIcon";
 import thumbnail from "../../assets/desktop.jfif";
 import { Link } from "react-router-dom";
+import React from "react";
 
 const Preview = (props) => {
   return (
@@ -20,4 +21,4 @@ const Preview = (props) => {
   );
 };
 
-export default Preview;
+export default React.memo(Preview);
