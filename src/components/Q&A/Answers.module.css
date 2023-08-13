@@ -1,0 +1,27 @@
+.back-to-questions {
+  color: var(--third-color) !important;
+  border: 1px solid var(--third-color) !important;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.question {
+  background-color: #ffe9dd;
+}
+.see-more {
+  border: 1px solid var(--third-color) !important;
+  color: var(--third-color) !important;
+}
+.reply textarea {
+  max-height: 150px;
+}
+.reply textarea:focus {
+  border-color: var(--secondary-color) !important;
+}
+.reply button {
+  border: 1px solid var(--third-color);
+  background-color: var(--third-color);
+}
+.reply button:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+}

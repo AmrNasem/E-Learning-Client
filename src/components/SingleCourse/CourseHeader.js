@@ -20,6 +20,8 @@ const CourseHeader = (props) => {
     return () => clearTimeout(time);
   }, [isCopied]);
 
+  if (!course.sections) return;
+
   const copyURL = () => {
     const url = window.location.href;
     navigator.clipboard
@@ -40,7 +42,10 @@ const CourseHeader = (props) => {
           {course.category}
         </Link>
       </h5>
-      <Preview className={classes.preview} />
+      <Preview
+        lecId={course.sections[0].lectures[0].id}
+        className={classes.preview}
+      />
       <h1>{course.title}</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio
@@ -61,7 +66,7 @@ const CourseHeader = (props) => {
       <div className={classes.body}>
         <div className={classes.price}>
           <span className={classes["final-price"]}>
-            ${course.price * (course.discount / 100)}
+            ${course.price - (course.price * course.discount) / 100}
           </span>
           <span className={classes["initial-price"]}>
             <del>${course.price}</del>

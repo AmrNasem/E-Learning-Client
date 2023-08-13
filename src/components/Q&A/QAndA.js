@@ -13,6 +13,7 @@ const QAndA = (props) => {
     pageNum,
     items: questions,
     isNewQuest,
+    length,
   } = useSelector((state) => state.questions);
 
   useEffect(() => {
@@ -23,6 +24,7 @@ const QAndA = (props) => {
           props.questions.slice(0, questionsPerPage)
         )
       );
+      dispatch(questionsActions.setLength(props.questions.length));
     }
   }, [dispatch, props, questions]);
 
@@ -45,11 +47,11 @@ const QAndA = (props) => {
   return (
     <div className={classes.questions}>
       <h5>
-        All questions in this lecture <span>({props.questions.length})</span>
+        All questions in this lecture <span>({length})</span>
       </h5>
       <div className="py-4">
         {questions.map((q, index) => (
-          <Question key={index} {...q} />
+          <Question key={index} className="px-sm-3" question={q} />
         ))}
       </div>
       {questions < props.questions && (
