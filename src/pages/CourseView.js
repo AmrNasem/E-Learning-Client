@@ -9,13 +9,14 @@ import { useDispatch, useSelector } from "react-redux";
 import Container from "../components/UI/Container";
 import { NavLink, Routes, Route } from "react-router-dom";
 import QAndA from "../components/Q&A/QAndA";
+import Answers from "../components/Q&A/Answers";
 
 const CourseView = (props) => {
   const { dummyCourses } = props;
   const { courseId, lectureId } = useParams();
   const dispatch = useDispatch();
   const course = dummyCourses.find((course) => course.id === courseId);
-  let reviews = useSelector((state) => state.reviews.items);
+  const reviews = useSelector((state) => state.reviews.items);
 
   let questions = [];
   for (const sec of course.sections) {
@@ -80,7 +81,10 @@ const CourseView = (props) => {
               }
             />
             <Route path="questions" element={<QAndA questions={questions} />} />
-            <Route path="questions/:questionId" element={<h3>Question</h3>} />
+            <Route
+              path="questions/:questionId"
+              element={<Answers questions={questions} />}
+            />
             <Route
               path="reviews"
               element={<Reviews reviews={reviews} wrap title />}

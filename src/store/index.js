@@ -5,6 +5,7 @@ import instructorSlice from "./instructor-slice";
 import userSlice from "./user-slice";
 import reviewsSlice from "./reviews-slice";
 import questionsSlice from "./questions-slice";
+import repliesSlice from "./replies-slice";
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     user: userSlice,
     reviews: reviewsSlice,
     questions: questionsSlice,
+    replies: repliesSlice,
   },
 });
 
