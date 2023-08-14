@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  lecture: null,
   items: [],
-  length: 0,
   pageNum: 0,
   isNewQuest: false,
 };
@@ -11,11 +11,6 @@ const questionsSlice = createSlice({
   name: "questions",
   initialState,
   reducers: {
-    resetQuestions(state) {
-      state.pageNum = 0;
-      state.items = [];
-      state.length = 0;
-    },
     getQuestions(state, action) {
       state.pageNum++;
       state.items = [...state.items, ...action.payload];
@@ -23,12 +18,15 @@ const questionsSlice = createSlice({
     toggleWannaAsk(state) {
       state.isNewQuest = !state.isNewQuest;
     },
-    setLength(state, action) {
-      state.length = action.payload;
+    setLecture(state, action) {
+      state.lecture = action.payload;
+      state.items = [];
+      state.pageNum = 0;
     },
     addQuestion(state, action) {
-      state.items = [action.payload, ...state.items];
-      state.length++;
+      const newQuestion = action.payload;
+      state.items.unshift(newQuestion);
+      state.lecture.questions.unshift(newQuestion);
       state.isNewQuest = false;
     },
     addReply(state, action) {

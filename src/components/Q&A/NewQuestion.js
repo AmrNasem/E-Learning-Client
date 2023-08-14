@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { questionsActions } from "../../store/questions-slice";
 import { useRef, useState } from "react";
 
-const NewQuestion = (props) => {
+const NewQuestion = () => {
   const dispatch = useDispatch();
   const [canSubmit, setCanSubmit] = useState(false);
   const titleRef = useRef();
@@ -21,7 +21,7 @@ const NewQuestion = (props) => {
     e.preventDefault();
     const newQuestion = {
       id: Math.random().toString(),
-      photo: null,
+      photo: null, // This property requires authentication so, I hard coded it for now.
       name: "Amr Naseem", // This property requires authentication so, I hard coded it for now.
       title: titleRef.current.value,
       content: commentRef.current.value,

@@ -1,24 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { question: {}, items: [], pageNum: 0 };
+const initialState = { question: null, items: [], pageNum: 0 };
 
 const repliesSlice = createSlice({
   name: "replies",
   initialState,
   reducers: {
-    resetReplies(state, action) {
-      const question = action.payload;
-      state.question = question;
-      state.pageNum = 1;
-      state.items = question.replies.slice(0, 3);
-    },
     getReplies(state, action) {
       state.pageNum++;
       state.items = [...state.items, ...action.payload];
     },
+    setQuestion(state, action) {
+      state.question = action.payload;
+      state.items = [];
+      state.pageNum = 0;
+    },
     addReply(state, action) {
-      state.question.replies.push(action.payload);
       state.items.push(action.payload);
+      state.question.replies.unshift(action.payload);
     },
     voteQuestion(state) {
       if (state.question.isVoted) {

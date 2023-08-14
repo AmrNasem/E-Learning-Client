@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import classes from "./QAndA.module.css";
 import Question from "./Question";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,36 +9,22 @@ const questionsPerPage = 5;
 
 const QAndA = (props) => {
   const dispatch = useDispatch();
-  const {
-    pageNum,
-    items: questions,
-    isNewQuest,
-    length,
-  } = useSelector((state) => state.questions);
-
-  useEffect(() => {
-    // GET request here
-    if (!questions.length) {
-      dispatch(
-        questionsActions.getQuestions(
-          props.questions.slice(0, questionsPerPage)
-        )
-      );
-      dispatch(questionsActions.setLength(props.questions.length));
-    }
-  }, [dispatch, props, questions]);
+  const { questions } = props;
+  const { pageNum, isNewQuest, lecture } = useSelector(
+    (state) => state.questions
+  );
 
   const moreQuestionsHandler = useCallback(() => {
     // GET request here
     dispatch(
       questionsActions.getQuestions(
-        props.questions.slice(
+        lecture.questions.slice(
           pageNum * questionsPerPage,
           (pageNum + 1) * questionsPerPage
         )
       )
     );
-  }, [dispatch, props.questions, pageNum]);
+  }, [dispatch, lecture, pageNum]);
 
   if (isNewQuest) {
     return <NewQuestion />;
@@ -47,14 +33,14 @@ const QAndA = (props) => {
   return (
     <div className={classes.questions}>
       <h5>
-        All questions in this lecture <span>({length})</span>
+        All questions in this lecture <span>({lecture.questions.length})</span>
       </h5>
       <div className="py-4">
         {questions.map((q, index) => (
           <Question key={index} className="px-sm-3" question={q} />
         ))}
       </div>
-      {questions < props.questions && (
+      {questions.length < lecture.questions.length && (
         <button
           onClick={moreQuestionsHandler}
           className={`btn p-3 w-100 rounded-0 ${classes["see-more"]}`}

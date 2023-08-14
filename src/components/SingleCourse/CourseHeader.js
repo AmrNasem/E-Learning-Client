@@ -43,7 +43,11 @@ const CourseHeader = (props) => {
         </Link>
       </h5>
       <Preview
-        lecId={course.sections[0].lectures[0].id}
+        lecId={
+          course.sections
+            .find((sec) => sec.lectures.find((lec) => lec.available))
+            .lectures.find((lec) => lec.available).id
+        }
         className={classes.preview}
       />
       <h1>{course.title}</h1>

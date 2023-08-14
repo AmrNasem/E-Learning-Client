@@ -46,11 +46,13 @@ const Course = (props) => {
     dispatch(reviewsActions.toggleIsPaginated());
   }, [dispatch]);
 
+  useEffect(() => {
+    window.addEventListener("scroll", () => setScrollY(window.scrollY));
+  }, []);
+
   if (!course) {
     return <h1>Course Not Found</h1>;
   }
-
-  window.addEventListener("scroll", () => setScrollY(window.scrollY));
 
   return (
     <main className={classes.course}>
@@ -59,7 +61,15 @@ const Course = (props) => {
           {scrollY < 400 && (
             <Overview
               className={classes["header-overview"]}
-              Preview={<Preview lecId={course.sections[0].lectures[0].id} />}
+              Preview={
+                <Preview
+                  lecId={
+                    course.sections
+                      .find((sec) => sec.lectures.find((lec) => lec.available))
+                      .lectures.find((lec) => lec.available).id
+                  }
+                />
+              }
             />
           )}
           <CourseHeader />
