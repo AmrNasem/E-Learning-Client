@@ -6,7 +6,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { repliesActions } from "../../store/replies-slice";
 import { questionsActions } from "../../store/questions-slice";
@@ -17,6 +17,7 @@ const Question = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { date, unit } = useDate(question.date);
+  const storedQuestion = useSelector((state) => state.replies.question);
 
   // Avatar
   const arr = question.name.split(" ");
@@ -28,12 +29,7 @@ const Question = (props) => {
   const voteQuestionHandler = () => {
     // Post request here
     dispatch(questionsActions.voteQuestion(question.id));
-    dispatch(repliesActions.voteQuestion());
-  };
-
-  const viewRepliesHandler = () => {
-    dispatch(repliesActions.resetReplies(question));
-    navigate(question.id);
+    if (storedQuestion) dispatch(repliesActions.voteQuestion());
   };
 
   return (
@@ -79,7 +75,7 @@ const Question = (props) => {
             {!specify && (
               <button
                 className={`d-flex align-items-center gap-2 border-0 fs-5 fw-bold bg-transparent ${classes.reaction}`}
-                onClick={viewRepliesHandler}
+                onClick={() => navigate(question.id)}
               >
                 <span>{question.replies.length}</span>
                 <FontAwesomeIcon icon={faComments} />

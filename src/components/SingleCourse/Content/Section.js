@@ -1,7 +1,7 @@
 import classes from "./Section.module.css";
 import Lecture from "./Lecture";
 import ArrowIcon from "../../Icons/ArrowIcon";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const Section = (props) => {
@@ -28,7 +28,7 @@ const Section = (props) => {
       {isListed && (
         <div className={classes.details}>
           {lectures.map((lecture, index) => (
-            <Lecture key={index} {...lecture} />
+            <Lecture key={index} lecture={lecture} />
           ))}
         </div>
       )}
@@ -36,4 +36,4 @@ const Section = (props) => {
   );
 };
 
-export default Section;
+export default React.memo(Section);

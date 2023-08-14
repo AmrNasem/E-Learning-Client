@@ -727,29 +727,7 @@
               "id": "l11",
               "type": "video",
               "duration": "11:57",
-
-              "questions": [
-                {
-                  "id": "q11",
-                  "photo": null,
-                  "name": "Amr",
-                  "title": "Projects of the course",
-                  "content": "How many projects are there in this course?",
-                  "date": "Jun 8, 2023",
-                  "isVoted": false,
-                  "likes": 0,
-                  "replies": [
-                    {
-                      "photo": null,
-                      "name": "Khaled",
-                      "date": "Jun 22, 2023",
-                      "isVoted": false,
-                      "likes": 0,
-                      "content": "I'm good, How about you?"
-                    }
-                  ]
-                }
-              ]
+              "questions": []
             },
             {
               "title": "Download the course syllabus",

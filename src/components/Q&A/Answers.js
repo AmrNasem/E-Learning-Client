@@ -1,17 +1,17 @@
 import { useNavigate, useParams } from "react-router-dom";
 import Question from "./Question";
 import Answer from "./Answer";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classes from "./Answers.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { repliesActions } from "../../store/replies-slice";
 import { questionsActions } from "../../store/questions-slice";
 
-const questionsPerPage = 3;
+const answersPerPage = 3;
 
 const Answers = (props) => {
-  const { questionId } = useParams();
   const dispatch = useDispatch();
+  const { questionId } = useParams();
   const responseRef = useRef();
   const [isValid, setIsValid] = useState(false);
   const {
@@ -19,41 +19,37 @@ const Answers = (props) => {
     items: replies,
     pageNum,
   } = useSelector((state) => state.replies);
+  const mainQuestion = props.questions.find((q) => q.id === questionId);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // GET request here
-    if (!question.replies) {
+    if (!question || question.id !== questionId) {
+      // GET request here
+      dispatch(repliesActions.setQuestion(mainQuestion));
       dispatch(
-        repliesActions.resetReplies(
-          props.questions.find((q) => q.id === questionId)
-        )
+        repliesActions.getReplies(mainQuestion.replies.slice(0, answersPerPage))
       );
     }
-  }, [dispatch, question, questionId, props]);
+  }, [dispatch, question, questionId, mainQuestion]);
 
-  const moreRepliesHandler = useCallback(() => {
+  if (!question) return <h2>Loading...</h2>;
+
+  // Handlers
+  const moreRepliesHandler = () => {
     // GET request here
     dispatch(
       repliesActions.getReplies(
         question.replies.slice(
-          pageNum * questionsPerPage,
-          (pageNum + 1) * questionsPerPage
+          pageNum * answersPerPage,
+          (pageNum + 1) * answersPerPage
         )
       )
     );
-  }, [dispatch, question, pageNum]);
-
-  if (!question.replies) return <h2>Loading...</h2>;
-
-  const validationHandler = () => {
-    if (responseRef.current.value.trim().length > 0) setIsValid(true);
-    else setIsValid(false);
   };
 
   const addReplyHandler = (e) => {
-    e.preventDefault();
     // POST request here
+    e.preventDefault();
     const reply = {
       photo: null,
       name: "Amr",
@@ -64,8 +60,13 @@ const Answers = (props) => {
     };
     responseRef.current.value = "";
     setIsValid(false);
-    dispatch(questionsActions.addReply({ id: question.id, reply: reply })); // This line will be omitted when the backend exists
+    dispatch(questionsActions.addReply({ id: question.id, reply: reply }));
     dispatch(repliesActions.addReply(reply));
+  };
+
+  const validationHandler = () => {
+    if (responseRef.current.value.trim().length > 0) setIsValid(true);
+    else setIsValid(false);
   };
 
   return (
@@ -82,8 +83,11 @@ const Answers = (props) => {
         className={`px-2 ${classes.question}`}
       />
       <h5>
-        {question.replies.length}{" "}
-        {question.replies.length > 1 ? "replies" : "reply"}
+        {question.replies.length === 0
+          ? "Be the first one to reply"
+          : `${question.replies.length} ${
+              question.replies.length === 1 ? "reply" : "replies"
+            }`}
       </h5>
       <div>
         {replies.map((reply, index) => (
