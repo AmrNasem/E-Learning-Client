@@ -2,13 +2,11 @@ import classes from "./Lecture.module.css";
 import VideoIcon from "../../Icons/VideoIcon";
 import FileIcon from "../../Icons/FileIcon";
 import { Link, useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { questionsActions } from "../../../store/questions-slice";
+import React from "react";
 
 const Lecture = (props) => {
-  const { type, available, id, title, duration } = props;
+  const { type, available, id, title, duration } = props.lecture;
   const { courseId, lectureId } = useParams();
-  const dispatch = useDispatch();
 
   let icon = <VideoIcon />;
   if (type === "article") {
@@ -22,7 +20,6 @@ const Lecture = (props) => {
           lectureId === id && classes.active
         }`}
         to={`/course/${courseId}/preview/${id}`}
-        onClick={() => dispatch(questionsActions.resetQuestions())}
       >
         {icon}
         <p className="m-0 flex-grow-1">{title}</p>
@@ -40,4 +37,4 @@ const Lecture = (props) => {
   );
 };
 
-export default Lecture;
+export default React.memo(Lecture);
