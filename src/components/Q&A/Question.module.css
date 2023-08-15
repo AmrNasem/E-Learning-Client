@@ -15,6 +15,31 @@
 .reaction:hover svg {
   color: black;
 }
+.settings {
+  top: 5px;
+  right: 20px;
+  box-shadow: -1px 2px 5px #f3dacc;
+  width: 90px;
+  animation: toggle-settings 0.3s both;
+  transform: scale(0.95);
+}
+.settings button:nth-child(1):hover {
+  background-color: var(--main-color);
+}
+.settings button:nth-child(2) {
+  color: rgb(222, 0, 0) !important;
+}
 .date {
   font-size: 0.9rem;
+}
+@keyframes toggle-settings {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.05);
+  }
 }

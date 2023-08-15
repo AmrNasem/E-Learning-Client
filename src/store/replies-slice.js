@@ -15,6 +15,15 @@ const repliesSlice = createSlice({
       state.items = [];
       state.pageNum = 0;
     },
+    removeReply(state, action) {
+      state.items = state.items.filter((item) => item.id !== action.payload);
+      state.question.replies = state.question.replies.filter(
+        (r) => r.id !== action.payload
+      );
+      if (state.items.length < state.question.replies.length) {
+        state.items.push(state.question.replies[state.items.length]);
+      }
+    },
     addReply(state, action) {
       state.items.push(action.payload);
       state.question.replies.unshift(action.payload);

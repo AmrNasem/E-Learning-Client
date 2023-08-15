@@ -39,18 +39,14 @@ const User = (props) => {
       {user.instructor && instructorContent}
       <Container className={classes.container}>
         <div className={classes["enrolled-courses"]}>
-          <h3>Courses you're enrolled in</h3>
+          <h3>Courses {user.name.split(" ")[0]}'s enrolled in</h3>
           <Row className="my-3">
             {user["enrolled-courses"].map((id) => (
               <Col sm={6} lg={4} key={id} className="mb-4">
                 <CourseItem
                   key={id}
                   {...dummyCourses.find((course) => course.id === id)}
-                  instructorName={
-                    dummyInstructors.find(
-                      (instructor) => instructor.id === user.instructor
-                    ).name
-                  }
+                  instructors={dummyInstructors}
                   available={true}
                 />
               </Col>

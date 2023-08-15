@@ -1,5 +1,5 @@
 import classes from "./NewQuestion.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { questionsActions } from "../../store/questions-slice";
 import { useRef, useState } from "react";
 
@@ -8,6 +8,7 @@ const NewQuestion = () => {
   const [canSubmit, setCanSubmit] = useState(false);
   const titleRef = useRef();
   const commentRef = useRef();
+  const authedUser = useSelector((state) => state.auth.user);
 
   const validationHandler = () => {
     if (titleRef.current.value.trim() !== "") {
@@ -21,8 +22,8 @@ const NewQuestion = () => {
     e.preventDefault();
     const newQuestion = {
       id: Math.random().toString(),
-      photo: null, // This property requires authentication so, I hard coded it for now.
-      name: "Amr Naseem", // This property requires authentication so, I hard coded it for now.
+      photo: authedUser.avatar,
+      authorId: authedUser.id,
       title: titleRef.current.value,
       content: commentRef.current.value,
       date: new Date().getTime(),

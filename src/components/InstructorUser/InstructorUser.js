@@ -59,7 +59,6 @@ const InstructorUser = (props) => {
                 <CourseItem
                   id={id}
                   {...dummyCourses.find((course) => course.id === id)}
-                  instructorName={instructor.name}
                   className="mx-auto"
                 />
               </Col>

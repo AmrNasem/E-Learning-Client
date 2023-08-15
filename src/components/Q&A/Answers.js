@@ -20,6 +20,7 @@ const Answers = (props) => {
     pageNum,
   } = useSelector((state) => state.replies);
   const mainQuestion = props.questions.find((q) => q.id === questionId);
+  const authedUser = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -51,8 +52,9 @@ const Answers = (props) => {
     // POST request here
     e.preventDefault();
     const reply = {
-      photo: null,
-      name: "Amr",
+      id: Math.random().toString(),
+      photo: authedUser.avatar,
+      authorId: authedUser.id,
       date: new Date().getTime(),
       isVoted: false,
       likes: 0,
