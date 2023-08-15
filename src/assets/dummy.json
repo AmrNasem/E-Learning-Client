@@ -2,24 +2,45 @@
   "users": [
     {
       "id": "u1",
-      "name": "Maximilian",
+      "name": "Maximilian Schwarzmuller",
       "instructor": "i1",
       "enrolled-courses": ["c2"],
-      "avatar": ""
+      "avatar": null
     },
     {
       "id": "u2",
       "name": "Osama Elzero",
       "instructor": "i2",
       "enrolled-courses": ["c3", "c5", "c9"],
-      "avatar": ""
+      "avatar": null
     },
     {
       "id": "u3",
       "name": "Amr Naseem",
       "instructor": null,
       "enrolled-courses": ["c2", "c3", "c5", "c9"],
-      "avatar": ""
+      "avatar": null
+    },
+    {
+      "id": "u4",
+      "name": "Omar Ehab",
+      "instructor": null,
+      "enrolled-courses": ["c2", "c1", "c3", "c9"],
+      "avatar": null
+    },
+    {
+      "id": "u5",
+      "name": "Mohamed Samy",
+      "instructor": null,
+      "enrolled-courses": ["c2", "c3", "c4", "c7"],
+      "avatar": null
+    },
+    {
+      "id": "u6",
+      "name": "Kareem Sherif",
+      "instructor": null,
+      "enrolled-courses": ["c1", "c4", "c2", "c9"],
+      "avatar": null
     }
   ],
   "instructors": [
@@ -76,24 +97,25 @@
               "title": "Introduction to HTML",
               "available": true,
               "id": "l1",
+              "authorId": "u1",
               "type": "video",
               "duration": "04:18",
-
               "questions": [
                 {
                   "id": "q1",
                   "photo": null,
-                  "name": "Amr",
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u3",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r1",
                       "date": "Jun 22, 2023",
+                      "authorId": "u4",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -105,6 +127,7 @@
             {
               "title": "Using HTML Tags",
               "id": "l2",
+              "authorId": "u1",
               "type": "video",
               "duration": "08:04",
 
@@ -112,17 +135,19 @@
                 {
                   "id": "q2",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u5",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r2",
                       "date": "Jun 22, 2023",
+                      "authorId": "u6",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -141,23 +166,26 @@
             {
               "title": "HTML Tables",
               "id": "l3",
+              "authorId": "u1",
               "type": "video",
               "duration": "11:57",
               "questions": [
                 {
                   "id": "q3",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u6",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r3",
                       "date": "Jun 22, 2023",
+                      "authorId": "u3",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -169,23 +197,26 @@
             {
               "title": "Download the course syllabus",
               "id": "l4",
+              "authorId": "u1",
               "type": "video",
               "duration": "02:17",
               "questions": [
                 {
                   "id": "q4",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u4",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r4",
                       "date": "Jun 22, 2023",
+                      "authorId": "u5",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -269,111 +300,125 @@
               "title": "What you'll get in this course",
               "available": true,
               "id": "l5",
+              "authorId": "u2",
               "type": "video",
               "duration": "03:08",
               "questions": [
                 {
                   "id": "q5",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u6",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r5",
                       "date": "Jun 22, 2023",
+                      "authorId": "u3",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
                     },
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r6",
                       "date": "Jun 22, 2023",
+                      "authorId": "u4",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
                     },
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r7",
                       "date": "Jun 22, 2023",
+                      "authorId": "u3",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
                     },
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r8",
                       "date": "Jun 22, 2023",
+                      "authorId": "u3",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
                     },
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r9",
                       "date": "Jun 22, 2023",
+                      "authorId": "u5",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
                     },
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r10",
                       "date": "Jun 22, 2023",
+                      "authorId": "u5",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
                     },
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r11",
                       "date": "Jun 22, 2023",
+                      "authorId": "u5",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
                     },
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r12",
                       "date": "Jun 22, 2023",
+                      "authorId": "u6",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
                     },
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r13",
                       "date": "Jun 22, 2023",
+                      "authorId": "u6",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
                     },
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r14",
                       "date": "Jun 22, 2023",
+                      "authorId": "u6",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
                     },
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r15",
                       "date": "Jun 22, 2023",
+                      "authorId": "u3",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
                     },
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r16",
                       "date": "Jun 22, 2023",
+                      "authorId": "u4",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -383,17 +428,19 @@
                 {
                   "id": "q44",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "What you know about rolling down in the deep when your brain goes numb you can call that mental freeze.",
                   "date": "Jul 1, 2022",
+                  "authorId": "u3",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r17",
                       "date": "Jun 22, 2023",
+                      "authorId": "u4",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -403,17 +450,19 @@
                 {
                   "id": "q45",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Feb 23, 2023",
+                  "authorId": "u4",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r18",
                       "date": "Jun 22, 2023",
+                      "authorId": "u4",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -423,17 +472,19 @@
                 {
                   "id": "q46",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Aug 10, 2023",
+                  "authorId": "u5",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r19",
                       "date": "Jun 22, 2023",
+                      "authorId": "u6",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -443,17 +494,19 @@
                 {
                   "id": "q47",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Sep 8, 2020",
+                  "authorId": "u3",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r20",
                       "date": "Jun 22, 2023",
+                      "authorId": "u4",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -463,17 +516,19 @@
                 {
                   "id": "q48",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u5",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r21",
                       "date": "Jun 22, 2023",
+                      "authorId": "u6",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -483,17 +538,19 @@
                 {
                   "id": "q49",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u3",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r22",
                       "date": "Jun 22, 2023",
+                      "authorId": "u4",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -503,17 +560,19 @@
                 {
                   "id": "q50",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u5",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r23",
                       "date": "Jun 22, 2023",
+                      "authorId": "u6",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -523,17 +582,19 @@
                 {
                   "id": "q51",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u3",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r24",
                       "date": "Jun 22, 2023",
+                      "authorId": "u4",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -543,17 +604,19 @@
                 {
                   "id": "q52",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u5",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r25",
                       "date": "Jun 22, 2023",
+                      "authorId": "u6",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -566,6 +629,7 @@
               "title": "Download the course syllabus",
               "available": true,
               "id": "l6",
+              "authorId": "u2",
               "type": "article",
               "duration": "00:12",
 
@@ -573,17 +637,19 @@
                 {
                   "id": "q6",
                   "photo": null,
-                  "name": "Kareem",
+
                   "title": "Your health",
                   "content": "How are you, Instructor?",
                   "date": "May 13, 2023",
+                  "authorId": "u3",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Omar",
+                      "id": "r26",
                       "date": "Jun 22, 2023",
+                      "authorId": "u4",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -595,6 +661,7 @@
             {
               "title": "Download the course resources",
               "id": "l7",
+              "authorId": "u2",
               "type": "article",
               "duration": "00:17",
 
@@ -602,17 +669,19 @@
                 {
                   "id": "q7",
                   "photo": null,
-                  "name": "Heggy",
+
                   "title": "Time you created the course within",
                   "content": "How long have you been creating this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u5",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Ibrahim",
+
                       "date": "Aug 7, 2023",
+                      "authorId": "u6",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -631,6 +700,7 @@
               "title": "Introduction to HTML",
               "available": true,
               "id": "l8",
+              "authorId": "u2",
               "type": "video",
               "duration": "04:18",
 
@@ -638,17 +708,19 @@
                 {
                   "id": "q8",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u3",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r27",
                       "date": "Jun 22, 2023",
+                      "authorId": "u4",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -660,6 +732,7 @@
             {
               "title": "Using HTML Tags",
               "id": "l9",
+              "authorId": "u2",
               "type": "video",
               "duration": "08:04",
 
@@ -667,17 +740,19 @@
                 {
                   "id": "q9",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u5",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r28",
                       "date": "Jun 22, 2023",
+                      "authorId": "u6",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -689,6 +764,7 @@
             {
               "title": "The Anatomy of an HTML Tag",
               "id": "l10",
+              "authorId": "u2",
               "type": "video",
               "duration": "10:53",
 
@@ -696,17 +772,19 @@
                 {
                   "id": "q10",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u3",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r29",
                       "date": "Jun 22, 2023",
+                      "authorId": "u4",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -725,6 +803,7 @@
               "title": "HTML Tables",
               "available": true,
               "id": "l11",
+              "authorId": "u2",
               "type": "video",
               "duration": "11:57",
               "questions": []
@@ -732,6 +811,7 @@
             {
               "title": "Download the course syllabus",
               "id": "l12",
+              "authorId": "u2",
               "type": "video",
               "duration": "02:17",
 
@@ -739,17 +819,19 @@
                 {
                   "id": "q12",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u5",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r30",
                       "date": "Jun 22, 2023",
+                      "authorId": "u6",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -761,6 +843,7 @@
             {
               "title": "HTML Tables Code Challenge",
               "id": "l13",
+              "authorId": "u2",
               "type": "video",
               "duration": "01:44",
 
@@ -768,17 +851,19 @@
                 {
                   "id": "q13",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u3",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r31",
                       "date": "Jun 22, 2023",
+                      "authorId": "u4",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -943,22 +1028,25 @@
               "title": "Using HTML Tags",
               "available": true,
               "id": "l14",
+              "authorId": "u1",
               "type": "article",
               "questions": [
                 {
                   "id": "q14",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u5",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r32",
                       "date": "Jun 22, 2023",
+                      "authorId": "u6",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -977,22 +1065,25 @@
             {
               "title": "HTML Tables",
               "id": "l15",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q15",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u3",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r33",
                       "date": "Jun 22, 2023",
+                      "authorId": "u4",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -1070,22 +1161,25 @@
               "title": "Introduction to HTML",
               "available": true,
               "id": "l16",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q16",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u5",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r34",
                       "date": "Jun 22, 2023",
+                      "authorId": "u6",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -1098,22 +1192,25 @@
             {
               "title": "Using HTML Tags",
               "id": "l17",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q17",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u3",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r35",
                       "date": "Jun 22, 2023",
+                      "authorId": "u4",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -1132,22 +1229,25 @@
             {
               "title": "HTML Tables",
               "id": "l18",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q18",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u5",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r36",
                       "date": "Jun 22, 2023",
+                      "authorId": "u6",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -1160,22 +1260,25 @@
             {
               "title": "Download the course syllabus",
               "id": "l19",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q19",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u3",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r37",
                       "date": "Jun 22, 2023",
+                      "authorId": "u4",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -1252,22 +1355,25 @@
               "title": "Introduction to HTML",
               "available": true,
               "id": "l20",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q20",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u5",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r38",
                       "date": "Jun 22, 2023",
+                      "authorId": "u6",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -1280,22 +1386,25 @@
             {
               "title": "Using HTML Tags",
               "id": "l21",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q21",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u3",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r39",
                       "date": "Jun 22, 2023",
+                      "authorId": "u4",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -1314,22 +1423,25 @@
             {
               "title": "HTML Tables",
               "id": "l22",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q22",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u6",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r40",
                       "date": "Jun 22, 2023",
+                      "authorId": "u6",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -1342,22 +1454,25 @@
             {
               "title": "Download the course syllabus",
               "id": "l23",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q23",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u3",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r41",
                       "date": "Jun 22, 2023",
+                      "authorId": "u4",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -1435,22 +1550,25 @@
               "title": "Introduction to HTML",
               "available": true,
               "id": "l24",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q24",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u5",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r42",
                       "date": "Jun 22, 2023",
+                      "authorId": "u6",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -1463,22 +1581,25 @@
             {
               "title": "Using HTML Tags",
               "id": "l25",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q25",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u3",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r43",
                       "date": "Jun 22, 2023",
+                      "authorId": "u4",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -1497,22 +1618,25 @@
             {
               "title": "HTML Tables",
               "id": "l26",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q26",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u5",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r44",
                       "date": "Jun 22, 2023",
+                      "authorId": "u6",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -1525,22 +1649,25 @@
             {
               "title": "Download the course syllabus",
               "id": "l27",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q27",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u3",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r45",
                       "date": "Jun 22, 2023",
+                      "authorId": "u4",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -1616,22 +1743,25 @@
               "title": "Introduction to HTML",
               "available": true,
               "id": "l28",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q28",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u5",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r46",
                       "date": "Jun 22, 2023",
+                      "authorId": "u6",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -1644,22 +1774,25 @@
             {
               "title": "Using HTML Tags",
               "id": "l29",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q29",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u3",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r47",
                       "date": "Jun 22, 2023",
+                      "authorId": "u4",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -1678,22 +1811,25 @@
             {
               "title": "HTML Tables",
               "id": "l30",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q30",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u5",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r48",
                       "date": "Jun 22, 2023",
+                      "authorId": "u6",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -1706,22 +1842,25 @@
             {
               "title": "Download the course syllabus",
               "id": "l31",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q31",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u3",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r49",
                       "date": "Jun 22, 2023",
+                      "authorId": "u4",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -1797,22 +1936,25 @@
               "title": "Introduction to HTML",
               "available": true,
               "id": "l32",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q32",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u5",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r50",
                       "date": "Jun 22, 2023",
+                      "authorId": "u6",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -1825,22 +1967,25 @@
             {
               "title": "Using HTML Tags",
               "id": "l33",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q33",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u3",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r51",
                       "date": "Jun 22, 2023",
+                      "authorId": "u4",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -1859,22 +2004,25 @@
             {
               "title": "HTML Tables",
               "id": "l34",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q34",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u5",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r52",
                       "date": "Jun 22, 2023",
+                      "authorId": "u6",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -1887,22 +2035,25 @@
             {
               "title": "Download the course syllabus",
               "id": "l35",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q35",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u3",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r53",
                       "date": "Jun 22, 2023",
+                      "authorId": "u4",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -1978,22 +2129,25 @@
               "title": "Introduction to HTML",
               "available": true,
               "id": "l36",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q36",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u5",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r54",
                       "date": "Jun 22, 2023",
+                      "authorId": "u6",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -2006,22 +2160,25 @@
             {
               "title": "Using HTML Tags",
               "id": "l37",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q37",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u3",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r55",
                       "date": "Jun 22, 2023",
+                      "authorId": "u4",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -2040,22 +2197,25 @@
             {
               "title": "HTML Tables",
               "id": "l38",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q38",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u5",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r56",
                       "date": "Jun 22, 2023",
+                      "authorId": "u6",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -2068,22 +2228,25 @@
             {
               "title": "Download the course syllabus",
               "id": "l39",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q39",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u3",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r57",
                       "date": "Jun 22, 2023",
+                      "authorId": "u4",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -2159,22 +2322,25 @@
               "title": "Introduction to HTML",
               "available": true,
               "id": "l40",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q40",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u5",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r58",
                       "date": "Jun 22, 2023",
+                      "authorId": "u6",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -2187,22 +2353,25 @@
             {
               "title": "Using HTML Tags",
               "id": "l41",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q41",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u3",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r59",
                       "date": "Jun 22, 2023",
+                      "authorId": "u4",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -2221,22 +2390,25 @@
             {
               "title": "HTML Tables",
               "id": "l42",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q42",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u5",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r60",
                       "date": "Jun 22, 2023",
+                      "authorId": "u6",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
@@ -2249,22 +2421,25 @@
             {
               "title": "Download the course syllabus",
               "id": "l43",
+              "authorId": "u1",
               "type": "video",
               "questions": [
                 {
                   "id": "q43",
                   "photo": null,
-                  "name": "Amr",
+
                   "title": "Projects of the course",
                   "content": "How many projects are there in this course?",
                   "date": "Jun 8, 2023",
+                  "authorId": "u3",
                   "isVoted": false,
                   "likes": 0,
                   "replies": [
                     {
                       "photo": null,
-                      "name": "Khaled",
+                      "id": "r61",
                       "date": "Jun 22, 2023",
+                      "authorId": "u4",
                       "isVoted": false,
                       "likes": 0,
                       "content": "I'm good, How about you?"
