@@ -6,7 +6,7 @@ import { useRef } from "react";
 
 const CourseList = (props) => {
   const coursesRef = useRef();
-  const { class: listClass, dummyCourses, dummyInstructors } = props;
+  const { class: listClass, dummyCourses } = props;
   const courseItemRef = useRef();
 
   const swipeHandler = (direction = true) => {
@@ -28,18 +28,7 @@ const CourseList = (props) => {
       <h3>{listClass}</h3>
       <div ref={coursesRef} className={classes["course-list"]}>
         {dummyCourses.map((course) => {
-          const instructor = dummyInstructors.find(
-            (instructor) => instructor.id === course.instructor
-          );
-
-          return (
-            <CourseItem
-              key={course.id}
-              instructorName={instructor.name}
-              {...course}
-              ref={courseItemRef}
-            />
-          );
+          return <CourseItem key={course.id} {...course} ref={courseItemRef} />;
         })}
       </div>
       <ForwardIcon onClick={swipeHandler} className={classes.forward} />

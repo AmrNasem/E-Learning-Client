@@ -6,9 +6,11 @@ import userSlice from "./user-slice";
 import reviewsSlice from "./reviews-slice";
 import questionsSlice from "./questions-slice";
 import repliesSlice from "./replies-slice";
+import authSlice from "./auth-slice";
 
 const store = configureStore({
   reducer: {
+    auth: authSlice,
     cart: cartSlice,
     course: courseSlice,
     instructor: instructorSlice,
