@@ -11,7 +11,7 @@ const answersPerPage = 3;
 
 const Answers = (props) => {
   const dispatch = useDispatch();
-  const { questionId } = useParams();
+  const { courseId, lectureId, questionId } = useParams();
   const responseRef = useRef();
   const [isValid, setIsValid] = useState(false);
   const {
@@ -35,6 +35,7 @@ const Answers = (props) => {
   useEffect(() => {
     if (!question || question.id !== questionId) {
       // GET request here
+      if (!mainQuestion) return;
       dispatch(repliesActions.setQuestion(mainQuestion));
       dispatch(
         repliesActions.getReplies(mainQuestion.replies.slice(0, answersPerPage))
@@ -42,6 +43,7 @@ const Answers = (props) => {
     }
   }, [dispatch, question, questionId, mainQuestion]);
 
+  if (!mainQuestion) return <h2>Question Not Found</h2>;
   if (!question) return <h2>Loading...</h2>;
 
   // Handlers
@@ -103,7 +105,9 @@ const Answers = (props) => {
     <div>
       <button
         className={`btn rounded-0 py-3 px-3 ${classes["back-to-questions"]}`}
-        onClick={() => navigate(-1)}
+        onClick={() =>
+          navigate(`/course/${courseId}/preview/${lectureId}/questions`)
+        }
       >
         Back to all questions
       </button>
