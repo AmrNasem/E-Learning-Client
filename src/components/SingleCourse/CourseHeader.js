@@ -9,9 +9,8 @@ const CourseHeader = (props) => {
   const [applyCoupon, setApplyCoupon] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const dispatch = useDispatch();
-  const course = useSelector((state) => state.course.course);
-  const instructor = useSelector((state) => state.instructor.instructor);
   const cartItems = useSelector((state) => state.cart.items);
+  const { course, instructor } = props;
 
   useEffect(() => {
     const time = setTimeout(() => {
@@ -19,8 +18,6 @@ const CourseHeader = (props) => {
     }, 3900);
     return () => clearTimeout(time);
   }, [isCopied]);
-
-  if (!course.sections) return;
 
   const copyURL = () => {
     const url = window.location.href;
@@ -57,13 +54,16 @@ const CourseHeader = (props) => {
         facere minima consectetur corrupti voluptatum veniam error, amet porro
         ea ipsum.
       </p>
-      <div className={classes.info}>
-        <span className={classes.badge}>Bestseller</span>
-        <span className={classes.rates}>
-          <a href="/">(275,583 ratings)</a>
+      <p className={classes.info}>
+        Bestseller{" "}
+        <a className={classes.rates} href="#reviews">
+          ({course.reviews.length} ratings)
+        </a>
+        <span className={classes.students}>
+          {" "}
+          {instructor.students} students
         </span>
-        <span className={classes.students}>933,032 students</span>
-      </div>
+      </p>
       <p className={classes.instructor}>
         Created by <a href="#instructor">{instructor.name}</a>
       </p>

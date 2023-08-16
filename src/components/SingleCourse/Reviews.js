@@ -13,10 +13,9 @@ import { reviewsActions } from "../../store/reviews-slice";
 const reviewsPerPage = 5;
 
 const Reviews = (props) => {
-  const course = useSelector((state) => state.course.course);
   const page = useSelector((state) => state.reviews.page);
   const items = useSelector((state) => state.reviews.items);
-  const { reviews, wrap, modal } = props;
+  const { reviews, wrap, modal, course } = props;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -61,7 +60,7 @@ const Reviews = (props) => {
   };
 
   return (
-    <div className={classes.reviews}>
+    <div className={classes.reviews} id="reviews">
       <div className="my-4 d-flex gap-2 align-items-center">
         {!props.title && (
           <>

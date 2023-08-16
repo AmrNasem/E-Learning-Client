@@ -9,10 +9,7 @@ import Requirements from "../components/SingleCourse/Requirements";
 import Description from "../components/SingleCourse/Description";
 import Instructor from "../components/SingleCourse/Instructor";
 import { useDispatch, useSelector } from "react-redux";
-import { courseActions } from "../store/course-slice";
 import { useParams } from "react-router";
-import { instructorActions } from "../store/instructor-slice";
-import { userActions } from "../store/user-slice";
 import Reviews from "../components/SingleCourse/Reviews";
 import Preview from "../components/SingleCourse/Preview";
 import { reviewsActions } from "../store/reviews-slice";
@@ -25,34 +22,40 @@ const Course = (props) => {
   const dispatch = useDispatch();
   const { courseId } = useParams();
 
-  const course = dummyCourses.find((course) => course.id === courseId);
-  const instructor = dummyInstructors.find(
-    (instructor) => instructor.id === course.instructor
+  const course = useMemo(
+    () => dummyCourses.find((course) => course.id === courseId),
+    [courseId, dummyCourses]
   );
-  const user = dummyUsers.find((u) => u.instructor === instructor.id);
-  const initialReviews = useMemo(
-    () => course.reviews.filter((review) => review.comment).slice(0, 4),
-    [course]
-  );
+
+  const instructor = useMemo(() => {
+    if (!course) return;
+    return dummyInstructors.find((i) => i.id === course.instructor);
+  }, [dummyInstructors, course]);
+
+  const courseGain = useMemo(() => {
+    if (!course) return;
+    return course.gain;
+  }, [course]);
+  const requirements = useMemo(() => {
+    if (!course) return;
+    return course.requirements;
+  }, [course]);
+
+  const initialReviews = useMemo(() => {
+    if (!course) return;
+    return course.reviews.filter((review) => review.comment).slice(0, 4);
+  }, [course]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-    dispatch(courseActions.resetState(course));
-    dispatch(instructorActions.resetState(instructor));
-    dispatch(userActions.resetState(user));
-  }, [dispatch, courseId, course, user, instructor]);
+    window.addEventListener("scroll", () => setScrollY(window.scrollY));
+  }, []);
 
   const closeModalHandler = useCallback(() => {
     dispatch(reviewsActions.toggleIsPaginated());
   }, [dispatch]);
 
-  useEffect(() => {
-    window.addEventListener("scroll", () => setScrollY(window.scrollY));
-  }, []);
-
-  if (!course) {
-    return <h1>Course Not Found</h1>;
-  }
+  if (!course) return <h1>Page Not Found</h1>;
 
   return (
     <main className={classes.course}>
@@ -60,6 +63,7 @@ const Course = (props) => {
         <Container>
           {scrollY < 400 && (
             <Overview
+              course={course}
               className={classes["header-overview"]}
               Preview={
                 <Preview
@@ -72,26 +76,30 @@ const Course = (props) => {
               }
             />
           )}
-          <CourseHeader />
+          <CourseHeader course={course} instructor={instructor} />
         </Container>
       </div>
       <Container className="d-flex flex-row-reverse align-items-start gap-5 my-3">
         <Overview
+          course={course}
           className={`${classes.overview} ${
             scrollY >= 400 ? classes.float : classes.hide
           }`}
         />
         <div>
-          <CourseGain />
-          <Content />
-          <Requirements />
-          <Description />
-          <Instructor />
-          <Reviews reviews={initialReviews} />
+          <CourseGain courseGain={courseGain} />
+          <Content course={course} />
+          <Requirements requirements={requirements} />
+          <Description description={course.description} />
+          <Instructor
+            instructor={instructor}
+            userId={dummyUsers.find((u) => u.instructor === instructor.id).id}
+          />
+          <Reviews course={course} reviews={initialReviews} />
         </div>
         {isPaginated && (
           <ReviewsModal onClick={closeModalHandler}>
-            <Reviews modal reviews={reviews} wrap />
+            <Reviews course={course} modal reviews={reviews} wrap />
           </ReviewsModal>
         )}
       </Container>
