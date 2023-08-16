@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import classes from "./Content.module.css";
 import Section from "./Section";
-import { useSelector } from "react-redux";
 
 const Content = (props) => {
-  const course = useSelector((state) => state.course.course);
+  const { course } = props;
   const [isMore, setIsMore] = useState(false);
-
-  if (!course.sections) return; // Because this compnent renders multiple times without course content existence
 
   const numOfLectures = course.sections
     .map((section) => section.lectures.length)

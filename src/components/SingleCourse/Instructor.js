@@ -6,25 +6,21 @@ import StarIcon from "../Icons/StarIcon";
 import MedalIcon from "../Icons/MedalIcon";
 import GroupIcon from "../Icons/GroupIcon";
 import React from "react";
-import { useSelector } from "react-redux";
 
 const Instructor = (props) => {
-  const instructor = useSelector((state) => state.instructor.instructor);
-  const user = useSelector((state) => state.user.user);
-
-  if (!instructor.courses) return; // Because this compnent renders multiple times without instructor content existence
+  const { instructor, userId } = props;
 
   return (
     <div id="instructor" className={classes.instructor}>
       <h2>Instructor</h2>
       <div className={classes.profile}>
-        <Link to={`/user/${user.id}`} className={classes.instructorName}>
+        <Link to={`/user/${userId}`} className={classes.instructorName}>
           {instructor.name}
         </Link>
         <p>{instructor.job}</p>
         <div className={classes.groub}>
           <div className={classes.image}>
-            <Link to={`/user/${user.id}`}>
+            <Link to={`/user/${userId}`}>
               <img src={instructorImage} alt={instructor.name} />
             </Link>
           </div>

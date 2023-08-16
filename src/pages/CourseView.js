@@ -2,7 +2,6 @@ import classes from "./CourseView.module.css";
 import lectureVideo from "../assets/awesome-video.mp4";
 import Section from "../components/SingleCourse/Content/Section";
 import Reviews from "../components/SingleCourse/Reviews";
-import { courseActions } from "../store/course-slice";
 import { useParams } from "react-router";
 import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,6 +15,8 @@ const CourseView = (props) => {
   const { dummyCourses } = props;
   const { courseId, lectureId } = useParams();
   const dispatch = useDispatch();
+  const reviews = useSelector((state) => state.reviews.items);
+  const { items: questions, lecture } = useSelector((state) => state.questions);
   const course = useMemo(
     () => dummyCourses.find((course) => course.id === courseId),
     [courseId, dummyCourses]
@@ -34,9 +35,6 @@ const CourseView = (props) => {
     if (found) break;
   }
 
-  const reviews = useSelector((state) => state.reviews.items);
-  const { items: questions, lecture } = useSelector((state) => state.questions);
-
   useEffect(() => {
     if (!lecture || lecture.id !== lectureId) {
       if (!mainLecture) return;
@@ -50,8 +48,7 @@ const CourseView = (props) => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-    dispatch(courseActions.resetState(course));
-  }, [dispatch, course]);
+  }, []);
 
   if (!mainLecture) return <h1>Page Not Found</h1>;
 
@@ -81,7 +78,7 @@ const CourseView = (props) => {
       />
       <Route
         path="reviews/*"
-        element={<Reviews reviews={reviews} wrap title />}
+        element={<Reviews course={course} reviews={reviews} wrap title />}
       />
     </Routes>
   );
