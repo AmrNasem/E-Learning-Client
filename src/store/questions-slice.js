@@ -5,6 +5,7 @@ const initialState = {
   items: [],
   pageNum: 0,
   isNewQuest: false,
+  isEditing: null,
 };
 
 const questionsSlice = createSlice({
@@ -17,6 +18,9 @@ const questionsSlice = createSlice({
     },
     toggleWannaAsk(state) {
       state.isNewQuest = !state.isNewQuest;
+    },
+    togglewannaEdit(state, action) {
+      state.isEditing = action.payload;
     },
     setLecture(state, action) {
       state.lecture = action.payload;
@@ -38,12 +42,35 @@ const questionsSlice = createSlice({
         state.items.push(state.lecture.questions[state.items.length]);
       }
     },
+    editQuestion(state, action) {
+      const { id, title, details } = action.payload;
+      state.items.find((item) => {
+        if (item.id === id) {
+          item.title = title;
+          item.content = details;
+        }
+        return item.id === id;
+      });
+      state.isNewQuest = false;
+      state.isEditing = null;
+    },
     addReply(state, action) {
       const { id, reply } = action.payload;
       state.items = state.items.map((item) => {
         if (item.id === id) item.replies.push(reply);
         return item;
       });
+    },
+    editReply(state, action) {
+      const { id, text } = action.payload;
+      state.items.find((item) =>
+        item.replies.find((reply) => {
+          if (reply.id === id) {
+            reply.content = text;
+          }
+          return reply.id === id;
+        })
+      );
     },
     removeReply(state, action) {
       for (let i = 0; i < state.items.length; i++) {

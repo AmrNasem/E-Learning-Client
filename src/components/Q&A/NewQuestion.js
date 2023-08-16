@@ -1,7 +1,8 @@
 import classes from "./NewQuestion.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { questionsActions } from "../../store/questions-slice";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { repliesActions } from "../../store/replies-slice";
 
 const NewQuestion = () => {
   const dispatch = useDispatch();
@@ -9,6 +10,16 @@ const NewQuestion = () => {
   const titleRef = useRef();
   const commentRef = useRef();
   const authedUser = useSelector((state) => state.auth.user);
+  const isEditing = useSelector((state) => state.questions.isEditing);
+  const question = useSelector((state) => state.replies.question);
+
+  useEffect(() => {
+    if (isEditing) {
+      setCanSubmit(true);
+      titleRef.current.value = isEditing.title;
+      commentRef.current.value = isEditing.details;
+    }
+  }, [isEditing]);
 
   const validationHandler = () => {
     if (titleRef.current.value.trim() !== "") {
@@ -32,6 +43,20 @@ const NewQuestion = () => {
     };
     // POST request here
     dispatch(questionsActions.addQuestion(newQuestion));
+  };
+
+  const editQuestionHandler = (e) => {
+    e.preventDefault();
+    // POST request here
+    dispatch(
+      questionsActions.editQuestion({
+        id: isEditing.id,
+        title: titleRef.current.value,
+        details: commentRef.current.value,
+      })
+    );
+    if (question.id === isEditing.id)
+      dispatch(repliesActions.setQuestion(null));
   };
 
   return (
@@ -77,12 +102,12 @@ const NewQuestion = () => {
           placeholder="e.g. I didn't understand this part. Here is a screenshot of what I tried"
         ></textarea>
         <button
-          onClick={addQuestionHandler}
+          onClick={isEditing ? editQuestionHandler : addQuestionHandler}
           className={`border rounded-0 py-2 my-4 w-100 text-white ${classes.submit}`}
           disabled={!canSubmit}
           type="submit"
         >
-          Publish
+          {isEditing ? "Edit" : "Publish"}
         </button>
       </form>
     </div>

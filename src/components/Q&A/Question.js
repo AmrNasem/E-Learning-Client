@@ -50,6 +50,18 @@ const Question = (props) => {
     dispatch(repliesActions.setQuestion(null));
   };
 
+  const editQuestionHandler = () => {
+    if (specify) navigate(-1);
+    dispatch(questionsActions.toggleWannaAsk());
+    dispatch(
+      questionsActions.togglewannaEdit({
+        id: question.id,
+        title: question.title,
+        details: question.content,
+      })
+    );
+  };
+
   return (
     <div className={`my-3 d-flex gap-4 py-3 ${classes.question} ${className}`}>
       <div>
@@ -120,7 +132,9 @@ const Question = (props) => {
             <div
               className={`d-flex flex-column gap-1 position-absolute bg-white p-1 rounded-2 ${classes.settings}`}
             >
-              <button className="btn border-0">Edit</button>
+              <button onClick={editQuestionHandler} className="btn border-0">
+                Edit
+              </button>
               <button onClick={deleteQuestionHandler} className="btn border-0">
                 Delete
               </button>
