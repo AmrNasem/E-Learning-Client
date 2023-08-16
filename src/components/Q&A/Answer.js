@@ -38,6 +38,12 @@ const Answer = (props) => {
     setIsVoted((prevState) => !prevState);
   };
 
+  const editQuestionHandler = () => {
+    dispatch(
+      repliesActions.toggleWannaEdit({ id: props.id, text: props.content })
+    );
+  };
+
   const deleteQuestionHandler = () => {
     // POST request here
     dispatch(questionsActions.removeReply(props.id));
@@ -100,7 +106,9 @@ const Answer = (props) => {
         <div
           className={`d-flex flex-column gap-1 position-absolute bg-white p-1 rounded-2 ${classes.settings}`}
         >
-          <button className="btn border-0">Edit</button>
+          <button onClick={editQuestionHandler} className="btn border-0">
+            Edit
+          </button>
           <button onClick={deleteQuestionHandler} className="btn border-0">
             Delete
           </button>

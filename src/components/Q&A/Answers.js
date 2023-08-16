@@ -21,7 +21,16 @@ const Answers = (props) => {
   } = useSelector((state) => state.replies);
   const mainQuestion = props.questions.find((q) => q.id === questionId);
   const authedUser = useSelector((state) => state.auth.user);
+  const isEditing = useSelector((state) => state.replies.isEditing);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isEditing) {
+      setIsValid(true);
+      responseRef.current.value = isEditing.text;
+      responseRef.current.focus();
+    }
+  }, [isEditing]);
 
   useEffect(() => {
     if (!question || question.id !== questionId) {
@@ -49,8 +58,8 @@ const Answers = (props) => {
   };
 
   const addReplyHandler = (e) => {
-    // POST request here
     e.preventDefault();
+    // POST request here
     const reply = {
       id: Math.random().toString(),
       photo: authedUser.avatar,
@@ -64,6 +73,25 @@ const Answers = (props) => {
     setIsValid(false);
     dispatch(questionsActions.addReply({ id: question.id, reply: reply }));
     dispatch(repliesActions.addReply(reply));
+  };
+
+  const editReplyHandler = (e) => {
+    e.preventDefault();
+    // POST request here
+    dispatch(
+      repliesActions.editReply({
+        id: isEditing.id,
+        text: responseRef.current.value,
+      })
+    );
+    dispatch(
+      questionsActions.editReply({
+        id: isEditing.id,
+        text: responseRef.current.value,
+      })
+    );
+    responseRef.current.value = "";
+    setIsValid(false);
   };
 
   const validationHandler = () => {
@@ -115,10 +143,10 @@ const Answers = (props) => {
         <button
           type="submit"
           className="text-white rounded-0 px-3 py-2 my-2 fs-5 my-3"
-          onClick={addReplyHandler}
+          onClick={isEditing ? editReplyHandler : addReplyHandler}
           disabled={!isValid}
         >
-          Reply
+          {isEditing ? "Edit reply" : "Reply"}
         </button>
       </form>
     </div>
