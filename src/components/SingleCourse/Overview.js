@@ -13,7 +13,8 @@ const Overview = (props) => {
   const [applyCoupon, setApplyCoupon] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const dispatch = useDispatch();
-  const course = useSelector((state) => state.course.course);
+  // const course = useSelector((state) => state.course.course);
+  const { course } = props;
   const cartItems = useSelector((state) => state.cart.items);
 
   useEffect(() => {
