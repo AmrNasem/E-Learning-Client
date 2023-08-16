@@ -20,32 +20,45 @@ const CourseView = (props) => {
     () => dummyCourses.find((course) => course.id === courseId),
     [courseId, dummyCourses]
   );
+
+  let mainLecture;
+  for (const sec of course.sections) {
+    let found = false;
+    for (const lec of sec.lectures) {
+      if (lec.id === lectureId) {
+        mainLecture = lec;
+        found = true;
+        break;
+      }
+    }
+    if (found) break;
+  }
+
   const reviews = useSelector((state) => state.reviews.items);
   const { items: questions, lecture } = useSelector((state) => state.questions);
 
   useEffect(() => {
     if (!lecture || lecture.id !== lectureId) {
-      for (const sec of course.sections) {
-        for (const lec of sec.lectures) {
-          if (lec.id === lectureId) {
-            dispatch(questionsActions.setLecture(lec));
-            dispatch(questionsActions.getQuestions(lec.questions.slice(0, 5)));
-            return;
-          }
-        }
-      }
+      if (!mainLecture) return;
+      // GET request here
+      dispatch(questionsActions.setLecture(mainLecture));
+      dispatch(
+        questionsActions.getQuestions(mainLecture.questions.slice(0, 5))
+      );
     }
-  }, [questions, dispatch, lecture, lectureId, course.sections]);
+  }, [mainLecture, dispatch, lecture, lectureId]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     dispatch(courseActions.resetState(course));
   }, [dispatch, course]);
 
+  if (!mainLecture) return <h1>Page Not Found</h1>;
+
   let content = (
     <Routes>
       <Route
-        path=""
+        path="*"
         element={
           <div className={classes["course-content"]}>
             <h3>Content</h3>
@@ -59,11 +72,15 @@ const CourseView = (props) => {
       />
       <Route path="questions" element={<QAndA questions={questions} />} />
       <Route
-        path="questions/:questionId"
-        element={<Answers questions={questions} />}
+        path="questions/:questionId/*"
+        element={
+          <Answers
+            questions={lecture ? lecture.questions : mainLecture.questions}
+          />
+        }
       />
       <Route
-        path="reviews"
+        path="reviews/*"
         element={<Reviews reviews={reviews} wrap title />}
       />
     </Routes>
