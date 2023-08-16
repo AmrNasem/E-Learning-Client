@@ -44,13 +44,17 @@ const questionsSlice = createSlice({
     },
     editQuestion(state, action) {
       const { id, title, details } = action.payload;
-      state.items.find((item) => {
-        if (item.id === id) {
-          item.title = title;
-          item.content = details;
-        }
-        return item.id === id;
-      });
+      const edit = (arr) => {
+        arr.find((item) => {
+          if (item.id === id) {
+            item.title = title;
+            item.content = details;
+          }
+          return item.id === id;
+        });
+      };
+      edit(state.items);
+      edit(state.lecture.questions);
       state.isNewQuest = false;
       state.isEditing = null;
     },

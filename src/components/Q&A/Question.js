@@ -8,7 +8,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { repliesActions } from "../../store/replies-slice";
 import { questionsActions } from "../../store/questions-slice";
 import useDate from "../../hooks/use-date";
@@ -17,6 +17,7 @@ import jsonFile from "../../assets/dummy.json";
 const Question = (props) => {
   const { question, specify, className } = props;
   const [toggleEdit, setToggleEdit] = useState(false);
+  const { courseId, lectureId } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { date, unit } = useDate(question.date);
@@ -44,14 +45,13 @@ const Question = (props) => {
 
   const deleteQuestionHandler = () => {
     // POST request here
+    if (specify) navigate(`/course/${courseId}/preview/${lectureId}/questions`);
     dispatch(questionsActions.removeQuestion(question.id));
-    if (specify) navigate(-1);
-
     dispatch(repliesActions.setQuestion(null));
   };
 
   const editQuestionHandler = () => {
-    if (specify) navigate(-1);
+    if (specify) navigate(`/course/${courseId}/preview/${lectureId}/questions`);
     dispatch(questionsActions.toggleWannaAsk());
     dispatch(
       questionsActions.togglewannaEdit({

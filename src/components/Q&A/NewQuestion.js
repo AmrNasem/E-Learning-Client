@@ -55,7 +55,7 @@ const NewQuestion = () => {
         details: commentRef.current.value,
       })
     );
-    if (question.id === isEditing.id)
+    if (question && question.id === isEditing.id)
       dispatch(repliesActions.setQuestion(null));
   };
 
