@@ -1,8 +1,7 @@
 import classes from "./NewQuestion.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { questionsActions } from "../../store/questions-slice";
 import { useEffect, useRef, useState } from "react";
-import { repliesActions } from "../../store/replies-slice";
+import { qnaActions } from "../../store/qna-slice";
 
 const NewQuestion = () => {
   const dispatch = useDispatch();
@@ -10,8 +9,7 @@ const NewQuestion = () => {
   const titleRef = useRef();
   const commentRef = useRef();
   const authedUser = useSelector((state) => state.auth.user);
-  const isEditing = useSelector((state) => state.questions.isEditing);
-  const question = useSelector((state) => state.replies.question);
+  const isEditing = useSelector((state) => state.qna.isEditing);
 
   useEffect(() => {
     if (isEditing) {
@@ -42,27 +40,28 @@ const NewQuestion = () => {
       replies: [],
     };
     // POST request here
-    dispatch(questionsActions.addQuestion(newQuestion));
+    dispatch(qnaActions.addQuestion(newQuestion));
   };
 
   const editQuestionHandler = (e) => {
     e.preventDefault();
     // POST request here
     dispatch(
-      questionsActions.editQuestion({
+      qnaActions.editQuestion({
         id: isEditing.id,
         title: titleRef.current.value,
         details: commentRef.current.value,
       })
     );
-    if (question && question.id === isEditing.id)
-      dispatch(repliesActions.setQuestion(null));
   };
 
   return (
     <div className={classes.new}>
       <button
-        onClick={() => dispatch(questionsActions.toggleWannaAsk())}
+        onClick={() => {
+          dispatch(qnaActions.toggleNewQuest(false));
+          dispatch(qnaActions.toggleIsEditing(null));
+        }}
         className={`btn rounded-0 my-3 px-3 py-2 ${classes["back-to-questions"]}`}
       >
         Back to questions

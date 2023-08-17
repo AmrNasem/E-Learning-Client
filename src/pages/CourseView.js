@@ -9,18 +9,18 @@ import Container from "../components/UI/Container";
 import { NavLink, Routes, Route } from "react-router-dom";
 import QAndA from "../components/Q&A/QAndA";
 import Answers from "../components/Q&A/Answers";
-import { questionsActions } from "../store/questions-slice";
+import { qnaActions } from "../store/qna-slice";
 
 const CourseView = (props) => {
   const { dummyCourses } = props;
   const { courseId, lectureId } = useParams();
   const dispatch = useDispatch();
   const reviews = useSelector((state) => state.reviews.items);
-  const { items: questions, lecture } = useSelector((state) => state.questions);
   const course = useMemo(
     () => dummyCourses.find((course) => course.id === courseId),
     [courseId, dummyCourses]
   );
+  const { lecture } = useSelector((state) => state.qna);
 
   let mainLecture;
   for (const sec of course.sections) {
@@ -38,11 +38,10 @@ const CourseView = (props) => {
   useEffect(() => {
     if (!lecture || lecture.id !== lectureId) {
       if (!mainLecture) return;
+      console.log(mainLecture);
       // GET request here
-      dispatch(questionsActions.setLecture(mainLecture));
-      dispatch(
-        questionsActions.getQuestions(mainLecture.questions.slice(0, 5))
-      );
+      dispatch(qnaActions.setLecture(mainLecture));
+      dispatch(qnaActions.getQuestions(5));
     }
   }, [mainLecture, dispatch, lecture, lectureId]);
 
@@ -51,39 +50,40 @@ const CourseView = (props) => {
   }, []);
 
   if (!mainLecture) return <h1>Page Not Found</h1>;
+  let content = <h2>Loading...</h2>;
 
-  let content = (
-    <Routes>
-      <Route
-        path="*"
-        element={
-          <div className={classes["course-content"]}>
-            <h3>Content</h3>
-            <div>
-              {course.sections.map((section, index) => (
-                <Section key={index} {...section} className={classes.Section} />
-              ))}
+  if (lecture) {
+    content = (
+      <Routes>
+        <Route
+          path="*"
+          element={
+            <div className={classes["course-content"]}>
+              <h3>Content</h3>
+              <div>
+                {course.sections.map((section, index) => (
+                  <Section
+                    key={index}
+                    {...section}
+                    className={classes.Section}
+                  />
+                ))}
+              </div>
             </div>
-          </div>
-        }
-      />
-      <Route path="questions" element={<QAndA questions={questions} />} />
-      <Route
-        path="questions/:questionId/*"
-        element={
-          <Answers
-            questions={lecture ? lecture.questions : mainLecture.questions}
-          />
-        }
-      />
-      <Route
-        path="reviews/*"
-        element={<Reviews course={course} reviews={reviews} wrap title />}
-      />
-    </Routes>
-  );
-
-  if (!lecture) content = <h2>Loading...</h2>;
+          }
+        />
+        <Route path="questions" element={<QAndA />} />
+        <Route
+          path="questions/:questionId/*"
+          element={<Answers questions={lecture.questions} />}
+        />
+        <Route
+          path="reviews/*"
+          element={<Reviews course={course} reviews={reviews} wrap title />}
+        />
+      </Routes>
+    );
+  }
 
   const activeClassHandler = ({ isActive }) => {
     const bootstrapClasses = "py-3 px-2 d-inline-block text-decoration-none";
