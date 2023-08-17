@@ -10,15 +10,15 @@ import { Link } from "react-router-dom";
 import useDate from "../../hooks/use-date";
 import jsonFile from "../../assets/dummy.json";
 import { useDispatch, useSelector } from "react-redux";
-import { repliesActions } from "../../store/replies-slice";
-import { questionsActions } from "../../store/questions-slice";
+import { qnaActions } from "../../store/qna-slice";
 
 const Answer = (props) => {
-  const [isVoted, setIsVoted] = useState(false);
   const [toggleEdit, setToggleEdit] = useState(false);
   const { date, unit } = useDate(props.date);
   const author = jsonFile.users.find((u) => u.id === props.authorId);
-  const lecture = useSelector((state) => state.questions.lecture);
+  const { lecture, activeQuestion: question } = useSelector(
+    (state) => state.qna
+  );
   const authedUser = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
 
@@ -33,21 +33,18 @@ const Answer = (props) => {
   }`.toUpperCase();
 
   // Handlers
-  const voteQuestionHandler = () => {
+  const voteReplyHandler = () => {
     // Post request here
-    setIsVoted((prevState) => !prevState);
+    dispatch(qnaActions.voteReply({ questionId: question.id, id: props.id }));
   };
 
-  const editQuestionHandler = () => {
-    dispatch(
-      repliesActions.toggleWannaEdit({ id: props.id, text: props.content })
-    );
+  const editReplyHandler = () => {
+    dispatch(qnaActions.toggleIsEditing({ id: props.id, text: props.content }));
   };
 
-  const deleteQuestionHandler = () => {
+  const deleteReplyHandler = () => {
     // POST request here
-    dispatch(questionsActions.removeReply(props.id));
-    dispatch(repliesActions.removeReply(props.id));
+    dispatch(qnaActions.removeReply({ questionId: question.id, id: props.id }));
   };
   return (
     <div className="d-flex gap-3 py-3 px-sm-4 my-2 position-relative">
@@ -80,12 +77,12 @@ const Answer = (props) => {
           </div>
           <button
             className={`border-0 fs-5 fw-bold bg-transparent ${classes.reaction}`}
-            onClick={voteQuestionHandler}
+            onClick={voteReplyHandler}
           >
-            <span>{isVoted ? props.likes + 1 : props.likes}</span>
+            <span>{props.likes}</span>
             <FontAwesomeIcon
               className="ms-2"
-              icon={isVoted ? solVote : regVote}
+              icon={props.isVoted ? solVote : regVote}
             />
           </button>
         </div>
@@ -106,10 +103,10 @@ const Answer = (props) => {
         <div
           className={`d-flex flex-column gap-1 position-absolute bg-white p-1 rounded-2 ${classes.settings}`}
         >
-          <button onClick={editQuestionHandler} className="btn border-0">
+          <button onClick={editReplyHandler} className="btn border-0">
             Edit
           </button>
-          <button onClick={deleteQuestionHandler} className="btn border-0">
+          <button onClick={deleteReplyHandler} className="btn border-0">
             Delete
           </button>
         </div>

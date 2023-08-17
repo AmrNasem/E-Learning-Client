@@ -9,10 +9,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { repliesActions } from "../../store/replies-slice";
-import { questionsActions } from "../../store/questions-slice";
 import useDate from "../../hooks/use-date";
 import jsonFile from "../../assets/dummy.json";
+import { qnaActions } from "../../store/qna-slice";
 
 const Question = (props) => {
   const { question, specify, className } = props;
@@ -21,8 +20,7 @@ const Question = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { date, unit } = useDate(question.date);
-  const storedQuestion = useSelector((state) => state.replies.question);
-  const lecture = useSelector((state) => state.questions.lecture);
+  const lecture = useSelector((state) => state.qna.lecture);
   const authedUser = useSelector((state) => state.auth.user);
   const author = jsonFile.users.find((u) => u.id === question.authorId);
 
@@ -38,23 +36,21 @@ const Question = (props) => {
 
   // Handlers
   const voteQuestionHandler = () => {
-    // Post request here
-    dispatch(questionsActions.voteQuestion(question.id));
-    if (storedQuestion) dispatch(repliesActions.voteQuestion());
+    // PUT request here
+    dispatch(qnaActions.voteQuestion(question.id));
   };
 
   const deleteQuestionHandler = () => {
-    // POST request here
+    // DELETE request here
     if (specify) navigate(`/course/${courseId}/preview/${lectureId}/questions`);
-    dispatch(questionsActions.removeQuestion(question.id));
-    dispatch(repliesActions.setQuestion(null));
+    dispatch(qnaActions.removeQuestion(question.id));
   };
 
   const editQuestionHandler = () => {
-    if (specify) navigate(`/course/${courseId}/preview/${lectureId}/questions`);
-    dispatch(questionsActions.toggleWannaAsk());
+    // PUT request here
+    dispatch(qnaActions.toggleNewQuest(true));
     dispatch(
-      questionsActions.togglewannaEdit({
+      qnaActions.toggleIsEditing({
         id: question.id,
         title: question.title,
         details: question.content,

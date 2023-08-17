@@ -4,8 +4,8 @@ import Answer from "./Answer";
 import React, { useEffect, useRef, useState } from "react";
 import classes from "./Answers.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { repliesActions } from "../../store/replies-slice";
-import { questionsActions } from "../../store/questions-slice";
+import { qnaActions } from "../../store/qna-slice";
+import NewQuestion from "./NewQuestion";
 
 const answersPerPage = 3;
 
@@ -14,49 +14,43 @@ const Answers = (props) => {
   const { courseId, lectureId, questionId } = useParams();
   const responseRef = useRef();
   const [isValid, setIsValid] = useState(false);
-  const {
-    question,
-    items: replies,
-    pageNum,
-  } = useSelector((state) => state.replies);
+  const { isNewQuest, isEditing, activeQuestion, replies } = useSelector(
+    (state) => state.qna
+  );
   const mainQuestion = props.questions.find((q) => q.id === questionId);
   const authedUser = useSelector((state) => state.auth.user);
-  const isEditing = useSelector((state) => state.replies.isEditing);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isEditing) {
+    if (isEditing && !isNewQuest) {
       setIsValid(true);
       responseRef.current.value = isEditing.text;
       responseRef.current.focus();
+    } else {
+      if (responseRef.current) {
+        responseRef.current.value = "";
+        responseRef.current.blur();
+      }
+      setIsValid(false);
     }
-  }, [isEditing]);
+  }, [isEditing, isNewQuest]);
 
   useEffect(() => {
-    if (!question || question.id !== questionId) {
+    if (!activeQuestion || activeQuestion.id !== questionId) {
       // GET request here
       if (!mainQuestion) return;
-      dispatch(repliesActions.setQuestion(mainQuestion));
-      dispatch(
-        repliesActions.getReplies(mainQuestion.replies.slice(0, answersPerPage))
-      );
+      dispatch(qnaActions.setActiveQuestion(questionId));
+      dispatch(qnaActions.getReplies(answersPerPage));
     }
-  }, [dispatch, question, questionId, mainQuestion]);
+  }, [dispatch, activeQuestion, questionId, mainQuestion]);
 
   if (!mainQuestion) return <h2>Question Not Found</h2>;
-  if (!question) return <h2>Loading...</h2>;
+  if (!activeQuestion) return <h2>Loading...</h2>;
 
   // Handlers
   const moreRepliesHandler = () => {
     // GET request here
-    dispatch(
-      repliesActions.getReplies(
-        question.replies.slice(
-          pageNum * answersPerPage,
-          (pageNum + 1) * answersPerPage
-        )
-      )
-    );
+    dispatch(qnaActions.getReplies(answersPerPage));
   };
 
   const addReplyHandler = (e) => {
@@ -73,21 +67,15 @@ const Answers = (props) => {
     };
     responseRef.current.value = "";
     setIsValid(false);
-    dispatch(questionsActions.addReply({ id: question.id, reply: reply }));
-    dispatch(repliesActions.addReply(reply));
+    dispatch(qnaActions.addReply({ id: activeQuestion.id, reply: reply }));
   };
 
   const editReplyHandler = (e) => {
     e.preventDefault();
     // POST request here
     dispatch(
-      repliesActions.editReply({
-        id: isEditing.id,
-        text: responseRef.current.value,
-      })
-    );
-    dispatch(
-      questionsActions.editReply({
+      qnaActions.editReply({
+        questionId: activeQuestion.id,
         id: isEditing.id,
         text: responseRef.current.value,
       })
@@ -101,6 +89,8 @@ const Answers = (props) => {
     else setIsValid(false);
   };
 
+  if (isEditing && isNewQuest) return <NewQuestion />;
+
   return (
     <div>
       <button
@@ -113,14 +103,14 @@ const Answers = (props) => {
       </button>
       <Question
         specify
-        question={question}
+        question={activeQuestion}
         className={`px-2 ${classes.question}`}
       />
       <h5>
-        {question.replies.length === 0
+        {activeQuestion.replies.length === 0
           ? "Be the first one to reply"
-          : `${question.replies.length} ${
-              question.replies.length === 1 ? "reply" : "replies"
+          : `${activeQuestion.replies.length} ${
+              activeQuestion.replies.length === 1 ? "reply" : "replies"
             }`}
       </h5>
       <div>
@@ -128,7 +118,7 @@ const Answers = (props) => {
           <Answer key={index} {...reply} />
         ))}
       </div>
-      {replies.length < question.replies.length && (
+      {replies.length < activeQuestion.replies.length && (
         <button
           onClick={moreRepliesHandler}
           className={`btn p-3 w-100 rounded-0 ${classes["see-more"]}`}
