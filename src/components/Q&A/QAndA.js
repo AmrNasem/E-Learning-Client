@@ -2,31 +2,23 @@ import React, { useCallback } from "react";
 import classes from "./QAndA.module.css";
 import Question from "./Question";
 import { useDispatch, useSelector } from "react-redux";
-import { questionsActions } from "../../store/questions-slice";
 import NewQuestion from "./NewQuestion";
+import { qnaActions } from "../../store/qna-slice";
 
 const questionsPerPage = 5;
 
-const QAndA = (props) => {
+const QAndA = () => {
   const dispatch = useDispatch();
-  const { questions } = props;
-  const { pageNum, isNewQuest, lecture } = useSelector(
-    (state) => state.questions
+  const { lecture, isNewQuest, questions, isEditing } = useSelector(
+    (state) => state.qna
   );
 
   const moreQuestionsHandler = useCallback(() => {
     // GET request here
-    dispatch(
-      questionsActions.getQuestions(
-        lecture.questions.slice(
-          pageNum * questionsPerPage,
-          (pageNum + 1) * questionsPerPage
-        )
-      )
-    );
-  }, [dispatch, lecture, pageNum]);
+    dispatch(qnaActions.getQuestions(questionsPerPage));
+  }, [dispatch]);
 
-  if (isNewQuest) {
+  if (isNewQuest || (isNewQuest && isEditing)) {
     return <NewQuestion />;
   }
 
@@ -49,7 +41,7 @@ const QAndA = (props) => {
         </button>
       )}
       <button
-        onClick={() => dispatch(questionsActions.toggleWannaAsk())}
+        onClick={() => dispatch(qnaActions.toggleNewQuest(true))}
         className={`btn rounded-0 my-3 ${classes["new-question"]}`}
       >
         Ask a new question
