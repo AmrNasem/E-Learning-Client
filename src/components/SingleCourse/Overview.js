@@ -13,9 +13,9 @@ const Overview = (props) => {
   const [applyCoupon, setApplyCoupon] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const dispatch = useDispatch();
-  // const course = useSelector((state) => state.course.course);
   const { course } = props;
   const cartItems = useSelector((state) => state.cart.items);
+  const isPurchased = cartItems.find((item) => item.id === course.id);
 
   useEffect(() => {
     const time = setTimeout(() => {
@@ -23,8 +23,6 @@ const Overview = (props) => {
     }, 3900);
     return () => clearTimeout(time);
   }, [isCopied]);
-
-  if (!course.sections) return; // Because this compnent renders multiple times without course content existence
 
   const copyURL = () => {
     const url = window.location.href;
@@ -42,7 +40,8 @@ const Overview = (props) => {
   );
 
   const addToCartHandler = () => {
-    dispatch(cartActions.addToCart(course));
+    if (isPurchased) dispatch(cartActions.removeFromCart(course.id));
+    else dispatch(cartActions.addToCart(course));
   };
 
   return (
@@ -59,7 +58,7 @@ const Overview = (props) => {
           <span className={classes.discount}>{course.discount}% off</span>
         </div>
         <button onClick={addToCartHandler} className={classes["add-to-cart"]}>
-          {cartItems[course.id] ? "Remove from cart" : "Add to cart"}
+          {isPurchased ? "Remove from cart" : "Add to cart"}
         </button>
         <button className={classes["buy"]}>Buy now</button>
         <h6 className={classes.refund}>30-Day Money-Back Guarantee</h6>

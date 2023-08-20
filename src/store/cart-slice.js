@@ -15,30 +15,22 @@ const cartSlice = createSlice({
       state.isOpened = !state.isOpened;
     },
     removeFromCart(state, action) {
-      const removedItem = action.payload;
-      const price =
-        state.items[removedItem].price -
-        (state.items[removedItem].price * state.items[removedItem].discount) /
-          100;
-      delete state.items[removedItem];
-      state.totalPrice -= price;
+      let removedItem;
+      state.items = state.items.filter((item) => {
+        if (item.id === action.payload) removedItem = item;
+        return item.id !== action.payload;
+      });
+
+      state.totalPrice -=
+        removedItem.price - (removedItem.price * removedItem.discount) / 100;
       state.totalAmount--;
     },
     addToCart(state, action) {
       const newCourse = action.payload;
-      if (state.items[newCourse.id]) {
-        const price =
-          newCourse.price - (newCourse.price * newCourse.discount) / 100;
-        delete state.items[newCourse.id];
-        state.totalPrice -= price;
-        state.totalAmount--;
-        return;
-      }
-      const courseObj = {};
-      courseObj[newCourse.id] = newCourse;
-      state.items = { ...courseObj, ...state.items };
-      state.totalPrice +=
+      const price =
         newCourse.price - (newCourse.price * newCourse.discount) / 100;
+      state.items.unshift(newCourse);
+      state.totalPrice += price;
       state.totalAmount++;
     },
   },

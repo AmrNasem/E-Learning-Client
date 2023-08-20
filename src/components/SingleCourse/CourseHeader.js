@@ -11,6 +11,7 @@ const CourseHeader = (props) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
   const { course, instructor } = props;
+  const isPurchased = cartItems.find((item) => item.id === course.id);
 
   useEffect(() => {
     const time = setTimeout(() => {
@@ -29,7 +30,8 @@ const CourseHeader = (props) => {
   };
 
   const addToCartHandler = () => {
-    dispatch(cartActions.addToCart(course));
+    if (isPurchased) dispatch(cartActions.removeFromCart(course.id));
+    else dispatch(cartActions.addToCart(course));
   };
 
   return (
@@ -78,7 +80,7 @@ const CourseHeader = (props) => {
           <span className={classes.discount}>{course.discount}% off</span>
         </div>
         <button onClick={addToCartHandler} className={classes["add-to-cart"]}>
-          {cartItems[course.id] ? "Remove from cart" : "Add to cart"}
+          {isPurchased ? "Remove from cart" : "Add to cart"}
         </button>
         <button className={classes["buy"]}>Buy now</button>
         <span className={classes.refund}>30-Day Money-Back Guarantee</span>
