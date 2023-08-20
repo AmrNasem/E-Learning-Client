@@ -6,6 +6,7 @@ import classes from "./Answers.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { qnaActions } from "../../store/qna-slice";
 import NewQuestion from "./NewQuestion";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const answersPerPage = 3;
 
@@ -45,7 +46,7 @@ const Answers = (props) => {
   }, [dispatch, activeQuestion, questionId, mainQuestion]);
 
   if (!mainQuestion) return <h2>Question Not Found</h2>;
-  if (!activeQuestion) return <h2>Loading...</h2>;
+  if (!activeQuestion) return <LoadingSpinner />;
 
   // Handlers
   const moreRepliesHandler = () => {
