@@ -17,6 +17,7 @@ const CartItem = (props) => {
     e.stopPropagation();
     dispatch(cartActions.removeFromCart(props.id));
   };
+
   return (
     <div className={classes["cart-item"]}>
       <div onClick={goToTheCourse} className={classes.thumbnail}>

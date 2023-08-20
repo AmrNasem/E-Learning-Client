@@ -10,6 +10,7 @@ import { NavLink, Routes, Route } from "react-router-dom";
 import QAndA from "../components/Q&A/QAndA";
 import Answers from "../components/Q&A/Answers";
 import { qnaActions } from "../store/qna-slice";
+import LoadingSpinner from "../components/UI/LoadingSpinner";
 
 const CourseView = (props) => {
   const { dummyCourses } = props;
@@ -38,7 +39,6 @@ const CourseView = (props) => {
   useEffect(() => {
     if (!lecture || lecture.id !== lectureId) {
       if (!mainLecture) return;
-      console.log(mainLecture);
       // GET request here
       dispatch(qnaActions.setLecture(mainLecture));
       dispatch(qnaActions.getQuestions(5));
@@ -50,7 +50,7 @@ const CourseView = (props) => {
   }, []);
 
   if (!mainLecture) return <h1>Page Not Found</h1>;
-  let content = <h2>Loading...</h2>;
+  let content = <LoadingSpinner />;
 
   if (lecture) {
     content = (
