@@ -1,0 +1,48 @@
+.upload-btn {
+  border: #000 solid 1px;
+}
+
+.upload-container {
+  padding: 10px 0;
+  height: fit-content;
+  background-color: var(--main-color);
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item-bar {
+  display: flex;
+  padding: 10px;
+  background-color: var(--main-color);
+  height: fit-content;
+  margin-top: 20px;
+  width: 90%;
+  align-items: center;
+  border: 1px solid black;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.intro {
+  flex: 1;
+}
+
+.content-btn {
+  padding: 5px;
+  align-items: center;
+}
+
+.cirriculum-item {
+  display: flex;
+  align-self: flex-start;
+  margin-top: 10px;
+  margin-left: 55px;
+}
+
+.cirriculum-btn {
+  padding: 8px;
+  align-items: center;
+  display: flex;
+}

@@ -1,0 +1,5 @@
+.side-bar {
+  height: 100vh;
+  background-color: var(--main-color) !important;
+  margin-top: 70px;
+}

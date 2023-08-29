@@ -13,6 +13,11 @@ import jsonFile from "./assets/dummy.json";
 import User from "./pages/User";
 import CourseView from "./pages/CourseView";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Cirriculm from "./uploadCourses/Cirriculum";
+import DashBoard from "./uploadCourses/DashBoard";
+import LectureDetails from "./uploadCourses/LectureDetails";
+import CourseLandingPage from "./uploadCourses/CourseLandingPage";
+import Pricing from "./uploadCourses/Pricing";
 
 const dummyCourses = jsonFile.courses;
 const dummyInstructors = jsonFile.instructors;
@@ -38,8 +43,13 @@ function App() {
             />
           }
         />
+        <Route path="/instractor/cirriculm" element={<Cirriculm />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/instractor" element={<DashBoard />} />
+        <Route path="/lecdetails" element={<LectureDetails />} />
+        <Route path="/instractor/courselandingpage" element={<CourseLandingPage />} />
+        <Route path="/instractor/pricing" element={<Pricing />} />
         <Route
           path="/course/:courseId/*"
           element={

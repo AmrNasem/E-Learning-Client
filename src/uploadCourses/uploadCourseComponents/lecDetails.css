@@ -1,0 +1,52 @@
+.input {
+  width: 80%;
+  margin: 10px;
+  background-color: var(--main-color);
+  padding: 5px;
+}
+
+.sec-contain {
+  border: 1px solid #333;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.input-two {
+  width: 80%;
+  margin: 10px 0 10px 107px;
+  background-color: var(--main-color);
+  padding: 5px;
+}
+
+.label {
+  margin-left: 107px;
+  margin-top: 15px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: end;
+  margin-right: 15px;
+}
+
+.cancel-btn,
+.add-btn {
+  padding: 5px;
+}
+
+.add-btn {
+  background-color: var(--secondary-color);
+  font-weight: 600;
+}
+
+.cancel-btn {
+  background-color: transparent;
+  margin-right: 10px;
+  border: none;
+  font-weight: 600;
+}
+
+.List {
+  flex-direction: column;
+  gap: 20px;
+}

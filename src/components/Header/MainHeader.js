@@ -28,16 +28,14 @@ const MainHeader = (props) => {
       </div>
       <button
         onClick={toggleCategoriesHandler}
-        className={`${classes.categories} ${
-          headerCtx.visibleCategories && classes.active
-        }`}
+        className={`${classes.categories} ${headerCtx.visibleCategories && classes.active
+          }`}
       >
         Categories
       </button>
       <Categories
-        className={`${classes["main-categories"]} ${
-          headerCtx.visibleCategories && classes["show-categories"]
-        }`}
+        className={`${classes["main-categories"]} ${headerCtx.visibleCategories && classes["show-categories"]
+          }`}
       />
       <form className={classes.search}>
         <button className={classes["search-icon"]}>
@@ -54,6 +52,9 @@ const MainHeader = (props) => {
       </div>
       {isCartOpened && <Cart />}
       <div className={classes.actions}>
+        <Button onClick={() => navigate("/instractor")} className={classes.Instractor}>
+          instractor
+        </Button>
         <Button onClick={() => navigate("/login")} className={classes.login}>
           Log in
         </Button>
