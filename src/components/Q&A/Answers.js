@@ -56,6 +56,10 @@ const Answers = (props) => {
 
   const addReplyHandler = (e) => {
     e.preventDefault();
+    if (!authedUser) {
+      navigate("/login");
+      return;
+    }
     // POST request here
     const reply = {
       id: Math.random().toString(),
@@ -73,6 +77,10 @@ const Answers = (props) => {
 
   const editReplyHandler = (e) => {
     e.preventDefault();
+    if (!authedUser) {
+      navigate("/login");
+      return;
+    }
     // POST request here
     dispatch(
       qnaActions.editReply({

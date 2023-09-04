@@ -1,18 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
-import MainHeader from "./components/Header/MainHeader";
-import MobileHeader from "./components/Header/MobileHeader";
 import Footer from "./components/Footer";
-import LandingPage from "./pages/LandingPage";
 import { useContext } from "react";
 import HeaderContext from "./store/header-context";
-import Course from "./pages/Course";
 import jsonFile from "./assets/dummy.json";
-import User from "./pages/User";
-import CourseView from "./pages/CourseView";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useSelector } from "react-redux";
+import Instructor from "./pages/Instructor/Instructor";
+import Student from "./pages/Student/Student";
 
 const dummyCourses = jsonFile.courses;
 const dummyInstructors = jsonFile.instructors;
@@ -23,48 +18,33 @@ function App() {
   const blurCategoriesHandler = () => {
     headerCtx.setVisibleCategories(false);
   };
+  const authedUser = useSelector((state) => state.auth.user);
+
   return (
-    <div className="App" onClick={blurCategoriesHandler}>
-      <MainHeader />
-      <MobileHeader />
+    <div className="App d-flex flex-column" onClick={blurCategoriesHandler}>
       <Routes>
         <Route
-          path="/"
+          path="/*"
           element={
-            <LandingPage
+            <Student
               dummyInstructors={dummyInstructors}
               dummyCourses={dummyCourses}
               dummyUsers={dummyUsers}
             />
           }
         />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route
-          path="/course/:courseId/*"
-          element={
-            <Course
-              dummyUsers={dummyUsers}
-              dummyInstructors={dummyInstructors}
-              dummyCourses={dummyCourses}
-            />
-          }
-        />
-        <Route
-          path="/course/:courseId/preview/:lectureId/*"
-          element={<CourseView dummyCourses={dummyCourses} />}
-        />
-        <Route
-          path="/user/:userId/*"
-          element={
-            <User
-              dummyUsers={dummyUsers}
-              dummyInstructors={dummyInstructors}
-              dummyCourses={dummyCourses}
-            />
-          }
-        />
-        <Route path="*" element={<h1>Page Not Found</h1>} />
+        {authedUser && authedUser.instructor && (
+          <Route
+            path="/instructor/*"
+            element={
+              <Instructor
+                dummyInstructors={dummyInstructors}
+                dummyCourses={dummyCourses}
+                dummyUsers={dummyUsers}
+              />
+            }
+          />
+        )}
       </Routes>
       <Footer />
     </div>

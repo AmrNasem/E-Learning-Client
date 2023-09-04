@@ -1,27 +1,28 @@
 import { Link } from "react-router-dom";
-import CourseList from "../components/courses/CourseList";
+import CourseList from "../../components/courses/CourseList";
 import classes from "./LandingPage.module.css";
 import { useEffect, useReducer, useState } from "react";
+import { useSelector } from "react-redux";
 
 const images = [
   {
-    src: require("../assets/landing-page.jpg"),
+    src: require("../../assets/landing-page.jpg"),
     alt: "A person standing and giving a presentation",
   },
   {
-    src: require("../assets/landing-page-2.jpg"),
+    src: require("../../assets/landing-page-2.jpg"),
     alt: "A person standing and giving a presentation",
   },
   {
-    src: require("../assets/landing-page-3.jpg"),
+    src: require("../../assets/landing-page-3.jpg"),
     alt: "A person typing on a laptop",
   },
   {
-    src: require("../assets/landing-page-4.jpg"),
+    src: require("../../assets/landing-page-4.jpg"),
     alt: "A nice desk with a laptop and smartphone",
   },
   {
-    src: require("../assets/landing-page-5.jpg"),
+    src: require("../../assets/landing-page-5.jpg"),
     alt: "Two guys sitting in front of a laptop",
   },
 ];
@@ -67,6 +68,7 @@ const LandingPage = (props) => {
     text: "",
     index: 0,
   });
+  const authedUser = useSelector((state) => state.auth.user);
 
   const typingAnimation = (currentQuote) => {
     let i = 0;
@@ -119,7 +121,7 @@ const LandingPage = (props) => {
           >
             {quote.text}
           </h1>
-          <Link to="/signup">Get started!</Link>
+          {!authedUser && <Link to="/signup">Get started!</Link>}
         </div>
       </div>
       <div className={classes["landing-courses"]}>
