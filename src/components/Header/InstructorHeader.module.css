@@ -1,0 +1,13 @@
+.avatar {
+  width: 40px;
+  height: 40px;
+  background-color: var(--sixth-color);
+}
+.logo {
+  text-decoration: none;
+  color: var(--sixth-color);
+  font-family: cursive;
+}
+.student {
+  color: var(--third-color) !important;
+}

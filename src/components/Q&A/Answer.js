@@ -88,7 +88,7 @@ const Answer = (props) => {
         </div>
         <p className={`mb-0 mt-3 ${classes.content}`}>{props.content}</p>
       </div>
-      {authedUser.id === props.authorId && (
+      {authedUser && authedUser.id === props.authorId && (
         <button
           className={`border-0 fs-5 fw-bold bg-transparent px-1 align-self-start ${classes.reaction}`}
           onClick={(e) => {

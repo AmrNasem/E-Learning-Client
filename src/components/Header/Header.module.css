@@ -7,20 +7,19 @@ header {
   position: relative;
   background-color: var(--secondary-color);
   box-shadow: #ab64648e 1px 1px 20px 1px;
-
 }
 @media (max-width: 660px) {
   .main-header {
     display: none;
   }
 }
-.logo{
-  font-family:abril fatface;
+.logo {
+  font-family: abril fatface;
 }
-.logolink{
+.logolink {
   text-decoration: none;
   color: var(--sixth-color);
-  font-family:cursive;
+  font-family: cursive;
 }
 
 .categories {
@@ -84,6 +83,10 @@ input[type="search"] {
   width: 100%;
 }
 
+.instructor {
+  color: var(--third-color) !important;
+}
+
 .cart {
   border: 2px solid var(--third-color);
   color: var(--third-color);
@@ -101,6 +104,12 @@ input[type="search"] {
   padding: 0 6px;
   border-radius: 10px;
   background-color: var(--third-color);
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background-color: var(--sixth-color);
 }
 
 .actions button {

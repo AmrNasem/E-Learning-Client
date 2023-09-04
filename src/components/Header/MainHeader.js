@@ -15,6 +15,7 @@ const MainHeader = (props) => {
   const dispatch = useDispatch();
   const isCartOpened = useSelector((state) => state.cart.isOpened);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
+  const authedUser = useSelector((state) => state.auth.user);
   const headerCtx = useContext(HeaderContext);
 
   const toggleCategoriesHandler = (e) => {
@@ -47,6 +48,14 @@ const MainHeader = (props) => {
         </button>
         <input type="search" placeholder="Search for anything" />
       </form>
+      {authedUser && (
+        <button
+          onClick={() => navigate("instructor")}
+          className={`btn border-0 ${classes.instructor}`}
+        >
+          {authedUser.instructor ? "Instructor" : "Become a teacher"}
+        </button>
+      )}
       <div
         onClick={() => dispatch(cartActions.toggleCart())}
         className={classes.cart}
@@ -55,14 +64,25 @@ const MainHeader = (props) => {
         <span className={classes.amount}>{totalAmount}</span>
       </div>
       {isCartOpened && <Cart />}
-      <div className={classes.actions}>
-        <Button onClick={() => navigate("/login")} className={classes.login}>
-          Log in
-        </Button>
-        <Button onClick={() => navigate("/signup")} className={classes.signup}>
-          Sign up
-        </Button>
-      </div>
+      {authedUser ? (
+        <button
+          className={`cursor-pointer border-0 text-white fw-bold rounded-circle d-flex align-items-center justify-content-center ${classes.avatar}`}
+        >
+          {authedUser.name.split(" ")[0][0]}
+        </button>
+      ) : (
+        <div className={classes.actions}>
+          <Button onClick={() => navigate("/login")} className={classes.login}>
+            Log in
+          </Button>
+          <Button
+            onClick={() => navigate("/signup")}
+            className={classes.signup}
+          >
+            Sign up
+          </Button>
+        </div>
+      )}
     </header>
   );
 };

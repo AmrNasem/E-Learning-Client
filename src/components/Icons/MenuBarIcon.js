@@ -5,14 +5,9 @@ import classes from "./MenuBarIcon.module.css";
 const MenuBarIcon = (props) => {
   const headerCtx = useContext(HeaderContext);
 
-  const toggleMenuBarHandler = (e) => {
-    e.stopPropagation();
-    headerCtx.setVisibleCategories((prevState) => !prevState);
-  };
-
   return (
     <div
-      onClick={toggleMenuBarHandler}
+      onClick={props.onClick}
       className={`${classes["menu-bar"]} ${
         headerCtx.visibleCategories && classes["mob-active"]
       }`}

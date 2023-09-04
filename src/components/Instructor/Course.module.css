@@ -1,0 +1,46 @@
+.course {
+  border: 1px solid var(--secondary-color);
+}
+.course img {
+  width: 120px;
+}
+.course > div::before {
+  content: "Edit / manage course";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: 500;
+  z-index: 2;
+  cursor: pointer;
+  opacity: 0;
+  background-color: rgba(255, 255, 255, 0.74);
+  transition: 0.2s;
+}
+.course > div:hover::before {
+  opacity: 1 !important;
+}
+.course p {
+  font-size: 0.9rem;
+}
+.progress {
+  flex-basis: 65%;
+}
+.progress > div {
+  height: 6px;
+  background-color: var(--fifth-color);
+  overflow: hidden;
+  position: relative;
+}
+.progress > div span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: var(--secondary-color);
+}

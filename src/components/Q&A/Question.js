@@ -111,7 +111,7 @@ const Question = (props) => {
               )}
             </div>
           </div>
-          {authedUser.id === question.authorId && (
+          {authedUser && authedUser.id === question.authorId && (
             <button
               className={`border-0 fs-5 fw-bold bg-transparent px-1 ${
                 classes.reaction
