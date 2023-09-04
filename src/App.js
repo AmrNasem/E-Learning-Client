@@ -13,12 +13,24 @@ const dummyCourses = jsonFile.courses;
 const dummyInstructors = jsonFile.instructors;
 const dummyUsers = jsonFile.users;
 
+export const backend = "https://e-learning-5rhj.onrender.com/api/v1";
+
 function App() {
-  const headerCtx = useContext(HeaderContext);
   const blurCategoriesHandler = () => {
     headerCtx.setVisibleCategories(false);
   };
   const authedUser = useSelector((state) => state.auth.user);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     // try
+  //     const response = await fetch(`${backend}/api/v1/courses/getCourseById/6`);
+  //     const data = await response.json();
+  //     console.log(data);
+  //   };
+  //   fetchData();
+  // }, []);
+  const headerCtx = useContext(HeaderContext);
 
   return (
     <div className="App d-flex flex-column" onClick={blurCategoriesHandler}>

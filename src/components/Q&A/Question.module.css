@@ -2,7 +2,7 @@
   transition: 0.3s;
 }
 .question:hover {
-  background-color: #ffe9dd;
+  background-color: var(--hover-color);
 }
 .avatar {
   width: 45px;
