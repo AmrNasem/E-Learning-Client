@@ -5,7 +5,7 @@
   font-weight: 500;
 }
 .question {
-  background-color: #ffe9dd;
+  background-color: var(--hover-color);
 }
 .see-more {
   border: 1px solid var(--third-color) !important;
