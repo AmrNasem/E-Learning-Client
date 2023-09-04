@@ -1,19 +1,19 @@
 import classes from "./Course.module.css";
-import CourseHeader from "../components/SingleCourse/CourseHeader";
-import CourseGain from "../components/SingleCourse/CourseGain";
-import Content from "../components/SingleCourse/Content/Content";
-import Overview from "../components/SingleCourse/Overview";
-import Container from "../components/UI/Container";
+import CourseHeader from "../../components/SingleCourse/CourseHeader";
+import CourseGain from "../../components/SingleCourse/CourseGain";
+import Content from "../../components/SingleCourse/Content/Content";
+import Overview from "../../components/SingleCourse/Overview";
+import Container from "../../components/UI/Container";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import Requirements from "../components/SingleCourse/Requirements";
-import Description from "../components/SingleCourse/Description";
-import Instructor from "../components/SingleCourse/Instructor";
+import Requirements from "../../components/SingleCourse/Requirements";
+import Description from "../../components/SingleCourse/Description";
+import Instructor from "../../components/SingleCourse/Instructor";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import Reviews from "../components/SingleCourse/Reviews";
-import Preview from "../components/SingleCourse/Preview";
-import { reviewsActions } from "../store/reviews-slice";
-import ReviewsModal from "../components/UI/ReviewsModal";
+import Reviews from "../../components/SingleCourse/Reviews";
+import Preview from "../../components/SingleCourse/Preview";
+import { reviewsActions } from "../../store/reviews-slice";
+import ReviewsModal from "../../components/UI/ReviewsModal";
 
 const Course = (props) => {
   const { dummyCourses, dummyInstructors, dummyUsers } = props;

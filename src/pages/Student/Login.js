@@ -1,5 +1,5 @@
-import Button from "../components/UI/Button";
-import FormInput from "../components/UI/FormInput";
+import Button from "../../components/UI/Button";
+import FormInput from "../../components/UI/FormInput";
 import classes from "./Login.module.css";
 import { Link } from "react-router-dom";
 

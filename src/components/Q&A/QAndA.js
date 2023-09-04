@@ -4,6 +4,7 @@ import Question from "./Question";
 import { useDispatch, useSelector } from "react-redux";
 import NewQuestion from "./NewQuestion";
 import { qnaActions } from "../../store/qna-slice";
+import { useNavigate } from "react-router";
 
 const questionsPerPage = 5;
 
@@ -12,6 +13,8 @@ const QAndA = () => {
   const { lecture, isNewQuest, questions, isEditing } = useSelector(
     (state) => state.qna
   );
+  const authedUser = useSelector((state) => state.auth.user);
+  const navigate = useNavigate();
 
   const moreQuestionsHandler = useCallback(() => {
     // GET request here
@@ -41,7 +44,11 @@ const QAndA = () => {
         </button>
       )}
       <button
-        onClick={() => dispatch(qnaActions.toggleNewQuest(true))}
+        onClick={() =>
+          authedUser
+            ? dispatch(qnaActions.toggleNewQuest(true))
+            : navigate("/login")
+        }
         className={`btn rounded-0 my-3 ${classes["new-question"]}`}
       >
         Ask a new question

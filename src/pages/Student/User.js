@@ -1,7 +1,7 @@
 import classes from "./User.module.css";
-import Container from "../components/UI/Container";
-import CourseItem from "../components/courses/CourseItem";
-import InstructorUser from "../components/InstructorUser/InstructorUser";
+import Container from "../../components/UI/Container";
+import CourseItem from "../../components/courses/CourseItem";
+import InstructorUser from "../../components/InstructorUser/InstructorUser";
 import { useParams } from "react-router";
 import { useEffect } from "react";
 import Col from "react-bootstrap/Col";

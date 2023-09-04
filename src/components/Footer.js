@@ -3,7 +3,7 @@ import "./Footer.module.css";
 
 const Footer = (props) => {
   return (
-    <footer>
+    <footer className={props.className}>
       <div className="col1">
         <Link to="/">Learning Business</Link>
         <Link to="/">Teach on Learning</Link>

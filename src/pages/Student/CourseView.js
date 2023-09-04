@@ -1,16 +1,16 @@
 import classes from "./CourseView.module.css";
-import lectureVideo from "../assets/awesome-video.mp4";
-import Section from "../components/SingleCourse/Content/Section";
-import Reviews from "../components/SingleCourse/Reviews";
+import lectureVideo from "../../assets/awesome-video.mp4";
+import Section from "../../components/SingleCourse/Content/Section";
+import Reviews from "../../components/SingleCourse/Reviews";
 import { useParams } from "react-router";
 import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Container from "../components/UI/Container";
+import Container from "../../components/UI/Container";
 import { NavLink, Routes, Route } from "react-router-dom";
-import QAndA from "../components/Q&A/QAndA";
-import Answers from "../components/Q&A/Answers";
-import { qnaActions } from "../store/qna-slice";
-import LoadingSpinner from "../components/UI/LoadingSpinner";
+import QAndA from "../../components/Q&A/QAndA";
+import Answers from "../../components/Q&A/Answers";
+import { qnaActions } from "../../store/qna-slice";
+import LoadingSpinner from "../../components/UI/LoadingSpinner";
 
 const CourseView = (props) => {
   const { dummyCourses } = props;

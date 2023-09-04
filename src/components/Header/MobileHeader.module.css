@@ -14,14 +14,36 @@
   z-index: 100;
 }
 
+.user-info {
+  border: none;
+  border-bottom: 1px solid #aaa;
+  background-color: #ededed;
+  cursor: pointer;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  background-color: var(--sixth-color);
+}
+
+.block-scrolling {
+  overflow: hidden;
+}
+
 aside {
   position: fixed;
   top: 0;
   left: -300px;
   background-color: white;
+  min-width: 230px;
   height: 100vh;
   z-index: 100;
   transition: 0.2s;
+}
+.instructor {
+  color: var(--third-color) !important;
+  font-size: 1.1rem;
 }
 
 .show {
@@ -32,10 +54,10 @@ aside {
   flex: 1;
   text-align: center;
 }
-.mobile-logo a{
+.mobile-logo a {
   text-decoration: none;
   color: var(--sixth-color);
-  font-family:cursive;
+  font-family: cursive;
 }
 .search-content {
   position: fixed;
