@@ -1,6 +1,9 @@
-const FormInput = (props) => {
+import React from "react";
+
+const FormInput = React.forwardRef((props, ref) => {
   return (
     <input
+      ref={ref && ref}
       type={props.type || "text"}
       id={props.id}
       className={props.className}
@@ -8,6 +11,6 @@ const FormInput = (props) => {
       autoFocus={props.autoFocus || false}
     />
   );
-};
+});
 
 export default FormInput;

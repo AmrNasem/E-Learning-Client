@@ -1,0 +1,24 @@
+.manage-course {
+  margin-left: 4%;
+  margin-right: 4%;
+}
+.link {
+  position: relative;
+  transition: 0.2s;
+  color: var(--sixth-color);
+}
+.link:hover {
+  background-color: var(--hover-color);
+}
+.active::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 100%;
+  width: 4px;
+  height: 100%;
+  background-color: var(--third-color);
+}
+.submit {
+  background-color: var(--third-color) !important;
+}
