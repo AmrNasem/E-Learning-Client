@@ -1,0 +1,17 @@
+.input > div {
+  border: 1px solid var(--secondary-color);
+}
+.input input {
+  outline: none;
+  text-overflow: ellipsis;
+}
+.delete {
+  border: 1px solid var(--secondary-color);
+  visibility: hidden;
+}
+.delete:disabled {
+  cursor: not-allowed;
+}
+.removable:hover .delete {
+  visibility: visible;
+}

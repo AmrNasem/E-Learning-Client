@@ -1,9 +1,27 @@
 import { faCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { NavLink, Navigate, Route, Routes } from "react-router-dom";
+import { NavLink, Navigate, Route, Routes, useParams } from "react-router-dom";
 import classes from "./ManageCourse.module.css";
+import Goals from "./Goals";
+import Curriculum from "./Curriculum";
+import { useSelector } from "react-redux";
+import jsonFile from "../../assets/dummy.json";
 
 const ManageCourse = (props) => {
+  const { courseId } = useParams();
+  const authedUser = useSelector((state) => state.auth.user);
+  const instructor = jsonFile.instructors.find(
+    (i) => i.id === authedUser.instructor
+  );
+
+  const course = jsonFile.courses.find((c) => c.id === courseId);
+  if (!instructor.courses.find((c) => c === courseId))
+    return (
+      <main className={`my-4 py-2 ${classes["manage-course"]}`}>
+        <h3 className="text-center">You have no such a course</h3>
+      </main>
+    );
+
   const activeClassHandler = ({ isActive }) => {
     const bootstrapClasses = `px-4 py-2 d-block text-decoration-none ${classes.link}`;
     if (isActive) return `${bootstrapClasses} ${classes.active}`;
@@ -11,24 +29,24 @@ const ManageCourse = (props) => {
   };
 
   return (
-    <main className={`my-5 d-flex gap-4 ${classes["manage-course"]}`}>
+    <main className={`my-4 py-2 d-flex gap-4 ${classes["manage-course"]}`}>
       <nav className="my-4">
-        <div className="mb-4">
-          <h5 className="ps-4 mt-2">Plan your course</h5>
+        <div className="mb-4 mt-4">
+          <h6 className="fw-bold ps-4 mt-2">Plan your course</h6>
           <NavLink className={activeClassHandler} to="goals">
             <FontAwesomeIcon className="me-2 fs-5" icon={faCircle} />
             <span>Intended learners</span>
           </NavLink>
         </div>
-        <div className="mb-4">
-          <h5 className="ps-4 mt-2">Create your content</h5>
+        <div className="mb-4 mt-4">
+          <h6 className="fw-bold ps-4 mt-2">Create your content</h6>
           <NavLink className={activeClassHandler} to="curriculum">
             <FontAwesomeIcon className="me-2 fs-5" icon={faCircle} />
             <span>Curriculum</span>
           </NavLink>
         </div>
-        <div className="mb-4">
-          <h5 className="ps-4 mt-2">Publish your course</h5>
+        <div className="mb-4 mt-4">
+          <h6 className="fw-bold ps-4 mt-2">Publish your course</h6>
           <NavLink className={activeClassHandler} to="landing">
             <FontAwesomeIcon className="me-2 fs-5" icon={faCircle} />
             <span>Course landing page</span>
@@ -46,8 +64,8 @@ const ManageCourse = (props) => {
       </nav>
       <Routes>
         <Route path="" element={<Navigate to="goals" replace />} />
-        <Route path="goals" element={<h3>Intended learners</h3>} />
-        <Route path="curriculum" element={<h3>Curriculum</h3>} />
+        <Route path="goals" element={<Goals course={course} />} />
+        <Route path="curriculum" element={<Curriculum />} />
         <Route path="landing" element={<h3>Landing page</h3>} />
         <Route path="pricing" element={<h3>Pricing</h3>} />
         <Route path="*" element={<h3>No such a page</h3>} />

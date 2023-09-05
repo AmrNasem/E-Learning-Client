@@ -23,7 +23,10 @@ const Course = (props) => {
   const { courseId } = useParams();
 
   const course = useMemo(
-    () => dummyCourses.find((course) => course.id === courseId),
+    () =>
+      dummyCourses.find(
+        (course) => course.status === "published" && course.id === courseId
+      ),
     [courseId, dummyCourses]
   );
 
