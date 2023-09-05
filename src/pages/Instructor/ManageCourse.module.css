@@ -1,6 +1,9 @@
 .manage-course {
-  margin-left: 4%;
-  margin-right: 4%;
+  margin-left: 8%;
+  margin-right: 8%;
+}
+.manage-course nav {
+  min-width: 240px;
 }
 .link {
   position: relative;

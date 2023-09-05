@@ -50,8 +50,7 @@
       "job": "Developer and Lead Instructor",
       "reviews": 607233,
       "students": 2003800,
-      "courses": ["c1", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10"],
-      "draft-courses": ["c13"],
+      "courses": ["c1", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10", "c13"],
       "about": "I'm Maximilian, I'm a developer with a passion for teaching. I'm the lead instructor at the London App Brewery, London's leading Programming Bootcamp. I've helped hundreds of thousands of students learn to code and change their lives by becoming a developer. I've been invited by companies such as Twitter, Facebook and Google to teach their employees.",
       "social-media": {
         "website": "https://www.google.com",
@@ -66,8 +65,7 @@
       "job": "Developer, Lead Instructor and greatness creator",
       "reviews": 722149,
       "students": 3500217,
-      "courses": ["c2"],
-      "draft-courses": ["c14", "c15"],
+      "courses": ["c2", "c14", "c15"],
       "about": "I'm Osama, I'm a developer with a passion for teaching. I'm the lead instructor at the London App Brewery, London's leading Programming Bootcamp. I've helped hundreds of thousands of students learn to code and change their lives by becoming a developer. I've been invited by companies such as Twitter, Facebook and Google to teach their employees.",
       "social-media": {
         "twitter": "https://www.twitter.com",
@@ -79,8 +77,7 @@
       "id": "i3",
       "name": "Amr Naseem",
       "job": "Developer, Lead Instructor and greatness creator",
-      "courses": [],
-      "draft-courses": ["c11", "c12"],
+      "courses": ["c11", "c12"],
       "about": "I'm Amr, I'm a developer with a passion for teaching. I'm the lead instructor at the London App Brewery, London's leading Programming Bootcamp. I've helped hundreds of thousands of students learn to code and change their lives by becoming a developer. I've been invited by companies such as Twitter, Facebook and Google to teach their employees.",
       "social-media": {
         "twitter": "https://www.twitter.com",
@@ -95,7 +92,7 @@
       "id": "c1",
       "title": "The complete guide to React",
       "date": "Jun 13, 2018",
-      "draft": false,
+      "status": "published",
       "thumbnail": "./landing-page.jfif",
       "category": "Web Development",
       "categoryId": "web",
@@ -103,7 +100,9 @@
       "discount": 50,
       "gain": [
         "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
-        "After the course you will be able to build ANY website you want."
+        "After the course you will be able to build ANY website you want.",
+        "After the course you will be able to build ANY website you want.",
+        "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs."
       ],
       "sections": [
         {
@@ -245,6 +244,7 @@
           ]
         }
       ],
+      "beneficiaries": [],
       "requirements": [
         "No programming experience needed - I'll teach you everything you need to know",
         "A computer with access to the internet",
@@ -294,7 +294,7 @@
       "id": "c2",
       "title": "The complete guide to JavaScript",
       "date": "Jun 1, 2018",
-      "draft": false,
+      "status": "published",
       "thumbnail": "./landing-page.jfif",
       "category": "Mobile Development",
       "categoryId": "mobile",
@@ -894,6 +894,7 @@
           ]
         }
       ],
+      "beneficiaries": [],
       "requirements": [
         "No programming experience needed - I'll teach you everything you need to know",
         "A computer with access to the internet",
@@ -1031,12 +1032,14 @@
       "id": "c3",
       "title": "The complete guide to React",
       "date": "Jun 1, 2019",
-      "draft": false,
+      "status": "published",
       "thumbnail": "./landing-page.jfif",
       "category": "Web Development",
       "categoryId": "web",
       "instructor": "i1",
       "gain": [
+        "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
+        "After the course you will be able to build ANY website you want.",
         "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
         "After the course you will be able to build ANY website you want."
       ],
@@ -1117,6 +1120,7 @@
           ]
         }
       ],
+      "beneficiaries": [],
       "requirements": [
         "No programming experience needed - I'll teach you everything you need to know",
         "A computer with access to the internet",
@@ -1166,12 +1170,14 @@
       "id": "c4",
       "title": "The complete guide to React",
       "date": "Jul 2, 2018",
-      "draft": false,
+      "status": "published",
       "thumbnail": "./landing-page.jfif",
       "category": "Web Development",
       "categoryId": "web",
       "instructor": "i1",
       "gain": [
+        "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
+        "After the course you will be able to build ANY website you want.",
         "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
         "After the course you will be able to build ANY website you want."
       ],
@@ -1314,6 +1320,7 @@
           ]
         }
       ],
+      "beneficiaries": [],
       "requirements": [
         "No programming experience needed - I'll teach you everything you need to know",
         "A computer with access to the internet",
@@ -1362,13 +1369,15 @@
       "id": "c5",
       "title": "The complete guide to React",
       "date": "May 20, 2017",
-      "draft": false,
+      "status": "published",
       "thumbnail": "./landing-page.jfif",
       "category": "Web Development",
       "categoryId": "web",
       "instructor": "i1",
       "gain": [
         "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
+        "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
+        "After the course you will be able to build ANY website you want.",
         "After the course you will be able to build ANY website you want."
       ],
       "sections": [
@@ -1510,6 +1519,7 @@
           ]
         }
       ],
+      "beneficiaries": [],
       "requirements": [
         "No programming experience needed - I'll teach you everything you need to know",
         "A computer with access to the internet",
@@ -1559,12 +1569,14 @@
       "id": "c6",
       "title": "The complete guide to React",
       "date": "Dec 9, 2020",
-      "draft": false,
+      "status": "published",
       "thumbnail": "./landing-page.jfif",
       "category": "Web Development",
       "categoryId": "web",
       "instructor": "i1",
       "gain": [
+        "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
+        "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
         "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
         "After the course you will be able to build ANY website you want."
       ],
@@ -1707,6 +1719,7 @@
           ]
         }
       ],
+      "beneficiaries": [],
       "requirements": [
         "No programming experience needed - I'll teach you everything you need to know",
         "A computer with access to the internet",
@@ -1754,12 +1767,14 @@
       "id": "c7",
       "title": "The complete guide to React",
       "date": "Feb 19, 2022",
-      "draft": false,
+      "status": "published",
       "thumbnail": "./landing-page.jfif",
       "category": "Web Development",
       "categoryId": "web",
       "instructor": "i1",
       "gain": [
+        "After the course you will be able to build ANY website you want.",
+        "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
         "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
         "After the course you will be able to build ANY website you want."
       ],
@@ -1902,6 +1917,7 @@
           ]
         }
       ],
+      "beneficiaries": [],
       "requirements": [
         "No programming experience needed - I'll teach you everything you need to know",
         "A computer with access to the internet",
@@ -1949,12 +1965,14 @@
       "id": "c8",
       "title": "The complete guide to React",
       "date": "Jun 13, 2018",
-      "draft": false,
+      "status": "published",
       "thumbnail": "./landing-page.jfif",
       "category": "Web Development",
       "categoryId": "web",
       "instructor": "i1",
       "gain": [
+        "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
+        "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
         "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
         "After the course you will be able to build ANY website you want."
       ],
@@ -2097,6 +2115,7 @@
           ]
         }
       ],
+      "beneficiaries": [],
       "requirements": [
         "No programming experience needed - I'll teach you everything you need to know",
         "A computer with access to the internet",
@@ -2144,12 +2163,14 @@
       "id": "c9",
       "title": "The complete guide to React",
       "date": "Feb 28, 2020",
-      "draft": false,
+      "status": "published",
       "thumbnail": "./landing-page.jfif",
       "category": "Web Development",
       "categoryId": "web",
       "instructor": "i1",
       "gain": [
+        "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
+        "After the course you will be able to build ANY website you want.",
         "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
         "After the course you will be able to build ANY website you want."
       ],
@@ -2292,6 +2313,7 @@
           ]
         }
       ],
+      "beneficiaries": [],
       "requirements": [
         "No programming experience needed - I'll teach you everything you need to know",
         "A computer with access to the internet",
@@ -2339,14 +2361,16 @@
       "id": "c10",
       "title": "The complete guide to React",
       "date": "Oct 7, 2015",
-      "draft": false,
+      "status": "published",
       "thumbnail": "./landing-page.jfif",
       "category": "Web Development",
       "categoryId": "web",
       "instructor": "i1",
       "gain": [
         "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
-        "After the course you will be able to build ANY website you want."
+        "After the course you will be able to build ANY website you want.",
+        "After the course you will be able to build ANY website you want.",
+        "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs."
       ],
       "sections": [
         {
@@ -2487,6 +2511,7 @@
           ]
         }
       ],
+      "beneficiaries": [],
       "requirements": [
         "No programming experience needed - I'll teach you everything you need to know",
         "A computer with access to the internet",
@@ -2534,16 +2559,19 @@
       "id": "c11",
       "title": "ZTM Node JS course",
       "date": "Oct 7, 2015",
-      "draft": true,
+      "status": "draft",
       "thumbnail": "./landing-page.jfif",
       "category": "Web Development",
       "categoryId": "web",
       "instructor": "i3",
       "gain": [
         "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
+        "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
+        "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
         "After the course you will be able to build ANY website you want."
       ],
       "sections": [],
+      "beneficiaries": [],
       "requirements": [
         "No programming experience needed - I'll teach you everything you need to know",
         "A computer with access to the internet",
@@ -2560,16 +2588,19 @@
       "id": "c12",
       "title": "ZTM Next JS course",
       "date": "Sep 7, 2023",
-      "draft": true,
+      "status": "draft",
       "thumbnail": "./landing-page.jfif",
       "category": "Web Development",
       "categoryId": "web",
       "instructor": "i3",
       "gain": [
         "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
+        "After the course you will be able to build ANY website you want.",
+        "After the course you will be able to build ANY website you want.",
         "After the course you will be able to build ANY website you want."
       ],
       "sections": [],
+      "beneficiaries": [],
       "requirements": [
         "No programming experience needed - I'll teach you everything you need to know",
         "A computer with access to the internet",
@@ -2586,16 +2617,19 @@
       "id": "c13",
       "title": "ZTM JavaScript JS course",
       "date": "Apr 17, 2021",
-      "draft": true,
+      "status": "draft",
       "thumbnail": "./landing-page.jfif",
       "category": "Web Development",
       "categoryId": "web",
       "instructor": "i1",
       "gain": [
         "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
+        "After the course you will be able to build ANY website you want.",
+        "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
         "After the course you will be able to build ANY website you want."
       ],
       "sections": [],
+      "beneficiaries": [],
       "requirements": [
         "No programming experience needed - I'll teach you everything you need to know",
         "A computer with access to the internet",
@@ -2612,16 +2646,19 @@
       "id": "c14",
       "title": "Mastering Git and Github course",
       "date": "Apr 18, 2020",
-      "draft": true,
+      "status": "draft",
       "thumbnail": "./landing-page.jfif",
       "category": "Web Development",
       "categoryId": "web",
       "instructor": "i2",
       "gain": [
         "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
-        "After the course you will be able to build ANY website you want."
+        "After the course you will be able to build ANY website you want.",
+        "After the course you will be able to build ANY website you want.",
+        "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs."
       ],
       "sections": [],
+      "beneficiaries": [],
       "requirements": [
         "No programming experience needed - I'll teach you everything you need to know",
         "A computer with access to the internet",
@@ -2638,16 +2675,19 @@
       "id": "c15",
       "title": "ZTM CSS course",
       "date": "Nov 8, 2020",
-      "draft": true,
+      "status": "draft",
       "thumbnail": "./landing-page.jfif",
       "category": "Web Development",
       "categoryId": "web",
       "instructor": "i2",
       "gain": [
         "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
+        "After the course you will be able to build ANY website you want.",
+        "Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.",
         "After the course you will be able to build ANY website you want."
       ],
       "sections": [],
+      "beneficiaries": [],
       "requirements": [
         "No programming experience needed - I'll teach you everything you need to know",
         "A computer with access to the internet",

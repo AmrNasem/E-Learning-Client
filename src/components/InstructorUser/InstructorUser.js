@@ -14,6 +14,9 @@ const InstructorUser = (props) => {
 
   const socialMedia = instructor["social-media"];
   const coursesIds = instructor.courses;
+  const courses = dummyCourses.filter((c) =>
+    coursesIds.some((id) => id === c.id && c.status === "published")
+  );
 
   return (
     <Fragment>
@@ -52,15 +55,11 @@ const InstructorUser = (props) => {
         </div>
         <div className={classes.courses}>
           <SocialMedia socialMedia={socialMedia} className="d-md-none" />
-          <h3>My courses ({coursesIds.length})</h3>
+          <h3>My courses ({courses.length})</h3>
           <Row className="my-3">
-            {coursesIds.map((id) => (
-              <Col sm={6} lg={4} key={id} className="mb-4">
-                <CourseItem
-                  id={id}
-                  {...dummyCourses.find((course) => course.id === id)}
-                  className="mx-auto"
-                />
+            {courses.map((c) => (
+              <Col sm={6} lg={4} key={c.id} className="mb-4">
+                <CourseItem id={c.id} {...c} />
               </Col>
             ))}
           </Row>

@@ -27,9 +27,12 @@ const CourseList = (props) => {
       />
       <h3>{listClass}</h3>
       <div ref={coursesRef} className={classes["course-list"]}>
-        {dummyCourses.map((course) => {
-          return <CourseItem key={course.id} {...course} ref={courseItemRef} />;
-        })}
+        {dummyCourses.map(
+          (course) =>
+            course.status === "published" && (
+              <CourseItem key={course.id} {...course} ref={courseItemRef} />
+            )
+        )}
       </div>
       <ForwardIcon onClick={swipeHandler} className={classes.forward} />
     </section>
