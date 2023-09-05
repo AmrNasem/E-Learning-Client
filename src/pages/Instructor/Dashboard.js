@@ -80,11 +80,7 @@ const Dashboard = (props) => {
     by: "Newest",
     open: false,
     courses: props.dummyCourses
-      .filter((c) =>
-        instructor.courses
-          .concat(instructor["draft-courses"])
-          .some((item) => item === c.id)
-      )
+      .filter((c) => instructor.courses.some((item) => item === c.id))
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()),
   });
 

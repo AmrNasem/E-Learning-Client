@@ -12,16 +12,20 @@ const Course = (props) => {
       >
         <div className="d-flex align-self-stretch flex-column justify-content-between">
           <h5>{props.title}</h5>
-          <p className="mb-0">{props.draft && <strong>DRAFT</strong>} Public</p>
+          <p className="mb-0">
+            {props.status === "draft" && <strong>DRAFT</strong>} Public
+          </p>
         </div>
         <div
           className={`d-md-flex d-none align-items-center gap-3 ${classes.progress}`}
         >
           <h5 className="text-nowrap">
-            {props.draft ? "Finish your course" : "Published"}
+            {props.status === "draft" ? "Finish your course" : "Published"}
           </h5>
           <div className="w-100 rounded-pill">
-            <span style={{ width: props.draft ? "30%" : "100%" }}></span>
+            <span
+              style={{ width: props.status === "draft" ? "30%" : "100%" }}
+            ></span>
           </div>
         </div>
       </div>
