@@ -16,6 +16,14 @@
   width: 100%;
 }
 
+.heading {
+  font-family: 'PT Serif', serif;
+  font-weight: 600;
+  font-size: 2.1rem;
+  line-height: 1.35;
+  letter-spacing: -.02rem;
+}
+
 hr {
   color: black;
   width: 100%;
@@ -122,7 +130,8 @@ hr {
 }
 
 .file-uploader-module-lbl button {
+  margin-top: 3px;
   border: none;
-  height: 48px;
+  height: 47px;
   width: 100px;
 }

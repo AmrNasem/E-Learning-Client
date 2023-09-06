@@ -7,6 +7,14 @@
   margin-bottom: 20px
 }
 
+.price-heading {
+  color: var(--third-color);
+  font-family: 'PT Serif', serif;
+  font-weight: 600;
+  font-size: 2.1rem;
+  line-height: 1.35;
+}
+
 .contain {
   display: flex;
   flex-direction: column;
@@ -20,9 +28,33 @@
   padding: 40px;
 }
 
-.currency-select {
+.price-container {
+  margin: 0px 10px;
+}
+
+.currency-select,
+.tier-select {
   width: 80px;
   height: 40px;
   border: 1px solid black;
   border-radius: 5px;
+}
+
+.tier-select {
+  width: 100px;
+}
+
+.price-save {
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: var(--secondary-color);
+  color: #000;
+
+}
+
+.price-save:hover {
+  color: var(--main-color);
+  transition: .2s;
+  border: 2px solid var(--third-color);
 }

@@ -1,4 +1,3 @@
-import { useRef, useState } from 'react';
 import './CourseLandingPage.css'
 import SideBar from './Sidebar';
 import FileUploadButton from './uploadCourseComponents/FileUploadButton';
@@ -9,8 +8,8 @@ function CourseLandingPage() {
       <div className="all-page">
         <SideBar />
         <form className='main-page'>
-          <div className='heading'>
-            <h2> Course landing page</h2>
+          <div>
+            <h2 className='heading'> Course landing page</h2>
           </div>
           <hr />
           <div className='body-container'>
@@ -75,7 +74,7 @@ function CourseLandingPage() {
                 <option value="-1">I don't know yet</option>
               </select>
               <label className='course-info-lable'>What is primarily taught in your course?
-                <input aria-invalid="false" placeholder=" e.g. Landscape Photography" name="title" data-purpose="edit-course-title" maxLength="60" type="text" className="landscape" value=""></input>
+                <input aria-invalid="false" placeholder=" e.g. Landscape Photography" name="title" data-purpose="edit-course-title" maxLength="60" type="text" className="landscape"></input>
               </label>
             </div>
             <div className='course-image mb-4'>
@@ -87,7 +86,7 @@ function CourseLandingPage() {
                     <span className="file-uploader-module--fake-input">
                       <span className="file-uploader-module--fake-input-text--2n1U1">No file selected</span>
                     </span>
-                    <FileUploadButton />
+                    <FileUploadButton>Photo</FileUploadButton>
                   </label>
                 </div>
               </div>
@@ -101,7 +100,7 @@ function CourseLandingPage() {
                     <span className="file-uploader-module--fake-input">
                       <span className="file-uploader-module--fake-input-text--2n1U1">No file selected</span>
                     </span>
-                    <FileUploadButton />
+                    <FileUploadButton>Video</FileUploadButton>
                   </label>
                 </div>
               </div>

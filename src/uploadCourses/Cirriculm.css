@@ -21,6 +21,7 @@
 }
 
 .heading {
+  color: var(--third-color);
   font-family: 'PT Serif', serif;
   font-weight: 600;
   font-size: 2.1rem;

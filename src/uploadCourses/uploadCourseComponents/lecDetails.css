@@ -1,11 +1,11 @@
 .input {
-  width: 80%;
+  width: 90%;
   margin: 10px;
   background-color: var(--main-color);
   padding: 5px;
 }
 
-.sec-contain {
+.Form {
   border: 1px solid #333;
   padding: 20px;
   margin-bottom: 20px;

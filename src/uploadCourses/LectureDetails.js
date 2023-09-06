@@ -3,34 +3,11 @@ import './LectureDetails.css'
 import { useState } from 'react';
 
 function LectureDetails() {
-  // const x = document.querySelector('.continue-btn');
-  // const y = document.querySelector('.title-input');
-  // const z = document.querySelector('.cat-drop-down');
-
-  // document.addEventListener('DOMContentLoaded', function () {
-  //   y.addEventListener('input', fun);
-  //   z.addEventListener('input', fun);
-  //   const fun = function handleInputChange() {
-  //     if (y.value !== null && z.value !== null) {
-  //       x.disabled = false;
-  //     } else {
-  //       x.disabled = true;
-  //       // alert('Please Fill in All Required Fields.');
-  //     }
-  //   }
-  // })
-  const [title, setTitle] = useState({
-    title: ""
-  })
-  const [category, setCategory] = useState({
-    category: ""
-  })
-
   return (
     <>
       <div className="inputs-container">
         <h2>How About a Working Title?</h2>
-        <input required value={title.title} className='title-input' type='text' placeholder='  eg. Learn JavaScript                                                                         60' maxLength={60}></input>
+        <input required className='title-input' type='text' placeholder='  eg. Learn JavaScript                                                                         60' maxLength={60}></input>
         <h2 className='category-title'>What category best fits the knowledge you'll share?</h2>
         <select required aria-invalid="false" class="cat-drop-down">
           <option selected value={"default"} hidden disabled className=''>Choose a category</option>
