@@ -2,6 +2,12 @@
   margin-left: 8%;
   margin-right: 8%;
 }
+@media (max-width: 992px) {
+  .manage-course {
+    margin-left: 4%;
+    margin-right: 4%;
+  }
+}
 .manage-course nav {
   min-width: 240px;
 }

@@ -138,7 +138,7 @@ const Dashboard = (props) => {
               }}
               className={`d-flex align-items-center gap-2 h-100 btn rounded-0 ${classes.button}`}
             >
-              <h5 className="mb-0">{sort.by}</h5>
+              <h5 className="mb-0  text-nowrap">{sort.by}</h5>
               <FontAwesomeIcon icon={faAngleDown} />
             </button>
             {sort.open && (

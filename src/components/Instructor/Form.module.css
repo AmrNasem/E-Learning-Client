@@ -1,0 +1,23 @@
+.form {
+  border: 1px solid var(--secondary-color);
+  background-color: var(--main-color);
+}
+.add:disabled {
+  cursor: not-allowed !important;
+  opacity: 0.7;
+}
+.form input {
+  outline: none;
+  min-width: 10px;
+}
+.input {
+  border: 1px solid var(--secondary-color);
+}
+.form button {
+  color: var(--third-color);
+}
+
+.add {
+  border: 1px solid var(--third-color);
+  background-color: var(--third-color);
+}
