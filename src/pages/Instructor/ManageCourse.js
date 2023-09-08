@@ -29,7 +29,9 @@ const ManageCourse = (props) => {
   };
 
   return (
-    <main className={`my-4 py-2 d-flex gap-4 ${classes["manage-course"]}`}>
+    <main
+      className={`my-4 py-2 d-flex gap-4 flex-column flex-lg-row ${classes["manage-course"]}`}
+    >
       <nav className="my-4">
         <div className="mb-4 mt-4">
           <h6 className="fw-bold ps-4 mt-2">Plan your course</h6>
@@ -65,7 +67,7 @@ const ManageCourse = (props) => {
       <Routes>
         <Route path="" element={<Navigate to="goals" replace />} />
         <Route path="goals" element={<Goals course={course} />} />
-        <Route path="curriculum" element={<Curriculum />} />
+        <Route path="curriculum" element={<Curriculum course={course} />} />
         <Route path="landing" element={<h3>Landing page</h3>} />
         <Route path="pricing" element={<h3>Pricing</h3>} />
         <Route path="*" element={<h3>No such a page</h3>} />

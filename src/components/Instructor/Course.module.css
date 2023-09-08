@@ -1,8 +1,14 @@
 .course {
   border: 1px solid var(--secondary-color);
+  cursor: pointer;
 }
 .course img {
   width: 120px;
+}
+@media (max-width: 576px) {
+  .course > div::before {
+    content: unset !important;
+  }
 }
 .course > div::before {
   content: "Edit / manage course";
@@ -17,7 +23,6 @@
   font-size: 1.4rem;
   font-weight: 500;
   z-index: 2;
-  cursor: pointer;
   opacity: 0;
   background-color: rgba(255, 255, 255, 0.74);
   transition: 0.2s;

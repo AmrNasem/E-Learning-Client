@@ -28,22 +28,27 @@ const Goals = (props) => {
   ]);
 
   useEffect(() => {
-    // GET request here
-    setGoals(
-      course.gain.map((item) => {
-        return { text: item, id: Math.random().toString() };
-      })
-    );
-    setRequirements(
-      course.requirements.map((item) => {
-        return { text: item, id: Math.random().toString() };
-      })
-    );
-    setTargets(
-      course.beneficiaries.map((item) => {
-        return { text: item, id: Math.random().toString() };
-      })
-    );
+    if (course.gain && course.gain.length) {
+      setGoals(
+        course.gain.map((item) => {
+          return { text: item, id: Math.random().toString() };
+        })
+      );
+    }
+    if (course.requirements && course.requirements.length) {
+      setRequirements(
+        course.requirements.map((item) => {
+          return { text: item, id: Math.random().toString() };
+        })
+      );
+    }
+    if (course.beneficiaries && course.beneficiaries.length) {
+      setTargets(
+        course.beneficiaries.map((item) => {
+          return { text: item, id: Math.random().toString() };
+        })
+      );
+    }
   }, [course]);
 
   return (
@@ -60,18 +65,20 @@ const Goals = (props) => {
           You must enter at least 4 learning objectives or outcomes that
           learners can expect to achieve after completing your course.
         </p>
-        {goals.map((goal, index) => (
-          <Input
-            key={index}
-            id={goal.id}
-            goal={goal.text}
-            setValues={setGoals}
-            disabled={goals.length <= 4}
-            restricted
-          >
-            {placeholders[index % placeholders.length]}
-          </Input>
-        ))}
+        <div>
+          {goals.map((goal, index) => (
+            <Input
+              key={index}
+              id={goal.id}
+              goal={goal.text}
+              setValues={setGoals}
+              disabled={goals.length <= 4}
+              restricted
+            >
+              {placeholders[index % placeholders.length]}
+            </Input>
+          ))}
+        </div>
         <button
           onClick={() =>
             goals.every((goal) => goal.text !== "") &&
@@ -94,17 +101,19 @@ const Goals = (props) => {
           should have prior to taking your course. If there are no requirements,
           use this space as an opportunity to lower the barrier for beginners.
         </p>
-        {requirements.map((item) => (
-          <Input
-            key={item.id}
-            id={item.id}
-            goal={item.text}
-            setValues={setRequirements}
-          >
-            Example: No programming experience needed. You will learn everything
-            you need to know
-          </Input>
-        ))}
+        <div>
+          {requirements.map((item) => (
+            <Input
+              key={item.id}
+              id={item.id}
+              goal={item.text}
+              setValues={setRequirements}
+            >
+              Example: No programming experience needed. You will learn
+              everything you need to know
+            </Input>
+          ))}
+        </div>
         <button
           onClick={() =>
             requirements.every((goal) => goal.text !== "") &&
@@ -125,17 +134,19 @@ const Goals = (props) => {
           will find your course content valuable. This will help you attract the
           right learners to your course.
         </p>
-        {targets.map((item) => (
-          <Input
-            key={item.id}
-            id={item.id}
-            goal={item.text}
-            setValues={setTargets}
-          >
-            Example: No programming experience needed. You will learn everything
-            you need to know
-          </Input>
-        ))}
+        <div>
+          {targets.map((item) => (
+            <Input
+              key={item.id}
+              id={item.id}
+              goal={item.text}
+              setValues={setTargets}
+            >
+              Example: No programming experience needed. You will learn
+              everything you need to know
+            </Input>
+          ))}
+        </div>
         <button
           onClick={() =>
             targets.every((goal) => goal.text !== "") &&

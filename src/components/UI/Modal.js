@@ -13,7 +13,10 @@ export const OutLayer = (props) => {
     return () => document.body.classList.remove(classes["block-scrolling"]);
   }, [props.isOpen]);
   return (
-    <div onClick={props.onClick} className={classes.outlayer}>
+    <div
+      onClick={props.onClick}
+      className={`${classes.outlayer} ${props.className}`}
+    >
       {props.children}
     </div>
   );

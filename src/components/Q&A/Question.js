@@ -71,13 +71,13 @@ const Question = (props) => {
           </span>
         )}
       </div>
-      <div className="flex-grow-1">
+      <div className="overflow-hidden flex-grow-1">
         <div className="d-flex align-items-start gap-3 position-relative">
-          <div className="d-flex flex-column flex-sm-row gap-sm-3 flex-grow-1">
-            <div className="flex-grow-1">
+          <div className="d-flex overflow-hidden flex-column flex-sm-row gap-sm-3 flex-grow-1">
+            <div className="flex-grow-1 overflow-hidden">
               <h5>{question.title}</h5>
               {question.content && !specify && (
-                <p className="m-0 d-none d-sm-block">{question.content}</p>
+                <p className="m-0 text-truncate">{question.content}</p>
               )}
               {specify && (
                 <div className="mb-2">

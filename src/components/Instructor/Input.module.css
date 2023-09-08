@@ -1,13 +1,26 @@
 .input > div {
   border: 1px solid var(--secondary-color);
+  min-width: 10px;
 }
 .input input {
   outline: none;
   text-overflow: ellipsis;
+  min-width: 10px;
+}
+.delete:not(:disabled) {
+  color: var(--third-color);
 }
 .delete {
   border: 1px solid var(--secondary-color);
   visibility: hidden;
+}
+.removable .delete {
+  visibility: visible;
+}
+@media (min-width: 576px) {
+  .removable .delete {
+    visibility: hidden;
+  }
 }
 .delete:disabled {
   cursor: not-allowed;

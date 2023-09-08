@@ -4,12 +4,12 @@ import classes from "./Course.module.css";
 const Course = (props) => {
   const navigate = useNavigate();
   return (
-    <div className={`d-flex my-3 ${classes.course}`}>
+    <div
+      className={`d-flex my-3 ${classes.course}`}
+      onClick={() => navigate(`course/${props.id}`)}
+    >
       <img src={require("../../assets/placeholder.jpg")} alt="" />
-      <div
-        onClick={() => navigate(`course/${props.id}`)}
-        className="d-flex align-items-center justify-content-between p-3 position-relative gap-3 flex-grow-1"
-      >
+      <div className="d-flex align-items-center justify-content-between p-3 position-relative gap-3 flex-grow-1">
         <div className="d-flex align-self-stretch flex-column justify-content-between">
           <h5>{props.title}</h5>
           <p className="mb-0">
