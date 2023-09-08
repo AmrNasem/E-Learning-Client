@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import jsonFile from "../assets/dummy.json";
 
-const initialState = { user: jsonFile.users[0] };
+const initialState = { user: jsonFile.users[1] };
 
 const authSlice = createSlice({
   name: "auth",

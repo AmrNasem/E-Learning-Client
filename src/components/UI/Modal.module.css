@@ -8,6 +8,12 @@
   z-index: 20;
   padding: 0 10px;
   overflow: auto;
+  animation: fade-in 0.2s;
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
 }
 
 .block-scrolling {

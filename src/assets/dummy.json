@@ -108,10 +108,12 @@
         {
           "title": "Introduction to HTML",
           "duration": "1hr 19min",
+          "id": "s1",
           "lectures": [
             {
               "title": "Introduction to HTML",
               "available": true,
+              "video": null,
               "id": "l1",
               "authorId": "u1",
               "type": "video",
@@ -142,6 +144,7 @@
             },
             {
               "title": "Using HTML Tags",
+              "video": null,
               "id": "l2",
               "authorId": "u1",
               "type": "video",
@@ -178,9 +181,11 @@
           "title": "Intermediate HTML",
           "available": true,
           "duration": "57min",
+          "id": "s2",
           "lectures": [
             {
               "title": "HTML Tables",
+              "video": null,
               "id": "l3",
               "authorId": "u1",
               "type": "video",
@@ -212,6 +217,7 @@
             },
             {
               "title": "Download the course syllabus",
+              "video": null,
               "id": "l4",
               "authorId": "u1",
               "type": "video",
@@ -314,10 +320,12 @@
         {
           "title": "Front-End Web Development",
           "duration": "37min",
+          "id": "s3",
           "lectures": [
             {
               "title": "What you'll get in this course",
               "available": true,
+              "video": null,
               "id": "l5",
               "authorId": "u2",
               "type": "video",
@@ -647,6 +655,7 @@
             {
               "title": "Download the course syllabus",
               "available": true,
+              "video": null,
               "id": "l6",
               "authorId": "u2",
               "type": "article",
@@ -679,6 +688,7 @@
             },
             {
               "title": "Download the course resources",
+              "video": null,
               "id": "l7",
               "authorId": "u2",
               "type": "article",
@@ -714,10 +724,12 @@
         {
           "title": "Introduction to HTML",
           "duration": "1hr 19min",
+          "id": "s4",
           "lectures": [
             {
               "title": "Introduction to HTML",
               "available": true,
+              "video": null,
               "id": "l8",
               "authorId": "u2",
               "type": "video",
@@ -750,6 +762,7 @@
             },
             {
               "title": "Using HTML Tags",
+              "video": null,
               "id": "l9",
               "authorId": "u2",
               "type": "video",
@@ -782,6 +795,7 @@
             },
             {
               "title": "The Anatomy of an HTML Tag",
+              "video": null,
               "id": "l10",
               "authorId": "u2",
               "type": "video",
@@ -817,10 +831,12 @@
         {
           "title": "Intermediate HTML",
           "duration": "57min",
+          "id": "s5",
           "lectures": [
             {
               "title": "HTML Tables",
               "available": true,
+              "video": null,
               "id": "l11",
               "authorId": "u2",
               "type": "video",
@@ -829,6 +845,7 @@
             },
             {
               "title": "Download the course syllabus",
+              "video": null,
               "id": "l12",
               "authorId": "u2",
               "type": "video",
@@ -861,6 +878,7 @@
             },
             {
               "title": "HTML Tables Code Challenge",
+              "video": null,
               "id": "l13",
               "authorId": "u2",
               "type": "video",
@@ -1047,10 +1065,12 @@
         {
           "title": "Introduction to HTML",
           "duration": "1hr 19min",
+          "id": "s6",
           "lectures": [
             {
               "title": "Using HTML Tags",
               "available": true,
+              "video": null,
               "id": "l14",
               "authorId": "u1",
               "type": "article",
@@ -1085,9 +1105,11 @@
         {
           "title": "Intermediate HTML",
           "duration": "57min",
+          "id": "s7",
           "lectures": [
             {
               "title": "HTML Tables",
+              "video": null,
               "id": "l15",
               "authorId": "u1",
               "type": "video",
@@ -1185,10 +1207,12 @@
         {
           "title": "Introduction to HTML",
           "duration": "1hr 19min",
+          "id": "s8",
           "lectures": [
             {
               "title": "Introduction to HTML",
               "available": true,
+              "video": null,
               "id": "l16",
               "authorId": "u1",
               "type": "video",
@@ -1220,6 +1244,7 @@
             },
             {
               "title": "Using HTML Tags",
+              "video": null,
               "id": "l17",
               "authorId": "u1",
               "type": "video",
@@ -1254,9 +1279,11 @@
         {
           "title": "Intermediate HTML",
           "duration": "57min",
+          "id": "s9",
           "lectures": [
             {
               "title": "HTML Tables",
+              "video": null,
               "id": "l18",
               "authorId": "u1",
               "type": "video",
@@ -1288,6 +1315,7 @@
             },
             {
               "title": "Download the course syllabus",
+              "video": null,
               "id": "l19",
               "authorId": "u1",
               "type": "video",
@@ -1384,10 +1412,12 @@
         {
           "title": "Introduction to HTML",
           "duration": "1hr 19min",
+          "id": "s10",
           "lectures": [
             {
               "title": "Introduction to HTML",
               "available": true,
+              "video": null,
               "id": "l20",
               "authorId": "u1",
               "type": "video",
@@ -1419,6 +1449,7 @@
             },
             {
               "title": "Using HTML Tags",
+              "video": null,
               "id": "l21",
               "authorId": "u1",
               "type": "video",
@@ -1453,9 +1484,11 @@
         {
           "title": "Intermediate HTML",
           "duration": "57min",
+          "id": "s11",
           "lectures": [
             {
               "title": "HTML Tables",
+              "video": null,
               "id": "l22",
               "authorId": "u1",
               "type": "video",
@@ -1487,6 +1520,7 @@
             },
             {
               "title": "Download the course syllabus",
+              "video": null,
               "id": "l23",
               "authorId": "u1",
               "type": "video",
@@ -1584,10 +1618,12 @@
         {
           "title": "Introduction to HTML",
           "duration": "1hr 19min",
+          "id": "s12",
           "lectures": [
             {
               "title": "Introduction to HTML",
               "available": true,
+              "video": null,
               "id": "l24",
               "authorId": "u1",
               "type": "video",
@@ -1619,6 +1655,7 @@
             },
             {
               "title": "Using HTML Tags",
+              "video": null,
               "id": "l25",
               "authorId": "u1",
               "type": "video",
@@ -1653,9 +1690,11 @@
         {
           "title": "Intermediate HTML",
           "duration": "57min",
+          "id": "s13",
           "lectures": [
             {
               "title": "HTML Tables",
+              "video": null,
               "id": "l26",
               "authorId": "u1",
               "type": "video",
@@ -1687,6 +1726,7 @@
             },
             {
               "title": "Download the course syllabus",
+              "video": null,
               "id": "l27",
               "authorId": "u1",
               "type": "video",
@@ -1782,10 +1822,12 @@
         {
           "title": "Introduction to HTML",
           "duration": "1hr 19min",
+          "id": "s14",
           "lectures": [
             {
               "title": "Introduction to HTML",
               "available": true,
+              "video": null,
               "id": "l28",
               "authorId": "u1",
               "type": "video",
@@ -1817,6 +1859,7 @@
             },
             {
               "title": "Using HTML Tags",
+              "video": null,
               "id": "l29",
               "authorId": "u1",
               "type": "video",
@@ -1851,9 +1894,11 @@
         {
           "title": "Intermediate HTML",
           "duration": "57min",
+          "id": "s15",
           "lectures": [
             {
               "title": "HTML Tables",
+              "video": null,
               "id": "l30",
               "authorId": "u1",
               "type": "video",
@@ -1885,6 +1930,7 @@
             },
             {
               "title": "Download the course syllabus",
+              "video": null,
               "id": "l31",
               "authorId": "u1",
               "type": "video",
@@ -1980,10 +2026,12 @@
         {
           "title": "Introduction to HTML",
           "duration": "1hr 19min",
+          "id": "s16",
           "lectures": [
             {
               "title": "Introduction to HTML",
               "available": true,
+              "video": null,
               "id": "l32",
               "authorId": "u1",
               "type": "video",
@@ -2015,6 +2063,7 @@
             },
             {
               "title": "Using HTML Tags",
+              "video": null,
               "id": "l33",
               "authorId": "u1",
               "type": "video",
@@ -2049,9 +2098,11 @@
         {
           "title": "Intermediate HTML",
           "duration": "57min",
+          "id": "s17",
           "lectures": [
             {
               "title": "HTML Tables",
+              "video": null,
               "id": "l34",
               "authorId": "u1",
               "type": "video",
@@ -2083,6 +2134,7 @@
             },
             {
               "title": "Download the course syllabus",
+              "video": null,
               "id": "l35",
               "authorId": "u1",
               "type": "video",
@@ -2178,10 +2230,12 @@
         {
           "title": "Introduction to HTML",
           "duration": "1hr 19min",
+          "id": "s18",
           "lectures": [
             {
               "title": "Introduction to HTML",
               "available": true,
+              "video": null,
               "id": "l36",
               "authorId": "u1",
               "type": "video",
@@ -2213,6 +2267,7 @@
             },
             {
               "title": "Using HTML Tags",
+              "video": null,
               "id": "l37",
               "authorId": "u1",
               "type": "video",
@@ -2247,9 +2302,11 @@
         {
           "title": "Intermediate HTML",
           "duration": "57min",
+          "id": "s19",
           "lectures": [
             {
               "title": "HTML Tables",
+              "video": null,
               "id": "l38",
               "authorId": "u1",
               "type": "video",
@@ -2281,6 +2338,7 @@
             },
             {
               "title": "Download the course syllabus",
+              "video": null,
               "id": "l39",
               "authorId": "u1",
               "type": "video",
@@ -2376,10 +2434,12 @@
         {
           "title": "Introduction to HTML",
           "duration": "1hr 19min",
+          "id": "s20",
           "lectures": [
             {
               "title": "Introduction to HTML",
               "available": true,
+              "video": null,
               "id": "l40",
               "authorId": "u1",
               "type": "video",
@@ -2411,6 +2471,7 @@
             },
             {
               "title": "Using HTML Tags",
+              "video": null,
               "id": "l41",
               "authorId": "u1",
               "type": "video",
@@ -2445,9 +2506,11 @@
         {
           "title": "Intermediate HTML",
           "duration": "57min",
+          "id": "s1",
           "lectures": [
             {
               "title": "HTML Tables",
+              "video": null,
               "id": "l42",
               "authorId": "u1",
               "type": "video",
@@ -2479,6 +2542,7 @@
             },
             {
               "title": "Download the course syllabus",
+              "video": null,
               "id": "l43",
               "authorId": "u1",
               "type": "video",
