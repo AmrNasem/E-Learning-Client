@@ -4,27 +4,27 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const Input = (props) => {
-  const { setValues, id, text, disabled, removable, max, children, className } =
-    props;
-  const inputRef = useRef();
+  const {
+    onChange,
+    onDelete,
+    id,
+    content,
+    type,
+    disabled,
+    removable,
+    max,
+    children,
+    className,
+  } = props;
   const inputParentRef = useRef();
 
   useEffect(() => {
-    if (text && text.length) {
+    if (content && content.toString().length) {
       inputParentRef.current.classList.add(classes.removable);
     } else {
       inputParentRef.current.classList.remove(classes.removable);
     }
-  }, [text]);
-
-  const changeValueHandler = () => {
-    setValues((prevState) =>
-      prevState.map((item) => {
-        if (item.id === id) item.text = inputRef.current.value;
-        return item;
-      })
-    );
-  };
+  }, [content]);
 
   return (
     <div
@@ -35,20 +35,21 @@ const Input = (props) => {
         <input
           className="flex-grow-1 bg-transparent p-3 border-0"
           maxLength={max}
-          type="text"
-          value={text}
-          onChange={changeValueHandler}
-          ref={inputRef}
+          type={type || "text"}
+          value={content}
+          onChange={(e) =>
+            id
+              ? onChange({ id, text: e.target.value })
+              : onChange(e.target.value)
+          }
           placeholder={children}
         />
-        {max && <span className="pe-3">{max - text.length}</span>}
+        {max && <span className="pe-3">{max - content.toString().length}</span>}
       </div>
       {removable && (
         <button
           disabled={disabled}
-          onClick={() =>
-            setValues((prevState) => prevState.filter((text) => text.id !== id))
-          }
+          onClick={() => onDelete(id)}
           className={`p-3 bg-transparent ${classes.delete}`}
         >
           <FontAwesomeIcon icon={faTrash} />
