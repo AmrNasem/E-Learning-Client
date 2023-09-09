@@ -50,12 +50,7 @@ const CourseHeader = (props) => {
         className={classes.preview}
       />
       <h1>{course.title}</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio
-        fugit sapiente explicabo dicta, eaque laudantium et minus vitae aliquam
-        facere minima consectetur corrupti voluptatum veniam error, amet porro
-        ea ipsum.
-      </p>
+      <p>{course.subtitle}</p>
       <p className={classes.info}>
         Bestseller{" "}
         <a className={classes.rates} href="#reviews">
