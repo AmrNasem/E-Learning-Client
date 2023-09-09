@@ -1,40 +1,33 @@
-import { useCallback, useMemo } from "react";
+import { useCallback } from "react";
 import Input from "../../components/Instructor/Input";
 import Select from "../../components/Instructor/Select";
 import PageBox from "../../components/UI/PageBox";
 import classes from "./Basics.module.css";
 
+const langOptions = [
+  { id: "ar", text: "العربية" },
+  { id: "en", text: "English" },
+];
+
+const levelOptions = [
+  { id: "beginner", text: "Beginner level" },
+  { id: "intermediate", text: "Intermediate level" },
+  { id: "expert", text: "Expert level" },
+  { id: "all", text: "All levels" },
+];
+
+const categoryOptions = [
+  { id: "uiux", text: "UI/UX Design" },
+  { id: "ai", text: "Artificial Intelligence" },
+  { id: "web", text: "Web Development" },
+  { id: "mobile", text: "Mobile Development" },
+  { id: "security", text: "Cyber Security" },
+  { id: "datascience", text: "Data Science" },
+  { id: "machinelearning", text: "Machine Learning" },
+];
+
 const Basics = (props) => {
   const { course } = props;
-  const levelOptions = useMemo(
-    () => [
-      { id: "beginner", text: "Beginner level" },
-      { id: "intermediate", text: "Intermediate level" },
-      { id: "expert", text: "Expert level" },
-      { id: "all", text: "All levels" },
-    ],
-    []
-  );
-  const langOptions = useMemo(
-    () => [
-      { id: "ar", text: "العربية" },
-      { id: "en", text: "English" },
-    ],
-    []
-  );
-
-  const categoryOptions = useMemo(
-    () => [
-      { id: "uiux", text: "UI/UX Design" },
-      { id: "ai", text: "Artificial Intelligence" },
-      { id: "web", text: "Web Development" },
-      { id: "mobile", text: "Mobile Development" },
-      { id: "security", text: "Cyber Security" },
-      { id: "datascience", text: "Data Science" },
-      { id: "machinelearning", text: "Machine Learning" },
-    ],
-    []
-  );
 
   return (
     <PageBox title="Course landing page">

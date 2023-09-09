@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Footer from "./components/Footer";
 import { useContext } from "react";
 import HeaderContext from "./store/header-context";
 import jsonFile from "./assets/dummy.json";
@@ -8,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useSelector } from "react-redux";
 import Instructor from "./pages/Instructor/Instructor";
 import Student from "./pages/Student/Student";
+import NewCourse from "./pages/Instructor/NewCourse";
 
 const dummyCourses = jsonFile.courses;
 const dummyInstructors = jsonFile.instructors;
@@ -46,19 +46,21 @@ function App() {
           }
         />
         {authedUser && authedUser.instructor && (
-          <Route
-            path="/instructor/*"
-            element={
-              <Instructor
-                dummyInstructors={dummyInstructors}
-                dummyCourses={dummyCourses}
-                dummyUsers={dummyUsers}
-              />
-            }
-          />
+          <>
+            <Route
+              path="/instructor/*"
+              element={
+                <Instructor
+                  dummyInstructors={dummyInstructors}
+                  dummyCourses={dummyCourses}
+                  dummyUsers={dummyUsers}
+                />
+              }
+            />
+            <Route path="course/Create" element={<NewCourse />} />
+          </>
         )}
       </Routes>
-      <Footer />
     </div>
   );
 }
