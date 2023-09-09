@@ -48,7 +48,7 @@ const Basics = (props) => {
       </p>
       <div>
         <h5>Course title</h5>
-        <Input max={60} className="mb-1" text={course.title} restricted>
+        <Input max={60} className="mb-1" content={course.title} restricted>
           Insert you course title.
         </Input>
         <p>
@@ -58,7 +58,7 @@ const Basics = (props) => {
       </div>
       <div>
         <h5>Course subtitle</h5>
-        <Input max={200} className="mb-1" text={course.subtitle}>
+        <Input max={200} className="mb-1" content={course.subtitle}>
           Insert you course subtitle.
         </Input>
         <p>
