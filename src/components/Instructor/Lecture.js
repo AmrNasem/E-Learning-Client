@@ -29,6 +29,22 @@ const uploadReducer = (state, action) => {
     date: null,
   };
 };
+
+const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+
 const Lecture = (props) => {
   const { order, secId, lecture, setLectures } = props;
   const { courseId } = useParams();
@@ -78,20 +94,6 @@ const Lecture = (props) => {
   };
 
   const getDate = (date) => {
-    const months = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
     return `${months[date.getMonth()]} / ${
       date.getDate().toString().length === 1 && "0"
     }${date.getDate()} / ${date.getFullYear()}`;
@@ -109,7 +111,7 @@ const Lecture = (props) => {
     );
 
   return (
-    <div className={`p-2 my-3 ${classes.lecture}`}>
+    <div className={`px-2 pb-2 my-3 ${classes.lecture}`}>
       {isModalOpen && (
         <Modal
           type="video item"
@@ -117,7 +119,9 @@ const Lecture = (props) => {
           onDeleteItemHandler={deleteLectureHandler}
         />
       )}
-      <div className="d-flex flex-wrap justify-content-end gap-3">
+      <div
+        className={`${classes.header} d-flex pt-2 flex-wrap justify-content-end gap-3`}
+      >
         <div className="d-flex flex-grow-1 flex-wrap flex-sm-nowrap text-nowrap overflow-hidden align-items-center gap-2">
           <FontAwesomeIcon icon={faCheckCircle} />
           <span>

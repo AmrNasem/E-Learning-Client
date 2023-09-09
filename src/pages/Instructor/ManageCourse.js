@@ -6,6 +6,7 @@ import Goals from "./Goals";
 import Curriculum from "./Curriculum";
 import { useSelector } from "react-redux";
 import jsonFile from "../../assets/dummy.json";
+import Basics from "./Basics";
 
 const ManageCourse = (props) => {
   const { courseId } = useParams();
@@ -49,7 +50,7 @@ const ManageCourse = (props) => {
         </div>
         <div className="mb-4 mt-4">
           <h6 className="fw-bold ps-4 mt-2">Publish your course</h6>
-          <NavLink className={activeClassHandler} to="landing">
+          <NavLink className={activeClassHandler} to="basics">
             <FontAwesomeIcon className="me-2 fs-5" icon={faCircle} />
             <span>Course landing page</span>
           </NavLink>
@@ -68,7 +69,7 @@ const ManageCourse = (props) => {
         <Route path="" element={<Navigate to="goals" replace />} />
         <Route path="goals" element={<Goals course={course} />} />
         <Route path="curriculum" element={<Curriculum course={course} />} />
-        <Route path="landing" element={<h3>Landing page</h3>} />
+        <Route path="basics" element={<Basics course={course} />} />
         <Route path="pricing" element={<h3>Pricing</h3>} />
         <Route path="*" element={<h3>No such a page</h3>} />
       </Routes>

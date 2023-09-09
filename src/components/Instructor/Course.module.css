@@ -5,6 +5,9 @@
 .course img {
   width: 120px;
 }
+.mark {
+  background-color: rgb(242, 255, 0);
+}
 @media (max-width: 576px) {
   .course > div::before {
     content: unset !important;
