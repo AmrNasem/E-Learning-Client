@@ -1,4 +1,4 @@
-import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { memo, useEffect, useState } from "react";
 import classes from "./Select.module.css";
@@ -27,13 +27,17 @@ const Select = (props) => {
         className={`d-flex align-items-center gap-2 w-100 p-3 justify-content-between h-100 btn rounded-0 ${classes.button}`}
       >
         <h5 className="mb-0  text-nowrap">{selected.text}</h5>
-        <FontAwesomeIcon icon={faAngleDown} />
+        {reverse ? (
+          <FontAwesomeIcon icon={faAngleUp} />
+        ) : (
+          <FontAwesomeIcon icon={faAngleDown} />
+        )}
       </button>
       {isOpen && (
         <div
           className={`${classes.options} ${
             reverse ? classes["bottom-to-top"] : classes["top-to-bottom"]
-          } position-absolute w-100 p-2 bg-white`}
+          } position-absolute w-100 p-1 bg-white`}
         >
           {options.map((option, index) => (
             <button

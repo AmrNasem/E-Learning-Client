@@ -8,6 +8,7 @@ import Course from "./Course";
 import CourseView from "./CourseView";
 import User from "./User";
 import { useSelector } from "react-redux";
+import Footer from "../../components/Footer";
 
 const Student = (props) => {
   const { dummyInstructors, dummyCourses, dummyUsers } = props;
@@ -62,6 +63,7 @@ const Student = (props) => {
         />
         <Route path="*" element={<h1>Page Not Found</h1>} />
       </Routes>
+      <Footer />
     </>
   );
 };
