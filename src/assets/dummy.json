@@ -91,6 +91,9 @@
     {
       "id": "c1",
       "title": "The complete guide to React",
+      "subtitle": "This course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp.",
+      "level": "all",
+      "lang": "en",
       "date": "Jun 13, 2018",
       "status": "published",
       "thumbnail": "./landing-page.jfif",
@@ -257,7 +260,7 @@
         "No paid software required",
         "I'll walk you through, step-by-step how to get all the software installed and set up"
       ],
-      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer.",
+      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer. With 150,000+ ratings and a 4.8 average, my Web Development course is one of the HIGHEST RATED courses in the history of Udemy! At 65+ hours, this Web Development course is without a doubt the most comprehensive web development course available online. Even if you have zero programming experience, this course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp. The course has been updated to be 2023 ready and you'll be learning the latest tools and technologies used at large companies such as Apple, Google and Netflix. This course doesn't cut any corners, there are beautiful animated explanation videos and tens of real-world projects which you will get to build.",
       "price": 1400,
       "reviews": [
         {
@@ -299,6 +302,9 @@
     {
       "id": "c2",
       "title": "The complete guide to JavaScript",
+      "subtitle": "This course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp.",
+      "level": "intermediate",
+      "lang": "ar",
       "date": "Jun 1, 2018",
       "status": "published",
       "thumbnail": "./landing-page.jfif",
@@ -919,7 +925,7 @@
         "No paid software required",
         "I'll walk you through, step-by-step how to get all the software installed and set up"
       ],
-      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer. With 150,000+ ratings and a 4.8 average, my Web Development course is one of the HIGHEST RATED courses in the history of Udemy! At 65+ hours, this Web Development course is without a doubt the most comprehensive web development course available online. Even if you have zero programming experience, this course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp. The course has been updated to be 2023 ready and you'll be learning the latest tools and technologies used at large companies such as Apple, Google and Netflix. This course doesn't cut any corners, there are beautiful animated explanation videos and tens of real-world projects which you will get to build. The curriculum was developed over a period of four years, with comprehensive student testing and feedback. We've taught over a million students how to code and many have gone on to change their lives by becoming professional developers or starting their own tech startup. You'll save yourself over $12,000 by enrolling, but still get access to the same teaching materials and learn from the same instructor and curriculum as our in-person programming bootcamp. The course is constantly updated with new content, with new projects and modules determined by students - that's you! We'll take you step-by-step through engaging video tutorials and teach you everything you need to know to succeed as a web developer. The course includes over 65 hours of HD video tutorials and builds your programming knowledge while making real-world websites and web apps.",
+      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer. With 150,000+ ratings and a 4.8 average, my Web Development course is one of the HIGHEST RATED courses in the history of Udemy! At 65+ hours, this Web Development course is without a doubt the most comprehensive web development course available online. Even if you have zero programming experience, this course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp. The course has been updated to be 2023 ready and you'll be learning the latest tools and technologies used at large companies such as Apple, Google and Netflix. This course doesn't cut any corners, there are beautiful animated explanation videos and tens of real-world projects which you will get to build.",
       "price": 0,
       "reviews": [
         {
@@ -1049,6 +1055,9 @@
     {
       "id": "c3",
       "title": "The complete guide to React",
+      "subtitle": "This course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp.",
+      "level": "beginner",
+      "lang": "en",
       "date": "Jun 1, 2019",
       "status": "published",
       "thumbnail": "./landing-page.jfif",
@@ -1149,7 +1158,7 @@
         "No paid software required",
         "I'll walk you through, step-by-step how to get all the software installed and set up"
       ],
-      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer.",
+      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer. With 150,000+ ratings and a 4.8 average, my Web Development course is one of the HIGHEST RATED courses in the history of Udemy! At 65+ hours, this Web Development course is without a doubt the most comprehensive web development course available online. Even if you have zero programming experience, this course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp. The course has been updated to be 2023 ready and you'll be learning the latest tools and technologies used at large companies such as Apple, Google and Netflix. This course doesn't cut any corners, there are beautiful animated explanation videos and tens of real-world projects which you will get to build.",
 
       "discount": 20,
       "price": 1400,
@@ -1191,6 +1200,9 @@
     {
       "id": "c4",
       "title": "The complete guide to React",
+      "subtitle": "This course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp.",
+      "level": "beginner",
+      "lang": "en",
       "date": "Jul 2, 2018",
       "status": "published",
       "thumbnail": "./landing-page.jfif",
@@ -1355,7 +1367,7 @@
         "No paid software required",
         "I'll walk you through, step-by-step how to get all the software installed and set up"
       ],
-      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer.",
+      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer. With 150,000+ ratings and a 4.8 average, my Web Development course is one of the HIGHEST RATED courses in the history of Udemy! At 65+ hours, this Web Development course is without a doubt the most comprehensive web development course available online. Even if you have zero programming experience, this course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp. The course has been updated to be 2023 ready and you'll be learning the latest tools and technologies used at large companies such as Apple, Google and Netflix. This course doesn't cut any corners, there are beautiful animated explanation videos and tens of real-world projects which you will get to build.",
 
       "discount": 84,
       "price": 1400,
@@ -1396,6 +1408,9 @@
     {
       "id": "c5",
       "title": "The complete guide to React",
+      "subtitle": "This course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp.",
+      "level": "expert",
+      "lang": "en",
       "date": "May 20, 2017",
       "status": "published",
       "thumbnail": "./landing-page.jfif",
@@ -1560,7 +1575,7 @@
         "No paid software required",
         "I'll walk you through, step-by-step how to get all the software installed and set up"
       ],
-      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer.",
+      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer. With 150,000+ ratings and a 4.8 average, my Web Development course is one of the HIGHEST RATED courses in the history of Udemy! At 65+ hours, this Web Development course is without a doubt the most comprehensive web development course available online. Even if you have zero programming experience, this course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp. The course has been updated to be 2023 ready and you'll be learning the latest tools and technologies used at large companies such as Apple, Google and Netflix. This course doesn't cut any corners, there are beautiful animated explanation videos and tens of real-world projects which you will get to build.",
 
       "discount": 84,
       "price": 1400,
@@ -1602,6 +1617,9 @@
     {
       "id": "c6",
       "title": "The complete guide to React",
+      "subtitle": "This course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp.",
+      "level": "intermediate",
+      "lang": "en",
       "date": "Dec 9, 2020",
       "status": "published",
       "thumbnail": "./landing-page.jfif",
@@ -1766,7 +1784,7 @@
         "No paid software required",
         "I'll walk you through, step-by-step how to get all the software installed and set up"
       ],
-      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer.",
+      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer. With 150,000+ ratings and a 4.8 average, my Web Development course is one of the HIGHEST RATED courses in the history of Udemy! At 65+ hours, this Web Development course is without a doubt the most comprehensive web development course available online. Even if you have zero programming experience, this course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp. The course has been updated to be 2023 ready and you'll be learning the latest tools and technologies used at large companies such as Apple, Google and Netflix. This course doesn't cut any corners, there are beautiful animated explanation videos and tens of real-world projects which you will get to build.",
 
       "discount": 84,
       "price": 1400,
@@ -1806,6 +1824,9 @@
     {
       "id": "c7",
       "title": "The complete guide to React",
+      "subtitle": "This course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp.",
+      "level": "intermediate",
+      "lang": "en",
       "date": "Feb 19, 2022",
       "status": "published",
       "thumbnail": "./landing-page.jfif",
@@ -1970,7 +1991,7 @@
         "No paid software required",
         "I'll walk you through, step-by-step how to get all the software installed and set up"
       ],
-      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer.",
+      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer. With 150,000+ ratings and a 4.8 average, my Web Development course is one of the HIGHEST RATED courses in the history of Udemy! At 65+ hours, this Web Development course is without a doubt the most comprehensive web development course available online. Even if you have zero programming experience, this course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp. The course has been updated to be 2023 ready and you'll be learning the latest tools and technologies used at large companies such as Apple, Google and Netflix. This course doesn't cut any corners, there are beautiful animated explanation videos and tens of real-world projects which you will get to build.",
 
       "discount": 84,
       "price": 1400,
@@ -2010,6 +2031,9 @@
     {
       "id": "c8",
       "title": "The complete guide to React",
+      "subtitle": "This course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp.",
+      "level": "expert",
+      "lang": "en",
       "date": "Jun 13, 2018",
       "status": "published",
       "thumbnail": "./landing-page.jfif",
@@ -2174,7 +2198,7 @@
         "No paid software required",
         "I'll walk you through, step-by-step how to get all the software installed and set up"
       ],
-      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer.",
+      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer. With 150,000+ ratings and a 4.8 average, my Web Development course is one of the HIGHEST RATED courses in the history of Udemy! At 65+ hours, this Web Development course is without a doubt the most comprehensive web development course available online. Even if you have zero programming experience, this course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp. The course has been updated to be 2023 ready and you'll be learning the latest tools and technologies used at large companies such as Apple, Google and Netflix. This course doesn't cut any corners, there are beautiful animated explanation videos and tens of real-world projects which you will get to build.",
 
       "discount": 84,
       "price": 1400,
@@ -2214,6 +2238,9 @@
     {
       "id": "c9",
       "title": "The complete guide to React",
+      "subtitle": "This course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp.",
+      "level": "expert",
+      "lang": "en",
       "date": "Feb 28, 2020",
       "status": "published",
       "thumbnail": "./landing-page.jfif",
@@ -2378,7 +2405,7 @@
         "No paid software required",
         "I'll walk you through, step-by-step how to get all the software installed and set up"
       ],
-      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer.",
+      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer. With 150,000+ ratings and a 4.8 average, my Web Development course is one of the HIGHEST RATED courses in the history of Udemy! At 65+ hours, this Web Development course is without a doubt the most comprehensive web development course available online. Even if you have zero programming experience, this course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp. The course has been updated to be 2023 ready and you'll be learning the latest tools and technologies used at large companies such as Apple, Google and Netflix. This course doesn't cut any corners, there are beautiful animated explanation videos and tens of real-world projects which you will get to build.",
 
       "discount": 84,
       "price": 1400,
@@ -2418,6 +2445,9 @@
     {
       "id": "c10",
       "title": "The complete guide to React",
+      "subtitle": "This course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp.",
+      "level": "beginner",
+      "lang": "en",
       "date": "Oct 7, 2015",
       "status": "published",
       "thumbnail": "./landing-page.jfif",
@@ -2582,7 +2612,7 @@
         "No paid software required",
         "I'll walk you through, step-by-step how to get all the software installed and set up"
       ],
-      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer.",
+      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer. With 150,000+ ratings and a 4.8 average, my Web Development course is one of the HIGHEST RATED courses in the history of Udemy! At 65+ hours, this Web Development course is without a doubt the most comprehensive web development course available online. Even if you have zero programming experience, this course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp. The course has been updated to be 2023 ready and you'll be learning the latest tools and technologies used at large companies such as Apple, Google and Netflix. This course doesn't cut any corners, there are beautiful animated explanation videos and tens of real-world projects which you will get to build.",
 
       "discount": 84,
       "price": 1400,
@@ -2622,6 +2652,9 @@
     {
       "id": "c11",
       "title": "ZTM Node JS course",
+      "subtitle": "This course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp.",
+      "level": "beginner",
+      "lang": "ar",
       "date": "Oct 7, 2015",
       "status": "draft",
       "thumbnail": "./landing-page.jfif",
@@ -2642,7 +2675,7 @@
         "No paid software required",
         "I'll walk you through, step-by-step how to get all the software installed and set up"
       ],
-      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer.",
+      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer. With 150,000+ ratings and a 4.8 average, my Web Development course is one of the HIGHEST RATED courses in the history of Udemy! At 65+ hours, this Web Development course is without a doubt the most comprehensive web development course available online. Even if you have zero programming experience, this course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp. The course has been updated to be 2023 ready and you'll be learning the latest tools and technologies used at large companies such as Apple, Google and Netflix. This course doesn't cut any corners, there are beautiful animated explanation videos and tens of real-world projects which you will get to build.",
 
       "discount": 84,
       "price": 1400,
@@ -2651,6 +2684,9 @@
     {
       "id": "c12",
       "title": "ZTM Next JS course",
+      "subtitle": "This course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp.",
+      "level": "expert",
+      "lang": "ar",
       "date": "Sep 7, 2023",
       "status": "draft",
       "thumbnail": "./landing-page.jfif",
@@ -2671,7 +2707,7 @@
         "No paid software required",
         "I'll walk you through, step-by-step how to get all the software installed and set up"
       ],
-      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer.",
+      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer. With 150,000+ ratings and a 4.8 average, my Web Development course is one of the HIGHEST RATED courses in the history of Udemy! At 65+ hours, this Web Development course is without a doubt the most comprehensive web development course available online. Even if you have zero programming experience, this course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp. The course has been updated to be 2023 ready and you'll be learning the latest tools and technologies used at large companies such as Apple, Google and Netflix. This course doesn't cut any corners, there are beautiful animated explanation videos and tens of real-world projects which you will get to build.",
 
       "discount": 84,
       "price": 1400,
@@ -2680,6 +2716,9 @@
     {
       "id": "c13",
       "title": "ZTM JavaScript JS course",
+      "subtitle": "This course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp.",
+      "level": "beginner",
+      "lang": "en",
       "date": "Apr 17, 2021",
       "status": "draft",
       "thumbnail": "./landing-page.jfif",
@@ -2700,7 +2739,7 @@
         "No paid software required",
         "I'll walk you through, step-by-step how to get all the software installed and set up"
       ],
-      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer.",
+      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer. With 150,000+ ratings and a 4.8 average, my Web Development course is one of the HIGHEST RATED courses in the history of Udemy! At 65+ hours, this Web Development course is without a doubt the most comprehensive web development course available online. Even if you have zero programming experience, this course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp. The course has been updated to be 2023 ready and you'll be learning the latest tools and technologies used at large companies such as Apple, Google and Netflix. This course doesn't cut any corners, there are beautiful animated explanation videos and tens of real-world projects which you will get to build.",
 
       "discount": 84,
       "price": 1400,
@@ -2709,6 +2748,9 @@
     {
       "id": "c14",
       "title": "Mastering Git and Github course",
+      "subtitle": "This course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp.",
+      "level": "all",
+      "lang": "ar",
       "date": "Apr 18, 2020",
       "status": "draft",
       "thumbnail": "./landing-page.jfif",
@@ -2729,7 +2771,7 @@
         "No paid software required",
         "I'll walk you through, step-by-step how to get all the software installed and set up"
       ],
-      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer.",
+      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer. With 150,000+ ratings and a 4.8 average, my Web Development course is one of the HIGHEST RATED courses in the history of Udemy! At 65+ hours, this Web Development course is without a doubt the most comprehensive web development course available online. Even if you have zero programming experience, this course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp. The course has been updated to be 2023 ready and you'll be learning the latest tools and technologies used at large companies such as Apple, Google and Netflix. This course doesn't cut any corners, there are beautiful animated explanation videos and tens of real-world projects which you will get to build.",
 
       "discount": 10,
       "price": 200,
@@ -2738,6 +2780,9 @@
     {
       "id": "c15",
       "title": "ZTM CSS course",
+      "subtitle": "This course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp.",
+      "level": "all",
+      "lang": "ar",
       "date": "Nov 8, 2020",
       "status": "draft",
       "thumbnail": "./landing-page.jfif",
@@ -2758,7 +2803,7 @@
         "No paid software required",
         "I'll walk you through, step-by-step how to get all the software installed and set up"
       ],
-      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer.",
+      "description": "Welcome to the Complete Web Development Bootcamp, the only course you need to learn to code and become a full-stack web developer. With 150,000+ ratings and a 4.8 average, my Web Development course is one of the HIGHEST RATED courses in the history of Udemy! At 65+ hours, this Web Development course is without a doubt the most comprehensive web development course available online. Even if you have zero programming experience, this course will take you from beginner to mastery. Here's why: The course is taught by the lead instructor at the App Brewery, London's leading in-person programming bootcamp. The course has been updated to be 2023 ready and you'll be learning the latest tools and technologies used at large companies such as Apple, Google and Netflix. This course doesn't cut any corners, there are beautiful animated explanation videos and tens of real-world projects which you will get to build.",
 
       "discount": 40,
       "price": 1400,

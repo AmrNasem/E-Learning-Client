@@ -1,9 +1,17 @@
-import { useEffect, useReducer, useRef, useState } from "react";
-import { faAngleDown, faSearch } from "@fortawesome/free-solid-svg-icons";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useReducer,
+  useRef,
+  useState,
+} from "react";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Course from "../../components/Instructor/Course";
 import classes from "./Dashboard.module.css";
 import { useSelector } from "react-redux";
+import Select from "../../components/Instructor/Select";
 
 const sortReducer = (state, action) => {
   if (action.type === "toggleSort") {
@@ -74,6 +82,16 @@ const Dashboard = (props) => {
   const instructor = props.dummyInstructors.find(
     (i) => i.id === authedUser.instructor
   );
+  const [query, setQuery] = useState("");
+  const options = useMemo(
+    () => [
+      { id: "Newest", text: "Newest" },
+      { id: "Oldest", text: "Oldest" },
+      { id: "A-Z", text: "A-Z" },
+      { id: "Z-A", text: "Z-A" },
+    ],
+    []
+  );
 
   const [sort, dispatchSort] = useReducer(sortReducer, {
     type: "",
@@ -93,13 +111,8 @@ const Dashboard = (props) => {
         new RegExp(searchRef.current.value, "ig").test(course.title)
       )
     );
+    setQuery(searchRef.current.value);
   };
-
-  useEffect(() => {
-    window.addEventListener("click", () => {
-      dispatchSort({ type: "closeSort" });
-    });
-  }, []);
 
   useEffect(() => {
     submitSearchRef.current.click();
@@ -118,6 +131,14 @@ const Dashboard = (props) => {
           <form className={`d-flex ${classes.form}`}>
             <input
               ref={searchRef}
+              onChange={(e) => {
+                setCourses(
+                  sort.courses.filter((course) =>
+                    new RegExp(searchRef.current.value, "ig").test(course.title)
+                  )
+                );
+                setQuery(e.target.value);
+              }}
               className="p-2 border-0 form-control shadow-none rounded-0"
               type="text"
               placeholder="Search your courses"
@@ -130,54 +151,14 @@ const Dashboard = (props) => {
               <FontAwesomeIcon icon={faSearch} />
             </button>
           </form>
-          <div className="position-relative">
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                dispatchSort({ type: "toggleSort" });
-              }}
-              className={`d-flex align-items-center gap-2 h-100 btn rounded-0 ${classes.button}`}
-            >
-              <h5 className="mb-0  text-nowrap">{sort.by}</h5>
-              <FontAwesomeIcon icon={faAngleDown} />
-            </button>
-            {sort.open && (
-              <div className={`position-absolute p-2 bg-white ${classes.sort}`}>
-                <button
-                  onClick={() =>
-                    dispatchSort({ type: "changeSort", by: "Newest" })
-                  }
-                  className="d-block w-100 text-start border-0 p-2 btn"
-                >
-                  Newest
-                </button>
-                <button
-                  onClick={() =>
-                    dispatchSort({ type: "changeSort", by: "Oldest" })
-                  }
-                  className="d-block w-100 text-start border-0 p-2 btn"
-                >
-                  Oldest
-                </button>
-                <button
-                  onClick={() =>
-                    dispatchSort({ type: "changeSort", by: "A-Z" })
-                  }
-                  className="d-block w-100 text-start border-0 p-2 btn"
-                >
-                  A-Z
-                </button>
-                <button
-                  onClick={() =>
-                    dispatchSort({ type: "changeSort", by: "Z-A" })
-                  }
-                  className="d-block w-100 text-start border-0 p-2 btn"
-                >
-                  Z-A
-                </button>
-              </div>
+          <Select
+            defaultValue={options.find((o) => o.id === "Newest")}
+            options={options}
+            onChange={useCallback(
+              (option) => dispatchSort({ type: "changeSort", by: option.id }),
+              []
             )}
-          </div>
+          />
         </div>
         <button
           className={`btn d-none d-md-block rounded-0 py-2 ${classes.button}`}
@@ -188,7 +169,7 @@ const Dashboard = (props) => {
       <div>
         {!courses.length && <h4 className="text-center">No courses to show</h4>}
         {courses.map((course, index) => (
-          <Course key={index} {...course} />
+          <Course key={index} query={query} {...course} />
         ))}
       </div>
     </main>

@@ -70,10 +70,11 @@ const Goals = (props) => {
             <Input
               key={index}
               id={goal.id}
-              goal={goal.text}
+              text={goal.text}
               setValues={setGoals}
               disabled={goals.length <= 4}
-              restricted
+              max={160}
+              removable
             >
               {placeholders[index % placeholders.length]}
             </Input>
@@ -106,8 +107,9 @@ const Goals = (props) => {
             <Input
               key={item.id}
               id={item.id}
-              goal={item.text}
+              text={item.text}
               setValues={setRequirements}
+              removable
             >
               Example: No programming experience needed. You will learn
               everything you need to know
@@ -139,8 +141,9 @@ const Goals = (props) => {
             <Input
               key={item.id}
               id={item.id}
-              goal={item.text}
+              text={item.text}
               setValues={setTargets}
+              removable
             >
               Example: No programming experience needed. You will learn
               everything you need to know
