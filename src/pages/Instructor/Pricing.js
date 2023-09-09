@@ -6,8 +6,6 @@ const Pricing = (props) => {
   const { course } = props;
   const [price, setPrice] = useState(0);
 
-  console.log(price);
-
   useEffect(() => {
     if (course.price) {
       setPrice(course.price);

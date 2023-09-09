@@ -12,6 +12,7 @@ import Course from "../../components/Instructor/Course";
 import classes from "./Dashboard.module.css";
 import { useSelector } from "react-redux";
 import Select from "../../components/Instructor/Select";
+import { useNavigate } from "react-router-dom";
 
 const sortReducer = (state, action) => {
   if (action.type === "toggleSort") {
@@ -78,6 +79,7 @@ const sortReducer = (state, action) => {
 const Dashboard = (props) => {
   const searchRef = useRef();
   const submitSearchRef = useRef();
+  const navigate = useNavigate();
   const authedUser = useSelector((state) => state.auth.user);
   const instructor = props.dummyInstructors.find(
     (i) => i.id === authedUser.instructor
@@ -122,7 +124,10 @@ const Dashboard = (props) => {
     <main className={`my-5 ${classes.dashboard}`}>
       <div className="d-flex justify-content-between">
         <h1>Courses</h1>
-        <button className={`btn d-md-none rounded-0 ${classes.button}`}>
+        <button
+          onClick={() => navigate("/course/create")}
+          className={`btn d-md-none rounded-0 ${classes.button}`}
+        >
           New Course
         </button>
       </div>
@@ -161,6 +166,7 @@ const Dashboard = (props) => {
           />
         </div>
         <button
+          onClick={() => navigate("/course/create")}
           className={`btn d-none d-md-block rounded-0 py-2 ${classes.button}`}
         >
           New Course
