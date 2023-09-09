@@ -3,7 +3,7 @@ import Input from "../../components/Instructor/Input";
 import PageBox from "../../components/UI/PageBox";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import classes from "./Goals.module.css";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const placeholders = [
   " Example: Define the roles and responsibilities of a project manager",
@@ -51,6 +51,26 @@ const Goals = (props) => {
     }
   }, [course]);
 
+  const changeInputHandler = useCallback((setValues, value) => {
+    setValues((prevState) =>
+      prevState.map((item) => {
+        if (item.id === value.id) item = value;
+        return item;
+      })
+    );
+  }, []);
+
+  const DeleteInputHandler = useCallback((setValues, id) => {
+    setValues((prevState) => prevState.filter((item) => item.id !== id));
+  }, []);
+
+  const addInputHandler = (state, setState) =>
+    state.every((item) => item.text !== "") &&
+    setState((prevState) => [
+      ...prevState,
+      { text: "", id: Math.random().toString() },
+    ]);
+
   return (
     <PageBox title="Intended learners">
       <p>
@@ -70,8 +90,9 @@ const Goals = (props) => {
             <Input
               key={index}
               id={goal.id}
-              text={goal.text}
-              setValues={setGoals}
+              content={goal.text}
+              onChange={(value) => changeInputHandler(setGoals, value)}
+              onDelete={(id) => DeleteInputHandler(setGoals, id)}
               disabled={goals.length <= 4}
               max={160}
               removable
@@ -81,13 +102,7 @@ const Goals = (props) => {
           ))}
         </div>
         <button
-          onClick={() =>
-            goals.every((goal) => goal.text !== "") &&
-            setGoals((prevState) => [
-              ...prevState,
-              { text: "", id: Math.random().toString() },
-            ])
-          }
+          onClick={() => addInputHandler(goals, setGoals)}
           className={`btn rounded-0 text-white border-0 ${classes["new-input"]}`}
         >
           <FontAwesomeIcon icon={faPlus} /> Add more to your response
@@ -107,8 +122,9 @@ const Goals = (props) => {
             <Input
               key={item.id}
               id={item.id}
-              text={item.text}
-              setValues={setRequirements}
+              content={item.text}
+              onChange={(value) => changeInputHandler(setRequirements, value)}
+              onDelete={(id) => DeleteInputHandler(setRequirements, id)}
               removable
             >
               Example: No programming experience needed. You will learn
@@ -117,13 +133,7 @@ const Goals = (props) => {
           ))}
         </div>
         <button
-          onClick={() =>
-            requirements.every((goal) => goal.text !== "") &&
-            setRequirements((prevState) => [
-              ...prevState,
-              { text: "", id: Math.random().toString() },
-            ])
-          }
+          onClick={() => addInputHandler(requirements, setRequirements)}
           className={`btn rounded-0 text-white border-0 ${classes["new-input"]}`}
         >
           <FontAwesomeIcon icon={faPlus} /> Add more to your response
@@ -141,8 +151,9 @@ const Goals = (props) => {
             <Input
               key={item.id}
               id={item.id}
-              text={item.text}
-              setValues={setTargets}
+              content={item.text}
+              onChange={(value) => changeInputHandler(setTargets, value)}
+              onDelete={(id) => DeleteInputHandler(setTargets, id)}
               removable
             >
               Example: No programming experience needed. You will learn
@@ -151,13 +162,7 @@ const Goals = (props) => {
           ))}
         </div>
         <button
-          onClick={() =>
-            targets.every((goal) => goal.text !== "") &&
-            setTargets((prevState) => [
-              ...prevState,
-              { text: "", id: Math.random().toString() },
-            ])
-          }
+          onClick={() => addInputHandler(targets, setTargets)}
           className={`btn rounded-0 text-white border-0 ${classes["new-input"]}`}
         >
           <FontAwesomeIcon icon={faPlus} /> Add more to your response

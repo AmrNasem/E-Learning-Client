@@ -7,6 +7,7 @@ import Curriculum from "./Curriculum";
 import { useSelector } from "react-redux";
 import jsonFile from "../../assets/dummy.json";
 import Basics from "./Basics";
+import Pricing from "./Pricing";
 
 const ManageCourse = (props) => {
   const { courseId } = useParams();
@@ -70,7 +71,7 @@ const ManageCourse = (props) => {
         <Route path="goals" element={<Goals course={course} />} />
         <Route path="curriculum" element={<Curriculum course={course} />} />
         <Route path="basics" element={<Basics course={course} />} />
-        <Route path="pricing" element={<h3>Pricing</h3>} />
+        <Route path="pricing" element={<Pricing course={course} />} />
         <Route path="*" element={<h3>No such a page</h3>} />
       </Routes>
     </main>
