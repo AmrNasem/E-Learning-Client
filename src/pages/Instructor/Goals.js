@@ -3,7 +3,10 @@ import Input from "../../components/Instructor/Input";
 import PageBox from "../../components/UI/PageBox";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import classes from "./Goals.module.css";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback } from "react";
+import LoadingSpinner from "../../components/UI/LoadingSpinner";
+import { useDispatch, useSelector } from "react-redux";
+import { courseActions } from "../../store/course-slice";
 
 const placeholders = [
   " Example: Define the roles and responsibilities of a project manager",
@@ -12,64 +15,23 @@ const placeholders = [
   "Example: Complete a case study to manage a project from conception to completion",
 ];
 
-const Goals = (props) => {
-  const { course } = props;
-  const [goals, setGoals] = useState([
-    { text: "", id: Math.random().toString() },
-    { text: "", id: Math.random().toString() },
-    { text: "", id: Math.random().toString() },
-    { text: "", id: Math.random().toString() },
-  ]);
-  const [requirements, setRequirements] = useState([
-    { text: "", id: Math.random().toString() },
-  ]);
-  const [targets, setTargets] = useState([
-    { text: "", id: Math.random().toString() },
-  ]);
+const Goals = () => {
+  const { goals, requirements, beneficiaries } = useSelector(
+    (state) => state.course
+  );
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (course.gain && course.gain.length) {
-      setGoals(
-        course.gain.map((item) => {
-          return { text: item, id: Math.random().toString() };
-        })
-      );
-    }
-    if (course.requirements && course.requirements.length) {
-      setRequirements(
-        course.requirements.map((item) => {
-          return { text: item, id: Math.random().toString() };
-        })
-      );
-    }
-    if (course.beneficiaries && course.beneficiaries.length) {
-      setTargets(
-        course.beneficiaries.map((item) => {
-          return { text: item, id: Math.random().toString() };
-        })
-      );
-    }
-  }, [course]);
+  const changeInputHandler = useCallback(
+    (type, value) => dispatch(courseActions.editInfo({ type, value })),
+    [dispatch]
+  );
 
-  const changeInputHandler = useCallback((setValues, value) => {
-    setValues((prevState) =>
-      prevState.map((item) => {
-        if (item.id === value.id) item = value;
-        return item;
-      })
-    );
-  }, []);
+  const DeleteInputHandler = useCallback(
+    (type, id) => dispatch(courseActions.deleteInfo({ type, id })),
+    [dispatch]
+  );
 
-  const DeleteInputHandler = useCallback((setValues, id) => {
-    setValues((prevState) => prevState.filter((item) => item.id !== id));
-  }, []);
-
-  const addInputHandler = (state, setState) =>
-    state.every((item) => item.text !== "") &&
-    setState((prevState) => [
-      ...prevState,
-      { text: "", id: Math.random().toString() },
-    ]);
+  const addInputHandler = (type) => dispatch(courseActions.addInfo(type));
 
   return (
     <PageBox title="Intended learners">
@@ -86,23 +48,27 @@ const Goals = (props) => {
           learners can expect to achieve after completing your course.
         </p>
         <div>
-          {goals.map((goal, index) => (
-            <Input
-              key={index}
-              id={goal.id}
-              content={goal.text}
-              onChange={(value) => changeInputHandler(setGoals, value)}
-              onDelete={(id) => DeleteInputHandler(setGoals, id)}
-              disabled={goals.length <= 4}
-              max={160}
-              removable
-            >
-              {placeholders[index % placeholders.length]}
-            </Input>
-          ))}
+          {goals ? (
+            goals.map((goal, index) => (
+              <Input
+                key={index}
+                id={goal.id}
+                content={goal.text}
+                onChange={(value) => changeInputHandler("goals", value)}
+                onDelete={(id) => DeleteInputHandler("goals", id)}
+                disabled={goals.length <= 4}
+                max={160}
+                removable
+              >
+                {placeholders[index % placeholders.length]}
+              </Input>
+            ))
+          ) : (
+            <LoadingSpinner side={60} />
+          )}
         </div>
         <button
-          onClick={() => addInputHandler(goals, setGoals)}
+          onClick={() => addInputHandler("goals")}
           className={`btn rounded-0 text-white border-0 ${classes["new-input"]}`}
         >
           <FontAwesomeIcon icon={faPlus} /> Add more to your response
@@ -118,22 +84,26 @@ const Goals = (props) => {
           use this space as an opportunity to lower the barrier for beginners.
         </p>
         <div>
-          {requirements.map((item) => (
-            <Input
-              key={item.id}
-              id={item.id}
-              content={item.text}
-              onChange={(value) => changeInputHandler(setRequirements, value)}
-              onDelete={(id) => DeleteInputHandler(setRequirements, id)}
-              removable
-            >
-              Example: No programming experience needed. You will learn
-              everything you need to know
-            </Input>
-          ))}
+          {requirements ? (
+            requirements.map((item) => (
+              <Input
+                key={item.id}
+                id={item.id}
+                content={item.text}
+                onChange={(value) => changeInputHandler("requirements", value)}
+                onDelete={(id) => DeleteInputHandler("requirements", id)}
+                removable
+              >
+                Example: No programming experience needed. You will learn
+                everything you need to know
+              </Input>
+            ))
+          ) : (
+            <LoadingSpinner side={60} />
+          )}
         </div>
         <button
-          onClick={() => addInputHandler(requirements, setRequirements)}
+          onClick={() => addInputHandler("requirements")}
           className={`btn rounded-0 text-white border-0 ${classes["new-input"]}`}
         >
           <FontAwesomeIcon icon={faPlus} /> Add more to your response
@@ -147,22 +117,26 @@ const Goals = (props) => {
           right learners to your course.
         </p>
         <div>
-          {targets.map((item) => (
-            <Input
-              key={item.id}
-              id={item.id}
-              content={item.text}
-              onChange={(value) => changeInputHandler(setTargets, value)}
-              onDelete={(id) => DeleteInputHandler(setTargets, id)}
-              removable
-            >
-              Example: No programming experience needed. You will learn
-              everything you need to know
-            </Input>
-          ))}
+          {beneficiaries ? (
+            beneficiaries.map((item) => (
+              <Input
+                key={item.id}
+                id={item.id}
+                content={item.text}
+                onChange={(value) => changeInputHandler("targets", value)}
+                onDelete={(id) => DeleteInputHandler("beneficiaries", id)}
+                removable
+              >
+                Example: No programming experience needed. You will learn
+                everything you need to know
+              </Input>
+            ))
+          ) : (
+            <LoadingSpinner side={60} />
+          )}
         </div>
         <button
-          onClick={() => addInputHandler(targets, setTargets)}
+          onClick={() => addInputHandler("beneficiaries")}
           className={`btn rounded-0 text-white border-0 ${classes["new-input"]}`}
         >
           <FontAwesomeIcon icon={faPlus} /> Add more to your response
