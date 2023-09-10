@@ -5,8 +5,10 @@ import classes from "./Curriculum.module.css";
 import Form from "../../components/Instructor/Form";
 import React, { useEffect, useState } from "react";
 import Section from "../../components/Instructor/Section";
+import LoadingSpinner from "../../components/UI/LoadingSpinner";
 
 const Curriculum = (props) => {
+  const { course } = props;
   const [sections, setSections] = useState([
     {
       title: "Introduction",
@@ -20,9 +22,9 @@ const Curriculum = (props) => {
   };
 
   useEffect(() => {
-    if (props.course.sections && props.course.sections.length)
-      setSections(props.course.sections);
-  }, [props.course]);
+    if (course && course.sections && course.sections.length)
+      setSections(course.sections);
+  }, [course]);
 
   return (
     <PageBox title="Curriculum" className="overflow-hidden">
@@ -33,14 +35,18 @@ const Curriculum = (props) => {
         and lectures clearly. If you're intending to offer your course for free,
         the total length of video content must be less than 2 hours.
       </p>
-      {sections.map((sec, index) => (
-        <Section
-          key={sec.id}
-          setSections={setSections}
-          order={index}
-          section={sec}
-        />
-      ))}
+      {course ? (
+        sections.map((sec, index) => (
+          <Section
+            key={sec.id}
+            setSections={setSections}
+            order={index}
+            section={sec}
+          />
+        ))
+      ) : (
+        <LoadingSpinner side={60} />
+      )}
       {isAddingSection ? (
         <Form
           type="Section"

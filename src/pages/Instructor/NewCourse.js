@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Input from "../../components/Instructor/Input";
 import Select from "../../components/Instructor/Select";
 import InstructorHeader from "../../components/Header/InstructorHeader";
 import classes from "./NewCourse.module.css";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { courseActions } from "../../store/course-slice";
+import jsonFile from "../../assets/dummy.json";
 
 const categoryOptions = [
   { id: "uiux", text: "UI/UX Design" },
@@ -23,7 +26,32 @@ const NewCourse = () => {
     text: "Choose Category",
   });
   const [isValid, setIsValid] = useState(false);
+  const authedUser = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const course = {
+    id: Math.random().toString(),
+    title: title,
+    subtitle: "",
+    level: null,
+    lang: null,
+    date: new Date().getTime(),
+    status: "draft",
+    thumbnail: null,
+    category: category.text,
+    categoryId: category.id,
+    instructor: jsonFile.instructors.find((i) => i.id === authedUser.instructor)
+      .id,
+    gain: null,
+    sections: null,
+    beneficiaries: null,
+    requirements: null,
+    description: null,
+
+    discount: 0,
+    price: null,
+    reviews: [],
+  };
 
   useEffect(() => {
     if (title.trim() !== "" && category.id !== "") {
@@ -35,6 +63,8 @@ const NewCourse = () => {
 
   const createCourseHandler = () => {
     // POST request here
+    dispatch(courseActions.setCourse(course));
+    navigate(`/instructor/course/${course.id}`);
   };
 
   return (
@@ -70,7 +100,7 @@ const NewCourse = () => {
               reverse
               defaultValue={category}
               options={categoryOptions}
-              onChange={(value) => setCategory(value)}
+              onChange={useCallback((value) => setCategory(value), [])}
             />
           </div>
         </div>

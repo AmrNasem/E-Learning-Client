@@ -4,19 +4,31 @@ import { NavLink, Navigate, Route, Routes, useParams } from "react-router-dom";
 import classes from "./ManageCourse.module.css";
 import Goals from "./Goals";
 import Curriculum from "./Curriculum";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import jsonFile from "../../assets/dummy.json";
 import Basics from "./Basics";
 import Pricing from "./Pricing";
+import { useEffect } from "react";
+import { courseActions } from "../../store/course-slice";
 
 const ManageCourse = (props) => {
   const { courseId } = useParams();
   const authedUser = useSelector((state) => state.auth.user);
+  const course = useSelector((state) => state.course.course);
+  const dispatch = useDispatch();
   const instructor = jsonFile.instructors.find(
     (i) => i.id === authedUser.instructor
   );
 
-  const course = jsonFile.courses.find((c) => c.id === courseId);
+  useEffect(() => {
+    if (!course || course.id !== courseId) {
+      // GET request
+      const data = jsonFile.courses.find((c) => c.id === courseId);
+      dispatch(courseActions.setCourse(data));
+    }
+  }, [course, courseId, dispatch]);
+
+  // The next statement is temporary till we link the backend!
   if (!instructor.courses.find((c) => c === courseId))
     return (
       <main className={`my-4 py-2 ${classes["manage-course"]}`}>
@@ -68,7 +80,7 @@ const ManageCourse = (props) => {
       </nav>
       <Routes>
         <Route path="" element={<Navigate to="goals" replace />} />
-        <Route path="goals" element={<Goals course={course} />} />
+        <Route path="goals" element={<Goals />} />
         <Route path="curriculum" element={<Curriculum course={course} />} />
         <Route path="basics" element={<Basics course={course} />} />
         <Route path="pricing" element={<Pricing course={course} />} />
