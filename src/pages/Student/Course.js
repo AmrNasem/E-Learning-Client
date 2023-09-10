@@ -58,7 +58,12 @@ const Course = (props) => {
     dispatch(reviewsActions.toggleIsPaginated());
   }, [dispatch]);
 
-  if (!course) return <h1>Page Not Found</h1>;
+  if (!course)
+    return (
+      <main>
+        <h1 className="text-center my-4">Page Not Found</h1>
+      </main>
+    );
 
   return (
     <main className={classes.course}>

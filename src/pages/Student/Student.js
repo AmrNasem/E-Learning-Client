@@ -61,7 +61,14 @@ const Student = (props) => {
             />
           }
         />
-        <Route path="*" element={<h1>Page Not Found</h1>} />
+        <Route
+          path="*"
+          element={
+            <main>
+              <h1 className="text-center my-4">Page Not Found</h1>
+            </main>
+          }
+        />
       </Routes>
       <Footer />
     </>
