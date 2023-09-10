@@ -16,6 +16,8 @@ const MainHeader = (props) => {
   const isCartOpened = useSelector((state) => state.cart.isOpened);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   const authedUser = useSelector((state) => state.auth.user);
+  // const instructor = useSelector((state) => state.auth.instructor);
+
   const headerCtx = useContext(HeaderContext);
 
   const toggleCategoriesHandler = (e) => {
@@ -66,9 +68,13 @@ const MainHeader = (props) => {
       {isCartOpened && <Cart />}
       {authedUser ? (
         <button
-          className={`cursor-pointer border-0 text-white fw-bold rounded-circle d-flex align-items-center justify-content-center ${classes.avatar}`}
+          className={`overflow-hidden border-0 text-white fw-bold rounded-circle d-flex align-items-center justify-content-center ${classes.avatar}`}
         >
-          {authedUser.name.split(" ")[0][0]}
+          {authedUser.avatarUrl ? (
+            <img className="w-100" src={authedUser.avatarUrl} alt="" />
+          ) : (
+            authedUser.fullname.split(" ")[0][0]
+          )}
         </button>
       ) : (
         <div className={classes.actions}>

@@ -14,40 +14,28 @@ import Reviews from "../../components/SingleCourse/Reviews";
 import Preview from "../../components/SingleCourse/Preview";
 import { reviewsActions } from "../../store/reviews-slice";
 import ReviewsModal from "../../components/UI/ReviewsModal";
+import useHttp from "../../hooks/use-http";
+import LoadingSpinner from "../../components/UI/LoadingSpinner";
 
 const Course = (props) => {
-  const { dummyCourses, dummyInstructors, dummyUsers } = props;
   const [scrollY, setScrollY] = useState(0);
   const { items: reviews, isPaginated } = useSelector((state) => state.reviews);
   const dispatch = useDispatch();
   const { courseId } = useParams();
+  const [course, setCourse] = useState(null);
+  const { isLoading, sendRequest: getCourse } = useHttp();
 
-  const course = useMemo(
-    () =>
-      dummyCourses.find(
-        (course) => course.status === "published" && course.id === courseId
-      ),
-    [courseId, dummyCourses]
-  );
+  useEffect(() => {
+    getCourse({ endPoint: `courses/getCourseById/${courseId}` }, (data) => {
+      console.log(data);
+      setCourse(data.payload.course);
+    });
+  }, [getCourse, courseId]);
 
-  const instructor = useMemo(() => {
-    if (!course) return;
-    return dummyInstructors.find((i) => i.id === course.instructor);
-  }, [dummyInstructors, course]);
-
-  const courseGain = useMemo(() => {
-    if (!course) return;
-    return course.gain;
-  }, [course]);
-  const requirements = useMemo(() => {
-    if (!course) return;
-    return course.requirements;
-  }, [course]);
-
-  const initialReviews = useMemo(() => {
-    if (!course) return;
-    return course.reviews.filter((review) => review.comment).slice(0, 4);
-  }, [course]);
+  // const initialReviews = useMemo(() => {
+  //   if (!course) return;
+  //   return course.reviews.filter((review) => review.comment).slice(0, 4);
+  // }, [course]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
@@ -58,7 +46,14 @@ const Course = (props) => {
     dispatch(reviewsActions.toggleIsPaginated());
   }, [dispatch]);
 
-  if (!course) return <h1>Page Not Found</h1>;
+  if (isLoading || (!isLoading && !course)) return <LoadingSpinner side={80} />;
+
+  if (!course)
+    return (
+      <main>
+        <h1 className="text-center my-4">Page Not Found</h1>
+      </main>
+    );
 
   return (
     <main className={classes.course}>
@@ -70,16 +65,17 @@ const Course = (props) => {
               className={classes["header-overview"]}
               Preview={
                 <Preview
-                  lecId={
-                    course.sections
-                      .find((sec) => sec.lectures.find((lec) => lec.available))
-                      .lectures.find((lec) => lec.available).id
-                  }
+                  thumbnail={course.thumbnailUrl}
+                  // lecId={
+                  //   course.sections
+                  //     .find((sec) => sec.lectures.find((lec) => lec.available))
+                  //     .lectures.find((lec) => lec.available).id
+                  // }
                 />
               }
             />
           )}
-          <CourseHeader course={course} instructor={instructor} />
+          <CourseHeader course={course} />
         </Container>
       </div>
       <Container className="d-flex flex-row-reverse align-items-start gap-5 my-3">
@@ -90,21 +86,24 @@ const Course = (props) => {
           }`}
         />
         <div>
-          <CourseGain courseGain={courseGain} />
+          <CourseGain courseGain={course.outline} />
           <Content course={course} />
-          <Requirements requirements={requirements} />
-          <Description description={course.description} />
-          <Instructor
-            instructor={instructor}
-            userId={dummyUsers.find((u) => u.instructor === instructor.id).id}
+          <Requirements requirements={course.prerequisites} />
+          <Description
+            description={
+              course.desc || "What you know about rolling down in the deep"
+            }
           />
-          <Reviews course={course} reviews={initialReviews} />
+          {course.teachers.map((teacher, index) => (
+            <Instructor key={index} instructor={teacher} />
+          ))}
+          {/* <Reviews course={course} reviews={course.reviews} /> */}
         </div>
-        {isPaginated && (
+        {/* {isPaginated && (
           <ReviewsModal onClick={closeModalHandler}>
             <Reviews course={course} modal reviews={reviews} wrap />
           </ReviewsModal>
-        )}
+        )} */}
       </Container>
     </main>
   );

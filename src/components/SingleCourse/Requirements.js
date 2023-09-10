@@ -8,9 +8,8 @@ const Requirements = (props) => {
     <div className={classes.requirements}>
       <h2>Requirements</h2>
       <ul>
-        {requirements.map((req, index) => (
-          <li key={index}>{req}</li>
-        ))}
+        {requirements &&
+          requirements.map((req, index) => <li key={index}>{req}</li>)}
       </ul>
     </div>
   );

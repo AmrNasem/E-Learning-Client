@@ -50,9 +50,7 @@ const Lecture = (props) => {
   const { courseId } = useParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const { sendRequest: uploadVideo, isLoading } = useHttp((retrievedData) =>
-    console.log(retrievedData)
-  );
+  const { sendRequest: uploadVideo, isLoading } = useHttp();
   const [upload, dispatchUpload] = useReducer(uploadReducer, {
     type: "",
     isOpen: false,
@@ -81,11 +79,14 @@ const Lecture = (props) => {
     formData.append("sectionId", secId);
     formData.append("title", lecture.title);
 
-    uploadVideo({
-      endPoint: `videos/uploadVideo/${courseId}`,
-      method: "POST",
-      body: formData,
-    });
+    uploadVideo(
+      {
+        endPoint: `videos/uploadVideo/${courseId}`,
+        method: "POST",
+        body: formData,
+      },
+      (retrievedData) => console.log(retrievedData)
+    );
   };
 
   const selectVideoHandler = (e) => {

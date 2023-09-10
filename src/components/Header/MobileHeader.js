@@ -22,6 +22,7 @@ const MobileHeader = (props) => {
   const isCartOpened = useSelector((state) => state.cart.isOpened);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   const authedUser = useSelector((state) => state.auth.user);
+  // const instructor = useSelector((state) => state.auth.instructor);
   const headerCtx = useContext(HeaderContext);
   const [openedSearch, setOpenedSearch] = useState(false);
 
@@ -58,15 +59,19 @@ const MobileHeader = (props) => {
       <aside className={headerCtx.visibleCategories ? styles.show : ""}>
         {authedUser ? (
           <div
-            className={`py-3 px-2 d-flex gap-2 align-items-center ${styles["user-info"]}`}
+            className={`py-3 px-2 w-100 d-flex gap-2 align-items-center ${styles["user-info"]}`}
           >
-            <span
-              className={`text-white fw-bold rounded-circle d-flex align-items-center justify-content-center ${styles.avatar}`}
+            <button
+              className={`text-white border-0 fw-bold overflow-hidden rounded-circle d-flex align-items-center justify-content-center ${styles.avatar}`}
             >
-              {authedUser.name.split(" ")[0][0]}
-            </span>
+              {authedUser.avatarUrl ? (
+                <img className="w-100" src={authedUser.avatarUrl} alt="" />
+              ) : (
+                authedUser.fullname.split(" ")[0][0]
+              )}
+            </button>
             <div className="flex-grow-1">
-              <h5 className="mb-0">Hi, {authedUser.name.split(" ")[0]}</h5>
+              <h5 className="mb-0">Hi, {authedUser.fullname.split(" ")[0]}</h5>
               <p className="mb-0">Welcome back!</p>
             </div>
             <FontAwesomeIcon

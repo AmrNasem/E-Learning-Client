@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import React from "react";
 
 const Lecture = (props) => {
-  const { type, available, id, title, duration } = props.lecture;
+  const { type, available, id, title, length } = props.lecture;
   const { courseId, lectureId } = useParams();
 
   let icon = <VideoIcon />;
@@ -23,7 +23,7 @@ const Lecture = (props) => {
       >
         {icon}
         <p className="m-0 flex-grow-1">{title}</p>
-        <span>{duration}</span>
+        <span>{length}</span>
       </Link>
     );
   }
@@ -32,7 +32,7 @@ const Lecture = (props) => {
     <div className="d-flex align-items-center gap-1 p-1 rounded-1 mt-2">
       {icon}
       <p className="m-0 flex-grow-1">{title}</p>
-      <span>{duration}</span>
+      <span>{length}</span>
     </div>
   );
 };

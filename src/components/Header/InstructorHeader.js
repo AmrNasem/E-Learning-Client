@@ -21,7 +21,7 @@ const InstructorHeader = (props) => {
         <button
           className={`cursor-pointer border-0 text-white fw-bold rounded-circle d-flex align-items-center justify-content-center ${classes.avatar}`}
         >
-          {authedUser.name.split(" ")[0][0]}
+          {authedUser.fullname.split(" ")[0][0]}
         </button>
       </div>
     </header>

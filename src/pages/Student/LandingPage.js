@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import CourseList from "../../components/courses/CourseList";
 import classes from "./LandingPage.module.css";
-import { useEffect, useReducer, useState } from "react";
+import { memo, useEffect, useReducer, useState } from "react";
 import { useSelector } from "react-redux";
+import LoadingSpinner from "../../components/UI/LoadingSpinner";
 
 const images = [
   {
@@ -62,7 +63,7 @@ const quoteReducer = (state, action) => {
   return { text: "", index: 0 };
 };
 
-const LandingPage = (props) => {
+const LandingPage = ({ data, isLoading, error }) => {
   const [landingImage, setLandingImage] = useState(images[0]);
   const [quote, dispatchQuote] = useReducer(quoteReducer, {
     text: "",
@@ -124,20 +125,30 @@ const LandingPage = (props) => {
           {!authedUser && <Link to="/signup">Get started!</Link>}
         </div>
       </div>
-      <div className={classes["landing-courses"]}>
-        <CourseList
-          class="Best Seller"
-          dummyInstructors={props.dummyInstructors}
-          dummyCourses={props.dummyCourses}
-        />
-        <CourseList
-          class="Recommends"
-          dummyInstructors={props.dummyInstructors}
-          dummyCourses={props.dummyCourses}
-        />
-      </div>
+      {error ? (
+        <h3 className="text-center my-3">{error}</h3>
+      ) : (
+        <div className={classes["landing-courses"]}>
+          {isLoading || (!isLoading && !data) ? (
+            <LoadingSpinner className="my-5" side={60} />
+          ) : (
+            <CourseList
+              class="Best Seller"
+              courses={data.payload.bestsellers}
+            />
+          )}
+          {isLoading || (!isLoading && !data) ? (
+            <LoadingSpinner className="my-5" side={60} />
+          ) : (
+            <CourseList
+              class="Recommends"
+              courses={data.payload.recommendations}
+            />
+          )}
+        </div>
+      )}
     </main>
   );
 };
 
-export default LandingPage;
+export default memo(LandingPage);

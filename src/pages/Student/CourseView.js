@@ -49,7 +49,12 @@ const CourseView = (props) => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, []);
 
-  if (!mainLecture) return <h1>Page Not Found</h1>;
+  if (!mainLecture)
+    return (
+      <main>
+        <h1 className="text-center my-4">Page Not Found</h1>
+      </main>
+    );
   let content = <LoadingSpinner />;
 
   if (lecture) {
