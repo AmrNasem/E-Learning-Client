@@ -1,16 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const input = { text: "", id: Math.random().toString() };
+
 const initialState = {
   course: null,
-  goals: [
-    { text: "", id: Math.random().toString() },
-    { text: "", id: Math.random().toString() },
-    { text: "", id: Math.random().toString() },
-    { text: "", id: Math.random().toString() },
-  ],
-  requirements: [{ text: "", id: Math.random().toString() }],
-  beneficiaries: [{ text: "", id: Math.random().toString() }],
-  price: 0,
+  goals: null,
+  requirements: null,
+  beneficiaries: null,
+  price: null,
+  privacy: null,
 };
 
 const courseSlice = createSlice({
@@ -18,28 +16,22 @@ const courseSlice = createSlice({
   initialState,
   reducers: {
     setCourse(state, action) {
+      const fill = (arr, num) => {
+        if (arr && arr.length) {
+          return arr.map((item) => {
+            return { id: Math.random().toString(), text: item };
+          });
+        } else {
+          return new Array(num).fill(input);
+        }
+      };
       const course = action.payload;
       state.course = course;
-      if (course.price) {
-        state.price = course.price;
-      }
-      if (state.course.gain && state.course.gain.length) {
-        state.goals = course.gain.map((item) => {
-          return { id: Math.random().toString(), text: item };
-        });
-      }
-
-      if (state.course.requirements && state.course.requirements.length) {
-        state.requirements = course.requirements.map((item) => {
-          return { id: Math.random().toString(), text: item };
-        });
-      }
-
-      if (state.course.beneficiaries && state.course.beneficiaries.length) {
-        state.beneficiaries = course.beneficiaries.map((item) => {
-          return { id: Math.random().toString(), text: item };
-        });
-      }
+      state.privacy = course.privacy || "public";
+      state.price = course.price || 0;
+      state.goals = fill(course.gain, 4);
+      state.requirements = fill(course.requirements, 1);
+      state.beneficiaries = fill(course.beneficiaries, 1);
     },
     editInfo(state, action) {
       const { type, value } = action.payload;
@@ -108,6 +100,9 @@ const courseSlice = createSlice({
     },
     changePrice(state, action) {
       state.price = action.payload;
+    },
+    changePrivacy(state, action) {
+      state.privacy = action.payload;
     },
   },
 });

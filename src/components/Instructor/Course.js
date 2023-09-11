@@ -24,14 +24,19 @@ const Course = (props) => {
             {props.query && rest[rest.length - 1]}
           </h5>
           <p className="mb-0">
-            {props.status === "draft" && <strong>DRAFT</strong>} Public
+            <strong className="text-uppercase">
+              {props.status === "draft"
+                ? "Draft"
+                : props.status === "published" && "Published"}
+            </strong>{" "}
+            Public
           </p>
         </div>
         <div
           className={`d-md-flex d-none align-items-center gap-3 ${classes.progress}`}
         >
           <h5 className="text-nowrap">
-            {props.status === "draft" ? "Finish your course" : "Published"}
+            {props.status === "draft" ? "Finish your course" : "Complete"}
           </h5>
           <div className="w-100 rounded-pill">
             <span

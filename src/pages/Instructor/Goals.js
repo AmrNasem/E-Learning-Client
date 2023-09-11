@@ -123,7 +123,7 @@ const Goals = () => {
                 key={item.id}
                 id={item.id}
                 content={item.text}
-                onChange={(value) => changeInputHandler("targets", value)}
+                onChange={(value) => changeInputHandler("beneficiaries", value)}
                 onDelete={(id) => DeleteInputHandler("beneficiaries", id)}
                 removable
               >
