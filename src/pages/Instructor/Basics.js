@@ -32,12 +32,12 @@ const Basics = (props) => {
   return (
     <PageBox title="Course landing page">
       <p>
-        Your course landing page is crucial to your success on Udemy. If it's
-        done right, it can also help you gain visibility in search engines like
-        Google. As you complete this section, think about creating a compelling
-        Course Landing Page that demonstrates why someone would want to enroll
-        in your course. Learn more about creating your course landing page and
-        course title standards.
+        Your course landing page is crucial to your success on our platform. If
+        it's done right, it can also help you gain visibility in search engines
+        like Google. As you complete this section, think about creating a
+        compelling Course Landing Page that demonstrates why someone would want
+        to enroll in your course. Learn more about creating your course landing
+        page and course title standards.
       </p>
       {course ? (
         <div>

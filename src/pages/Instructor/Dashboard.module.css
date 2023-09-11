@@ -2,9 +2,9 @@
   margin-left: 4%;
   margin-right: 4%;
 }
-.button {
+.new-course {
   border: 1px solid var(--third-color) !important;
-  color: var(--third-color);
+  background-color: var(--third-color) !important;
 }
 
 .form {
@@ -15,27 +15,6 @@
   background-color: var(--third-color);
   color: white;
 }
-
 .sort {
-  top: calc(100% + 10px);
-  min-width: 200px;
-  box-shadow: 0 0 10px #ffdac6;
-  animation: show-up 0.3s both;
-  z-index: 10;
-}
-@keyframes show-up {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1.05);
-  }
-}
-@media (max-width: 767.9px) {
-  .sort {
-    right: 0;
-  }
+  min-width: 120px;
 }

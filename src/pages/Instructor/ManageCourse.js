@@ -1,6 +1,13 @@
 import { faCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { NavLink, Navigate, Route, Routes, useParams } from "react-router-dom";
+import {
+  NavLink,
+  Navigate,
+  Route,
+  Routes,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import classes from "./ManageCourse.module.css";
 import Goals from "./Goals";
 import Curriculum from "./Curriculum";
@@ -8,14 +15,19 @@ import { useDispatch, useSelector } from "react-redux";
 import jsonFile from "../../assets/dummy.json";
 import Basics from "./Basics";
 import Pricing from "./Pricing";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { courseActions } from "../../store/course-slice";
+import { faAngleLeft, faBars, faGear } from "@fortawesome/free-solid-svg-icons";
+import Settings from "./Settings";
 
 const ManageCourse = (props) => {
   const { courseId } = useParams();
+  const [togglePages, setTogglePages] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const authedUser = useSelector((state) => state.auth.user);
   const course = useSelector((state) => state.course.course);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const instructor = jsonFile.instructors.find(
     (i) => i.id === authedUser.instructor
   );
@@ -27,6 +39,18 @@ const ManageCourse = (props) => {
       dispatch(courseActions.setCourse(data));
     }
   }, [course, courseId, dispatch]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   // The next statement is temporary till we link the backend!
   if (!instructor.courses.find((c) => c === courseId))
@@ -43,50 +67,109 @@ const ManageCourse = (props) => {
   };
 
   return (
-    <main
-      className={`my-4 py-2 d-flex gap-4 flex-column flex-lg-row ${classes["manage-course"]}`}
-    >
-      <nav className="my-4">
-        <div className="mb-4 mt-4">
-          <h6 className="fw-bold ps-4 mt-2">Plan your course</h6>
-          <NavLink className={activeClassHandler} to="goals">
-            <FontAwesomeIcon className="me-2 fs-5" icon={faCircle} />
-            <span>Intended learners</span>
-          </NavLink>
-        </div>
-        <div className="mb-4 mt-4">
-          <h6 className="fw-bold ps-4 mt-2">Create your content</h6>
-          <NavLink className={activeClassHandler} to="curriculum">
-            <FontAwesomeIcon className="me-2 fs-5" icon={faCircle} />
-            <span>Curriculum</span>
-          </NavLink>
-        </div>
-        <div className="mb-4 mt-4">
-          <h6 className="fw-bold ps-4 mt-2">Publish your course</h6>
-          <NavLink className={activeClassHandler} to="basics">
-            <FontAwesomeIcon className="me-2 fs-5" icon={faCircle} />
-            <span>Course landing page</span>
-          </NavLink>
-          <NavLink className={activeClassHandler} to="pricing">
-            <FontAwesomeIcon className="me-2 fs-5" icon={faCircle} />
-            <span>Pricing</span>
-          </NavLink>
-        </div>
-        <button
-          className={`btn text-white rounded-0 my-3 py-3 w-100 fw-bold ${classes.submit}`}
+    <>
+      {course && (
+        <div
+          className={`py-2 px-3 px-md-4 px-lg-5 start-0 top-0 d-flex gap-3 flex-wrap align-items-center justify-content-end ${classes.header} position-sticky`}
         >
-          Submit for Review
-        </button>
-      </nav>
-      <Routes>
-        <Route path="" element={<Navigate to="goals" replace />} />
-        <Route path="goals" element={<Goals />} />
-        <Route path="curriculum" element={<Curriculum course={course} />} />
-        <Route path="basics" element={<Basics course={course} />} />
-        <Route path="pricing" element={<Pricing course={course} />} />
-        <Route path="*" element={<h3>No such a page</h3>} />
-      </Routes>
-    </main>
+          <div className="d-flex gap-3 flex-grow-1 align-items-center">
+            <button
+              onClick={() => navigate("/instructor", { replace: true })}
+              className={`${classes.back} bg-transparent text-white border-0 d-flex gap-2 align-items-center`}
+            >
+              <FontAwesomeIcon icon={faAngleLeft} />{" "}
+              <span className="d-md-block d-none">Back to courses</span>
+            </button>
+            <h6 className="fw-bold text-white mb-0">{course.title}</h6>
+            <span className={`${classes.status} px-1 text-uppercase`}>
+              {course.status}
+            </span>
+          </div>
+          <div className="d-flex gap-3 align-items-center">
+            <button
+              className={`${classes.save} px-4 py-2 fw-bold text-white border-0`}
+            >
+              Save
+            </button>
+
+            <button
+              onClick={() => navigate("settings")}
+              className={`${classes.settings} fs-5 text-white p-2 bg-transparent border-0`}
+            >
+              <FontAwesomeIcon icon={faGear} />
+            </button>
+          </div>
+        </div>
+      )}
+      <main className={`my-4 py-2 px-md-4 px-3 ${classes["manage-course"]}`}>
+        {windowWidth < 992 && (
+          <div
+            className={`${classes["toggle-nav"]} d-flex justify-content-between align-items-center`}
+          >
+            <button
+              onClick={() => setTogglePages((prevState) => !prevState)}
+              className="fs-4 border-0 bg-transparent p-2"
+            >
+              <FontAwesomeIcon icon={faBars} />
+            </button>
+            <button
+              className={`btn text-white rounded-0 my-3 py-2 px-4 fw-bold ${classes.submit}`}
+            >
+              Submit for Review
+            </button>
+          </div>
+        )}
+        <div className="d-flex gap-4 flex-column flex-lg-row">
+          {(togglePages || windowWidth >= 992) && (
+            <nav
+              className={`${classes.nav} my-4 d-flex d-lg-block gap-3 flex-wrap`}
+            >
+              <div className="mb-4 mt-4 text-nowrap flex-grow-1">
+                <h6 className="fw-bold ps-4 mt-2">Plan your course</h6>
+                <NavLink className={activeClassHandler} to="goals">
+                  <FontAwesomeIcon className="me-2 fs-5" icon={faCircle} />
+                  <span>Intended learners</span>
+                </NavLink>
+              </div>
+              <div className="mb-4 mt-4 text-nowrap flex-grow-1">
+                <h6 className="fw-bold ps-4 mt-2">Create your content</h6>
+                <NavLink className={activeClassHandler} to="curriculum">
+                  <FontAwesomeIcon className="me-2 fs-5" icon={faCircle} />
+                  <span>Curriculum</span>
+                </NavLink>
+              </div>
+              <div className="mb-4 mt-4 text-nowrap flex-grow-1">
+                <h6 className="fw-bold ps-4 mt-2">Publish your course</h6>
+                <NavLink className={activeClassHandler} to="basics">
+                  <FontAwesomeIcon className="me-2 fs-5" icon={faCircle} />
+                  <span>Course landing page</span>
+                </NavLink>
+                <NavLink className={activeClassHandler} to="pricing">
+                  <FontAwesomeIcon className="me-2 fs-5" icon={faCircle} />
+                  <span>Pricing</span>
+                </NavLink>
+              </div>
+              {windowWidth >= 992 && (
+                <button
+                  className={`btn text-white rounded-0 my-3 py-3 w-100 fw-bold ${classes.submit}`}
+                >
+                  Submit for Review
+                </button>
+              )}
+            </nav>
+          )}
+          <Routes>
+            <Route path="" element={<Navigate to="goals" replace />} />
+            <Route path="goals" element={<Goals />} />
+            <Route path="curriculum" element={<Curriculum course={course} />} />
+            <Route path="basics" element={<Basics course={course} />} />
+            <Route path="pricing" element={<Pricing course={course} />} />
+            <Route path="settings" element={<Settings course={course} />} />
+            <Route path="*" element={<h3>No such a page</h3>} />
+          </Routes>
+        </div>
+      </main>
+    </>
   );
 };
 

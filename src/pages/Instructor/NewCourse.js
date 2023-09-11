@@ -75,7 +75,7 @@ const NewCourse = () => {
       >
         <div className={`${classes.content} d-flex flex-column`}>
           <div className="my-4">
-            <h1>How about a working title?</h1>
+            <h2>How about a working title?</h2>
             <p>
               It's ok if you can't think of a good title now. You can change it
               later.
@@ -90,7 +90,7 @@ const NewCourse = () => {
             </Input>
           </div>
           <div className="my-4">
-            <h1>What category best fits the knowledge you'll share?</h1>
+            <h2>What category best fits the knowledge you'll share?</h2>
             <p>
               If you're not sure about the right category, you can change it
               later.

@@ -1,11 +1,9 @@
 .input > div {
   border: 1px solid var(--secondary-color);
-  min-width: 10px;
 }
 .input input {
   outline: none;
   text-overflow: ellipsis;
-  min-width: 10px;
 }
 .delete:not(:disabled) {
   color: var(--third-color);
