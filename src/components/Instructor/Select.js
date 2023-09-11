@@ -1,6 +1,6 @@
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { memo, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import classes from "./Select.module.css";
 
 const Select = (props) => {
@@ -8,21 +8,34 @@ const Select = (props) => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(defaultValue);
+  const listRef = useRef();
+
+  const closeSelect = useCallback(() => {
+    if (listRef.current) {
+      listRef.current.classList.add(classes["show-down"]);
+      const timeout = setTimeout(() => {
+        setIsOpen(false);
+      }, 200);
+      return () => clearTimeout(timeout);
+    }
+  }, [listRef]);
 
   useEffect(() => {
     onChange(selected);
   }, [selected, onChange]);
 
   useEffect(() => {
-    window.addEventListener("click", () => setIsOpen(false));
-  }, []);
+    window.addEventListener("click", closeSelect);
+  }, [closeSelect]);
 
   return (
     <div className={`${className} position-relative`}>
       <button
         onClick={(e) => {
           e.stopPropagation();
-          setIsOpen((prevState) => !prevState);
+          if (isOpen) {
+            closeSelect();
+          } else setIsOpen(true);
         }}
         className={`d-flex align-items-center gap-2 w-100 p-3 justify-content-between h-100 btn rounded-0 ${classes.button}`}
       >
@@ -35,6 +48,7 @@ const Select = (props) => {
       </button>
       {isOpen && (
         <div
+          ref={listRef}
           className={`${classes.options} ${
             reverse ? classes["bottom-to-top"] : classes["top-to-bottom"]
           } position-absolute w-100 p-1 bg-white`}

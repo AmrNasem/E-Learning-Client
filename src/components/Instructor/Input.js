@@ -33,7 +33,7 @@ const Input = (props) => {
     >
       <div className="d-flex flex-grow-1 align-items-center gap-2">
         <input
-          className="flex-grow-1 bg-transparent p-3 border-0"
+          className="flex-grow-1 w-100 bg-transparent p-3 border-0"
           maxLength={max}
           type={type || "text"}
           value={content}

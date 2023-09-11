@@ -13,6 +13,7 @@ import classes from "./Dashboard.module.css";
 import { useSelector } from "react-redux";
 import Select from "../../components/Instructor/Select";
 import { useNavigate } from "react-router-dom";
+import InstructorHeader from "../../components/Header/InstructorHeader";
 
 const sortReducer = (state, action) => {
   if (action.type === "toggleSort") {
@@ -103,8 +104,11 @@ const Dashboard = (props) => {
       .filter((c) => instructor.courses.some((item) => item === c.id))
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()),
   });
-
   const [courses, setCourses] = useState(sort.courses);
+  const defaultValue = useMemo(
+    () => options.find((o) => o.id === "Newest"),
+    [options]
+  );
 
   const filterCoursesHandler = (e) => {
     e.preventDefault();
@@ -121,64 +125,72 @@ const Dashboard = (props) => {
   }, [sort.courses]);
 
   return (
-    <main className={`my-5 ${classes.dashboard}`}>
-      <div className="d-flex justify-content-between">
-        <h1>Courses</h1>
-        <button
-          onClick={() => navigate("/course/create")}
-          className={`btn d-md-none rounded-0 ${classes.button}`}
-        >
-          New Course
-        </button>
-      </div>
-      <div className="d-flex justify-content-between my-4">
-        <div className="d-flex gap-4 justify-content-between custom-flex-grow-1">
-          <form className={`d-flex ${classes.form}`}>
-            <input
-              ref={searchRef}
-              onChange={(e) => {
-                setCourses(
-                  sort.courses.filter((course) =>
-                    new RegExp(searchRef.current.value, "ig").test(course.title)
-                  )
-                );
-                setQuery(e.target.value);
-              }}
-              className="p-2 border-0 form-control shadow-none rounded-0"
-              type="text"
-              placeholder="Search your courses"
-            />
-            <button
-              ref={submitSearchRef}
-              onClick={filterCoursesHandler}
-              className="py-2 px-3 border-0"
-            >
-              <FontAwesomeIcon icon={faSearch} />
-            </button>
-          </form>
-          <Select
-            defaultValue={options.find((o) => o.id === "Newest")}
-            options={options}
-            onChange={useCallback(
-              (option) => dispatchSort({ type: "changeSort", by: option.id }),
-              []
-            )}
-          />
+    <>
+      <InstructorHeader />
+      <main className={`my-5 ${classes.dashboard}`}>
+        <div className="d-flex justify-content-between">
+          <h1>Courses</h1>
+          <button
+            onClick={() => navigate("/course/create")}
+            className={`btn d-md-none rounded-0 text-white ${classes["new-course"]}`}
+          >
+            New Course
+          </button>
         </div>
-        <button
-          onClick={() => navigate("/course/create")}
-          className={`btn d-none d-md-block rounded-0 py-2 ${classes.button}`}
-        >
-          New Course
-        </button>
-      </div>
-      <div>
-        {!courses.length && <h4 className="text-center">No courses to show</h4>}
-        {courses.map((course, index) => (
-          <Course key={index} query={query} {...course} />
-        ))}
-      </div>
-    </main>
+        <div className="d-flex justify-content-between my-4">
+          <div className="d-flex gap-3 justify-content-between custom-flex-grow-1">
+            <form className={`d-flex ${classes.form}`}>
+              <input
+                ref={searchRef}
+                onChange={(e) => {
+                  setCourses(
+                    sort.courses.filter((course) =>
+                      new RegExp(searchRef.current.value, "ig").test(
+                        course.title
+                      )
+                    )
+                  );
+                  setQuery(e.target.value);
+                }}
+                className="p-2 border-0 form-control shadow-none rounded-0"
+                type="text"
+                placeholder="Search your courses"
+              />
+              <button
+                ref={submitSearchRef}
+                onClick={filterCoursesHandler}
+                className="py-2 px-3 border-0"
+              >
+                <FontAwesomeIcon icon={faSearch} />
+              </button>
+            </form>
+            <Select
+              className={classes.sort}
+              defaultValue={defaultValue}
+              options={options}
+              onChange={useCallback(
+                (option) => dispatchSort({ type: "changeSort", by: option.id }),
+                []
+              )}
+            />
+          </div>
+          <button
+            onClick={() => navigate("/course/create")}
+            className={`btn d-none d-md-block rounded-0 py-2 text-white ${classes["new-course"]}`}
+          >
+            New Course
+          </button>
+        </div>
+        <div>
+          {!courses.length && (
+            <h4 className="text-center">No courses to show</h4>
+          )}
+          {courses.map((course, index) => (
+            <Course key={index} query={query} {...course} />
+          ))}
+        </div>
+      </main>
+    </>
   );
 };
 

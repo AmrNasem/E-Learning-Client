@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router";
-import InstructorHeader from "../../components/Header/InstructorHeader";
 import Dashboard from "./Dashboard";
 import ManageCourse from "./ManageCourse";
 import Footer from "../../components/Footer";
@@ -8,7 +7,6 @@ const Instructor = (props) => {
   const { dummyInstructors, dummyCourses, dummyUsers } = props;
   return (
     <>
-      <InstructorHeader />
       <Routes>
         <Route
           path=""
