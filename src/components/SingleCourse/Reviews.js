@@ -15,27 +15,27 @@ const reviewsPerPage = 5;
 const Reviews = (props) => {
   const page = useSelector((state) => state.reviews.page);
   const items = useSelector((state) => state.reviews.items);
-  const { reviews, wrap, modal, course } = props;
+  const { reviews, wrap, modal, title, course } = props;
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (!wrap) dispatch(reviewsActions.resetPages());
   }, [dispatch, wrap]);
 
-  useEffect(() => {
-    if (!items.length && !modal && course.reviews) {
-      dispatch(
-        reviewsActions.getReviews(course.reviews.slice(0, reviewsPerPage))
-      );
-    }
-  }, [items, course, dispatch, modal]);
+  // useEffect(() => {
+  //   if (!items.length && !modal && course.reviews) {
+  //     dispatch(
+  //       reviewsActions.getReviews(course.reviews.slice(0, reviewsPerPage))
+  //     );
+  //   }
+  // }, [items, course, dispatch, modal]);
 
   if (!course.reviews) return; // Because this component renders multiple times before collecting 'the reviews'
 
-  const ratingAverage =
-    course.reviews
-      .map((review) => review.rating)
-      .reduce((prev, current) => prev + current) / course.reviews.length;
+  // const ratingAverage =
+  //   course.reviews
+  //     .map((review) => review.rating)
+  //     .reduce((prev, current) => prev + current) / course.reviews.length;
 
   let ratings = course.reviews.length;
   if (ratings >= 1000000000)
@@ -62,12 +62,12 @@ const Reviews = (props) => {
   return (
     <div className={classes.reviews} id="reviews">
       <div className="my-4 d-flex gap-2 align-items-center">
-        {!props.title && (
+        {!title && (
           <>
             <FontAwesomeIcon className="text-warning fs-3" icon={faStar} />
-            <h3 className="flex-grow-1 m-0">
+            {/* <h3 className="flex-grow-1 m-0">
               {ratingAverage.toFixed(1)} course rating &bull; {ratings} ratings
-            </h3>
+            </h3> */}
             {modal && (
               <button
                 className={`btn fs-5 ${classes["close-button"]}`}
@@ -78,7 +78,7 @@ const Reviews = (props) => {
             )}
           </>
         )}
-        {props.title && <h3>Reviews</h3>}
+        {title && <h3>Reviews</h3>}
       </div>
       <Row className="gy-3">
         {reviews.map((review, id) => {

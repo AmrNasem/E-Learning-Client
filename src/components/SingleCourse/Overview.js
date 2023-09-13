@@ -9,7 +9,7 @@ import { cartActions } from "../../store/cart-slice";
 import React, { useEffect, useState } from "react";
 
 const Overview = (props) => {
-  let numOfArticles = 0;
+  // let numOfArticles = 0;
   const [applyCoupon, setApplyCoupon] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const dispatch = useDispatch();
@@ -33,11 +33,11 @@ const Overview = (props) => {
     setIsCopied(true);
   };
 
-  course.sections.forEach((section) =>
-    section.lectures.forEach((lecture) =>
-      lecture.type === "article" ? numOfArticles++ : ""
-    )
-  );
+  // course.sections.forEach((section) =>
+  //   section.lectures.forEach((lecture) =>
+  //     lecture.type === "article" && numOfArticles++
+  //   )
+  // );
 
   const addToCartHandler = () => {
     if (isPurchased) dispatch(cartActions.removeFromCart(course.id));
@@ -49,13 +49,13 @@ const Overview = (props) => {
       {props.Preview}
       <div className={classes.body}>
         <div className={classes.price}>
-          <span className={classes["final-price"]}>
+          {/* <span className={classes["final-price"]}>
             ${course.price - course.price * (course.discount / 100)}
-          </span>
+          </span> */}
           <span className={classes["initial-price"]}>
-            <del>${course.price}</del>
+            {/* <del>${course.price}</del> */}
           </span>
-          <span className={classes.discount}>{course.discount}% off</span>
+          {/* <span className={classes.discount}>{course.discount}% off</span> */}
         </div>
         <button onClick={addToCartHandler} className={classes["add-to-cart"]}>
           {isPurchased ? "Remove from cart" : "Add to cart"}
@@ -67,14 +67,14 @@ const Overview = (props) => {
           <ul>
             <li>
               <VideoIcon />
-              <span className={classes.ListItem}>65 hours on-demand video</span>
+              <span className={classes.ListItem}>
+                {course.totalLength} on-demand video
+              </span>
             </li>
-            {numOfArticles > 0 && (
-              <li>
-                <FileIcon />
-                <span>{numOfArticles} articles</span>
-              </li>
-            )}
+            <li>
+              <FileIcon />
+              <span>10 articles</span>
+            </li>
             <li>
               <InfinityIcon />
               <span className={classes.ListItem}>Full lifetime access</span>

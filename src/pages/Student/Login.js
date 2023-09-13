@@ -13,11 +13,9 @@ const Login = (props) => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const dispatch = useDispatch();
-  const {
-    isLoading,
-    sendRequest: login,
-    error,
-  } = useHttp((data) => {
+  const { isLoading, sendRequest: login, error } = useHttp();
+
+  const applyData = (data) => {
     if (data.error || error) {
       console.log(data);
       // Handle rejection
@@ -33,17 +31,21 @@ const Login = (props) => {
       );
       dispatch(authActions.setUser(data.payload.user));
     }
-  });
+  };
+
   const loginHandler = (e) => {
     e.preventDefault();
-    login({
-      endPoint: "users/login",
-      body: {
-        email: emailRef.current.value,
-        password: passwordRef.current.value,
+    login(
+      {
+        endPoint: "users/login",
+        body: {
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
+        },
+        method: "POST",
       },
-      method: "POST",
-    });
+      applyData
+    );
     // const fetchData = async () => {
     //   const res = await fetch(`${backend}/users/login`, {
     //     method: "POST",

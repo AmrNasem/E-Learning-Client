@@ -11,32 +11,31 @@ const SignUp = (props) => {
   const nameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
-  const {
-    isLoading,
-    sendRequest: signup,
-    error,
-  } = useHttp((data) => {
-    if (data.error || error) {
-      console.log(data);
-      // Handle rejection
-    } else {
-      console.log(data.payload);
-      // Handle staisfaction
-    }
-  });
+  const { isLoading, sendRequest: signup, error } = useHttp();
 
   const signupHanlder = (e) => {
     e.preventDefault();
     // POST request
-    signup({
-      endPoint: "users/createNewUser",
-      body: {
-        email: emailRef.current.value,
-        password: passwordRef.current.value,
-        fullname: nameRef.current.value,
+    signup(
+      {
+        endPoint: "users/createNewUser",
+        body: {
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
+          fullname: nameRef.current.value,
+        },
+        method: "POST",
       },
-      method: "POST",
-    });
+      (data) => {
+        if (data.error || error) {
+          console.log(data);
+          // Handle rejection
+        } else {
+          console.log(data.payload);
+          // Handle staisfaction
+        }
+      }
+    );
   };
 
   return (

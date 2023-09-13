@@ -9,10 +9,23 @@ import CourseView from "./CourseView";
 import User from "./User";
 import { useSelector } from "react-redux";
 import Footer from "../../components/Footer";
+import useHttp from "../../hooks/use-http";
+import { useEffect, useState } from "react";
 
 const Student = (props) => {
   const { dummyInstructors, dummyCourses, dummyUsers } = props;
   const authedUser = useSelector((state) => state.auth.user);
+  const [data, setData] = useState(null);
+  const { isLoading, sendRequest: getHome, error } = useHttp();
+
+  const applyData = (data) => {
+    console.log(data);
+    setData(data);
+  };
+
+  useEffect(() => {
+    getHome({ endPoint: "courses/home" }, applyData);
+  }, [getHome]);
 
   return (
     <>
@@ -26,6 +39,9 @@ const Student = (props) => {
               dummyInstructors={dummyInstructors}
               dummyCourses={dummyCourses}
               dummyUsers={dummyUsers}
+              isLoading={isLoading}
+              data={data}
+              error={error}
             />
           }
         />

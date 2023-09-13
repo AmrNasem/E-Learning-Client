@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const Section = (props) => {
-  const { lectures, title, duration } = props;
+  const { videos: lectures, numOfVideos, title, totalLength } = props;
   const [isListed, setIsListed] = useState(false);
   const { lectureId } = useParams();
 
@@ -22,7 +22,7 @@ const Section = (props) => {
         <ArrowIcon className={isListed ? classes.rotate : ""} />
         <h5 className="m-0">{title}</h5>
         <span className={classes.lecture}>
-          {lectures.length} lectures &bull; {duration}
+          {numOfVideos} lectures &bull; {totalLength}
         </span>
       </div>
       {isListed && (

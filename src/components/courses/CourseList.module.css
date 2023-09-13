@@ -14,6 +14,10 @@
   padding: 20px 0;
 }
 
+.course {
+  max-width: 250px;
+}
+
 .forward {
   top: 30%;
   right: 5px;

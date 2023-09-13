@@ -1,23 +1,27 @@
 import classes from "./CourseItem.module.css";
-import thumbnail from "../../assets/desktop.jfif";
 import { Link } from "react-router-dom";
 import React from "react";
 import { Card } from "react-bootstrap";
-import jsonFile from "../../assets/dummy.json";
 
 const CourseItem = React.forwardRef((props, ref) => {
-  const instructors = jsonFile.instructors;
-  const { className, id, src, title, price, instructor } = props;
+  const { className, id, thumbnailUrl, title, price, teacherNames, teachers } =
+    props;
 
   return (
     <Card ref={ref && ref} className={`${classes.course} ${className}`}>
       <Link to={`/course/${id}`} className="text-decoration-none">
-        <Card.Img variant="top" src={src || thumbnail} alt="Thumbnail" />
+        <Card.Img variant="top" src={thumbnailUrl} alt="Thumbnail" />
         <Card.Body>
           <Card.Title>{title}</Card.Title>
-          <Card.Text>
-            {instructors.find((i) => i.id === instructor).name}
-          </Card.Text>
+
+          {!teacherNames ? (
+            teachers.map((t, index) => (
+              <Card.Text key={index}>{t.fullname}</Card.Text>
+            ))
+          ) : (
+            <Card.Text>{teacherNames}</Card.Text>
+          )}
+
           <span>${price}</span>
         </Card.Body>
       </Link>

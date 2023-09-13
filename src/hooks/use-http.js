@@ -1,29 +1,34 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { backend } from "../App";
 
-const useHttp = (applyData) => {
+const useHttp = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const sendRequest = async ({ endPoint, body, method = "GET" }) => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const res = await fetch(`${backend}/${endPoint}`, {
-        method,
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      });
+  const sendRequest = useCallback(
+    async ({ endPoint, body, method = "GET" }, applyData) => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const res = await fetch(`${backend}/${endPoint}`, {
+          method,
+          headers: method
+            ? {
+                "Content-Type": "application/json",
+              }
+            : {},
+          body: body ? JSON.stringify(body) : null,
+        });
 
-      const data = await res.json();
-      applyData(data);
-    } catch (err) {
-      setError(err.message || "Something went wrong!");
-    }
-    setIsLoading(false);
-  };
+        const data = await res.json();
+        applyData(data);
+      } catch (err) {
+        setError(err.message || "Something went wrong!");
+      }
+      setIsLoading(false);
+    },
+    []
+  );
 
   return {
     sendRequest,

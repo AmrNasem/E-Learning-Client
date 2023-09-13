@@ -14,6 +14,9 @@ import { useSelector } from "react-redux";
 import Select from "../../components/Instructor/Select";
 import { useNavigate } from "react-router-dom";
 import InstructorHeader from "../../components/Header/InstructorHeader";
+// import useHttp from "../../hooks/use-http";
+import LoadingSpinner from "../../components/UI/LoadingSpinner";
+// import { backend } from "../../App";
 
 const sortReducer = (state, action) => {
   if (action.type === "toggleSort") {
@@ -82,6 +85,16 @@ const Dashboard = (props) => {
   const submitSearchRef = useRef();
   const navigate = useNavigate();
   const authedUser = useSelector((state) => state.auth.user);
+  // const [data, setData] = useState(null);
+  // const {
+  //   isLoading,
+  //   sendRequest: getCourses,
+  //   error,
+  // } = useHttp(
+  //   useCallback((data) => {
+  //     setData(data);
+  //   }, [])
+  // );
   const instructor = props.dummyInstructors.find(
     (i) => i.id === authedUser.instructor
   );
@@ -109,20 +122,29 @@ const Dashboard = (props) => {
     () => options.find((o) => o.id === "Newest"),
     [options]
   );
-
-  const filterCoursesHandler = (e) => {
-    e.preventDefault();
-    setCourses(
-      sort.courses.filter((course) =>
-        new RegExp(searchRef.current.value, "ig").test(course.title)
-      )
-    );
-    setQuery(searchRef.current.value);
-  };
+  // useEffect(() => {
+  //   // getCourses({ endpoint: "courses/teachingCourses" });
+  //   const data = fetch(`${backend}/courses/teachingCourses`)
+  //     .then((res) => res.json())
+  //     .then((data) => console.log(data))
+  //     .catch((err) => console.log(err));
+  //   console.log(data);
+  // }, []);
 
   useEffect(() => {
     submitSearchRef.current.click();
   }, [sort.courses]);
+
+  const filterCoursesHandler = (e) => {
+    e.preventDefault();
+    setCourses(
+      sort.courses &&
+        sort.courses.filter((course) =>
+          new RegExp(searchRef.current.value, "ig").test(course.title)
+        )
+    );
+    setQuery(searchRef.current.value);
+  };
 
   return (
     <>
@@ -181,14 +203,18 @@ const Dashboard = (props) => {
             New Course
           </button>
         </div>
-        <div>
-          {!courses.length && (
-            <h4 className="text-center">No courses to show</h4>
-          )}
-          {courses.map((course, index) => (
-            <Course key={index} query={query} {...course} />
-          ))}
-        </div>
+        {courses ? (
+          <div>
+            {!courses.length && (
+              <h4 className="text-center">No courses to show</h4>
+            )}
+            {courses.map((course, index) => (
+              <Course key={index} query={query} {...course} />
+            ))}
+          </div>
+        ) : (
+          <LoadingSpinner side={60} />
+        )}
       </main>
     </>
   );
