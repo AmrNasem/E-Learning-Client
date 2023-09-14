@@ -21,6 +21,8 @@ const QAndA = () => {
     dispatch(qnaActions.getQuestions(questionsPerPage));
   }, [dispatch]);
 
+  if (lecture) console.log(lecture.videoQuestions);
+
   if (isNewQuest || (isNewQuest && isEditing)) {
     return <NewQuestion />;
   }
@@ -28,14 +30,15 @@ const QAndA = () => {
   return (
     <div className={classes.questions}>
       <h5>
-        All questions in this lecture <span>({lecture.questions.length})</span>
+        All questions in this lecture{" "}
+        <span>({lecture.videoQuestions.length})</span>
       </h5>
       <div className="py-4">
         {questions.map((q, index) => (
           <Question key={index} className="px-sm-3" question={q} />
         ))}
       </div>
-      {questions.length < lecture.questions.length && (
+      {questions.length < lecture.videoQuestions.length && (
         <button
           onClick={moreQuestionsHandler}
           className={`btn p-3 w-100 rounded-0 ${classes["see-more"]}`}

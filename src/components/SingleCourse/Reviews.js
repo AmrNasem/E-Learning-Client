@@ -9,14 +9,17 @@ import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { reviewsActions } from "../../store/reviews-slice";
+import LoadingSpinner from "../UI/LoadingSpinner";
+import useHttp from "../../hooks/use-http";
 
-const reviewsPerPage = 5;
+// const reviewsPerPage = 5;
 
 const Reviews = (props) => {
-  const page = useSelector((state) => state.reviews.page);
-  const items = useSelector((state) => state.reviews.items);
-  const { reviews, wrap, modal, title, course } = props;
+  // const page = useSelector((state) => state.reviews.page);
+  const reviews = useSelector((state) => state.reviews.items);
+  const { wrap, modal, title, course } = props;
   const dispatch = useDispatch();
+  const { isLoading, sendRequest: getReviews } = useHttp();
 
   useEffect(() => {
     if (!wrap) dispatch(reviewsActions.resetPages());
@@ -25,14 +28,14 @@ const Reviews = (props) => {
   // useEffect(() => {
   //   if (!items.length && !modal && course.reviews) {
   //     dispatch(
-  //       reviewsActions.getReviews(course.reviews.slice(0, reviewsPerPage))
+  //       reviewsActions.getReviews(course.reviews)
   //     );
   //   }
   // }, [items, course, dispatch, modal]);
 
+  if (!reviews) return <LoadingSpinner side={60} />;
   if (!course.reviews) return; // Because this component renders multiple times before collecting 'the reviews'
-
-  // const ratingAverage =
+  const ratingAverage = 3.9;
   //   course.reviews
   //     .map((review) => review.rating)
   //     .reduce((prev, current) => prev + current) / course.reviews.length;
@@ -48,14 +51,22 @@ const Reviews = (props) => {
   const getMoreHandler = () => {
     if (!wrap) dispatch(reviewsActions.toggleIsPaginated(true));
     else {
-      dispatch(
-        reviewsActions.getReviews(
-          course.reviews.slice(
-            page * reviewsPerPage,
-            (page + 1) * reviewsPerPage
-          )
-        )
+      getReviews(
+        { endPoint: `reviews/getCourseReviews/${course.id}` },
+        (data) => {
+          console.log(data);
+          if (!data.error)
+            dispatch(reviewsActions.getReviews(data.payload.reviews));
+        }
       );
+      // dispatch(
+      //   reviewsActions.getReviews(
+      //     course.reviews.slice(
+      //       page * reviewsPerPage,
+      //       (page + 1) * reviewsPerPage
+      //     )
+      //   )
+      // );
     }
   };
 
@@ -65,9 +76,9 @@ const Reviews = (props) => {
         {!title && (
           <>
             <FontAwesomeIcon className="text-warning fs-3" icon={faStar} />
-            {/* <h3 className="flex-grow-1 m-0">
+            <h3 className="flex-grow-1 m-0">
               {ratingAverage.toFixed(1)} course rating &bull; {ratings} ratings
-            </h3> */}
+            </h3>
             {modal && (
               <button
                 className={`btn fs-5 ${classes["close-button"]}`}
@@ -93,7 +104,9 @@ const Reviews = (props) => {
           );
         })}
       </Row>
-      {course.reviews.length > reviews.length && (
+      {isLoading ? (
+        <LoadingSpinner side={50} />
+      ) : (
         <Button
           className={`bg-transparent rounded-0 p-3 my-4 ${
             classes["show-all-reviews"]

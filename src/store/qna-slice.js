@@ -25,7 +25,7 @@ const qnaSlice = createSlice({
     },
     getQuestions(state, action) {
       state.questions.push(
-        ...state.lecture.questions.slice(
+        ...state.lecture.videoQuestions.slice(
           state.questionPage * action.payload,
           (state.questionPage + 1) * action.payload
         )
@@ -49,7 +49,7 @@ const qnaSlice = createSlice({
         }
       }
 
-      const mainVotedQuestion = state.lecture.questions.find(
+      const mainVotedQuestion = state.lecture.videoQuestions.find(
         (q) => q.id === action.payload
       );
       const votedQuestion = state.questions.find(
@@ -65,7 +65,7 @@ const qnaSlice = createSlice({
     },
     addQuestion(state, action) {
       state.questions.unshift(action.payload);
-      state.lecture.questions.unshift(action.payload);
+      state.lecture.videoQuestions.unshift(action.payload);
       state.isNewQuest = false;
     },
     editQuestion(state, action) {
@@ -77,7 +77,7 @@ const qnaSlice = createSlice({
           question.content = details;
         }
       }
-      edit(state.lecture.questions);
+      edit(state.lecture.videoQuestions);
       edit(state.questions);
       if (state.activeQuestion && state.activeQuestion.id === id) {
         edit([state.activeQuestion]);
@@ -87,17 +87,19 @@ const qnaSlice = createSlice({
     },
     removeQuestion(state, action) {
       state.questions = state.questions.filter((q) => q.id !== action.payload);
-      state.lecture.questions = state.lecture.questions.filter(
+      state.lecture.videoQuestions = state.lecture.videoQuestions.filter(
         (q) => q.id !== action.payload
       );
-      if (state.questions.length < state.lecture.questions.length) {
-        state.questions.push(state.lecture.questions[state.questions.length]);
+      if (state.questions.length < state.lecture.videoQuestions.length) {
+        state.questions.push(
+          state.lecture.videoQuestions[state.questions.length]
+        );
       }
       if (state.activeQuestion && state.activeQuestion.id === action.payload)
         state.activeQuestion = null;
     },
     setActiveQuestion(state, action) {
-      state.activeQuestion = state.lecture.questions.find(
+      state.activeQuestion = state.lecture.videoQuestions.find(
         (q) => q.id === action.payload
       );
       state.replies = [];
@@ -119,7 +121,7 @@ const qnaSlice = createSlice({
         if (question) question.replies.unshift(reply);
       };
 
-      add(state.lecture.questions.find((q) => q.id === id));
+      add(state.lecture.videoQuestions.find((q) => q.id === id));
       add(state.activeQuestion);
       add(state.questions.find((q) => q.id === id));
       state.replies.unshift(reply);
@@ -130,7 +132,7 @@ const qnaSlice = createSlice({
         if (question) question.replies.find((r) => r.id === id).content = text;
       };
 
-      edit(state.lecture.questions.find((q) => q.id === questionId));
+      edit(state.lecture.videoQuestions.find((q) => q.id === questionId));
       edit(state.questions.find((q) => q.id === questionId));
       state.replies.find((r) => r.id === id).content = text;
 
@@ -143,7 +145,7 @@ const qnaSlice = createSlice({
           question.replies = question.replies.filter((r) => r.id !== id);
       };
 
-      remove(state.lecture.questions.find((q) => q.id === questionId));
+      remove(state.lecture.videoQuestions.find((q) => q.id === questionId));
       remove(state.questions.find((q) => q.id === questionId));
       remove(state.activeQuestion);
       state.replies = state.replies.filter((r) => r.id !== id);
@@ -165,7 +167,7 @@ const qnaSlice = createSlice({
           }
         }
       };
-      vote(state.lecture.questions.find((q) => q.id === questionId));
+      vote(state.lecture.videoQuestions.find((q) => q.id === questionId));
       vote(state.questions.find((q) => q.id === questionId));
       vote(state.activeQuestion);
       const reply = state.replies.find((r) => r.id === id);

@@ -47,6 +47,7 @@ const CourseHeader = (props) => {
         //     .find((sec) => sec.lectures.find((lec) => lec.available))
         //     .lectures.find((lec) => lec.available).id
         // }
+        thumbnail={course.thumbnailUrl}
         className={classes.preview}
       />
       <h1>{course.title}</h1>

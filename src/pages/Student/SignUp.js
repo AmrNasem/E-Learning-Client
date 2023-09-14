@@ -24,6 +24,7 @@ const SignUp = (props) => {
           password: passwordRef.current.value,
           fullname: nameRef.current.value,
         },
+        credentials: "include",
         method: "POST",
       },
       (data) => {
