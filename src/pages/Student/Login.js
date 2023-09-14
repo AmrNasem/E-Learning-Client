@@ -13,14 +13,13 @@ const Login = (props) => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const dispatch = useDispatch();
-  const { isLoading, sendRequest: login, error } = useHttp();
+  const { isLoading, sendRequest: login } = useHttp();
 
   const applyData = (data) => {
-    if (data.error || error) {
-      console.log(data);
+    console.log(data);
+    if (data.error) {
       // Handle rejection
     } else {
-      console.log(data.payload);
       // Handle satisfaction
       localStorage.setItem(
         "user",

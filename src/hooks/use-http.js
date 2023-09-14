@@ -6,7 +6,10 @@ const useHttp = () => {
   const [error, setError] = useState(null);
 
   const sendRequest = useCallback(
-    async ({ endPoint, body, method = "GET" }, applyData) => {
+    async (
+      { endPoint, body, method = "GET", credentials = "include" },
+      applyData
+    ) => {
       setIsLoading(true);
       setError(null);
       try {
@@ -17,6 +20,7 @@ const useHttp = () => {
                 "Content-Type": "application/json",
               }
             : {},
+          credentials,
           body: body ? JSON.stringify(body) : null,
         });
 

@@ -4,7 +4,7 @@ import CourseGain from "../../components/SingleCourse/CourseGain";
 import Content from "../../components/SingleCourse/Content/Content";
 import Overview from "../../components/SingleCourse/Overview";
 import Container from "../../components/UI/Container";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Requirements from "../../components/SingleCourse/Requirements";
 import Description from "../../components/SingleCourse/Description";
 import Instructor from "../../components/SingleCourse/Instructor";
@@ -19,7 +19,7 @@ import LoadingSpinner from "../../components/UI/LoadingSpinner";
 
 const Course = (props) => {
   const [scrollY, setScrollY] = useState(0);
-  const { items: reviews, isPaginated } = useSelector((state) => state.reviews);
+  const { isPaginated } = useSelector((state) => state.reviews);
   const dispatch = useDispatch();
   const { courseId } = useParams();
   const [course, setCourse] = useState(null);
@@ -29,13 +29,9 @@ const Course = (props) => {
     getCourse({ endPoint: `courses/getCourseById/${courseId}` }, (data) => {
       console.log(data);
       setCourse(data.payload.course);
+      dispatch(reviewsActions.getReviews(data.payload.course.reviews));
     });
-  }, [getCourse, courseId]);
-
-  // const initialReviews = useMemo(() => {
-  //   if (!course) return;
-  //   return course.reviews.filter((review) => review.comment).slice(0, 4);
-  // }, [course]);
+  }, [getCourse, courseId, dispatch]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
@@ -45,6 +41,8 @@ const Course = (props) => {
   const closeModalHandler = useCallback(() => {
     dispatch(reviewsActions.toggleIsPaginated());
   }, [dispatch]);
+
+  console.log("Course");
 
   if (isLoading || (!isLoading && !course)) return <LoadingSpinner side={80} />;
 
@@ -97,13 +95,13 @@ const Course = (props) => {
           {course.teachers.map((teacher, index) => (
             <Instructor key={index} instructor={teacher} />
           ))}
-          {/* <Reviews course={course} reviews={course.reviews} /> */}
+          <Reviews course={course} />
         </div>
-        {/* {isPaginated && (
+        {isPaginated && (
           <ReviewsModal onClick={closeModalHandler}>
-            <Reviews course={course} modal reviews={reviews} wrap />
+            <Reviews course={course} modal wrap />
           </ReviewsModal>
-        )} */}
+        )}
       </Container>
     </main>
   );

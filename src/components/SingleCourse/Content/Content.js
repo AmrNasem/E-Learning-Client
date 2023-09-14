@@ -16,11 +16,12 @@ const Content = (props) => {
         {course.totalLength} total length
       </p>
       <div>
-        {sections.map((sec, index) => (
-          <Section key={index} {...sec} />
-        ))}
+        {sections.map(
+          (sec, index) =>
+            sec.numOfVideos > 0 && <Section key={index} {...sec} />
+        )}
       </div>
-      {remainingSections && (
+      {remainingSections > 0 && (
         <button onClick={() => setSections(course.sections)}>
           {remainingSections} more{" "}
           {remainingSections === 1 ? "section" : "sections"}
