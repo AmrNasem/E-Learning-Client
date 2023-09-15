@@ -4,7 +4,14 @@ import { memo, useCallback, useEffect, useRef, useState } from "react";
 import classes from "./Select.module.css";
 
 const Select = (props) => {
-  const { defaultValue, options, className, onChange, reverse } = props;
+  const {
+    defaultValue,
+    options,
+    className,
+    buttonClassName,
+    onChange,
+    reverse,
+  } = props;
 
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(defaultValue);
@@ -38,7 +45,7 @@ const Select = (props) => {
             closeSelect();
           } else setIsOpen(true);
         }}
-        className={`d-flex align-items-center gap-2 w-100 justify-content-between h-100 btn rounded-0 ${classes.button}`}
+        className={`d-flex align-items-center gap-2 w-100 ${buttonClassName} justify-content-between h-100 btn rounded-0 ${classes.button}`}
       >
         <h5 className="mb-0  text-nowrap">{selected.text}</h5>
         {reverse ? (

@@ -4,20 +4,21 @@ import Select from "../../components/Instructor/Select";
 import InstructorHeader from "../../components/Header/InstructorHeader";
 import classes from "./NewCourse.module.css";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { courseActions } from "../../store/course-slice";
-import jsonFile from "../../assets/dummy.json";
+import useHttp from "../../hooks/use-http";
+import LoadingSpinner from "../../components/UI/LoadingSpinner";
 
-const categoryOptions = [
-  { id: "uiux", text: "UI/UX Design" },
-  { id: "ai", text: "Artificial Intelligence" },
-  { id: "web", text: "Web Development" },
-  { id: "mobile", text: "Mobile Development" },
-  { id: "security", text: "Cyber Security" },
-  { id: "datascience", text: "Data Science" },
-  { id: "machinelearning", text: "Machine Learning" },
-  { id: "none", text: "I don't know yet" },
-];
+// const categoryOptions = [
+//   { id: "uiux", text: "UI/UX Design" },
+//   { id: "ai", text: "Artificial Intelligence" },
+//   { id: "web", text: "Web Development" },
+//   { id: "mobile", text: "Mobile Development" },
+//   { id: "security", text: "Cyber Security" },
+//   { id: "datascience", text: "Data Science" },
+//   { id: "machinelearning", text: "Machine Learning" },
+//   { id: "none", text: "I don't know yet" },
+// ];
 
 const NewCourse = () => {
   const [title, setTitle] = useState("");
@@ -26,32 +27,24 @@ const NewCourse = () => {
     text: "Choose Category",
   });
   const [isValid, setIsValid] = useState(false);
-  const authedUser = useSelector((state) => state.auth.user);
+  const [categories, setCategories] = useState([]);
+  const { isLoading: isCreating, sendRequest: createCourse, error } = useHttp();
+  const { isLoading: gettingCategories, sendRequest: getCategories } =
+    useHttp();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const course = {
-    id: Math.random().toString(),
-    title: title,
-    subtitle: "",
-    level: null,
-    lang: null,
-    date: new Date().getTime(),
-    status: "draft",
-    thumbnail: null,
-    category: category.text,
-    categoryId: category.id,
-    instructor: jsonFile.instructors.find((i) => i.id === authedUser.instructor)
-      .id,
-    gain: null,
-    sections: null,
-    beneficiaries: null,
-    requirements: null,
-    description: null,
 
-    discount: 0,
-    price: null,
-    reviews: [],
-  };
+  useEffect(() => {
+    getCategories({ endPoint: "categories/getAllCategories" }, (payload) => {
+      console.log(payload);
+      setCategories([
+        ...payload.categories.map((cat) => {
+          return { ...cat, text: cat.categoryName };
+        }),
+        { id: "none", text: "I don't know yet" },
+      ]);
+    });
+  }, [getCategories]);
 
   useEffect(() => {
     if (title.trim() !== "" && category.id !== "") {
@@ -61,67 +54,91 @@ const NewCourse = () => {
     }
   }, [title, category]);
 
+  const changeCategoryHandler = useCallback((value) => setCategory(value), []);
+
   const createCourseHandler = () => {
     // POST request here
-    dispatch(courseActions.setCourse(course));
-    navigate(`/instructor/course/${course.id}`);
+    createCourse(
+      {
+        endPoint: "courses/addCourse",
+        method: "POST",
+        body: { title, categoryId: category.id },
+      },
+      (payload) => {
+        dispatch(courseActions.setCourse(payload.course));
+        navigate(`/instructor/course/${payload.course.id}`);
+      }
+    );
   };
 
   return (
     <>
       <InstructorHeader />
-      <main
-        className={` d-flex justify-content-center align-items-center text-center ${classes["new-course"]}`}
-      >
-        <div className={`${classes.content} d-flex flex-column`}>
-          <div className="my-4">
-            <h2>How about a working title?</h2>
-            <p>
-              It's ok if you can't think of a good title now. You can change it
-              later.
-            </p>
-            <Input
-              className="my-4"
-              max={60}
-              content={title}
-              onChange={(value) => setTitle(value)}
-            >
-              e.g. Learn Photoshop CS6 from Scratch
-            </Input>
-          </div>
-          <div className="my-4">
-            <h2>What category best fits the knowledge you'll share?</h2>
-            <p>
-              If you're not sure about the right category, you can change it
-              later.
-            </p>
-            <Select
-              className="my-4"
-              reverse
-              defaultValue={category}
-              options={categoryOptions}
-              onChange={useCallback((value) => setCategory(value), [])}
-            />
-          </div>
-        </div>
-        <div
-          className={`${classes.actions} d-flex justify-content-between position-fixed bottom-0 start-0 w-100 px-4 py-3`}
+      {error ? (
+        <h3 className="text-center my-5">{error}</h3>
+      ) : (
+        <main
+          className={` d-flex justify-content-center align-items-center text-center ${classes["new-course"]}`}
         >
-          <button
-            onClick={() => navigate("/instructor")}
-            className="px-4 py-3 bg-transparent"
+          <div className={`${classes.content} d-flex flex-column`}>
+            <div className="my-4">
+              <h2>How about a working title?</h2>
+              <p>
+                It's ok if you can't think of a good title now. You can change
+                it later.
+              </p>
+              <Input
+                className="my-4"
+                max={60}
+                content={title}
+                onChange={(value) => setTitle(value)}
+              >
+                e.g. Learn Photoshop CS6 from Scratch
+              </Input>
+            </div>
+            <div className="my-4">
+              <h2>What category best fits the knowledge you'll share?</h2>
+              <p>
+                If you're not sure about the right category, you can change it
+                later.
+              </p>
+              {gettingCategories ? (
+                <LoadingSpinner side={40} />
+              ) : (
+                <Select
+                  className="my-4"
+                  buttonClassName="p-3"
+                  reverse
+                  defaultValue={category}
+                  options={categories}
+                  onChange={changeCategoryHandler}
+                />
+              )}
+            </div>
+          </div>
+          <div
+            className={`${classes.actions} d-flex justify-content-between position-fixed bottom-0 start-0 w-100 px-4 py-3`}
           >
-            Cancel
-          </button>
-          <button
-            onClick={createCourseHandler}
-            disabled={!isValid}
-            className="px-4 py-3 text-white fw-bold"
-          >
-            Create
-          </button>
-        </div>
-      </main>
+            <button
+              onClick={() => navigate("/instructor")}
+              className="px-4 py-3 bg-transparent"
+            >
+              Cancel
+            </button>
+            {isCreating ? (
+              <LoadingSpinner className="text-end" side={40} />
+            ) : (
+              <button
+                onClick={createCourseHandler}
+                disabled={!isValid}
+                className="px-4 py-3 text-white fw-bold"
+              >
+                Create
+              </button>
+            )}
+          </div>
+        </main>
+      )}
     </>
   );
 };
