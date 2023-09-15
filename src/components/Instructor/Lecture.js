@@ -85,7 +85,7 @@ const Lecture = (props) => {
         method: "POST",
         body: formData,
       },
-      (retrievedData) => console.log(retrievedData)
+      (payload) => console.log(payload)
     );
   };
 

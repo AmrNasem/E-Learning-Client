@@ -22,7 +22,6 @@ const MobileHeader = (props) => {
   const isCartOpened = useSelector((state) => state.cart.isOpened);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   const authedUser = useSelector((state) => state.auth.user);
-  // const instructor = useSelector((state) => state.auth.instructor);
   const headerCtx = useContext(HeaderContext);
   const [openedSearch, setOpenedSearch] = useState(false);
 
@@ -100,7 +99,7 @@ const MobileHeader = (props) => {
             onClick={() => navigate("instructor")}
             className={`btn my-3 border-0 py-2 rounded-0 ${styles.instructor}`}
           >
-            {authedUser.instructor
+            {authedUser.role === "instructor"
               ? "Switch to teacher view"
               : "Become a teacher"}
           </button>

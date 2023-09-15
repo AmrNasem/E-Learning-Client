@@ -17,19 +17,19 @@ import ReviewsModal from "../../components/UI/ReviewsModal";
 import useHttp from "../../hooks/use-http";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
 
-const Course = (props) => {
+const Course = () => {
   const [scrollY, setScrollY] = useState(0);
   const { isPaginated } = useSelector((state) => state.reviews);
   const dispatch = useDispatch();
   const { courseId } = useParams();
   const [course, setCourse] = useState(null);
-  const { isLoading, sendRequest: getCourse } = useHttp();
+  const { isLoading, sendRequest: getCourse, error } = useHttp();
 
   useEffect(() => {
-    getCourse({ endPoint: `courses/getCourseById/${courseId}` }, (data) => {
-      console.log(data);
-      setCourse(data.payload.course);
-      dispatch(reviewsActions.getReviews(data.payload.course.reviews));
+    getCourse({ endPoint: `courses/getCourseById/${courseId}` }, (payload) => {
+      console.log(payload);
+      setCourse(payload.course);
+      dispatch(reviewsActions.getReviews(payload.course.reviews));
     });
   }, [getCourse, courseId, dispatch]);
 
@@ -42,16 +42,15 @@ const Course = (props) => {
     dispatch(reviewsActions.toggleIsPaginated());
   }, [dispatch]);
 
-  console.log("Course");
-
-  if (isLoading || (!isLoading && !course)) return <LoadingSpinner side={80} />;
-
-  if (!course)
+  if (error)
     return (
       <main>
-        <h1 className="text-center my-4">Page Not Found</h1>
+        <h3 className="text-center my-4">{error}</h3>
       </main>
     );
+
+  const weired = !course && !isLoading && !error;
+  if (isLoading || weired) return <LoadingSpinner side={80} />;
 
   return (
     <main className={classes.course}>
@@ -64,6 +63,7 @@ const Course = (props) => {
               Preview={
                 <Preview
                   thumbnail={course.thumbnailUrl}
+                  className="d-block"
                   // lecId={
                   //   course.sections
                   //     .find((sec) => sec.lectures.find((lec) => lec.available))

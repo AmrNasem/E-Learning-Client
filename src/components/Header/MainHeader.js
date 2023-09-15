@@ -16,7 +16,6 @@ const MainHeader = (props) => {
   const isCartOpened = useSelector((state) => state.cart.isOpened);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   const authedUser = useSelector((state) => state.auth.user);
-  // const instructor = useSelector((state) => state.auth.instructor);
 
   const headerCtx = useContext(HeaderContext);
 
@@ -55,7 +54,7 @@ const MainHeader = (props) => {
           onClick={() => navigate("instructor")}
           className={`btn border-0 ${classes.instructor}`}
         >
-          {authedUser.instructor ? "Instructor" : "Become a teacher"}
+          {authedUser.role === "instructor" ? "Instructor" : "Become a teacher"}
         </button>
       )}
       <div

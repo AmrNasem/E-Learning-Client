@@ -53,10 +53,9 @@ const Reviews = (props) => {
     else {
       getReviews(
         { endPoint: `reviews/getCourseReviews/${course.id}` },
-        (data) => {
-          console.log(data);
-          if (!data.error)
-            dispatch(reviewsActions.getReviews(data.payload.reviews));
+        (payload) => {
+          console.log(payload);
+          dispatch(reviewsActions.getReviews(payload.reviews));
         }
       );
       // dispatch(

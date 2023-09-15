@@ -13,14 +13,16 @@ import LoadingSpinner from "../../components/UI/LoadingSpinner";
 import useHttp from "../../hooks/use-http";
 import { reviewsActions } from "../../store/reviews-slice";
 
-const CourseView = (props) => {
+const CourseView = () => {
   const { courseId, lectureId } = useParams();
   const dispatch = useDispatch();
-  const { isLoading: isCourseLoading, sendRequest: studyCourse } = useHttp();
+  const {
+    isLoading: isCourseLoading,
+    sendRequest: studyCourse,
+    error,
+  } = useHttp();
   const [course, setCourse] = useState(null);
   const { lecture, questions } = useSelector((state) => state.qna);
-
-  console.log("CourseView");
 
   // Not sure about this
   useEffect(() => {
@@ -30,21 +32,19 @@ const CourseView = (props) => {
   }, [lecture, dispatch, questions]);
 
   const applyData = useCallback(
-    (data) => {
-      console.log(data);
-      if (!data.error) {
-        setCourse(data.payload.course);
-        dispatch(reviewsActions.getReviews(data.payload.course.reviews));
-        dispatch(
-          qnaActions.setLecture(
-            data.payload.course.sections
-              .find((sec) =>
-                sec.videos.find((vid) => vid.id.toString() === lectureId)
-              )
-              .videos.find((vid) => vid.id.toString() === lectureId)
-          )
-        );
-      }
+    (payload) => {
+      console.log(payload);
+      setCourse(payload.course);
+      dispatch(reviewsActions.getReviews(payload.course.reviews));
+      dispatch(
+        qnaActions.setLecture(
+          payload.course.sections
+            .find((sec) =>
+              sec.videos.find((vid) => vid.id.toString() === lectureId)
+            )
+            .videos.find((vid) => vid.id.toString() === lectureId)
+        )
+      );
     },
     [dispatch, lectureId]
   );
@@ -62,6 +62,13 @@ const CourseView = (props) => {
     if (isActive) return `${bootstrapClasses} ${classes.active}`;
     else return bootstrapClasses;
   };
+
+  if (error)
+    return (
+      <main>
+        <h3 className="text-center my-4">{error}</h3>
+      </main>
+    );
 
   if (isCourseLoading || (!isCourseLoading && !course))
     return <LoadingSpinner side={80} />;

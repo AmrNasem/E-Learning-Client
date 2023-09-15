@@ -22,12 +22,11 @@ const Select = (props) => {
     }
   }, [listRef]);
 
-  useEffect(() => {
-    onChange(selected);
-  }, [selected, onChange]);
+  useEffect(() => onChange(selected), [selected, onChange]);
 
   useEffect(() => {
     window.addEventListener("click", closeSelect);
+    return () => window.removeEventListener("click", closeSelect);
   }, [closeSelect]);
 
   return (
@@ -39,7 +38,7 @@ const Select = (props) => {
             closeSelect();
           } else setIsOpen(true);
         }}
-        className={`d-flex align-items-center gap-2 w-100 p-3 justify-content-between h-100 btn rounded-0 ${classes.button}`}
+        className={`d-flex align-items-center gap-2 w-100 justify-content-between h-100 btn rounded-0 ${classes.button}`}
       >
         <h5 className="mb-0  text-nowrap">{selected.text}</h5>
         {reverse ? (

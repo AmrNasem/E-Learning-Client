@@ -14,3 +14,7 @@ div.course {
 .course a {
   color: var(--third-color);
 }
+.thumbnail {
+  height: 150px;
+  object-fit: cover;
+}
