@@ -19,6 +19,7 @@ import { useEffect, useState } from "react";
 import { courseActions } from "../../store/course-slice";
 import { faAngleLeft, faBars, faGear } from "@fortawesome/free-solid-svg-icons";
 import Settings from "./Settings";
+import Footer from "../../components/Footer";
 
 const ManageCourse = (props) => {
   const { courseId } = useParams();
@@ -169,6 +170,7 @@ const ManageCourse = (props) => {
           </Routes>
         </div>
       </main>
+      <Footer />
     </>
   );
 };

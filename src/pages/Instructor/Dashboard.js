@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import InstructorHeader from "../../components/Header/InstructorHeader";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
 import useHttp from "../../hooks/use-http";
+import Footer from "../../components/Footer";
 
 const sort = (arr, option) => {
   if (option.id === "newest")
@@ -23,25 +24,21 @@ const sort = (arr, option) => {
         new Date(b.course.createdAt).getTime()
     );
   if (option.id === "a-z")
-    return arr.sort((a, b) => {
-      if (a.course.title < b.course.title) {
-        return -1;
-      }
-      if (a.course.title > b.course.title) {
-        return 1;
-      }
-      return 0;
-    });
+    return arr.sort((a, b) =>
+      a.course.title > b.course.title
+        ? 1
+        : a.course.title < b.course.title
+        ? -1
+        : 0
+    );
   if (option.id === "z-a")
-    return arr.sort((a, b) => {
-      if (a.course.title > b.course.title) {
-        return -1;
-      }
-      if (a.course.title < b.course.title) {
-        return 1;
-      }
-      return 0;
-    });
+    return arr.sort((a, b) =>
+      a.course.title > b.course.title
+        ? -1
+        : a.course.title < b.course.title
+        ? 1
+        : 0
+    );
 };
 
 const options = [
@@ -93,7 +90,7 @@ const Dashboard = (props) => {
         <div className="d-flex justify-content-between">
           <h1>Courses</h1>
           <button
-            onClick={() => navigate("/course/create")}
+            onClick={() => navigate("course/create")}
             className={`btn d-md-none rounded-0 text-white ${classes["new-course"]}`}
           >
             New Course
@@ -129,7 +126,7 @@ const Dashboard = (props) => {
             )}
           </div>
           <button
-            onClick={() => navigate("/course/create")}
+            onClick={() => navigate("course/create")}
             className={`btn d-none d-md-block rounded-0 py-2 text-white ${classes["new-course"]}`}
           >
             New Course
@@ -150,6 +147,7 @@ const Dashboard = (props) => {
           <LoadingSpinner side={60} />
         )}
       </main>
+      <Footer />
     </>
   );
 };

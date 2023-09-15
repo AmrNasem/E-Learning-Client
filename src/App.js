@@ -7,7 +7,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useDispatch, useSelector } from "react-redux";
 import Instructor from "./pages/Instructor/Instructor";
 import Student from "./pages/Student/Student";
-import NewCourse from "./pages/Instructor/NewCourse";
 import { authActions } from "./store/auth-slice";
 import useHttp from "./hooks/use-http";
 
@@ -42,6 +41,9 @@ function App() {
   return (
     <div className="App d-flex flex-column" onClick={blurCategoriesHandler}>
       <Routes>
+        {authedUser && authedUser.role === "instructor" && (
+          <Route path="/instructor/*" element={<Instructor />} />
+        )}
         <Route
           path="/*"
           element={
@@ -52,21 +54,6 @@ function App() {
             />
           }
         />
-        {authedUser && authedUser.role === "instructor" && (
-          <>
-            <Route
-              path="/instructor/*"
-              element={
-                <Instructor
-                  dummyInstructors={dummyInstructors}
-                  dummyCourses={dummyCourses}
-                  dummyUsers={dummyUsers}
-                />
-              }
-            />
-            <Route path="course/Create" element={<NewCourse />} />
-          </>
-        )}
       </Routes>
     </div>
   );
