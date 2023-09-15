@@ -10,7 +10,12 @@ const CourseItem = React.forwardRef((props, ref) => {
   return (
     <Card ref={ref && ref} className={`${classes.course} ${className}`}>
       <Link to={`/course/${id}`} className="text-decoration-none">
-        <Card.Img variant="top" src={thumbnailUrl} alt="Thumbnail" />
+        <Card.Img
+          variant="top"
+          className={classes.thumbnail}
+          src={thumbnailUrl}
+          alt="Thumbnail"
+        />
         <Card.Body>
           <Card.Title>{title}</Card.Title>
 

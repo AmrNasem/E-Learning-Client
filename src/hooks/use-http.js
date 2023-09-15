@@ -23,9 +23,9 @@ const useHttp = () => {
           credentials,
           body: body ? JSON.stringify(body) : null,
         });
-
         const data = await res.json();
-        applyData(data);
+        if (!res.ok) throw new Error(data.message);
+        applyData(data.payload);
       } catch (err) {
         setError(err.message || "Something went wrong!");
       }

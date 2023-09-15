@@ -11,7 +11,7 @@ const SignUp = (props) => {
   const nameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { isLoading, sendRequest: signup, error } = useHttp();
+  const { isLoading, sendRequest: signup } = useHttp();
 
   const signupHanlder = (e) => {
     e.preventDefault();
@@ -27,14 +27,8 @@ const SignUp = (props) => {
         credentials: "include",
         method: "POST",
       },
-      (data) => {
-        if (data.error || error) {
-          console.log(data);
-          // Handle rejection
-        } else {
-          console.log(data.payload);
-          // Handle staisfaction
-        }
+      (payload) => {
+        console.log(payload);
       }
     );
   };

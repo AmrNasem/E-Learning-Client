@@ -19,9 +19,13 @@ const InstructorHeader = (props) => {
           Student
         </button>
         <button
-          className={`cursor-pointer border-0 text-white fw-bold rounded-circle d-flex align-items-center justify-content-center ${classes.avatar}`}
+          className={`cursor-pointer border-0 text-white overflow-hidden fw-bold rounded-circle d-flex align-items-center justify-content-center ${classes.avatar}`}
         >
-          {authedUser.fullname.split(" ")[0][0]}
+          {authedUser.avatarUrl ? (
+            <img className="w-100" src={authedUser.avatarUrl} alt="" />
+          ) : (
+            authedUser.fullname.split(" ")[0][0]
+          )}
         </button>
       </div>
     </header>

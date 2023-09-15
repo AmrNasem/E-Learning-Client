@@ -28,10 +28,10 @@ function App() {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!authedUser && user) {
-      if (new Date().getTime() - user.loginDate <= 10000)
+      if (new Date().getTime() - user.loginDate <= 36000000)
         dispatch(authActions.setUser(user.user));
       else {
-        logout({ endPoint: "users/logout" }, (data) => console.log(data));
+        logout({ endPoint: "users/logout" }, (payload) => console.log(payload));
         localStorage.removeItem("user");
       }
     }
@@ -52,7 +52,7 @@ function App() {
             />
           }
         />
-        {authedUser && authedUser.instructor && (
+        {authedUser && authedUser.role === "instructor" && (
           <>
             <Route
               path="/instructor/*"

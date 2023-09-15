@@ -15,21 +15,16 @@ const Login = (props) => {
   const dispatch = useDispatch();
   const { isLoading, sendRequest: login } = useHttp();
 
-  const applyData = (data) => {
-    console.log(data);
-    if (data.error) {
-      // Handle rejection
-    } else {
-      // Handle satisfaction
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          user: data.payload.user,
-          loginDate: new Date().getTime(),
-        })
-      );
-      dispatch(authActions.setUser(data.payload.user));
-    }
+  const applyData = (payload) => {
+    console.log(payload);
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        user: payload.user,
+        loginDate: new Date().getTime(),
+      })
+    );
+    dispatch(authActions.setUser(payload.user));
   };
 
   const loginHandler = (e) => {
@@ -45,21 +40,6 @@ const Login = (props) => {
       },
       applyData
     );
-    // const fetchData = async () => {
-    //   const res = await fetch(`${backend}/users/login`, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       email: emailRef.current.value,
-    //       password: passwordRef.current.value,
-    //     }),
-    //   });
-    //   const data = await res.json();
-    //   console.log(data);
-    // };
-    // fetchData();
   };
   return (
     <main>

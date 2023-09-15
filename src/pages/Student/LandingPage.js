@@ -4,6 +4,7 @@ import classes from "./LandingPage.module.css";
 import { memo, useEffect, useReducer, useState } from "react";
 import { useSelector } from "react-redux";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
+import useHttp from "../../hooks/use-http";
 
 const images = [
   {
@@ -63,13 +64,24 @@ const quoteReducer = (state, action) => {
   return { text: "", index: 0 };
 };
 
-const LandingPage = ({ data, isLoading, error }) => {
+const LandingPage = () => {
   const [landingImage, setLandingImage] = useState(images[0]);
   const [quote, dispatchQuote] = useReducer(quoteReducer, {
     text: "",
     index: 0,
   });
   const authedUser = useSelector((state) => state.auth.user);
+  const [payload, setPayload] = useState(null);
+  const { isLoading, sendRequest: getHome, error } = useHttp();
+
+  const applyData = (payload) => {
+    console.log(payload);
+    setPayload(payload);
+  };
+
+  useEffect(() => {
+    getHome({ endPoint: "courses/home" }, applyData);
+  }, [getHome]);
 
   const typingAnimation = (currentQuote) => {
     let i = 0;
@@ -129,21 +141,15 @@ const LandingPage = ({ data, isLoading, error }) => {
         <h3 className="text-center my-3">{error}</h3>
       ) : (
         <div className={classes["landing-courses"]}>
-          {isLoading || (!isLoading && !data) ? (
+          {isLoading || (!isLoading && !payload) ? (
             <LoadingSpinner className="my-5" side={60} />
           ) : (
-            <CourseList
-              class="Best Seller"
-              courses={data.payload.bestsellers}
-            />
+            <CourseList class="Best Seller" courses={payload.bestsellers} />
           )}
-          {isLoading || (!isLoading && !data) ? (
+          {isLoading || (!isLoading && !payload) ? (
             <LoadingSpinner className="my-5" side={60} />
           ) : (
-            <CourseList
-              class="Recommends"
-              courses={data.payload.recommendations}
-            />
+            <CourseList class="Recommends" courses={payload.recommendations} />
           )}
         </div>
       )}

@@ -1,149 +1,89 @@
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useReducer,
-  useRef,
-  useState,
-} from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Course from "../../components/Instructor/Course";
 import classes from "./Dashboard.module.css";
-import { useSelector } from "react-redux";
 import Select from "../../components/Instructor/Select";
 import { useNavigate } from "react-router-dom";
 import InstructorHeader from "../../components/Header/InstructorHeader";
-// import useHttp from "../../hooks/use-http";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
-// import { backend } from "../../App";
+import useHttp from "../../hooks/use-http";
 
-const sortReducer = (state, action) => {
-  if (action.type === "toggleSort") {
-    return {
-      ...state,
-      open: !state.open,
-    };
-  }
-
-  if (action.type === "closeSort") {
-    return {
-      ...state,
-      open: false,
-    };
-  }
-
-  if (action.type === "changeSort") {
-    let courses = [...state.courses];
-    if (action.by === "Newest")
-      courses.sort(
-        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-      );
-    else if (action.by === "Oldest")
-      courses.sort(
-        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
-      );
-    else if (action.by === "A-Z") {
-      courses.sort((a, b) => {
-        if (a.title < b.title) {
-          return -1;
-        }
-        if (a.title > b.title) {
-          return 1;
-        }
-        return 0;
-      });
-    } else if (action.by === "Z-A") {
-      courses.sort((a, b) => {
-        if (a.title > b.title) {
-          return -1;
-        }
-        if (a.title < b.title) {
-          return 1;
-        }
-        return 0;
-      });
-    }
-
-    return {
-      ...state,
-      by: action.by,
-      courses,
-    };
-  }
-
-  return {
-    type: "",
-    by: "",
-    open: false,
-    courses: [],
-  };
+const sort = (arr, option) => {
+  if (option.id === "newest")
+    return arr.sort(
+      (a, b) =>
+        new Date(b.course.createdAt).getTime() -
+        new Date(a.course.createdAt).getTime()
+    );
+  if (option.id === "oldest")
+    return arr.sort(
+      (a, b) =>
+        new Date(a.course.createdAt).getTime() -
+        new Date(b.course.createdAt).getTime()
+    );
+  if (option.id === "a-z")
+    return arr.sort((a, b) => {
+      if (a.course.title < b.course.title) {
+        return -1;
+      }
+      if (a.course.title > b.course.title) {
+        return 1;
+      }
+      return 0;
+    });
+  if (option.id === "z-a")
+    return arr.sort((a, b) => {
+      if (a.course.title > b.course.title) {
+        return -1;
+      }
+      if (a.course.title < b.course.title) {
+        return 1;
+      }
+      return 0;
+    });
 };
 
+const options = [
+  { id: "newest", text: "Newest" },
+  { id: "oldest", text: "Oldest" },
+  { id: "a-z", text: "A-Z" },
+  { id: "z-a", text: "Z-A" },
+];
+const defaultValue = options.find((o) => o.id === "newest");
+
 const Dashboard = (props) => {
+  const [initialCourses, setInitialCourses] = useState(null);
+  const [courses, setCourses] = useState(null);
+  const [query, setQuery] = useState("");
   const searchRef = useRef();
   const submitSearchRef = useRef();
   const navigate = useNavigate();
-  const authedUser = useSelector((state) => state.auth.user);
-  // const [data, setData] = useState(null);
-  // const {
-  //   isLoading,
-  //   sendRequest: getCourses,
-  //   error,
-  // } = useHttp(
-  //   useCallback((data) => {
-  //     setData(data);
-  //   }, [])
-  // );
-  const instructor = props.dummyInstructors.find(
-    (i) => i.id === authedUser.instructor
-  );
-  const [query, setQuery] = useState("");
-  const options = useMemo(
-    () => [
-      { id: "Newest", text: "Newest" },
-      { id: "Oldest", text: "Oldest" },
-      { id: "A-Z", text: "A-Z" },
-      { id: "Z-A", text: "Z-A" },
-    ],
-    []
-  );
-
-  const [sort, dispatchSort] = useReducer(sortReducer, {
-    type: "",
-    by: "Newest",
-    open: false,
-    courses: props.dummyCourses
-      .filter((c) => instructor.courses.some((item) => item === c.id))
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()),
-  });
-  const [courses, setCourses] = useState(sort.courses);
-  const defaultValue = useMemo(
-    () => options.find((o) => o.id === "Newest"),
-    [options]
-  );
-  // useEffect(() => {
-  //   // getCourses({ endpoint: "courses/teachingCourses" });
-  //   const data = fetch(`${backend}/courses/teachingCourses`)
-  //     .then((res) => res.json())
-  //     .then((data) => console.log(data))
-  //     .catch((err) => console.log(err));
-  //   console.log(data);
-  // }, []);
+  const { isLoading, sendRequest: getCourses, error } = useHttp();
 
   useEffect(() => {
-    submitSearchRef.current.click();
-  }, [sort.courses]);
+    getCourses({ endPoint: "courses/teachingCourses" }, (payload) => {
+      console.log(payload);
+      setInitialCourses(sort(payload.teachingCourses, defaultValue));
+      setCourses(sort(payload.teachingCourses, defaultValue));
+    });
+  }, [getCourses]);
+
+  const sortCoursesHandler = useCallback((option) => {
+    setInitialCourses((prevState) => [...sort(prevState, option)]);
+    setCourses((prevState) => [...sort(prevState, option)]);
+  }, []);
 
   const filterCoursesHandler = (e) => {
     e.preventDefault();
-    setCourses(
-      sort.courses &&
-        sort.courses.filter((course) =>
-          new RegExp(searchRef.current.value, "ig").test(course.title)
+    if (initialCourses) {
+      setCourses(
+        initialCourses.filter((course) =>
+          new RegExp(searchRef.current.value, "ig").test(course.course.title)
         )
-    );
-    setQuery(searchRef.current.value);
+      );
+      setQuery(searchRef.current.value);
+    }
   };
 
   return (
@@ -164,16 +104,7 @@ const Dashboard = (props) => {
             <form className={`d-flex ${classes.form}`}>
               <input
                 ref={searchRef}
-                onChange={(e) => {
-                  setCourses(
-                    sort.courses.filter((course) =>
-                      new RegExp(searchRef.current.value, "ig").test(
-                        course.title
-                      )
-                    )
-                  );
-                  setQuery(e.target.value);
-                }}
+                onChange={filterCoursesHandler}
                 className="p-2 border-0 form-control shadow-none rounded-0"
                 type="text"
                 placeholder="Search your courses"
@@ -186,15 +117,16 @@ const Dashboard = (props) => {
                 <FontAwesomeIcon icon={faSearch} />
               </button>
             </form>
-            <Select
-              className={classes.sort}
-              defaultValue={defaultValue}
-              options={options}
-              onChange={useCallback(
-                (option) => dispatchSort({ type: "changeSort", by: option.id }),
-                []
-              )}
-            />
+            {!error && courses ? (
+              <Select
+                className={classes.sort}
+                defaultValue={defaultValue}
+                options={options}
+                onChange={sortCoursesHandler}
+              />
+            ) : (
+              isLoading && <LoadingSpinner side={30} />
+            )}
           </div>
           <button
             onClick={() => navigate("/course/create")}
@@ -203,13 +135,15 @@ const Dashboard = (props) => {
             New Course
           </button>
         </div>
-        {courses ? (
+        {error ? (
+          <h3>{error}</h3>
+        ) : courses ? (
           <div>
             {!courses.length && (
               <h4 className="text-center">No courses to show</h4>
             )}
             {courses.map((course, index) => (
-              <Course key={index} query={query} {...course} />
+              <Course key={index} query={query} course={course} />
             ))}
           </div>
         ) : (
