@@ -133,7 +133,7 @@ const Dashboard = (props) => {
           </button>
         </div>
         {error ? (
-          <h3>{error}</h3>
+          <h3 className="text-center my-3">{error}</h3>
         ) : courses ? (
           <div>
             {!courses.length && (
