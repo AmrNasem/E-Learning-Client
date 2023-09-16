@@ -81,14 +81,14 @@ const NewCourse = () => {
           className={` d-flex justify-content-center align-items-center text-center ${classes["new-course"]}`}
         >
           <div className={`${classes.content} d-flex flex-column`}>
-            <div className="my-4">
-              <h2>How about a working title?</h2>
+            <div className="mt-4 mb-2">
+              <h3>How about a working title?</h3>
               <p>
                 It's ok if you can't think of a good title now. You can change
                 it later.
               </p>
               <Input
-                className="my-4"
+                className="mt-4"
                 max={60}
                 content={title}
                 onChange={(value) => setTitle(value)}
@@ -97,7 +97,7 @@ const NewCourse = () => {
               </Input>
             </div>
             <div className="my-4">
-              <h2>What category best fits the knowledge you'll share?</h2>
+              <h3>What category best fits the knowledge you'll share?</h3>
               <p>
                 If you're not sure about the right category, you can change it
                 later.

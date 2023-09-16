@@ -3,7 +3,7 @@
   margin-right: 4%;
 }
 .content {
-  transform: translateY(-80px);
+  transform: translateY(-50px);
 }
 .actions {
   box-shadow: 0 -1px 10px var(--third-color);
