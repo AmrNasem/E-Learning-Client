@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Instructor from "./pages/Instructor/Instructor";
 import Student from "./pages/Student/Student";
 import { authActions } from "./store/auth-slice";
+import { categoriesActions } from "./store/categories-slice";
 import useHttp from "./hooks/use-http";
 
 const dummyCourses = jsonFile.courses;
@@ -23,6 +24,29 @@ function App() {
   const authedUser = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const { sendRequest: logout } = useHttp();
+  const { isLoading, sendRequest: getCategories, error } = useHttp();
+
+  useEffect(() => {
+    getCategories({ endPoint: "categories/getAllCategories" }, (payload) => {
+      console.log(payload);
+      dispatch(
+        categoriesActions.setCategories(
+          payload.categories.map((cat) => {
+            return {
+              id: cat.id,
+              createdAt: cat.createdAt,
+              updatedAt: cat.updatedAt,
+              text: cat.categoryName,
+            };
+          })
+        )
+      );
+    });
+  }, [getCategories, dispatch]);
+
+  useEffect(() => {
+    dispatch(categoriesActions.setStates({ isLoading, error }));
+  }, [dispatch, isLoading, error]);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));

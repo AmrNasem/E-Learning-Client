@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { memo, useEffect, useRef } from "react";
 import classes from "./Input.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -35,6 +35,7 @@ const Input = (props) => {
         <input
           className="flex-grow-1 w-100 bg-transparent p-3 border-0"
           maxLength={max}
+          min={0}
           type={type || "text"}
           value={content}
           onChange={(e) =>
@@ -59,4 +60,4 @@ const Input = (props) => {
   );
 };
 
-export default Input;
+export default memo(Input);

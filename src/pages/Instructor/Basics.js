@@ -3,7 +3,7 @@ import Select from "../../components/Instructor/Select";
 import PageBox from "../../components/UI/PageBox";
 import classes from "./Basics.module.css";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { courseActions } from "../../store/course-slice";
 
@@ -19,19 +19,10 @@ const levelOptions = [
   { id: "all", text: "All levels" },
 ];
 
-const categoryOptions = [
-  { id: "uiux", text: "UI/UX Design" },
-  { id: "ai", text: "Artificial Intelligence" },
-  { id: "web", text: "Web Development" },
-  { id: "mobile", text: "Mobile Development" },
-  { id: "security", text: "Cyber Security" },
-  { id: "datascience", text: "Data Science" },
-  { id: "machinelearning", text: "Machine Learning" },
-];
-
 const Basics = () => {
   const { course, level, lang, category, title, subtitle, description } =
     useSelector((state) => state.course);
+  const categories = useSelector((state) => state.categories.categories);
   const dispatch = useDispatch();
   const defaultLevel = useMemo(
     () =>
@@ -57,17 +48,48 @@ const Basics = () => {
 
   const defaultCategory = useMemo(
     () =>
-      course
-        ? categoryOptions.find((o) => o.id === category)
+      course && categories
+        ? categories.find((cat) => cat.id === category)
         : {
             id: "none",
             text: "-- Select category --",
           },
-    [course, category]
+    [course, category, categories]
   );
 
-  const changeValueHandler = useCallback(
-    (type, value) => dispatch(courseActions.editInfo({ type, value })),
+  const changeTitleHandler = useCallback(
+    (value) => dispatch(courseActions.changeTitle(value)),
+    [dispatch]
+  );
+
+  const changeSubtitleHandler = useCallback(
+    (value) => dispatch(courseActions.changeSubtitle(value)),
+    [dispatch]
+  );
+
+  const changeDescriptionHandler = useCallback(
+    (e) => dispatch(courseActions.changeDescription(e.target.value)),
+    [dispatch]
+  );
+
+  const changeLanguageHandler = useCallback(
+    (option) => {
+      dispatch(courseActions.changeLang(option.id));
+    },
+    [dispatch]
+  );
+
+  const changeLevelHandler = useCallback(
+    (option) => {
+      dispatch(courseActions.changeLevel(option.id));
+    },
+    [dispatch]
+  );
+
+  const changeCategoryHandler = useCallback(
+    (option) => {
+      dispatch(courseActions.changeCategory(option.id));
+    },
     [dispatch]
   );
 
@@ -88,7 +110,7 @@ const Basics = () => {
             <Input
               max={60}
               className="mb-1"
-              onChange={changeValueHandler.bind(null, "title")}
+              onChange={changeTitleHandler}
               content={title}
               restricted
             >
@@ -104,7 +126,7 @@ const Basics = () => {
             <Input
               max={200}
               className="mb-1"
-              onChange={changeValueHandler.bind(null, "subtitle")}
+              onChange={changeSubtitleHandler}
               content={subtitle || ""}
             >
               Insert you course subtitle.
@@ -119,9 +141,7 @@ const Basics = () => {
             <textarea
               className={`${classes.description} bg-transparent w-100 p-3`}
               placeholder="Insert you course description."
-              onChange={(e) =>
-                changeValueHandler("description", e.target.value)
-              }
+              onChange={changeDescriptionHandler}
               defaultValue={description || ""}
             ></textarea>
             <p>Description should have minimum 200 words.</p>
@@ -131,24 +151,27 @@ const Basics = () => {
             <div className="d-flex gap-3 flex-wrap">
               <Select
                 className="flex-grow-1"
+                buttonClassName="px-3 py-2"
                 reverse
                 defaultValue={defaultLang}
                 options={langOptions}
-                onChange={changeValueHandler.bind(null, "language")}
+                onChange={changeLanguageHandler}
               />
               <Select
                 className="flex-grow-1"
+                buttonClassName="px-3 py-2"
                 reverse
                 defaultValue={defaultLevel}
                 options={levelOptions}
-                onChange={changeValueHandler.bind(null, "level")}
+                onChange={changeLevelHandler}
               />
               <Select
                 className="flex-grow-1"
+                buttonClassName="px-3 py-2"
                 reverse
                 defaultValue={defaultCategory}
-                options={categoryOptions}
-                onChange={changeValueHandler.bind(null, "category")}
+                options={categories}
+                onChange={changeCategoryHandler}
               />
             </div>
           </div>
@@ -160,4 +183,4 @@ const Basics = () => {
   );
 };
 
-export default Basics;
+export default memo(Basics);

@@ -4,6 +4,7 @@ import reviewsSlice from "./reviews-slice";
 import authSlice from "./auth-slice";
 import qnaSlice from "./qna-slice";
 import courseSlice from "./course-slice";
+import categoriesSlice from "./categories-slice";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     reviews: reviewsSlice,
     qna: qnaSlice,
     course: courseSlice,
+    categories: categoriesSlice,
   },
 });
 

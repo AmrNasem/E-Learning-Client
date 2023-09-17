@@ -17,8 +17,6 @@ const Select = (props) => {
   const [selected, setSelected] = useState(defaultValue);
   const listRef = useRef();
 
-  // console.log(selected);
-
   const closeSelect = useCallback(() => {
     if (listRef.current) {
       listRef.current.classList.add(classes["show-down"]);
@@ -29,7 +27,9 @@ const Select = (props) => {
     }
   }, [listRef]);
 
-  useEffect(() => onChange(selected), [selected, onChange]);
+  useEffect(() => {
+    onChange(selected);
+  }, [selected, onChange]);
 
   useEffect(() => {
     window.addEventListener("click", closeSelect);

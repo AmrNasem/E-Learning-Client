@@ -3,13 +3,13 @@ import Input from "../../components/Instructor/Input";
 import PageBox from "../../components/UI/PageBox";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import classes from "./Goals.module.css";
-import { useCallback } from "react";
+import { memo, useCallback } from "react";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
 import { useDispatch, useSelector } from "react-redux";
 import { courseActions } from "../../store/course-slice";
 
 const placeholders = [
-  " Example: Define the roles and responsibilities of a project manager",
+  "Example: Define the roles and responsibilities of a project manager",
   "Example: Estimate project timelines and budgets",
   "Example: Identify and manage project risks",
   "Example: Complete a case study to manage a project from conception to completion",
@@ -21,17 +21,35 @@ const Goals = () => {
   );
   const dispatch = useDispatch();
 
-  const changeInputHandler = useCallback(
-    (type, value) => dispatch(courseActions.editInfo({ type, value })),
+  const changeGoalsHandler = useCallback(
+    (value) => dispatch(courseActions.changeGoals(value)),
     [dispatch]
   );
 
-  const DeleteInputHandler = useCallback(
-    (type, id) => dispatch(courseActions.deleteInfo({ type, id })),
+  const deleteGoalHandler = useCallback(
+    (id) => dispatch(courseActions.deleteGoal(id)),
     [dispatch]
   );
 
-  const addInputHandler = (type) => dispatch(courseActions.addInfo(type));
+  const changeRequirementsHandler = useCallback(
+    (value) => dispatch(courseActions.changeRequirements(value)),
+    [dispatch]
+  );
+
+  const deleteRequirementHandler = useCallback(
+    (id) => dispatch(courseActions.deleteRequirement(id)),
+    [dispatch]
+  );
+
+  const changeBeneficiariesHandler = useCallback(
+    (value) => dispatch(courseActions.changeBeneficiaries(value)),
+    [dispatch]
+  );
+
+  const deleteBeneficiaryHandler = useCallback(
+    (id) => dispatch(courseActions.deleteBeneficiary(id)),
+    [dispatch]
+  );
 
   return (
     <PageBox title="Intended learners">
@@ -54,8 +72,8 @@ const Goals = () => {
                 key={index}
                 id={goal.id}
                 content={goal.text}
-                onChange={changeInputHandler.bind(null, "goals")}
-                onDelete={DeleteInputHandler.bind(null, "goals")}
+                onChange={changeGoalsHandler}
+                onDelete={deleteGoalHandler}
                 disabled={goals.length <= 4}
                 max={160}
                 removable
@@ -68,7 +86,7 @@ const Goals = () => {
           )}
         </div>
         <button
-          onClick={() => addInputHandler("goals")}
+          onClick={() => goals && dispatch(courseActions.addGoal())}
           className={`btn rounded-0 text-white border-0 ${classes["new-input"]}`}
         >
           <FontAwesomeIcon icon={faPlus} /> Add more to your response
@@ -90,8 +108,8 @@ const Goals = () => {
                 key={item.id}
                 id={item.id}
                 content={item.text}
-                onChange={changeInputHandler.bind(null, "requirements")}
-                onDelete={DeleteInputHandler.bind(null, "requirements")}
+                onChange={changeRequirementsHandler}
+                onDelete={deleteRequirementHandler}
                 removable
               >
                 Example: No programming experience needed. You will learn
@@ -103,7 +121,9 @@ const Goals = () => {
           )}
         </div>
         <button
-          onClick={() => addInputHandler("requirements")}
+          onClick={() =>
+            requirements && dispatch(courseActions.addRequirement())
+          }
           className={`btn rounded-0 text-white border-0 ${classes["new-input"]}`}
         >
           <FontAwesomeIcon icon={faPlus} /> Add more to your response
@@ -123,8 +143,8 @@ const Goals = () => {
                 key={item.id}
                 id={item.id}
                 content={item.text}
-                onChange={changeInputHandler.bind(null, "beneficiaries")}
-                onDelete={DeleteInputHandler.bind(null, "beneficiaries")}
+                onChange={changeBeneficiariesHandler}
+                onDelete={deleteBeneficiaryHandler}
                 removable
               >
                 Example: No programming experience needed. You will learn
@@ -136,7 +156,9 @@ const Goals = () => {
           )}
         </div>
         <button
-          onClick={() => addInputHandler("beneficiaries")}
+          onClick={() =>
+            beneficiaries && dispatch(courseActions.addBeneficiary())
+          }
           className={`btn rounded-0 text-white border-0 ${classes["new-input"]}`}
         >
           <FontAwesomeIcon icon={faPlus} /> Add more to your response
@@ -146,4 +168,4 @@ const Goals = () => {
   );
 };
 
-export default Goals;
+export default memo(Goals);

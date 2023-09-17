@@ -4,7 +4,7 @@ import Select from "../../components/Instructor/Select";
 import InstructorHeader from "../../components/Header/InstructorHeader";
 import classes from "./NewCourse.module.css";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { courseActions } from "../../store/course-slice";
 import useHttp from "../../hooks/use-http";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
@@ -28,23 +28,21 @@ const NewCourse = () => {
   });
   const [isValid, setIsValid] = useState(false);
   const [categories, setCategories] = useState([]);
+  const { isLoading: gettingCategories, categories: storedCategories } =
+    useSelector((state) => state.categories);
+
   const { isLoading: isCreating, sendRequest: createCourse, error } = useHttp();
-  const { isLoading: gettingCategories, sendRequest: getCategories } =
-    useHttp();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getCategories({ endPoint: "categories/getAllCategories" }, (payload) => {
-      console.log(payload);
+    if (storedCategories) {
       setCategories([
-        ...payload.categories.map((cat) => {
-          return { ...cat, text: cat.categoryName };
-        }),
+        ...storedCategories,
         { id: "none", text: "I don't know yet" },
       ]);
-    });
-  }, [getCategories]);
+    }
+  }, [storedCategories]);
 
   useEffect(() => {
     if (title.trim() !== "" && category.id !== "") {

@@ -2,7 +2,7 @@ import Input from "../../components/Instructor/Input";
 import PageBox from "../../components/UI/PageBox";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
 import { useDispatch, useSelector } from "react-redux";
-import { useCallback } from "react";
+import { memo, useCallback } from "react";
 import { courseActions } from "../../store/course-slice";
 
 const Pricing = () => {
@@ -41,4 +41,4 @@ const Pricing = () => {
   );
 };
 
-export default Pricing;
+export default memo(Pricing);
