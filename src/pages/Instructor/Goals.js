@@ -54,8 +54,8 @@ const Goals = () => {
                 key={index}
                 id={goal.id}
                 content={goal.text}
-                onChange={(value) => changeInputHandler("goals", value)}
-                onDelete={(id) => DeleteInputHandler("goals", id)}
+                onChange={changeInputHandler.bind(null, "goals")}
+                onDelete={DeleteInputHandler.bind(null, "goals")}
                 disabled={goals.length <= 4}
                 max={160}
                 removable
@@ -90,8 +90,8 @@ const Goals = () => {
                 key={item.id}
                 id={item.id}
                 content={item.text}
-                onChange={(value) => changeInputHandler("requirements", value)}
-                onDelete={(id) => DeleteInputHandler("requirements", id)}
+                onChange={changeInputHandler.bind(null, "requirements")}
+                onDelete={DeleteInputHandler.bind(null, "requirements")}
                 removable
               >
                 Example: No programming experience needed. You will learn
@@ -123,8 +123,8 @@ const Goals = () => {
                 key={item.id}
                 id={item.id}
                 content={item.text}
-                onChange={(value) => changeInputHandler("beneficiaries", value)}
-                onDelete={(id) => DeleteInputHandler("beneficiaries", id)}
+                onChange={changeInputHandler.bind(null, "beneficiaries")}
+                onDelete={DeleteInputHandler.bind(null, "beneficiaries")}
                 removable
               >
                 Example: No programming experience needed. You will learn
