@@ -1,0 +1,19 @@
+.description {
+  border: 1px solid var(--secondary-color);
+  outline: none;
+  min-height: 150px;
+  max-height: 300px;
+}
+.description::-webkit-scrollbar {
+  width: 8px;
+}
+.description:hover::-webkit-scrollbar-track {
+  background-color: var(--hover-color);
+}
+.description::-webkit-scrollbar-thumb {
+  background-color: var(--third-color);
+  border-radius: 100px;
+}
+.description::-webkit-scrollbar-button {
+  height: 3px;
+}

@@ -1,0 +1,31 @@
+.status {
+  border-bottom: 1px solid var(--secondary-color);
+}
+.button {
+  color: var(--third-color);
+  min-width: 22%;
+}
+.button:not(.delete) {
+  border: 1px solid var(--third-color);
+}
+@media (max-width: 576px) {
+  .button {
+    width: 100%;
+  }
+}
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.privacy {
+  max-width: 600px;
+}
+.privacy p {
+  color: var(--sixth-color);
+}
+.delete {
+  border: 1px solid rgb(234, 0, 0);
+  color: rgb(234, 0, 0);
+  /* border: 1px solid rgb(232, 26, 26);
+  color: rgb(232, 26, 26); */
+}

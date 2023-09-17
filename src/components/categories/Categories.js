@@ -1,73 +1,30 @@
 import { NavLink } from "react-router-dom";
 import classes from "./Categories.module.css";
+import LoadingSpinner from "../UI/LoadingSpinner";
+import { useSelector } from "react-redux";
 
 const Categories = (props) => {
+  const { isLoading, categories, error } = useSelector(
+    (state) => state.categories
+  );
+  const weired = !isLoading && !categories && !error;
+
   return (
     <div className={`${classes.categories} ${props.className}`}>
-      <NavLink
-        className={(activeClass) =>
-          activeClass.isActive ? classes.active : ""
-        }
-        to="category/uiux"
-      >
-        UI/UX
-      </NavLink>
-      <NavLink
-        className={(activeClass) =>
-          activeClass.isActive ? classes.active : ""
-        }
-        to="category/ai"
-      >
-        AI
-      </NavLink>
-      <NavLink
-        className={(activeClass) =>
-          activeClass.isActive ? classes.active : ""
-        }
-        to="category/web"
-      >
-        Web
-      </NavLink>
-      <NavLink
-        className={(activeClass) =>
-          activeClass.isActive ? classes.active : ""
-        }
-        to="category/mobile"
-      >
-        Mobile
-      </NavLink>
-      <NavLink
-        className={(activeClass) =>
-          activeClass.isActive ? classes.active : ""
-        }
-        to="category/desktop"
-      >
-        Desktop
-      </NavLink>
-      <NavLink
-        className={(activeClass) =>
-          activeClass.isActive ? classes.active : ""
-        }
-        to="category/security"
-      >
-        Cyber Security
-      </NavLink>
-      <NavLink
-        className={(activeClass) =>
-          activeClass.isActive ? classes.active : ""
-        }
-        to="category/datascience"
-      >
-        Data Science
-      </NavLink>
-      <NavLink
-        className={(activeClass) =>
-          activeClass.isActive ? classes.active : ""
-        }
-        to="category/machinelearning"
-      >
-        Machine Learning
-      </NavLink>
+      {error && <p>{error}</p>}
+      {isLoading && !weired && <LoadingSpinner side={40} className="my-3" />}
+      {categories &&
+        categories.map((cat, index) => (
+          <NavLink
+            key={index}
+            className={(activeClass) =>
+              activeClass.isActive ? classes.active : ""
+            }
+            to={`category/${cat.id}`}
+          >
+            {cat.text}
+          </NavLink>
+        ))}
     </div>
   );
 };

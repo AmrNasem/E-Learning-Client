@@ -2,8 +2,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
 import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
 import classes from "./SingleReview.module.css";
+import useDate from "../../hooks/use-date";
 
 const SingleReview = (props) => {
+  const { date, unit } = useDate(props.date);
   // Avatar
   const arr = props.name.split(" ");
   const avatar = `${arr[0][0]}${
@@ -24,28 +26,6 @@ const SingleReview = (props) => {
     }
   }
 
-  // Date
-  const diff = new Date().getTime() - new Date(props.date).getTime();
-  const secs = Math.floor(diff / 1000);
-  const mins = Math.floor(secs / 60);
-  const hours = Math.floor(mins / 60);
-  const days = Math.floor(hours / 24);
-  const months = Math.floor(days / 30);
-  const years = Math.floor(days / 365);
-
-  const units = [
-    { val: secs, unit: "Seconds" },
-    { val: mins, unit: "Minutes" },
-    { val: hours, unit: "Hours" },
-    { val: days, unit: "Days" },
-    { val: months, unit: "Months" },
-    { val: years, unit: "Years" },
-  ];
-  let commentDate = units.pop();
-  while (commentDate.val <= 0) {
-    commentDate = units.pop();
-  }
-
   return (
     <div className={classes.review}>
       <div className="d-flex align-items-center gap-4 my-4">
@@ -59,7 +39,7 @@ const SingleReview = (props) => {
           <div className="d-flex align-items-center gap-3">
             <div className={classes.stars}>{stars}</div>
             <p className={`fw-bold m-0 ${classes.period}`}>
-              {commentDate.val} {commentDate.unit} ago
+              {date} {date > 1 ? unit : unit.slice(0, unit.length - 1)} ago
             </p>
           </div>
         </div>

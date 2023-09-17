@@ -6,6 +6,7 @@
   --fifth-color: #fdedec;
   --sixth-color: #4d4d4d;
   --star-color: #e59819;
+  --hover-color: #ffe9dd;
 }
 
 * {
@@ -34,4 +35,10 @@ code {
 
 ul {
   padding: 0 !important;
+}
+
+@media (max-width: 767.9px) {
+  .custom-flex-grow-1 {
+    flex-grow: 1;
+  }
 }

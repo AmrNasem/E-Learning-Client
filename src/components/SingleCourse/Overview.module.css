@@ -1,50 +1,15 @@
-.track {
-  position: absolute;
-  top: 0;
-  right: 30px;
-  height: calc(100% - 30px);
-  z-index: 2;
-}
-
-@media (max-width: 992px) {
-  .track {
-    display: none;
-  }
-}
-
 .overview {
-  position: sticky;
-  top: 30px;
-  width: 330px;
+  min-width: 330px;
+  max-width: 330px;
   background-color: white;
   box-shadow: -1px 1px 5px rgba(50, 50, 50, 0.3);
-  /* border: 2px solid rebeccapurple; */
-  align-items: center;
-}
-
-.float {
-  animation-name: fade-in;
-  animation-duration: 1s;
-  animation-iteration-count: 0.5;
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
+  z-index: 2;
 }
 
 .thumbnail {
   height: 200px;
   cursor: pointer;
   position: relative;
-}
-
-.hide {
-  display: none;
-}
-.display {
-  display: block;
 }
 
 .thumbnail img {

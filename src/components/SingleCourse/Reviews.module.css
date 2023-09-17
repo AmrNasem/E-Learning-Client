@@ -1,5 +1,4 @@
 .reviews {
-  width: 60%;
   margin: 20px 0;
 }
 @media (max-width: 992px) {
@@ -10,9 +9,11 @@
 .close-button {
   color: var(--third-color);
 }
+.close-button:active {
+  border: none !important;
+}
 button.show-all-reviews,
-button.show-all-reviews:hover,
 button.show-all-reviews:active {
-  color: var(--third-color);
-  border-color: var(--third-color);
+  color: var(--third-color) !important;
+  border-color: var(--third-color) !important;
 }

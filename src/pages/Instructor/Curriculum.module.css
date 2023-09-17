@@ -1,0 +1,4 @@
+.new-section {
+  border: 1px solid var(--third-color);
+  color: var(--third-color);
+}

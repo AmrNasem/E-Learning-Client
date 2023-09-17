@@ -1,0 +1,12 @@
+.questions h5 span {
+  color: #a67171;
+}
+.see-more {
+  border: 1px solid var(--third-color) !important;
+  color: var(--third-color) !important;
+}
+.new-question {
+  border: 1px solid var(--third-color) !important;
+  color: var(--third-color) !important;
+  font-size: 1.1rem;
+}

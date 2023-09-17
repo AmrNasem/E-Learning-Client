@@ -8,12 +8,14 @@ const CartList = (props) => {
   const cartItems = useSelector((state) => state.cart.items);
   return (
     <div className={classes["cart-list"]}>
-      {Object.keys(cartItems).map((itemKey) => (
+      {cartItems.map((course) => (
         <CartItem
-          key={itemKey}
-          {...cartItems[itemKey]}
+          key={course}
+          {...course}
           thumbnail={thumbnail}
-          instructor={jsonFile.instructors[cartItems[itemKey].instructor].name}
+          instructor={
+            jsonFile.instructors.find((i) => i.id === course.instructor).name
+          }
         />
       ))}
     </div>

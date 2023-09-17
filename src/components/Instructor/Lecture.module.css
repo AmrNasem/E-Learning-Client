@@ -1,0 +1,36 @@
+.lecture {
+  border: 1px solid var(--third-color);
+  background-color: var(--main-color);
+}
+/* .header {
+  cursor: move;
+} */
+.icon {
+  color: var(--third-color);
+  font-size: 0.8rem;
+}
+@media (min-width: 576px) {
+  .icon {
+    visibility: hidden;
+  }
+}
+.lecture:hover .icon {
+  visibility: visible;
+}
+.add {
+  color: var(--third-color);
+  border: 1px solid var(--third-color);
+  cursor: pointer;
+}
+.video {
+  color: var(--third-color);
+}
+.info {
+  border: 1px solid var(--third-color);
+}
+.cancel {
+  color: var(--third-color);
+}
+.upload {
+  background-color: var(--third-color);
+}

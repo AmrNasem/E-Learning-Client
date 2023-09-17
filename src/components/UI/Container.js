@@ -1,3 +1,4 @@
+import React from "react";
 import classes from "./Container.module.css";
 
 const Container = (props) => {
@@ -8,4 +9,4 @@ const Container = (props) => {
   );
 };
 
-export default Container;
+export default React.memo(Container);

@@ -1,0 +1,13 @@
+.loading {
+  border-radius: 50%;
+  border: 5px solid;
+  border-color: var(--third-color) transparent;
+  animation: loading 1s linear infinite;
+  margin: auto;
+}
+
+@keyframes loading {
+  100% {
+    transform: rotate(360deg);
+  }
+}

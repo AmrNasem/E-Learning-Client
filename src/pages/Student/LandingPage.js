@@ -1,27 +1,30 @@
 import { Link } from "react-router-dom";
-import CourseList from "../components/courses/CourseList";
+import CourseList from "../../components/courses/CourseList";
 import classes from "./LandingPage.module.css";
-import { useEffect, useReducer, useState } from "react";
+import { memo, useEffect, useReducer, useState } from "react";
+import { useSelector } from "react-redux";
+import LoadingSpinner from "../../components/UI/LoadingSpinner";
+import useHttp from "../../hooks/use-http";
 
 const images = [
   {
-    src: require("../assets/landing-page.jpg"),
+    src: require("../../assets/landing-page.jpg"),
     alt: "A person standing and giving a presentation",
   },
   {
-    src: require("../assets/landing-page-2.jpg"),
+    src: require("../../assets/landing-page-2.jpg"),
     alt: "A person standing and giving a presentation",
   },
   {
-    src: require("../assets/landing-page-3.jpg"),
+    src: require("../../assets/landing-page-3.jpg"),
     alt: "A person typing on a laptop",
   },
   {
-    src: require("../assets/landing-page-4.jpg"),
+    src: require("../../assets/landing-page-4.jpg"),
     alt: "A nice desk with a laptop and smartphone",
   },
   {
-    src: require("../assets/landing-page-5.jpg"),
+    src: require("../../assets/landing-page-5.jpg"),
     alt: "Two guys sitting in front of a laptop",
   },
 ];
@@ -61,12 +64,24 @@ const quoteReducer = (state, action) => {
   return { text: "", index: 0 };
 };
 
-const LandingPage = (props) => {
+const LandingPage = () => {
   const [landingImage, setLandingImage] = useState(images[0]);
   const [quote, dispatchQuote] = useReducer(quoteReducer, {
     text: "",
     index: 0,
   });
+  const authedUser = useSelector((state) => state.auth.user);
+  const [payload, setPayload] = useState(null);
+  const { isLoading, sendRequest: getHome, error } = useHttp();
+
+  const applyData = (payload) => {
+    console.log(payload);
+    setPayload(payload);
+  };
+
+  useEffect(() => {
+    getHome({ endPoint: "courses/home" }, applyData);
+  }, [getHome]);
 
   const typingAnimation = (currentQuote) => {
     let i = 0;
@@ -102,7 +117,7 @@ const LandingPage = (props) => {
   }, [quote.index]);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, []);
 
   return (
@@ -119,23 +134,27 @@ const LandingPage = (props) => {
           >
             {quote.text}
           </h1>
-          <Link to="/signup">Get started!</Link>
+          {!authedUser && <Link to="/signup">Get started!</Link>}
         </div>
       </div>
-      <div className={classes["landing-courses"]}>
-        <CourseList
-          class="Best Seller"
-          dummyInstructors={props.dummyInstructors}
-          dummyCourses={props.dummyCourses}
-        />
-        <CourseList
-          class="Recommends"
-          dummyInstructors={props.dummyInstructors}
-          dummyCourses={props.dummyCourses}
-        />
-      </div>
+      {error ? (
+        <h3 className="text-center my-3">{error}</h3>
+      ) : (
+        <div className={classes["landing-courses"]}>
+          {isLoading || (!isLoading && !payload) ? (
+            <LoadingSpinner className="my-5" side={60} />
+          ) : (
+            <CourseList class="Best Seller" courses={payload.bestsellers} />
+          )}
+          {isLoading || (!isLoading && !payload) ? (
+            <LoadingSpinner className="my-5" side={60} />
+          ) : (
+            <CourseList class="Recommends" courses={payload.recommendations} />
+          )}
+        </div>
+      )}
     </main>
   );
 };
 
-export default LandingPage;
+export default memo(LandingPage);

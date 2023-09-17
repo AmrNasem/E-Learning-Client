@@ -17,6 +17,7 @@ const CartItem = (props) => {
     e.stopPropagation();
     dispatch(cartActions.removeFromCart(props.id));
   };
+
   return (
     <div className={classes["cart-item"]}>
       <div onClick={goToTheCourse} className={classes.thumbnail}>
@@ -29,7 +30,7 @@ const CartItem = (props) => {
       <div className={classes.footer}>
         <div className={classes.price}>
           <span className={classes["final-price"]}>
-            ${(props.price * props.discount) / 100}
+            ${props.price - (props.price * props.discount) / 100}
           </span>
           <span className={classes["initial-price"]}>
             <del>${props.price}</del>

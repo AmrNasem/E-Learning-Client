@@ -13,17 +13,21 @@ import CartIcon from "../Icons/CartIcon";
 import FormInput from "../UI/FormInput";
 import Button from "../UI/Button";
 import MenuBarIcon from "../Icons/MenuBarIcon";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 const MobileHeader = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isCartOpened = useSelector((state) => state.cart.isOpened);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
+  const authedUser = useSelector((state) => state.auth.user);
   const headerCtx = useContext(HeaderContext);
   const [openedSearch, setOpenedSearch] = useState(false);
 
-  const displaySearchHandler = () => {
-    setOpenedSearch(true);
+  const toggleAsideHandler = (e) => {
+    e.stopPropagation();
+    headerCtx.setVisibleCategories((prevState) => !prevState);
   };
 
   const searchBar = (
@@ -49,27 +53,67 @@ const MobileHeader = (props) => {
 
   return (
     <header className={styles["mobile-header"]}>
-      <MenuBarIcon />
+      <MenuBarIcon onClick={toggleAsideHandler} />
       {headerCtx.visibleCategories && <div className={styles.outlayer}></div>}
       <aside className={headerCtx.visibleCategories ? styles.show : ""}>
-        <div className={classes.actions}>
-          <Button onClick={() => navigate("/login")} className={classes.login}>
-            Log in
-          </Button>
-          <Button
-            onClick={() => navigate("/signup")}
-            className={classes.signup}
+        {authedUser ? (
+          <div
+            className={`py-3 px-2 w-100 d-flex gap-2 align-items-center ${styles["user-info"]}`}
           >
-            Sign up
-          </Button>
-        </div>
-        <hr />
+            <button
+              className={`text-white border-0 fw-bold overflow-hidden rounded-circle d-flex align-items-center justify-content-center ${styles.avatar}`}
+            >
+              {authedUser.avatarUrl ? (
+                <img className="w-100" src={authedUser.avatarUrl} alt="" />
+              ) : (
+                authedUser.fullname.split(" ")[0][0]
+              )}
+            </button>
+            <div className="flex-grow-1">
+              <h5 className="mb-0">Hi, {authedUser.fullname.split(" ")[0]}</h5>
+              <p className="mb-0">Welcome back!</p>
+            </div>
+            <FontAwesomeIcon
+              icon={faAngleRight}
+              className="position-absolute fs-5 me-2 text-dark end-0"
+            />
+          </div>
+        ) : (
+          <div className={classes.actions}>
+            <Button
+              onClick={() => navigate("/login")}
+              className={classes.login}
+            >
+              Log in
+            </Button>
+            <Button
+              onClick={() => navigate("/signup")}
+              className={classes.signup}
+            >
+              Sign up
+            </Button>
+          </div>
+        )}
+        {authedUser && (
+          <button
+            onClick={() => navigate("instructor")}
+            className={`btn my-3 border-0 py-2 rounded-0 ${styles.instructor}`}
+          >
+            {authedUser.role === "instructor"
+              ? "Switch to teacher view"
+              : "Become a teacher"}
+          </button>
+        )}
+        <hr className="my-0" />
         <Categories className={styles["mobile-categories"]} />
       </aside>
       <div className={`${classes.logo} ${styles["mobile-logo"]}`}>
         <Link to="/">E-Learning</Link>
       </div>
-      <button onClick={displaySearchHandler} className={classes["search-icon"]}>
+      <button
+        onClick={() => setOpenedSearch(true)}
+        className={classes["search-icon"]}
+      >
         <SearchIcon />
       </button>
       {openedSearch && searchBar}

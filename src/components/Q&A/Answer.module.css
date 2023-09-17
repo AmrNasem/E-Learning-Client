@@ -1,0 +1,47 @@
+.avatar {
+  width: 45px;
+  height: 45px;
+  background-color: var(--sixth-color);
+}
+.date {
+  font-size: 0.9rem;
+}
+.reaction svg {
+  color: var(--sixth-color);
+}
+.reaction:hover svg {
+  color: black;
+}
+.settings {
+  top: 5px;
+  right: 50px;
+  box-shadow: -1px 2px 5px #f3dacc;
+  width: 90px;
+  animation: toggle-settings 0.3s both;
+  transform: scale(0.95);
+}
+@media (max-width: 574px) {
+  .settings {
+    right: 25px;
+  }
+}
+.settings button:nth-child(1):hover {
+  background-color: var(--main-color);
+}
+.settings button:nth-child(2) {
+  color: rgb(222, 0, 0) !important;
+}
+.content {
+  font-weight: 500;
+}
+@keyframes toggle-settings {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
