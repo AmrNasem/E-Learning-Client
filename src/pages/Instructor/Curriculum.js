@@ -6,9 +6,10 @@ import Form from "../../components/Instructor/Form";
 import React, { useEffect, useState } from "react";
 import Section from "../../components/Instructor/Section";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
+import { useSelector } from "react-redux";
 
 const Curriculum = (props) => {
-  const { course } = props;
+  const course = useSelector((state) => state.course.course);
   const [sections, setSections] = useState([
     {
       title: "Introduction",

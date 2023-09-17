@@ -3,6 +3,9 @@ import Select from "../../components/Instructor/Select";
 import PageBox from "../../components/UI/PageBox";
 import classes from "./Basics.module.css";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
+import { useCallback, useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { courseActions } from "../../store/course-slice";
 
 const langOptions = [
   { id: "ar", text: "العربية" },
@@ -26,8 +29,47 @@ const categoryOptions = [
   { id: "machinelearning", text: "Machine Learning" },
 ];
 
-const Basics = (props) => {
-  const { course } = props;
+const Basics = () => {
+  const { course, level, lang, category, title, subtitle, description } =
+    useSelector((state) => state.course);
+  const dispatch = useDispatch();
+  const defaultLevel = useMemo(
+    () =>
+      course
+        ? levelOptions.find((o) => o.id === level)
+        : {
+            id: "none",
+            text: "-- Select level --",
+          },
+    [level, course]
+  );
+
+  const defaultLang = useMemo(
+    () =>
+      course
+        ? langOptions.find((o) => o.id === lang)
+        : {
+            id: "none",
+            text: "-- Select language --",
+          },
+    [course, lang]
+  );
+
+  const defaultCategory = useMemo(
+    () =>
+      course
+        ? categoryOptions.find((o) => o.id === category)
+        : {
+            id: "none",
+            text: "-- Select category --",
+          },
+    [course, category]
+  );
+
+  const changeValueHandler = useCallback(
+    (type, value) => dispatch(courseActions.editInfo({ type, value })),
+    [dispatch]
+  );
 
   return (
     <PageBox title="Course landing page">
@@ -41,9 +83,15 @@ const Basics = (props) => {
       </p>
       {course ? (
         <div>
-          <div>
+          <div className="my-5">
             <h5>Course title</h5>
-            <Input max={60} className="mb-1" content={course.title} restricted>
+            <Input
+              max={60}
+              className="mb-1"
+              onChange={changeValueHandler.bind(null, "title")}
+              content={title}
+              restricted
+            >
               Insert you course title.
             </Input>
             <p>
@@ -51,9 +99,14 @@ const Basics = (props) => {
               optimized for search
             </p>
           </div>
-          <div>
+          <div className="my-5">
             <h5>Course subtitle</h5>
-            <Input max={200} className="mb-1" content={course.subtitle}>
+            <Input
+              max={200}
+              className="mb-1"
+              onChange={changeValueHandler.bind(null, "subtitle")}
+              content={subtitle || ""}
+            >
               Insert you course subtitle.
             </Input>
             <p>
@@ -61,55 +114,41 @@ const Basics = (props) => {
               areas that you've covered during your course.
             </p>
           </div>
-          <div>
+          <div className="my-5">
             <h5>Course description</h5>
             <textarea
               className={`${classes.description} bg-transparent w-100 p-3`}
-              // onChange={changeValueHandler}
               placeholder="Insert you course description."
-            >
-              {course.description}
-            </textarea>
+              onChange={(e) =>
+                changeValueHandler("description", e.target.value)
+              }
+              defaultValue={description || ""}
+            ></textarea>
             <p>Description should have minimum 200 words.</p>
           </div>
-          <div>
+          <div className="my-5">
             <h5>Basic info</h5>
             <div className="d-flex gap-3 flex-wrap">
               <Select
                 className="flex-grow-1"
                 reverse
-                defaultValue={
-                  langOptions.find((o) => o.id === course.lang) || {
-                    id: "none",
-                    text: "-- Select language --",
-                  }
-                }
+                defaultValue={defaultLang}
                 options={langOptions}
-                onChange={(option) => {}}
+                onChange={changeValueHandler.bind(null, "language")}
               />
               <Select
                 className="flex-grow-1"
                 reverse
-                defaultValue={
-                  levelOptions.find((o) => o.id === course.level) || {
-                    id: "none",
-                    text: "-- Select level --",
-                  }
-                }
+                defaultValue={defaultLevel}
                 options={levelOptions}
-                onChange={(option) => {}}
+                onChange={changeValueHandler.bind(null, "level")}
               />
               <Select
                 className="flex-grow-1"
                 reverse
-                defaultValue={
-                  categoryOptions.find((o) => o.id === course.categoryId) || {
-                    id: "none",
-                    text: "-- Select category --",
-                  }
-                }
+                defaultValue={defaultCategory}
                 options={categoryOptions}
-                onChange={(option) => {}}
+                onChange={changeValueHandler.bind(null, "category")}
               />
             </div>
           </div>
