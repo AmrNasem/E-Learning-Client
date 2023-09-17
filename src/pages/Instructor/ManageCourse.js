@@ -161,10 +161,10 @@ const ManageCourse = (props) => {
           <Routes>
             <Route path="" element={<Navigate to="goals" replace />} />
             <Route path="goals" element={<Goals />} />
-            <Route path="curriculum" element={<Curriculum course={course} />} />
-            <Route path="basics" element={<Basics course={course} />} />
-            <Route path="pricing" element={<Pricing course={course} />} />
-            <Route path="settings" element={<Settings course={course} />} />
+            <Route path="curriculum" element={<Curriculum />} />
+            <Route path="basics" element={<Basics />} />
+            <Route path="pricing" element={<Pricing />} />
+            <Route path="settings" element={<Settings />} />
             <Route path="*" element={<h3>No such a page</h3>} />
           </Routes>
         </div>

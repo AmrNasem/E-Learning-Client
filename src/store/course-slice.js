@@ -9,6 +9,12 @@ const initialState = {
   beneficiaries: null,
   price: null,
   privacy: null,
+  title: null,
+  subtitle: null,
+  description: null,
+  lang: null,
+  level: null,
+  category: null,
 };
 
 const courseSlice = createSlice({
@@ -28,10 +34,16 @@ const courseSlice = createSlice({
       const course = action.payload;
       state.course = course;
       state.privacy = course.privacy || "public";
-      state.price = course.price || 0;
+      state.price = course.price;
       state.goals = fill(course.gain, 4);
       state.requirements = fill(course.requirements, 1);
       state.beneficiaries = fill(course.beneficiaries, 1);
+      state.title = course.title;
+      state.subtitle = course.subtitle;
+      state.description = course.description;
+      state.lang = course.lang;
+      state.level = course.level;
+      state.category = course.categoryId;
     },
     editInfo(state, action) {
       const { type, value } = action.payload;
@@ -56,6 +68,33 @@ const courseSlice = createSlice({
           if (item.id === value.id) item = value;
           return item;
         });
+        return;
+      }
+
+      if (type === "title") {
+        state.title = value;
+        return;
+      }
+
+      if (type === "subtitle") {
+        state.subtitle = value;
+        return;
+      }
+
+      if (type === "description") {
+        state.description = value;
+        return;
+      }
+      if (type === "language") {
+        state.lang = value.id;
+        return;
+      }
+      if (type === "level") {
+        state.level = value.id;
+        return;
+      }
+      if (type === "category") {
+        state.category = value.id;
         return;
       }
     },

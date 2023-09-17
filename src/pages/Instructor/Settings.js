@@ -11,8 +11,9 @@ const options = [
   { id: "private", text: "Private" },
 ];
 
-const Settings = ({ course }) => {
+const Settings = () => {
   const dispatch = useDispatch();
+  const course = useSelector((state) => state.course.course);
   const privacy = useSelector((state) => state.course.privacy);
   const defaultValue = useMemo(
     () => options.find((o) => o.id === privacy),

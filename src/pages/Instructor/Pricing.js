@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useCallback } from "react";
 import { courseActions } from "../../store/course-slice";
 
-const Pricing = (props) => {
+const Pricing = () => {
   const price = useSelector((state) => state.course.price);
+  const course = useSelector((state) => state.course.course);
   const dispatch = useDispatch();
 
   const changePriceHandler = useCallback(
@@ -22,10 +23,14 @@ const Pricing = (props) => {
         like to offer your course for free, it must have a total video length of
         less than 2 hours. Also, courses with practice tests can not be free.
       </p>
-      {price !== null ? (
+      {course ? (
         <div className="d-flex align-items-center gap-3">
           <label className="fw-bold">USD</label>
-          <Input content={price} onChange={changePriceHandler} type="number">
+          <Input
+            content={price || ""}
+            onChange={changePriceHandler}
+            type="number"
+          >
             Enter your price
           </Input>
         </div>
