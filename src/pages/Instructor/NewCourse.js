@@ -9,17 +9,6 @@ import { courseActions } from "../../store/course-slice";
 import useHttp from "../../hooks/use-http";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
 
-// const categoryOptions = [
-//   { id: "uiux", text: "UI/UX Design" },
-//   { id: "ai", text: "Artificial Intelligence" },
-//   { id: "web", text: "Web Development" },
-//   { id: "mobile", text: "Mobile Development" },
-//   { id: "security", text: "Cyber Security" },
-//   { id: "datascience", text: "Data Science" },
-//   { id: "machinelearning", text: "Machine Learning" },
-//   { id: "none", text: "I don't know yet" },
-// ];
-
 const NewCourse = () => {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState({

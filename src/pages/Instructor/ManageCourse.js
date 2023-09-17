@@ -1,13 +1,6 @@
 import { faCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  NavLink,
-  Navigate,
-  Route,
-  Routes,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+import { NavLink, Navigate, Route, Routes, useParams } from "react-router-dom";
 import classes from "./ManageCourse.module.css";
 import Goals from "./Goals";
 import Curriculum from "./Curriculum";
@@ -16,10 +9,11 @@ import Basics from "./Basics";
 import Pricing from "./Pricing";
 import { useEffect, useState } from "react";
 import { courseActions } from "../../store/course-slice";
-import { faAngleLeft, faBars, faGear } from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import Settings from "./Settings";
 import Footer from "../../components/Footer";
 import useHttp from "../../hooks/use-http";
+import ManageCourseHeader from "../../components/Instructor/ManageCourseHeader";
 
 const ManageCourse = (props) => {
   const { courseId } = useParams();
@@ -27,7 +21,6 @@ const ManageCourse = (props) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const course = useSelector((state) => state.course.course);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { sendRequest: getCourse, error } = useHttp();
 
   useEffect(() => {
@@ -67,37 +60,7 @@ const ManageCourse = (props) => {
   return (
     <>
       {course && (
-        <div
-          className={`py-2 px-3 px-md-4 px-lg-5 start-0 top-0 d-flex gap-3 flex-wrap align-items-center justify-content-end ${classes.header} position-sticky`}
-        >
-          <div className="d-flex gap-3 flex-grow-1 align-items-center">
-            <button
-              onClick={() => navigate("/instructor", { replace: true })}
-              className={`${classes.back} bg-transparent text-white border-0 d-flex gap-2 align-items-center`}
-            >
-              <FontAwesomeIcon icon={faAngleLeft} />{" "}
-              <span className="d-md-block d-none">Back to courses</span>
-            </button>
-            <h6 className="fw-bold text-white mb-0">{course.title}</h6>
-            <span className={`${classes.status} px-1 text-uppercase`}>
-              {course.status}
-            </span>
-          </div>
-          <div className="d-flex gap-3 align-items-center">
-            <button
-              className={`${classes.save} px-4 py-2 fw-bold text-white border-0`}
-            >
-              Save
-            </button>
-
-            <button
-              onClick={() => navigate("settings")}
-              className={`${classes.settings} fs-5 text-white p-2 bg-transparent border-0`}
-            >
-              <FontAwesomeIcon icon={faGear} />
-            </button>
-          </div>
-        </div>
+        <ManageCourseHeader status={course.status} title={course.title} />
       )}
       <main className={`my-4 py-2 px-md-4 px-3 ${classes["manage-course"]}`}>
         {windowWidth < 992 && (
