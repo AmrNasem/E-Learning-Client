@@ -12,7 +12,6 @@ import classes from "./ManageCourse.module.css";
 import Goals from "./Goals";
 import Curriculum from "./Curriculum";
 import { useDispatch, useSelector } from "react-redux";
-import jsonFile from "../../assets/dummy.json";
 import Basics from "./Basics";
 import Pricing from "./Pricing";
 import { useEffect, useState } from "react";
@@ -20,26 +19,25 @@ import { courseActions } from "../../store/course-slice";
 import { faAngleLeft, faBars, faGear } from "@fortawesome/free-solid-svg-icons";
 import Settings from "./Settings";
 import Footer from "../../components/Footer";
+import useHttp from "../../hooks/use-http";
 
 const ManageCourse = (props) => {
   const { courseId } = useParams();
   const [togglePages, setTogglePages] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const authedUser = useSelector((state) => state.auth.user);
   const course = useSelector((state) => state.course.course);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const instructor = jsonFile.instructors.find(
-    (i) => i.id === authedUser.instructor
-  );
+  const { sendRequest: getCourse, error } = useHttp();
 
   useEffect(() => {
-    if (!course || course.id !== courseId) {
-      // GET request
-      const data = jsonFile.courses.find((c) => c.id === courseId);
-      dispatch(courseActions.setCourse(data));
-    }
-  }, [course, courseId, dispatch]);
+    // GET request
+    getCourse({ endPoint: `courses/getCourseById/${courseId}` }, (payload) => {
+      console.log(payload);
+      dispatch(courseActions.setCourse(payload.course));
+    });
+    return () => dispatch(courseActions.setCourse(null));
+  }, [getCourse, courseId, dispatch]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -53,19 +51,18 @@ const ManageCourse = (props) => {
     };
   }, []);
 
-  // The next statement is temporary till we link the backend!
-  if (!instructor.courses.find((c) => c === courseId))
-    return (
-      <main className={`my-4 py-2 ${classes["manage-course"]}`}>
-        <h3 className="text-center">You have no such a course</h3>
-      </main>
-    );
-
   const activeClassHandler = ({ isActive }) => {
     const bootstrapClasses = `px-4 py-2 d-block text-decoration-none ${classes.link}`;
     if (isActive) return `${bootstrapClasses} ${classes.active}`;
     else return bootstrapClasses;
   };
+
+  if (error)
+    return (
+      <main>
+        <h3 className="text-center my-3">{error}</h3>
+      </main>
+    );
 
   return (
     <>

@@ -1,20 +1,12 @@
 import { NavLink } from "react-router-dom";
 import classes from "./Categories.module.css";
-import useHttp from "../../hooks/use-http";
-import { useEffect, useState } from "react";
 import LoadingSpinner from "../UI/LoadingSpinner";
+import { useSelector } from "react-redux";
 
 const Categories = (props) => {
-  const { isLoading, sendRequest: getCategories, error } = useHttp();
-  const [categories, setCategories] = useState(null);
-
-  useEffect(() => {
-    getCategories({ endPoint: "categories/getAllCategories" }, (payload) => {
-      console.log(payload);
-      setCategories(payload.categories);
-    });
-  }, [getCategories]);
-
+  const { isLoading, categories, error } = useSelector(
+    (state) => state.categories
+  );
   const weired = !isLoading && !categories && !error;
 
   return (
@@ -30,7 +22,7 @@ const Categories = (props) => {
             }
             to={`category/${cat.id}`}
           >
-            {cat.categoryName}
+            {cat.text}
           </NavLink>
         ))}
     </div>
