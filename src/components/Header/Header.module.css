@@ -8,17 +8,14 @@ header {
   background-color: var(--secondary-color);
   box-shadow: #ab64648e 1px 1px 20px 1px;
 }
-
 @media (max-width: 660px) {
   .main-header {
     display: none;
   }
 }
-
 .logo {
   font-family: abril fatface;
 }
-
 .logolink {
   text-decoration: none;
   color: var(--sixth-color);
@@ -121,17 +118,10 @@ input[type="search"] {
   font-size: 16px;
 }
 
-.actions .Instractor {
-  background-color: var(--secondary-color);
-  color: var(--third-color);
-  margin-right: 20px;
-}
-
 .actions .signup {
   background-color: var(--main-color);
   color: var(--third-color);
 }
-
 .actions .login {
   background-color: var(--third-color);
 }
