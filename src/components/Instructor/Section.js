@@ -11,41 +11,74 @@ import Lecture from "./Lecture";
 import React, { useEffect, useState } from "react";
 import Form from "./Form";
 import Modal from "./Modal";
+import useHttp from "../../hooks/use-http";
+import { useParams } from "react-router-dom";
+import LoadingSpinner from "../UI/LoadingSpinner";
+import { courseActions } from "../../store/course-slice";
+import { useDispatch } from "react-redux";
+import { useCallback } from "react";
 
 const Section = (props) => {
-  const { order, setSections, section } = props;
-  const [lectures, setLectures] = useState(
-    order === 0
-      ? [{ title: "Introduction", id: Math.random().toString(), video: null }]
-      : []
-  );
+  const { order, section } = props;
   const [isAddingLecture, setIsAddingLecture] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isLoading: isDeletingLoading, sendRequest: deleteSection } =
+    useHttp();
+  const {
+    isLoading: isEditingLoading,
+    sendRequest: updateSection,
+    error,
+  } = useHttp();
+  const { courseId } = useParams();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (section && section.lectures && section.lectures.length)
-      setLectures(section.lectures);
-  }, [section]);
+    if (!isEditingLoading) setIsEditing(false);
+  }, [isEditingLoading]);
 
-  const deleteSectionHandler = () => {
-    setSections((prevState) =>
-      prevState.filter((item) => item.id !== section.id)
+  const deleteSectionHandler = useCallback(() => {
+    setIsModalOpen(false);
+    deleteSection(
+      {
+        endPoint: `sections/deleteSection/${section.id}`,
+        body: { courseId },
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      },
+      (payload) => {
+        console.log(payload);
+        dispatch(courseActions.deleteSection(section.id));
+      }
     );
-  };
+  }, [section, dispatch, deleteSection, courseId]);
 
-  const addLectureHandler = (data) => {
-    setLectures((prevState) => [...prevState, data]);
-  };
+  const addLectureHandler = useCallback(
+    (data) => {
+      dispatch(courseActions.addLecture({ secId: section.id, lec: data }));
+      setIsAddingLecture(false);
+    },
+    [dispatch, section]
+  );
 
-  const editSectionHandler = (data) => {
-    setSections((prevState) =>
-      prevState.map((item) => {
-        if (item.id === data.id) item = { ...item, ...data };
-        return item;
-      })
-    );
-  };
+  const editSectionHandler = useCallback(
+    (data) => {
+      updateSection(
+        {
+          endPoint: `sections/updateSection/${section.id}`,
+          body: { sectionTitle: data.title, courseId },
+          headers: { "Content-Type": "application/json" },
+          method: "PUT",
+        },
+        (payload) => {
+          dispatch(courseActions.editSection(payload.rowUpdated));
+        }
+      );
+    },
+    [section, courseId, dispatch, updateSection]
+  );
+
+  if (error) console.log(error);
 
   const dragHandler = (e) => {
     e.dataTransfer.setData("section-data", order);
@@ -55,14 +88,9 @@ const Section = (props) => {
     const draggedOrder = e.dataTransfer.getData("section-data");
     e.currentTarget.style.backgroundColor = "var(--hover-color)";
     if (draggedOrder) {
-      setSections((prevState) => {
-        const newState = [...prevState];
-        [newState[order], newState[draggedOrder]] = [
-          newState[draggedOrder],
-          newState[order],
-        ];
-        return newState;
-      });
+      dispatch(
+        courseActions.changeSectionOrder({ from: draggedOrder, to: order })
+      );
     }
   };
 
@@ -75,7 +103,10 @@ const Section = (props) => {
       <div className="d-flex align-items-center gap-2 flex-wrap flex-sm-nowrap text-nowrap">
         <span>
           <strong>
-            {lectures.length ? `Section ${order + 1}` : "Unpublished Section"}:
+            {section.videos.length
+              ? `Section ${order + 1}`
+              : "Unpublished Section"}
+            :
           </strong>
         </span>
         <div
@@ -129,21 +160,22 @@ const Section = (props) => {
         <Form
           type="Section"
           order={order}
-          emptySection={!lectures.length}
+          emptySection={!section.videos.length}
           onEditHandler={editSectionHandler}
           setIsEditing={setIsEditing}
+          isLoading={isEditingLoading}
           edit={isEditing}
         />
       ) : (
         sectionHeader
       )}
-      <div className="mt-5 ms-md-5">
-        {lectures.map((lec, index) => (
+      {isDeletingLoading && <LoadingSpinner className="mt-3" side={40} />}
+      <div className="mt-4 ms-md-5">
+        {section.videos.map((lec, index) => (
           <Lecture
             lecture={lec}
             key={lec.id}
             secId={section.id}
-            setLectures={setLectures}
             order={index}
           />
         ))}

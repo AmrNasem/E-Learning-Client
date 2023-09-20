@@ -15,8 +15,8 @@ const langOptions = [
 const levelOptions = [
   { id: "beginner", text: "Beginner level" },
   { id: "intermediate", text: "Intermediate level" },
-  { id: "expert", text: "Expert level" },
-  { id: "all", text: "All levels" },
+  { id: "advanced", text: "Expert level" },
+  { id: "all levels", text: "All levels" },
 ];
 
 const Basics = () => {
@@ -142,7 +142,7 @@ const Basics = () => {
               className={`${classes.description} bg-transparent w-100 p-3`}
               placeholder="Insert you course description."
               onChange={changeDescriptionHandler}
-              defaultValue={description || ""}
+              value={description || ""}
             ></textarea>
             <p>Description should have minimum 200 words.</p>
           </div>

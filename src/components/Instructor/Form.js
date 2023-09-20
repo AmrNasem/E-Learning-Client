@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import classes from "./Form.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const Form = (props) => {
   const inputRef = useRef();
@@ -14,6 +15,7 @@ const Form = (props) => {
     setIsAdding,
     onEditHandler,
     onAddHandler,
+    isLoading,
   } = props;
   const [inputLength, setInputLength] = useState(0);
   const [isValid, setIsValid] = useState(false);
@@ -41,16 +43,14 @@ const Form = (props) => {
       title: inputRef.current.value,
       id: edit.id,
     });
-    setIsEditing(false);
   };
 
   const addHandler = (e) => {
     e.preventDefault();
     onAddHandler({
-      title: inputRef.current.value,
       id: Math.random().toString(),
+      title: inputRef.current.value,
     });
-    setIsAdding(false);
   };
 
   return (
@@ -91,16 +91,20 @@ const Form = (props) => {
         >
           Cancel
         </button>
-        <button
-          onClick={edit ? editHandler : addHandler}
-          disabled={isValid}
-          className={`px-2 py-1 text-white ${classes.add}`}
-        >
-          {edit ? "Save" : "Add"} {type}
-        </button>
+        {isLoading ? (
+          <LoadingSpinner side={40} />
+        ) : (
+          <button
+            onClick={edit ? editHandler : addHandler}
+            disabled={isValid}
+            className={`px-2 py-1 text-white ${classes.add}`}
+          >
+            {edit ? "Save" : "Add"} {type}
+          </button>
+        )}
       </div>
     </form>
   );
 };
 
-export default Form;
+export default memo(Form);

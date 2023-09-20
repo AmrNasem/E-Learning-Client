@@ -36,6 +36,7 @@ const Login = (props) => {
           email: emailRef.current.value,
           password: passwordRef.current.value,
         },
+        headers: { "Content-Type": "application/json" },
         method: "POST",
       },
       applyData

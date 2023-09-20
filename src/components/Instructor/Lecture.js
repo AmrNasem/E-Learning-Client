@@ -15,6 +15,10 @@ import Form from "./Form";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import useHttp from "../../hooks/use-http";
+import { courseActions } from "../../store/course-slice";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useCallback } from "react";
 
 const uploadReducer = (state, action) => {
   if (action.type === "toggleInfo") return { ...state, isOpen: !state.isOpen };
@@ -46,11 +50,14 @@ const months = [
 ];
 
 const Lecture = (props) => {
-  const { order, secId, lecture, setLectures } = props;
+  const { order, secId, lecture } = props;
   const { courseId } = useParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const { sendRequest: uploadVideo, isLoading } = useHttp();
+  const [isUploaded, setIsUploaded] = useState(lecture.videoUrl ? true : false);
+  const { sendRequest: uploadVideo, isLoading, error } = useHttp();
+  const { sendRequest: updateVideo, isLoading: isUpdatingVideo } = useHttp();
+  const dispatch = useDispatch();
   const [upload, dispatchUpload] = useReducer(uploadReducer, {
     type: "",
     isOpen: false,
@@ -58,20 +65,35 @@ const Lecture = (props) => {
     date: null,
   });
 
-  const deleteLectureHandler = () => {
-    setLectures((prevState) =>
-      prevState.filter((item) => item.id !== lecture.id)
-    );
-  };
+  useEffect(() => {
+    if (!isUpdatingVideo) setIsEditing(false);
+  }, [isUpdatingVideo]);
 
-  const editLectureHandler = (data) => {
-    setLectures((prevState) =>
-      prevState.map((item) => {
-        if (item.id === data.id) item = { ...item, ...data };
-        return item;
-      })
-    );
-  };
+  const deleteLectureHandler = useCallback(() => {
+    dispatch(courseActions.deleteLecture({ secId, lecId: lecture.id }));
+  }, [dispatch, lecture, secId]);
+
+  const editLectureHandler = useCallback(
+    (data) => {
+      if (isUploaded) {
+        updateVideo(
+          {
+            endPoint: `videos/updateVideo/${lecture.id}`,
+            body: { videoTitle: data.title, courseId },
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+          },
+          (payload) => {
+            dispatch(courseActions.editLecture({ secId, lec: data }));
+          }
+        );
+      } else {
+        dispatch(courseActions.editLecture({ secId, lec: data }));
+        setIsEditing(false);
+      }
+    },
+    [updateVideo, dispatch, courseId, isUploaded, lecture, secId]
+  );
 
   const uploadVideoHandler = () => {
     const formData = new FormData();
@@ -84,20 +106,28 @@ const Lecture = (props) => {
         endPoint: `videos/uploadVideo/${courseId}`,
         method: "POST",
         body: formData,
+        stringify: false,
       },
-      (payload) => console.log(payload)
+      (payload) => {
+        console.log(payload);
+        setIsUploaded(true);
+      }
     );
   };
+
+  if (error) console.log(error);
 
   const selectVideoHandler = (e) => {
     dispatchUpload({ type: "setFile", file: e.target.files[0] });
     dispatchUpload({ type: "toggleInfo" });
   };
 
-  const getDate = (date) => {
+  const getUploadDate = (date) => {
     return `${months[date.getMonth()]} / ${
-      date.getDate().toString().length === 1 && "0"
-    }${date.getDate()} / ${date.getFullYear()}`;
+      date.getDate().toString().length === 1
+        ? `0${date.getDate()}`
+        : date.getDate()
+    } / ${date.getFullYear()}`;
   };
 
   if (isEditing)
@@ -107,6 +137,7 @@ const Lecture = (props) => {
         order={order}
         onEditHandler={editLectureHandler}
         setIsEditing={setIsEditing}
+        isLoading={isUpdatingVideo}
         edit={isEditing}
       />
     );
@@ -182,35 +213,35 @@ const Lecture = (props) => {
           </button>
         )}
       </div>
-      {upload.isOpen &&
-        (isLoading ? (
-          <LoadingSpinner side={60} className="mt-3 mb-1" />
-        ) : (
-          <div>
-            <div
-              className={`d-flex my-3 p-2 gap-4 flex-wrap justify-content-between ${classes.info}`}
-            >
-              <div>
-                <h6 className="mb-1">Name:</h6>
-                <span>{upload.file.name}</span>
-              </div>
-              <div>
-                <h6 className="mb-1">Type:</h6>
-                <span className="text-capitalize">
-                  {upload.file.type.split("/")[0]}
-                </span>
-              </div>
-              <div>
-                <h6 className="mb-1">Size:</h6>
-                <span>
-                  {(upload.file.size / Math.pow(2, 20)).toFixed(2)} MB
-                </span>
-              </div>
-              <div>
-                <h6 className="mb-1">Date:</h6>
-                <span>{getDate(upload.date)}</span>
-              </div>
+      {upload.isOpen && (
+        <div>
+          <div
+            className={`d-flex my-3 p-2 gap-4 flex-wrap justify-content-between ${classes.info}`}
+          >
+            <div>
+              <h6 className="mb-1">Name:</h6>
+              <span>{upload.file.name}</span>
             </div>
+            <div>
+              <h6 className="mb-1">Type:</h6>
+              <span className="text-capitalize">
+                {upload.file.type.split("/")[0]}
+              </span>
+            </div>
+            <div>
+              <h6 className="mb-1">Size:</h6>
+              <span>{(upload.file.size / Math.pow(2, 20)).toFixed(2)} MB</span>
+            </div>
+            <div>
+              <h6 className="mb-1">Date:</h6>
+              <span>{getUploadDate(upload.date)}</span>
+            </div>
+          </div>
+          {isLoading ? (
+            <LoadingSpinner side={50} className="mt-3 mb-1" />
+          ) : isUploaded ? (
+            <h5>Uploaded</h5>
+          ) : (
             <div className="text-end mt-3">
               <button
                 onClick={() => dispatchUpload({})}
@@ -225,8 +256,9 @@ const Lecture = (props) => {
                 Upload
               </button>
             </div>
-          </div>
-        ))}
+          )}
+        </div>
+      )}
     </div>
   );
 };

@@ -25,6 +25,7 @@ const SignUp = (props) => {
           fullname: nameRef.current.value,
         },
         credentials: "include",
+        headers: { "Content-Type": "application/json" },
         method: "POST",
       },
       (payload) => {
