@@ -1,3 +1,4 @@
+import { memo } from "react";
 import classes from "./LoadingSpinner.module.css";
 
 const LoadingSpinner = ({ side = 80, className }) => {
@@ -9,4 +10,4 @@ const LoadingSpinner = ({ side = 80, className }) => {
   );
 };
 
-export default LoadingSpinner;
+export default memo(LoadingSpinner);

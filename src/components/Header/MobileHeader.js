@@ -15,6 +15,9 @@ import Button from "../UI/Button";
 import MenuBarIcon from "../Icons/MenuBarIcon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { authActions } from "../../store/auth-slice";
+import useHttp from "../../hooks/use-http";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const MobileHeader = (props) => {
   const navigate = useNavigate();
@@ -24,10 +27,24 @@ const MobileHeader = (props) => {
   const authedUser = useSelector((state) => state.auth.user);
   const headerCtx = useContext(HeaderContext);
   const [openedSearch, setOpenedSearch] = useState(false);
+  const { isLoading, sendRequest: becomeInstructor } = useHttp();
 
   const toggleAsideHandler = (e) => {
     e.stopPropagation();
     headerCtx.setVisibleCategories((prevState) => !prevState);
+  };
+
+  const instructorUIHandler = (e) => {
+    e.stopPropagation();
+    if (authedUser.role !== "instructor") {
+      becomeInstructor(
+        { endPoint: "users/becomeInstructor", method: "PUT" },
+        (payload) => {
+          dispatch(authActions.setUser(payload.user));
+          navigate("/instructor");
+        }
+      );
+    } else navigate("/instructor");
   };
 
   const searchBar = (
@@ -96,12 +113,19 @@ const MobileHeader = (props) => {
         )}
         {authedUser && (
           <button
-            onClick={() => navigate("instructor")}
-            className={`btn my-3 border-0 py-2 rounded-0 ${styles.instructor}`}
+            onClick={instructorUIHandler}
+            className={`btn my-3 border-0 py-2 rounded-0 ${styles.instructor} ${
+              isLoading && "w-100"
+            }`}
+            disabled={isLoading}
           >
-            {authedUser.role === "instructor"
-              ? "Switch to teacher view"
-              : "Become a teacher"}
+            {isLoading ? (
+              <LoadingSpinner side={30} />
+            ) : authedUser.role === "instructor" ? (
+              "Switch to teacher view"
+            ) : (
+              "Become a teacher"
+            )}
           </button>
         )}
         <hr className="my-0" />

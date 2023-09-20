@@ -1,3 +1,4 @@
+import { memo } from "react";
 import classes from "./PageBox.module.css";
 
 const PageBox = (props) => {
@@ -9,4 +10,4 @@ const PageBox = (props) => {
   );
 };
 
-export default PageBox;
+export default memo(PageBox);

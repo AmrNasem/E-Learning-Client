@@ -67,7 +67,12 @@ const NewCourse = () => {
             },
           },
           (sectionPayload) => {
-            dispatch(courseActions.addSection(sectionPayload.section));
+            dispatch(
+              courseActions.addSection({
+                ...sectionPayload.section,
+                videos: [],
+              })
+            );
           }
         );
       }

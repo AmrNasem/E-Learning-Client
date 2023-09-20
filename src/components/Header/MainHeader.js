@@ -9,6 +9,9 @@ import classes from "./Header.module.css";
 import SearchIcon from "../Icons/SearchIcon";
 import CartIcon from "../Icons/CartIcon";
 import Button from "../UI/Button";
+import useHttp from "../../hooks/use-http";
+import { authActions } from "../../store/auth-slice";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const MainHeader = (props) => {
   const navigate = useNavigate();
@@ -16,8 +19,21 @@ const MainHeader = (props) => {
   const isCartOpened = useSelector((state) => state.cart.isOpened);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   const authedUser = useSelector((state) => state.auth.user);
+  const { isLoading, sendRequest: becomeInstructor } = useHttp();
 
   const headerCtx = useContext(HeaderContext);
+
+  const instructorUIHandler = () => {
+    if (authedUser.role !== "instructor") {
+      becomeInstructor(
+        { endPoint: "users/becomeInstructor", method: "PUT" },
+        (payload) => {
+          dispatch(authActions.setUser(payload.user));
+          navigate("/instructor");
+        }
+      );
+    } else navigate("/instructor");
+  };
 
   const toggleCategoriesHandler = (e) => {
     headerCtx.setVisibleCategories((prevState) => !prevState);
@@ -51,10 +67,17 @@ const MainHeader = (props) => {
       </form>
       {authedUser && (
         <button
-          onClick={() => navigate("instructor")}
+          onClick={instructorUIHandler}
           className={`btn border-0 ${classes.instructor}`}
+          disabled={isLoading}
         >
-          {authedUser.role === "instructor" ? "Instructor" : "Become a teacher"}
+          {isLoading ? (
+            <LoadingSpinner side={30} />
+          ) : authedUser.role === "instructor" ? (
+            "Instructor"
+          ) : (
+            "Become a teacher"
+          )}
         </button>
       )}
       <div

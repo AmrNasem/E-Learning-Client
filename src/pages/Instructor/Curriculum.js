@@ -12,7 +12,6 @@ import useHttp from "../../hooks/use-http";
 import { useParams } from "react-router-dom";
 
 const Curriculum = (props) => {
-  const course = useSelector((state) => state.course.course);
   const sections = useSelector((state) => state.course.sections);
   const [isAddingSection, setIsAddingSection] = useState(false);
   const { courseId } = useParams();
@@ -57,7 +56,7 @@ const Curriculum = (props) => {
         and lectures clearly. If you're intending to offer your course for free,
         the total length of video content must be less than 2 hours.
       </p>
-      {course ? (
+      {sections ? (
         sections.map((sec, index) => (
           <Section key={sec.id} order={index} section={sec} />
         ))
