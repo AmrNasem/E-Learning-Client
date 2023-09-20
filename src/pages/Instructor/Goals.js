@@ -103,9 +103,9 @@ const Goals = () => {
         </p>
         <div>
           {requirements ? (
-            requirements.map((item) => (
+            requirements.map((item, index) => (
               <Input
-                key={item.id}
+                key={index}
                 id={item.id}
                 content={item.text}
                 onChange={changeRequirementsHandler}
@@ -138,9 +138,9 @@ const Goals = () => {
         </p>
         <div>
           {beneficiaries ? (
-            beneficiaries.map((item) => (
+            beneficiaries.map((item, index) => (
               <Input
-                key={item.id}
+                key={index}
                 id={item.id}
                 content={item.text}
                 onChange={changeBeneficiariesHandler}

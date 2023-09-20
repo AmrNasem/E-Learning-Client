@@ -7,7 +7,14 @@ const useHttp = () => {
 
   const sendRequest = useCallback(
     async (
-      { endPoint, body, method = "GET", credentials = "include" },
+      {
+        endPoint,
+        body,
+        headers,
+        stringify = true,
+        method = "GET",
+        credentials = "include",
+      },
       applyData
     ) => {
       setIsLoading(true);
@@ -15,13 +22,9 @@ const useHttp = () => {
       try {
         const res = await fetch(`${backend}/${endPoint}`, {
           method,
-          headers: method
-            ? {
-                "Content-Type": "application/json",
-              }
-            : {},
+          headers: headers ? headers : {},
           credentials,
-          body: body ? JSON.stringify(body) : null,
+          body: body ? (stringify ? JSON.stringify(body) : body) : null,
         });
         const data = await res.json();
         if (!res.ok) throw new Error(data.message);

@@ -9,17 +9,6 @@ import { courseActions } from "../../store/course-slice";
 import useHttp from "../../hooks/use-http";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
 
-// const categoryOptions = [
-//   { id: "uiux", text: "UI/UX Design" },
-//   { id: "ai", text: "Artificial Intelligence" },
-//   { id: "web", text: "Web Development" },
-//   { id: "mobile", text: "Mobile Development" },
-//   { id: "security", text: "Cyber Security" },
-//   { id: "datascience", text: "Data Science" },
-//   { id: "machinelearning", text: "Machine Learning" },
-//   { id: "none", text: "I don't know yet" },
-// ];
-
 const NewCourse = () => {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState({
@@ -32,6 +21,7 @@ const NewCourse = () => {
     useSelector((state) => state.categories);
 
   const { isLoading: isCreating, sendRequest: createCourse, error } = useHttp();
+  const { sendRequest: addSection } = useHttp();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -59,12 +49,27 @@ const NewCourse = () => {
     createCourse(
       {
         endPoint: "courses/addCourse",
+        headers: { "Content-Type": "application/json" },
         method: "POST",
-        body: { title, categoryId: category.id },
+        body: { title, categoryId: category.id === "none" ? 1 : category.id },
       },
       (payload) => {
         dispatch(courseActions.setCourse(payload.course));
+        dispatch(courseActions.updateCourse(payload.course));
         navigate(`/instructor/course/${payload.course.id}`);
+        addSection(
+          {
+            endPoint: "sections/addSection",
+            body: { courseId: payload.course.id, sectionTitle: "Introduction" },
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          },
+          (sectionPayload) => {
+            dispatch(courseActions.addSection(sectionPayload.section));
+          }
+        );
       }
     );
   };

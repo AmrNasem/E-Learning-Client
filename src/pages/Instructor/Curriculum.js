@@ -3,29 +3,50 @@ import PageBox from "../../components/UI/PageBox";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import classes from "./Curriculum.module.css";
 import Form from "../../components/Instructor/Form";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Section from "../../components/Instructor/Section";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { courseActions } from "../../store/course-slice";
+import useHttp from "../../hooks/use-http";
+import { useParams } from "react-router-dom";
 
 const Curriculum = (props) => {
   const course = useSelector((state) => state.course.course);
-  const [sections, setSections] = useState([
-    {
-      title: "Introduction",
-      id: Math.random().toString(),
-    },
-  ]);
+  const sections = useSelector((state) => state.course.sections);
   const [isAddingSection, setIsAddingSection] = useState(false);
+  const { courseId } = useParams();
+  const { isLoading, sendRequest: addSection, error } = useHttp();
 
-  const addSectionHandler = (data) => {
-    setSections((prevState) => [...prevState, data]);
-  };
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (course && course.sections && course.sections.length)
-      setSections(course.sections);
-  }, [course]);
+    if (!isLoading) setIsAddingSection(false);
+  }, [isLoading]);
+
+  const addSectionHandler = useCallback(
+    (data) => {
+      addSection(
+        {
+          endPoint: "sections/addSection",
+          body: { courseId, sectionTitle: data.title },
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+        (payload) => {
+          console.log(payload);
+          dispatch(
+            courseActions.addSection({ ...payload.section, videos: [] })
+          );
+        }
+      );
+    },
+    [dispatch, courseId, addSection]
+  );
+
+  if (error) console.log(error);
 
   return (
     <PageBox title="Curriculum" className="overflow-hidden">
@@ -38,12 +59,7 @@ const Curriculum = (props) => {
       </p>
       {course ? (
         sections.map((sec, index) => (
-          <Section
-            key={sec.id}
-            setSections={setSections}
-            order={index}
-            section={sec}
-          />
+          <Section key={sec.id} order={index} section={sec} />
         ))
       ) : (
         <LoadingSpinner side={60} />
@@ -53,6 +69,7 @@ const Curriculum = (props) => {
           type="Section"
           onAddHandler={addSectionHandler}
           setIsAdding={setIsAddingSection}
+          isLoading={isLoading}
         />
       ) : (
         <button
