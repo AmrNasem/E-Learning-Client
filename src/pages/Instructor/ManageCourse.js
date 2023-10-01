@@ -25,11 +25,14 @@ const ManageCourse = (props) => {
 
   useEffect(() => {
     // GET request
-    getCourse({ endPoint: `courses/getCourseById/${courseId}` }, (payload) => {
-      console.log(payload);
-      dispatch(courseActions.setCourse(payload.course));
-      dispatch(courseActions.updateCourse(payload.course));
-    });
+    getCourse(
+      { endPoint: `courses/getCourseToEdit/${courseId}` },
+      (payload) => {
+        console.log(payload);
+        dispatch(courseActions.setCourse(payload.course));
+        dispatch(courseActions.updateCourse(payload.course));
+      }
+    );
     return () => {
       dispatch(courseActions.setCourse(null));
       dispatch(courseActions.updateCourse(null));

@@ -3,7 +3,6 @@ import CourseList from "../../components/courses/CourseList";
 import classes from "./LandingPage.module.css";
 import { memo, useEffect, useReducer, useState } from "react";
 import { useSelector } from "react-redux";
-import LoadingSpinner from "../../components/UI/LoadingSpinner";
 import useHttp from "../../hooks/use-http";
 
 const images = [
@@ -72,7 +71,7 @@ const LandingPage = () => {
   });
   const authedUser = useSelector((state) => state.auth.user);
   const [payload, setPayload] = useState(null);
-  const { isLoading, sendRequest: getHome, error } = useHttp();
+  const { sendRequest: getHome, error } = useHttp();
 
   const applyData = (payload) => {
     console.log(payload);
@@ -137,22 +136,18 @@ const LandingPage = () => {
           {!authedUser && <Link to="/signup">Get started!</Link>}
         </div>
       </div>
-      {error ? (
-        <h3 className="text-center my-3">{error}</h3>
-      ) : (
-        <div className={classes["landing-courses"]}>
-          {isLoading || (!isLoading && !payload) ? (
-            <LoadingSpinner className="my-5" side={60} />
-          ) : (
-            <CourseList class="Best Seller" courses={payload.bestsellers} />
-          )}
-          {isLoading || (!isLoading && !payload) ? (
-            <LoadingSpinner className="my-5" side={60} />
-          ) : (
-            <CourseList class="Recommends" courses={payload.recommendations} />
-          )}
-        </div>
-      )}
+      <div className={classes["landing-courses"]}>
+        <CourseList
+          class="Best Seller"
+          error={error}
+          courses={payload && payload.bestsellers}
+        />
+        <CourseList
+          class="Recommends"
+          error={error}
+          courses={payload && payload.recommendations}
+        />
+      </div>
     </main>
   );
 };

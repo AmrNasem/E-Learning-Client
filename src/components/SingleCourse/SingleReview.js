@@ -3,11 +3,12 @@ import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
 import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
 import classes from "./SingleReview.module.css";
 import useDate from "../../hooks/use-date";
+import React from "react";
 
 const SingleReview = (props) => {
-  const { date, unit } = useDate(props.date);
+  const { date, unit } = useDate(props.createdAt);
   // Avatar
-  const arr = props.name.split(" ");
+  const arr = props.name ? props.name.split(" ") : "No name".split(" ");
   const avatar = `${arr[0][0]}${
     arr.length > 1 ? arr[arr.length - 1][0] : ""
   }`.toUpperCase();
@@ -15,7 +16,7 @@ const SingleReview = (props) => {
   // Rating
   let stars = [];
   for (let i = 0; i < 5; i++) {
-    if (i < props.rating) {
+    if (i < props.rate) {
       stars.push(
         <FontAwesomeIcon className="text-warning" icon={solidStar} key={i} />
       );
@@ -35,7 +36,7 @@ const SingleReview = (props) => {
           {avatar}
         </span>
         <div>
-          <h5>{props.name}.</h5>
+          <h5>{props.name || "No name"}.</h5>
           <div className="d-flex align-items-center gap-3">
             <div className={classes.stars}>{stars}</div>
             <p className={`fw-bold m-0 ${classes.period}`}>
@@ -49,4 +50,4 @@ const SingleReview = (props) => {
   );
 };
 
-export default SingleReview;
+export default React.memo(SingleReview);

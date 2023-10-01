@@ -3,10 +3,11 @@ import ForwardIcon from "../Icons/ForwardIcon";
 import BackwardIcon from "../Icons/BackwardIcon";
 import classes from "./CourseList.module.css";
 import { memo, useRef } from "react";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const CourseList = (props) => {
   const coursesRef = useRef();
-  const { class: listClass, courses } = props;
+  const { class: listClass, courses, error } = props;
   const courseItemRef = useRef();
 
   console.log(courses);
@@ -23,22 +24,30 @@ const CourseList = (props) => {
 
   return (
     <section className={classes["courses-section"]}>
-      <BackwardIcon
-        onClick={() => swipeHandler(false)}
-        className={classes.backward}
-      />
       <h3>{listClass}</h3>
-      <div ref={coursesRef} className={classes["course-list"]}>
-        {courses.map((course, index) => (
-          <CourseItem
-            key={index}
-            className={classes.course}
-            {...course}
-            ref={courseItemRef}
+      {!courses && !error ? (
+        <LoadingSpinner side={60} />
+      ) : error ? (
+        <h4 className="text-center my-3">{error}</h4>
+      ) : (
+        <>
+          <BackwardIcon
+            onClick={() => swipeHandler(false)}
+            className={classes.backward}
           />
-        ))}
-      </div>
-      <ForwardIcon onClick={swipeHandler} className={classes.forward} />
+          <div ref={coursesRef} className={classes["course-list"]}>
+            {courses.map((course, index) => (
+              <CourseItem
+                key={index}
+                className={classes.course}
+                {...course}
+                ref={courseItemRef}
+              />
+            ))}
+          </div>
+          <ForwardIcon onClick={swipeHandler} className={classes.forward} />
+        </>
+      )}
     </section>
   );
 };

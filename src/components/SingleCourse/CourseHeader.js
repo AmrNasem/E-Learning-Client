@@ -55,7 +55,7 @@ const CourseHeader = (props) => {
       <p className={classes.info}>
         Bestseller{" "}
         <a className={classes.rates} href="#reviews">
-          ({course.totalReviewsRate || "20K"} ratings)
+          ({(+course.totalReviewsRate).toFixed(1) || "20K"} ratings)
         </a>
         <span className={classes.students}>
           {" "}

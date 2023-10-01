@@ -28,6 +28,12 @@ const MainHeader = (props) => {
       becomeInstructor(
         { endPoint: "users/becomeInstructor", method: "PUT" },
         (payload) => {
+          const user = localStorage.getItem("user");
+          if (user)
+            localStorage.setItem(
+              "user",
+              JSON.stringify({ user: payload.user, loginDate: user.loginDate })
+            );
           dispatch(authActions.setUser(payload.user));
           navigate("/instructor");
         }

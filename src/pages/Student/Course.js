@@ -19,28 +19,30 @@ import LoadingSpinner from "../../components/UI/LoadingSpinner";
 
 const Course = () => {
   const [scrollY, setScrollY] = useState(0);
-  const { isPaginated } = useSelector((state) => state.reviews);
+  const storedCourseId = useSelector((state) => state.reviews.courseId);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
   const { courseId } = useParams();
   const [course, setCourse] = useState(null);
-  const { isLoading, sendRequest: getCourse, error } = useHttp();
+  const { sendRequest: getCourse, error } = useHttp();
 
   useEffect(() => {
     getCourse({ endPoint: `courses/getCourseById/${courseId}` }, (payload) => {
-      console.log(payload);
+      console.log(payload.course);
       setCourse(payload.course);
-      dispatch(reviewsActions.getReviews(payload.course.reviews));
+      if (courseId !== storedCourseId) {
+        dispatch(reviewsActions.setReviews(courseId));
+        dispatch(reviewsActions.getReviews(payload.course.reviews));
+      }
     });
-  }, [getCourse, courseId, dispatch]);
+  }, [getCourse, courseId, storedCourseId, dispatch]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     window.addEventListener("scroll", () => setScrollY(window.scrollY));
   }, []);
 
-  const closeModalHandler = useCallback(() => {
-    dispatch(reviewsActions.toggleIsPaginated());
-  }, [dispatch]);
+  const closeModalHandler = useCallback(() => setIsModalOpen(false), []);
 
   if (error)
     return (
@@ -49,8 +51,7 @@ const Course = () => {
       </main>
     );
 
-  const weired = !course && !isLoading && !error;
-  if (isLoading || weired) return <LoadingSpinner side={80} />;
+  if (!course && !error) return <LoadingSpinner side={70} />;
 
   return (
     <main className={classes.course}>
@@ -95,11 +96,16 @@ const Course = () => {
           {course.teachers.map((teacher, index) => (
             <Instructor key={index} instructor={teacher} />
           ))}
-          <Reviews course={course} />
+          <Reviews course={course} setIsModalOpen={setIsModalOpen} />
         </div>
-        {isPaginated && (
+        {isModalOpen && (
           <ReviewsModal onClick={closeModalHandler}>
-            <Reviews course={course} modal wrap />
+            <Reviews
+              course={course}
+              modal
+              wrap
+              setIsModalOpen={setIsModalOpen}
+            />
           </ReviewsModal>
         )}
       </Container>

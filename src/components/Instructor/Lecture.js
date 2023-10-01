@@ -9,7 +9,7 @@ import {
   faAngleDown,
   faAngleUp,
 } from "@fortawesome/free-solid-svg-icons";
-import React, { useReducer, useState } from "react";
+import { useReducer, useState, useEffect, useCallback, memo } from "react";
 import Modal from "./Modal";
 import Form from "./Form";
 import { useParams } from "react-router-dom";
@@ -17,20 +17,34 @@ import LoadingSpinner from "../UI/LoadingSpinner";
 import useHttp from "../../hooks/use-http";
 import { courseActions } from "../../store/course-slice";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { useCallback } from "react";
 
 const uploadReducer = (state, action) => {
   if (action.type === "toggleInfo") return { ...state, isOpen: !state.isOpen };
 
-  if (action.type === "setFile")
-    return { ...state, file: action.file, date: new Date() };
+  if (action.type === "setFileDetails")
+    return { ...state, fileDetails: action.fileDetails };
+
+  if (action.type === "setFile") {
+    const date = new Date();
+    const file = action.file;
+    console.log(file);
+    return {
+      ...state,
+      file,
+      fileDetails: {
+        name: file.name,
+        size: file.size,
+        date,
+        type: file.type.split("/")[0],
+      },
+    };
+  }
 
   return {
     type: "",
     isOpen: false,
+    fileDetails: null,
     file: null,
-    date: null,
   };
 };
 
@@ -54,37 +68,66 @@ const Lecture = (props) => {
   const { courseId } = useParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [isUploaded, setIsUploaded] = useState(lecture.videoUrl ? true : false);
+  const [isUploaded, setIsUploaded] = useState(lecture.videoUrl);
   const { sendRequest: uploadVideo, isLoading, error } = useHttp();
   const { sendRequest: updateVideo, isLoading: isUpdatingVideo } = useHttp();
+  const { sendRequest: deleteVideo, isLoading: isDeletingVideo } = useHttp();
   const dispatch = useDispatch();
   const [upload, dispatchUpload] = useReducer(uploadReducer, {
     type: "",
     isOpen: false,
     file: lecture.video,
-    date: null,
+    fileDetails: null,
   });
 
   useEffect(() => {
-    if (!isUpdatingVideo) setIsEditing(false);
-  }, [isUpdatingVideo]);
+    if (isUploaded) {
+      const url = isUploaded.split("/");
+      dispatchUpload({
+        type: "setFileDetails",
+        fileDetails: {
+          name: url[url.length - 1],
+          type: "Video",
+          size: 2000000,
+          date: new Date(lecture.createdAt),
+        },
+      });
+    }
+  }, [isUploaded, lecture]);
 
   const deleteLectureHandler = useCallback(() => {
-    dispatch(courseActions.deleteLecture({ secId, lecId: lecture.id }));
-  }, [dispatch, lecture, secId]);
+    if (isUploaded) {
+      deleteVideo(
+        {
+          endPoint: `videos/deleteVideo/${lecture.id}`,
+          method: "DELETE",
+          body: { courseId },
+          headers: { "Content-Type": "application/json" },
+        },
+        () => {
+          dispatch(courseActions.deleteLecture({ secId, lecId: lecture.id }));
+        }
+      );
+    } else {
+      dispatch(courseActions.deleteLecture({ secId, lecId: lecture.id }));
+    }
+  }, [dispatch, deleteVideo, courseId, lecture, secId, isUploaded]);
 
   const editLectureHandler = useCallback(
     (data) => {
       if (isUploaded) {
+        console.log(data);
         updateVideo(
           {
             endPoint: `videos/updateVideo/${lecture.id}`,
-            body: { videoTitle: data.title, courseId },
+            body: { title: data.title, public: false, courseId },
             method: "PUT",
             headers: { "Content-Type": "application/json" },
           },
           (payload) => {
+            console.log(payload);
             dispatch(courseActions.editLecture({ secId, lec: data }));
+            setIsEditing(false);
           }
         );
       } else {
@@ -183,35 +226,38 @@ const Lecture = (props) => {
             </button>
           </div>
         </div>
-        {!upload.file && (
-          <form>
-            <input
-              className="d-none"
-              accept=".avi,.mpg,.mpeg,.flv,.mov,.m2v,.m4v,.mp4,.rm,.ram,.vob,.ogv,.webm,.wmv"
-              onChange={selectVideoHandler}
-              type="file"
-              id={`file${lecture.id}`}
-            />
-            <label
-              htmlFor={`file${lecture.id}`}
-              className={`px-3 text-nowrap py-1 ${classes.add}`}
+        <div className="d-flex gap-3">
+          {isDeletingVideo && <LoadingSpinner side={30} />}
+          {!upload.fileDetails && (
+            <form>
+              <input
+                className="d-none"
+                accept=".avi,.mpg,.mpeg,.flv,.mov,.m2v,.m4v,.mp4,.rm,.ram,.vob,.ogv,.webm,.wmv"
+                onChange={selectVideoHandler}
+                type="file"
+                id={`file${lecture.id}`}
+              />
+              <label
+                htmlFor={`file${lecture.id}`}
+                className={`px-3 text-nowrap py-1 ${classes.add}`}
+              >
+                <FontAwesomeIcon icon={faPlus} /> Content
+              </label>
+            </form>
+          )}
+          {upload.fileDetails && (
+            <button
+              onClick={() => dispatchUpload({ type: "toggleInfo" })}
+              className={`bg-transparent border-0 px-2 ${classes.video}`}
             >
-              <FontAwesomeIcon icon={faPlus} /> Content
-            </label>
-          </form>
-        )}
-        {upload.file && (
-          <button
-            onClick={() => dispatchUpload({ type: "toggleInfo" })}
-            className={`bg-transparent border-0 px-2 ${classes.video}`}
-          >
-            {upload.isOpen ? (
-              <FontAwesomeIcon icon={faAngleUp} />
-            ) : (
-              <FontAwesomeIcon icon={faAngleDown} />
-            )}
-          </button>
-        )}
+              {upload.isOpen ? (
+                <FontAwesomeIcon icon={faAngleUp} />
+              ) : (
+                <FontAwesomeIcon icon={faAngleDown} />
+              )}
+            </button>
+          )}
+        </div>
       </div>
       {upload.isOpen && (
         <div>
@@ -220,27 +266,27 @@ const Lecture = (props) => {
           >
             <div>
               <h6 className="mb-1">Name:</h6>
-              <span>{upload.file.name}</span>
+              <span>{upload.fileDetails.name}</span>
             </div>
             <div>
               <h6 className="mb-1">Type:</h6>
-              <span className="text-capitalize">
-                {upload.file.type.split("/")[0]}
-              </span>
+              <span className="text-capitalize">{upload.fileDetails.type}</span>
             </div>
             <div>
               <h6 className="mb-1">Size:</h6>
-              <span>{(upload.file.size / Math.pow(2, 20)).toFixed(2)} MB</span>
+              <span>
+                {(upload.fileDetails.size / Math.pow(2, 20)).toFixed(2)} MB
+              </span>
             </div>
             <div>
               <h6 className="mb-1">Date:</h6>
-              <span>{getUploadDate(upload.date)}</span>
+              <span>{getUploadDate(upload.fileDetails.date)}</span>
             </div>
           </div>
           {isLoading ? (
             <LoadingSpinner side={50} className="mt-3 mb-1" />
           ) : isUploaded ? (
-            <h5>Uploaded</h5>
+            <h5 className="text-center">Uploaded</h5>
           ) : (
             <div className="text-end mt-3">
               <button
@@ -263,4 +309,4 @@ const Lecture = (props) => {
   );
 };
 
-export default React.memo(Lecture);
+export default memo(Lecture);

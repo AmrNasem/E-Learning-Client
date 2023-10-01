@@ -5,13 +5,10 @@ import { useSelector } from "react-redux";
 
 export const OutLayer = (props) => {
   useEffect(() => {
-    if (props.isOpen) {
-      document.body.classList.add(classes["block-scrolling"]);
-    } else {
-      document.body.classList.remove(classes["block-scrolling"]);
-    }
+    document.body.classList.add(classes["block-scrolling"]);
     return () => document.body.classList.remove(classes["block-scrolling"]);
-  }, [props.isOpen]);
+  }, []);
+
   return (
     <div
       onClick={props.onClick}

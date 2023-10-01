@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classes from "./Reviews.module.css";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
@@ -12,30 +12,13 @@ import { reviewsActions } from "../../store/reviews-slice";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import useHttp from "../../hooks/use-http";
 
-// const reviewsPerPage = 5;
-
 const Reviews = (props) => {
-  // const page = useSelector((state) => state.reviews.page);
   const reviews = useSelector((state) => state.reviews.items);
-  const { wrap, modal, title, course } = props;
+  const { wrap, modal, title, course, setIsModalOpen } = props;
   const dispatch = useDispatch();
   const { isLoading, sendRequest: getReviews } = useHttp();
 
-  useEffect(() => {
-    if (!wrap) dispatch(reviewsActions.resetPages());
-  }, [dispatch, wrap]);
-
-  // useEffect(() => {
-  //   if (!items.length && !modal && course.reviews) {
-  //     dispatch(
-  //       reviewsActions.getReviews(course.reviews)
-  //     );
-  //   }
-  // }, [items, course, dispatch, modal]);
-
   if (!reviews) return <LoadingSpinner side={60} />;
-  if (!course.reviews) return; // Because this component renders multiple times before collecting 'the reviews'
-  const ratingAverage = 3.9;
   //   course.reviews
   //     .map((review) => review.rating)
   //     .reduce((prev, current) => prev + current) / course.reviews.length;
@@ -49,7 +32,7 @@ const Reviews = (props) => {
     ratings = `${Math.floor((ratings / 1000) * 10) / 10}K`;
 
   const getMoreHandler = () => {
-    if (!wrap) dispatch(reviewsActions.toggleIsPaginated(true));
+    if (!wrap) setIsModalOpen(true);
     else {
       getReviews(
         { endPoint: `reviews/getCourseReviews/${course.id}` },
@@ -76,12 +59,15 @@ const Reviews = (props) => {
           <>
             <FontAwesomeIcon className="text-warning fs-3" icon={faStar} />
             <h3 className="flex-grow-1 m-0">
-              {ratingAverage.toFixed(1)} course rating &bull; {ratings} ratings
+              {(+course.totalReviewsRate).toFixed(1)} course rating &bull;{" "}
+              {ratings} ratings
             </h3>
             {modal && (
               <button
                 className={`btn fs-5 ${classes["close-button"]}`}
-                onClick={() => dispatch(reviewsActions.toggleIsPaginated())}
+                onClick={() => {
+                  setIsModalOpen(false);
+                }}
               >
                 <FontAwesomeIcon icon={faClose} />
               </button>
@@ -91,7 +77,7 @@ const Reviews = (props) => {
         {title && <h3>Reviews</h3>}
       </div>
       <Row className="gy-3">
-        {reviews.map((review, id) => {
+        {(wrap ? reviews : course.reviews).map((review, id) => {
           if (wrap) {
             return <SingleReview key={id} {...review} />;
           }
@@ -103,7 +89,7 @@ const Reviews = (props) => {
           );
         })}
       </Row>
-      {isLoading ? (
+      {isLoading && wrap ? (
         <LoadingSpinner side={50} />
       ) : (
         <Button

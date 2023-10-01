@@ -6,6 +6,7 @@ div.course {
   box-shadow: #e4bdbddc 1px 1px 10px 2px;
   overflow: hidden;
   min-width: 250px;
+  height: 100%;
 }
 .course:hover {
   scale: 105%;

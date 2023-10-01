@@ -15,6 +15,7 @@ const Overview = (props) => {
   const dispatch = useDispatch();
   const { course } = props;
   const cartItems = useSelector((state) => state.cart.items);
+  const price = course.price || 404;
   const isPurchased = cartItems.find((item) => item.id === course.id);
 
   useEffect(() => {
@@ -49,11 +50,11 @@ const Overview = (props) => {
       {props.Preview}
       <div className={classes.body}>
         <div className={classes.price}>
-          {/* <span className={classes["final-price"]}>
-            ${course.price - course.price * (course.discount / 100)}
-          </span> */}
+          <span className={classes["final-price"]}>
+            ${price - price * (course.discount || 10 / 100)}
+          </span>
           <span className={classes["initial-price"]}>
-            {/* <del>${course.price}</del> */}
+            <del>${price}</del>
           </span>
           {/* <span className={classes.discount}>{course.discount}% off</span> */}
         </div>

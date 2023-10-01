@@ -11,7 +11,7 @@ const Categories = (props) => {
 
   return (
     <div className={`${classes.categories} ${props.className}`}>
-      {error && <p>{error}</p>}
+      {error && <p className="text-center">{error}</p>}
       {isLoading && !weired && <LoadingSpinner side={40} className="my-3" />}
       {categories &&
         categories.map((cat, index) => (

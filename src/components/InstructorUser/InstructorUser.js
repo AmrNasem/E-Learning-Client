@@ -4,19 +4,11 @@ import photo from "../../assets/desktop.jfif";
 import { Fragment } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import SocialMedia from "./SocialMedia";
 
 const InstructorUser = (props) => {
-  const { user, dummyInstructors, dummyCourses } = props;
-  const instructor = dummyInstructors.find(
-    (instructor) => instructor.id === user.instructor
-  );
+  const { user } = props;
 
-  const socialMedia = instructor["social-media"];
-  const coursesIds = instructor.courses;
-  const courses = dummyCourses.filter((c) =>
-    coursesIds.some((id) => id === c.id && c.status === "published")
-  );
+  const courses = user.courseTeachers;
 
   return (
     <Fragment>
@@ -27,39 +19,45 @@ const InstructorUser = (props) => {
           <div className={classes.brief}>
             <div>
               <h4>INSTRUCTOR</h4>
-              <h1>{user.name}</h1>
-              <p>{instructor.job}</p>
+              <h1>{user.fullname}</h1>
+              <p>{user.job || "Web developer"}</p>
             </div>
             <div className={classes.achievements}>
               <div className={classes.students}>
                 <h4>Total students</h4>
-                <h3>{instructor.students}</h3>
+                <h3>{user.totalStudentsEnrolled}</h3>
               </div>
               <div className={classes.reviews}>
                 <h4>Reviews</h4>
-                <h3>{instructor.reviews}</h3>
+                <h3>{user.totalReviews}</h3>
               </div>
             </div>
             <h3>About me</h3>
-            <p className={classes["about-me"]}>{instructor.about}</p>
+            <p className={classes["about-me"]}>
+              {user.bio || "What do you know about me"}
+            </p>
           </div>
           <div className="d-flex align-items-md-center gap-3 flex-column">
             <div className={classes.photo}>
-              <img src={user.photo || photo} alt={user.name} />
+              <img src={user.avatarUrl || photo} alt={user.fullname} />
             </div>
-            <SocialMedia
+            {/* <SocialMedia
               socialMedia={socialMedia}
               className="d-none d-md-block"
-            />
+            /> */}
           </div>
         </div>
         <div className={classes.courses}>
-          <SocialMedia socialMedia={socialMedia} className="d-md-none" />
+          {/* <SocialMedia socialMedia={socialMedia} className="d-md-none" /> */}
           <h3>My courses ({courses.length})</h3>
           <Row className="my-3">
-            {courses.map((c) => (
-              <Col sm={6} lg={4} key={c.id} className="mb-4">
-                <CourseItem id={c.id} {...c} />
+            {courses.map((c, index) => (
+              <Col sm={6} lg={4} key={index} className="mb-4">
+                <CourseItem
+                  teacherNames={user.fullname}
+                  id={c.id}
+                  {...c.course}
+                />
               </Col>
             ))}
           </Row>

@@ -36,27 +36,27 @@ const SignUp = (props) => {
 
   return (
     <main>
-      {isLoading ? (
-        <LoadingSpinner className="my-5" side={80} />
-      ) : (
-        <form className={classes.form}>
-          <FormInput
-            ref={nameRef}
-            placeholder="Full Name"
-            className={classes.name}
-          />
-          <FormInput
-            ref={emailRef}
-            type="email"
-            placeholder="E-Mail"
-            className={classes.email}
-          />
-          <FormInput
-            ref={passwordRef}
-            type="password"
-            placeholder="Password"
-            className={classes.password}
-          />
+      <form className={classes.form}>
+        <FormInput
+          ref={nameRef}
+          placeholder="Full Name"
+          className={classes.name}
+        />
+        <FormInput
+          ref={emailRef}
+          type="email"
+          placeholder="E-Mail"
+          className={classes.email}
+        />
+        <FormInput
+          ref={passwordRef}
+          type="password"
+          placeholder="Password"
+          className={classes.password}
+        />
+        {isLoading ? (
+          <LoadingSpinner side={30} />
+        ) : (
           <Button
             type="submit"
             onClick={signupHanlder}
@@ -64,16 +64,16 @@ const SignUp = (props) => {
           >
             Sign Up
           </Button>
-          <div className={classes.note}>
-            <p>
-              Already have an account?
-              <Link to="/login" className={classes.link}>
-                <span> Login</span>
-              </Link>
-            </p>
-          </div>
-        </form>
-      )}
+        )}
+        <div className={classes.note}>
+          <p>
+            Already have an account?
+            <Link to="/login" className={classes.link}>
+              <span> Login</span>
+            </Link>
+          </p>
+        </div>
+      </form>
     </main>
   );
 };

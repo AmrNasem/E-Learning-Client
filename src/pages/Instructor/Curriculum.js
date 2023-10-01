@@ -3,7 +3,7 @@ import PageBox from "../../components/UI/PageBox";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import classes from "./Curriculum.module.css";
 import Form from "../../components/Instructor/Form";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import Section from "../../components/Instructor/Section";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,10 +18,6 @@ const Curriculum = (props) => {
   const { isLoading, sendRequest: addSection, error } = useHttp();
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (!isLoading) setIsAddingSection(false);
-  }, [isLoading]);
 
   const addSectionHandler = useCallback(
     (data) => {
@@ -39,6 +35,7 @@ const Curriculum = (props) => {
           dispatch(
             courseActions.addSection({ ...payload.section, videos: [] })
           );
+          setIsAddingSection(false);
         }
       );
     },

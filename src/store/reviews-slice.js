@@ -2,18 +2,17 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const reviewsSlice = createSlice({
   name: "reviews",
-  initialState: { items: [], isPaginated: false, page: 0 },
+  initialState: { items: [], courseId: null, page: 0 },
   reducers: {
-    toggleIsPaginated(state, action = { payload: false }) {
-      state.isPaginated = action.payload;
-    },
     getReviews(state, action) {
+      console.log(action.payload);
       state.items = [...state.items, ...action.payload];
       state.page++;
     },
-    resetPages(state) {
+    setReviews(state, action) {
       state.page = 0;
       state.items = [];
+      state.courseId = action.payload;
     },
   },
 });

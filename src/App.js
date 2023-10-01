@@ -2,7 +2,6 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { useContext, useEffect } from "react";
 import HeaderContext from "./store/header-context";
-import jsonFile from "./assets/dummy.json";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useDispatch, useSelector } from "react-redux";
 import Instructor from "./pages/Instructor/Instructor";
@@ -10,10 +9,6 @@ import Student from "./pages/Student/Student";
 import { authActions } from "./store/auth-slice";
 import { categoriesActions } from "./store/categories-slice";
 import useHttp from "./hooks/use-http";
-
-const dummyCourses = jsonFile.courses;
-const dummyInstructors = jsonFile.instructors;
-const dummyUsers = jsonFile.users;
 
 export const backend = "https://e-learning-5rhj.onrender.com/api/v1";
 
@@ -68,16 +63,7 @@ function App() {
         {authedUser && authedUser.role === "instructor" && (
           <Route path="/instructor/*" element={<Instructor />} />
         )}
-        <Route
-          path="/*"
-          element={
-            <Student
-              dummyInstructors={dummyInstructors}
-              dummyCourses={dummyCourses}
-              dummyUsers={dummyUsers}
-            />
-          }
-        />
+        <Route path="/*" element={<Student />} />
       </Routes>
     </div>
   );
