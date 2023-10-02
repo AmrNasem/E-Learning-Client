@@ -6,20 +6,31 @@ import HeaderContext from "../../store/header-context";
 import Cart from "../Cart/Cart";
 import Categories from "../categories/Categories";
 import classes from "./Header.module.css";
-import SearchIcon from "../Icons/SearchIcon";
-import CartIcon from "../Icons/CartIcon";
 import Button from "../UI/Button";
 import useHttp from "../../hooks/use-http";
 import { authActions } from "../../store/auth-slice";
 import LoadingSpinner from "../UI/LoadingSpinner";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { useRef } from "react";
+import { useEffect } from "react";
 
 const MainHeader = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const cartRef = useRef();
   const isCartOpened = useSelector((state) => state.cart.isOpened);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   const authedUser = useSelector((state) => state.auth.user);
   const { isLoading, sendRequest: becomeInstructor } = useHttp();
+
+  useEffect(() => {
+    cartRef.current.classList.add(classes.refresh);
+    const timeout = setTimeout(() => {
+      cartRef.current.classList.remove(classes.refresh);
+    }, 500);
+    return () => clearTimeout(timeout);
+  }, [totalAmount]);
 
   const headerCtx = useContext(HeaderContext);
 
@@ -67,7 +78,7 @@ const MainHeader = () => {
       />
       <form className={classes.search}>
         <button className={classes["search-icon"]}>
-          <SearchIcon />
+          <FontAwesomeIcon icon={faSearch} />
         </button>
         <input type="search" placeholder="Search for anything" />
       </form>
@@ -89,8 +100,9 @@ const MainHeader = () => {
       <div
         onClick={() => dispatch(cartActions.toggleCart())}
         className={classes.cart}
+        ref={cartRef}
       >
-        <CartIcon />
+        <FontAwesomeIcon className="me-2" icon={faCartShopping} />
         <span className={classes.amount}>{totalAmount}</span>
       </div>
       {isCartOpened && <Cart />}

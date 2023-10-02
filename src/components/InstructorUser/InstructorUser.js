@@ -4,6 +4,7 @@ import photo from "../../assets/desktop.jfif";
 import { Fragment } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+// import SocialMedia from "./SocialMedia";
 
 const InstructorUser = (props) => {
   const { user } = props;

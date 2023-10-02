@@ -1,8 +1,9 @@
 import classes from "./Section.module.css";
 import Lecture from "./Lecture";
-import ArrowIcon from "../../Icons/ArrowIcon";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 const Section = (props) => {
   const { videos: lectures, numOfVideos, title, totalLength } = props;
@@ -19,7 +20,10 @@ const Section = (props) => {
         onClick={() => setIsListed((prevState) => !prevState)}
         className={classes["section-header"]}
       >
-        <ArrowIcon className={isListed ? classes.rotate : ""} />
+        <FontAwesomeIcon
+          icon={faAngleDown}
+          className={isListed ? classes.rotate : ""}
+        />
         <h5 className="m-0">{title}</h5>
         <span className={classes.lecture}>
           {numOfVideos} lectures &bull; {totalLength}

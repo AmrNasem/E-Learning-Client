@@ -73,9 +73,8 @@
 .course-features ul li {
   padding-top: 5px;
   display: flex;
-}
-.course-features ul li:not(:first-child) {
   gap: 5px;
+  align-items: center;
 }
 .ListItem {
   padding-left: 5px;

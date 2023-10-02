@@ -7,27 +7,40 @@ import Cart from "../Cart/Cart";
 import Categories from "../categories/Categories";
 import classes from "./Header.module.css";
 import styles from "./MobileHeader.module.css";
-import SearchIcon from "../Icons/SearchIcon";
-import CloseIcon from "../Icons/CloseIcon";
-import CartIcon from "../Icons/CartIcon";
 import FormInput from "../UI/FormInput";
 import Button from "../UI/Button";
 import MenuBarIcon from "../Icons/MenuBarIcon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAngleRight,
+  faCartShopping,
+  faClose,
+  faSearch,
+} from "@fortawesome/free-solid-svg-icons";
 import { authActions } from "../../store/auth-slice";
 import useHttp from "../../hooks/use-http";
 import LoadingSpinner from "../UI/LoadingSpinner";
+import { useRef } from "react";
+import { useEffect } from "react";
 
 const MobileHeader = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const cartRef = useRef();
   const isCartOpened = useSelector((state) => state.cart.isOpened);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   const authedUser = useSelector((state) => state.auth.user);
   const headerCtx = useContext(HeaderContext);
   const [openedSearch, setOpenedSearch] = useState(false);
   const { isLoading, sendRequest: becomeInstructor } = useHttp();
+
+  useEffect(() => {
+    cartRef.current.classList.add(classes.refresh);
+    const timeout = setTimeout(() => {
+      cartRef.current.classList.remove(classes.refresh);
+    }, 500);
+    return () => clearTimeout(timeout);
+  }, [totalAmount]);
 
   const toggleAsideHandler = (e) => {
     e.stopPropagation();
@@ -51,7 +64,7 @@ const MobileHeader = () => {
     <div className={styles["search-content"]}>
       <form className={`${styles["mobile-search"]}`}>
         <button className={classes["search-icon"]}>
-          <SearchIcon />
+          <FontAwesomeIcon icon={faSearch} />
         </button>
         <FormInput autoFocus type="search" placeholder="Search for anything" />
         <button
@@ -61,7 +74,7 @@ const MobileHeader = () => {
           }}
           className={styles["close-icon"]}
         >
-          <CloseIcon />
+          <FontAwesomeIcon icon={faClose} />
         </button>
       </form>
       <div className={classes.suggestions}></div>
@@ -138,14 +151,15 @@ const MobileHeader = () => {
         onClick={() => setOpenedSearch(true)}
         className={classes["search-icon"]}
       >
-        <SearchIcon />
+        <FontAwesomeIcon icon={faSearch} />
       </button>
       {openedSearch && searchBar}
       <div
+        ref={cartRef}
         onClick={() => dispatch(cartActions.toggleCart())}
         className={classes.cart}
       >
-        <CartIcon />
+        <FontAwesomeIcon icon={faCartShopping} className="me-2" />
         <span className={classes.amount}>{totalAmount}</span>
       </div>
       {isCartOpened && <Cart />}

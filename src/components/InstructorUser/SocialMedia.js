@@ -1,8 +1,11 @@
 import classes from "./SocialMedia.module.css";
-import TwitterIcon from "../Icons/TwitterIcon";
-import FacebookIcon from "../Icons/FacebookIcon";
-import YoutubeIcon from "../Icons/YoutubeIcon";
-import LinkIcon from "../Icons/LinkIcon";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperclip } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFacebook,
+  faYoutube,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
 
 const SocialMedia = (props) => {
   const { socialMedia, className } = props;
@@ -11,13 +14,14 @@ const SocialMedia = (props) => {
     <div className={`${classes["social-media"]} ${className}`}>
       {Object.keys(socialMedia).map((contact, index) => {
         let icon;
-        if (contact === "website") icon = <LinkIcon width={18} height={18} />;
+        if (contact === "website")
+          icon = <FontAwesomeIcon className="text-black" icon={faPaperclip} />;
         else if (contact === "twitter")
-          icon = <TwitterIcon width={18} height={18} />;
+          icon = <FontAwesomeIcon className="text-black" icon={faTwitter} />;
         else if (contact === "facebook")
-          icon = <FacebookIcon width={18} height={18} />;
+          icon = <FontAwesomeIcon className="text-black" icon={faFacebook} />;
         else if (contact === "youtube")
-          icon = <YoutubeIcon width={18} height={18} />;
+          icon = <FontAwesomeIcon className="text-black" icon={faYoutube} />;
         return (
           <a
             key={index}

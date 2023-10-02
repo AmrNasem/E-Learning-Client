@@ -1,16 +1,17 @@
 import classes from "./Lecture.module.css";
-import VideoIcon from "../../Icons/VideoIcon";
-import FileIcon from "../../Icons/FileIcon";
 import { Link, useParams } from "react-router-dom";
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
+import { faFileAlt } from "@fortawesome/free-regular-svg-icons";
 
 const Lecture = (props) => {
   const { type, available, id, title, length } = props.lecture;
   const { courseId, lectureId } = useParams();
 
-  let icon = <VideoIcon />;
+  let icon = <FontAwesomeIcon icon={faPlay} />;
   if (type === "article") {
-    icon = <FileIcon />;
+    icon = <FontAwesomeIcon icon={faFileAlt} />;
   }
 
   if (available) {

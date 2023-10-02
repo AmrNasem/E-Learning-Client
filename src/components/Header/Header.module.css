@@ -98,6 +98,19 @@ input[type="search"] {
   cursor: pointer;
 }
 
+.refresh {
+  animation: cart-refresher 0.5s;
+}
+
+@keyframes cart-refresher {
+  33% {
+    transform: scale(1.1);
+  }
+  66% {
+    transform: scale(0.9);
+  }
+}
+
 .cart span.amount {
   color: var(--main-color);
   background-color: var(--main-color);

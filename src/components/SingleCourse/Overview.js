@@ -1,14 +1,17 @@
 import classes from "./Overview.module.css";
-import VideoIcon from "../Icons/VideoIcon";
-import FileIcon from "../Icons/FileIcon";
-import InfinityIcon from "../Icons/InfinityIcon";
-import TVIcon from "../Icons/TVIcon";
-import CupIcon from "../Icons/CupIcon";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
 import React, { useEffect, useState } from "react";
 import useHttp from "../../hooks/use-http";
 import LoadingSpinner from "../UI/LoadingSpinner";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCertificate,
+  faFileAlt,
+  faInfinity,
+  faPlay,
+  faTv,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Overview = (props) => {
   const [applyCoupon, setApplyCoupon] = useState(false);
@@ -98,25 +101,25 @@ const Overview = (props) => {
           <h5>This course includes:</h5>
           <ul>
             <li>
-              <VideoIcon />
+              <FontAwesomeIcon icon={faPlay} />
               <span className={classes.ListItem}>
                 {course.totalLength} on-demand video
               </span>
             </li>
             <li>
-              <FileIcon />
+              <FontAwesomeIcon icon={faFileAlt} />
               <span>10 articles</span>
             </li>
             <li>
-              <InfinityIcon />
+              <FontAwesomeIcon icon={faInfinity} />
               <span className={classes.ListItem}>Full lifetime access</span>
             </li>
             <li>
-              <TVIcon />
+              <FontAwesomeIcon icon={faTv} />
               <span className={classes.ListItem}>Access on mobile and TV</span>
             </li>
             <li>
-              <CupIcon />
+              <FontAwesomeIcon icon={faCertificate} />
               <span className={classes.ListItem}>
                 Certifictate of completion
               </span>

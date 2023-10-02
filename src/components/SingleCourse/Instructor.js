@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import classes from "./Instructor.module.css";
-import PlayIcon from "../Icons/PlayIcon";
-import StarIcon from "../Icons/StarIcon";
-import MedalIcon from "../Icons/MedalIcon";
-import GroupIcon from "../Icons/GroupIcon";
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faMedal,
+  faPlayCircle,
+  faStar,
+  faUserGroup,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Instructor = (props) => {
   const { instructor } = props;
@@ -28,21 +31,19 @@ const Instructor = (props) => {
           </div>
           <div className={classes.groubDetails}>
             <div>
-              <StarIcon width={16} height={16} />
+              <FontAwesomeIcon icon={faStar} />
               <span>4.7 Instructor Rating</span>
             </div>
             <div>
-              <MedalIcon width={16} height={16} />
-              <span>{instructor.reviews} Reviews</span>
+              <FontAwesomeIcon icon={faMedal} />
+              <span>{instructor.totalReviews} Reviews</span>
             </div>
             <div>
-              <GroupIcon />
-              <span>{instructor.students} Students</span>
+              <FontAwesomeIcon icon={faUserGroup} />
+              <span>{instructor.totalStudentsEnrolled} Students</span>
             </div>
             <div className={classes.courses}>
-              <span className={classes["play-icon"]}>
-                <PlayIcon width={6} height={6} color="white" />
-              </span>
+              <FontAwesomeIcon icon={faPlayCircle} />
               <span>{instructor.numOfCourses || 23} Courses</span>
             </div>
           </div>
