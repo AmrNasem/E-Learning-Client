@@ -9,6 +9,7 @@ import Student from "./pages/Student/Student";
 import { authActions } from "./store/auth-slice";
 import { categoriesActions } from "./store/categories-slice";
 import useHttp from "./hooks/use-http";
+import { cartActions } from "./store/cart-slice";
 
 export const backend = "https://e-learning-5rhj.onrender.com/api/v1";
 
@@ -20,6 +21,21 @@ function App() {
   const dispatch = useDispatch();
   const { sendRequest: logout } = useHttp();
   const { isLoading, sendRequest: getCategories, error } = useHttp();
+
+  const { sendRequest: getCart, error: cartError } = useHttp();
+
+  useEffect(() => {
+    dispatch(cartActions.toggleError(cartError));
+  }, [cartError, dispatch]);
+
+  useEffect(() => {
+    if (authedUser) {
+      getCart({ endPoint: "carts/allCartCourses" }, (payload) => {
+        console.log(payload);
+        dispatch(cartActions.setCart(payload.courses.map((c) => c.course)));
+      });
+    }
+  }, [authedUser, getCart, dispatch]);
 
   useEffect(() => {
     getCategories({ endPoint: "categories/getAllCategories" }, (payload) => {

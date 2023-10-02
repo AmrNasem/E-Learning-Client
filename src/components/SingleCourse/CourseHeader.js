@@ -4,14 +4,20 @@ import Preview from "./Preview";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
 import React, { useEffect, useState } from "react";
+import useHttp from "../../hooks/use-http";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const CourseHeader = (props) => {
   const [applyCoupon, setApplyCoupon] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
+  const authedUser = useSelector((state) => state.auth.user);
   const { course } = props;
   const isPurchased = cartItems.find((item) => item.id === course.id);
+  const { sendRequest: addToCart, isLoading: addToCartLoading } = useHttp();
+  const { sendRequest: removeFromCart, isLoading: removeFromCartLoading } =
+    useHttp();
 
   useEffect(() => {
     const time = setTimeout(() => {
@@ -30,8 +36,30 @@ const CourseHeader = (props) => {
   };
 
   const addToCartHandler = () => {
-    if (isPurchased) dispatch(cartActions.removeFromCart(course.id));
-    else dispatch(cartActions.addToCart(course));
+    if (isPurchased) {
+      if (authedUser) {
+        removeFromCart(
+          { endPoint: `carts/deleteFromCart/${course.id}`, method: "DELETE" },
+          () => {
+            dispatch(cartActions.removeFromCart(course.id));
+          }
+        );
+      } else dispatch(cartActions.removeFromCart(course.id));
+    } else {
+      if (authedUser) {
+        addToCart(
+          {
+            endPoint: "carts/addToCart",
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: { courseId: course.id },
+          },
+          () => {
+            dispatch(cartActions.addToCart(course));
+          }
+        );
+      } else dispatch(cartActions.addToCart(course));
+    }
   };
 
   return (
@@ -79,12 +107,16 @@ const CourseHeader = (props) => {
           <span className={classes["initial-price"]}>
             <del>${course.price ? course.price : 2000}</del>
           </span>
-          {/* <span className={classes.discount}>{course.discount}% off</span> */}
+          <span className={classes.discount}>{course.discount || 10}% off</span>
         </div>
-        <button onClick={addToCartHandler} className={classes["add-to-cart"]}>
-          {isPurchased ? "Remove from cart" : "Add to cart"}
-        </button>
-        <button className={classes["buy"]}>Buy now</button>
+        {addToCartLoading || removeFromCartLoading ? (
+          <LoadingSpinner side={40} className="my-3" />
+        ) : (
+          <button onClick={addToCartHandler} className={classes["add-to-cart"]}>
+            {isPurchased ? "Remove from cart" : "Add to cart"}
+          </button>
+        )}
+        <button className={`${classes["buy"]} border-0`}>Buy now</button>
         <span className={classes.refund}>30-Day Money-Back Guarantee</span>
         <div className={classes.buyButtons}>
           {isCopied && <div className={classes.popup}>Link Copied!</div>}

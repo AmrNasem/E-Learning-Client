@@ -15,6 +15,7 @@ const User = lazy(() => import("./User"));
 
 const Student = (props) => {
   const authedUser = useSelector((state) => state.auth.user);
+
   return (
     <>
       <MainHeader />

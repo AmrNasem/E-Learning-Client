@@ -1,3 +1,23 @@
+.cart-list {
+  max-height: 500px;
+  overflow: auto;
+}
+
+@media (max-width: 550px) {
+  .cart-list {
+    max-height: 340px !important;
+  }
+}
+@media (max-width: 450px) {
+  .cart-list {
+    max-height: 250px !important;
+  }
+}
+
+.cart-list::-webkit-scrollbar {
+  display: none;
+}
+
 .cart .total-price {
   display: flex;
   justify-content: space-between;
@@ -25,7 +45,7 @@
   margin-right: 5px;
   background-color: white;
   color: var(--secondary-color);
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .cart .actions .cancel:hover {

@@ -19,7 +19,7 @@ import { authActions } from "../../store/auth-slice";
 import useHttp from "../../hooks/use-http";
 import LoadingSpinner from "../UI/LoadingSpinner";
 
-const MobileHeader = (props) => {
+const MobileHeader = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isCartOpened = useSelector((state) => state.cart.isOpened);

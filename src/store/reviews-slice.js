@@ -5,7 +5,6 @@ const reviewsSlice = createSlice({
   initialState: { items: [], courseId: null, page: 0 },
   reducers: {
     getReviews(state, action) {
-      console.log(action.payload);
       state.items = [...state.items, ...action.payload];
       state.page++;
     },

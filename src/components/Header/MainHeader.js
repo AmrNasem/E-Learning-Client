@@ -13,7 +13,7 @@ import useHttp from "../../hooks/use-http";
 import { authActions } from "../../store/auth-slice";
 import LoadingSpinner from "../UI/LoadingSpinner";
 
-const MainHeader = (props) => {
+const MainHeader = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isCartOpened = useSelector((state) => state.cart.isOpened);

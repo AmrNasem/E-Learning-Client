@@ -1,19 +1,34 @@
 import classes from "./Cart.module.css";
 import Button from "../UI/Button";
-import CartList from "./CartList";
+import CartItem from "./CartItem";
 import Modal from "../UI/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const Cart = (props) => {
   const dispatch = useDispatch();
-  const totalPrice = useSelector((state) => state.cart.totalPrice);
+  const {
+    totalPrice,
+    items: cartItems,
+    error,
+  } = useSelector((state) => state.cart);
+
   return (
     <Modal
       onClick={() => dispatch(cartActions.toggleCart())}
       className={classes.cart}
     >
-      <CartList />
+      {!cartItems && !error ? (
+        <LoadingSpinner side={50} />
+      ) : (
+        <div className={classes["cart-list"]}>
+          {cartItems.map((course, index) => (
+            <CartItem key={index} {...course} />
+          ))}
+        </div>
+      )}
+
       <div className={classes["total-price"]}>
         <h3>Total Price</h3>
         <span>
