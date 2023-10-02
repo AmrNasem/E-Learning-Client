@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { courseActions } from "../../store/course-slice";
 import useHttp from "../../hooks/use-http";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
+import { categoriesActions } from "../../store/categories-slice";
 
 const NewCourse = () => {
   const [title, setTitle] = useState("");
@@ -16,23 +17,49 @@ const NewCourse = () => {
     text: "Choose Category",
   });
   const [isValid, setIsValid] = useState(false);
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState(null);
   const { isLoading: gettingCategories, categories: storedCategories } =
     useSelector((state) => state.categories);
-
+  const {
+    isLoading,
+    sendRequest: getCategories,
+    error: categoriesError,
+  } = useHttp();
   const { isLoading: isCreating, sendRequest: createCourse, error } = useHttp();
   const { sendRequest: addSection } = useHttp();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (storedCategories) {
+    if (storedCategories)
       setCategories([
         ...storedCategories,
         { id: "none", text: "I don't know yet" },
       ]);
+    else {
+      getCategories({ endPoint: "categories/getAllCategories" }, (payload) => {
+        console.log(payload);
+        dispatch(
+          categoriesActions.setCategories(
+            payload.categories.map((cat) => {
+              return {
+                id: cat.id,
+                createdAt: cat.createdAt,
+                updatedAt: cat.updatedAt,
+                text: cat.categoryName,
+              };
+            })
+          )
+        );
+      });
     }
-  }, [storedCategories]);
+  }, [storedCategories, getCategories, dispatch]);
+
+  useEffect(() => {
+    dispatch(
+      categoriesActions.setStates({ isLoading, error: categoriesError })
+    );
+  }, [dispatch, isLoading, categoriesError]);
 
   useEffect(() => {
     if (title.trim() !== "" && category.id !== "") {

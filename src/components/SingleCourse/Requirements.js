@@ -9,7 +9,11 @@ const Requirements = (props) => {
       <h2>Requirements</h2>
       <ul>
         {requirements &&
-          requirements.map((req, index) => <li key={index}>{req}</li>)}
+          requirements.map((req, index) => (
+            <li key={index} className="my-3">
+              {req}
+            </li>
+          ))}
       </ul>
     </div>
   );

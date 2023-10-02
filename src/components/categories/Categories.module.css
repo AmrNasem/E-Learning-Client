@@ -1,32 +1,18 @@
-.categories::before{
-  content: "";
-    border-width: 10px;
-    border-style: solid;
-    border-color: transparent transparent var(--third-color) transparent;
-    position: absolute;
-    left: 2px;
-    top: -20px;
+.categories {
+  min-width: 200px;
 }
-
 .categories a {
   text-decoration: none;
   display: flex;
-  padding: 12px 8px 12px;
-  right: 0;
-  min-width: 173px;
-  z-index: 1;
+  padding: 12px 8px;
   border-left: solid var(--third-color) 3px;
   border-bottom: solid var(--third-color) 1px;
   font-family: Poppins;
   font-weight: 550;
   letter-spacing: 1px;
-  color: var(--fourth-color);
+  color: var(--third-color);
   transition: 0.3s;
 }
-.categories a:hover{
-  padding-left: 20px;  
-}
-
-.active {
-  text-decoration: none;
+.categories a:hover {
+  padding-left: 20px;
 }

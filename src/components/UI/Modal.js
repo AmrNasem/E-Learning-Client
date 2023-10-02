@@ -2,6 +2,8 @@ import { Fragment, useEffect } from "react";
 import ReactDOM from "react-dom";
 import classes from "./Modal.module.css";
 import { useSelector } from "react-redux";
+import { forwardRef } from "react";
+import { memo } from "react";
 
 export const OutLayer = (props) => {
   useEffect(() => {
@@ -19,9 +21,9 @@ export const OutLayer = (props) => {
   );
 };
 
-const PopupBox = (props) => {
+const PopupBox = forwardRef((props, ref) => {
   return (
-    <div onClick={props.onClick} className={classes.container}>
+    <div onClick={props.onClick} ref={ref && ref} className={classes.container}>
       <div
         onClick={(e) => e.stopPropagation()}
         className={`${classes["popup-box"]} ${props.className}`}
@@ -30,10 +32,11 @@ const PopupBox = (props) => {
       </div>
     </div>
   );
-};
+});
 
-const Modal = (props) => {
+const Modal = forwardRef((props, ref) => {
   const isCartOpen = useSelector((state) => state.cart.isOpened);
+
   return (
     <Fragment>
       {ReactDOM.createPortal(
@@ -41,13 +44,17 @@ const Modal = (props) => {
         document.getElementById("outlayer-root")
       )}
       {ReactDOM.createPortal(
-        <PopupBox onClick={props.onClick} className={props.className}>
+        <PopupBox
+          onClick={props.onClick}
+          ref={ref && ref}
+          className={props.className}
+        >
           {props.children}
         </PopupBox>,
         document.getElementById("popup-root")
       )}
     </Fragment>
   );
-};
+});
 
-export default Modal;
+export default memo(Modal);

@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import classes from "./Content.module.css";
 import Section from "./Section";
+import { useEffect } from "react";
 
 const Content = (props) => {
   const { course } = props;
-  const [sections, setSections] = useState(course.sections.slice(0, 10));
+  const [sections, setSections] = useState([]);
   const remainingSections = course.sections.length - sections.length;
+
+  useEffect(() => {
+    setSections(course.sections.slice(0, 10));
+  }, [course.sections]);
 
   return (
     <div className={classes.content}>
@@ -16,10 +21,9 @@ const Content = (props) => {
         {course.totalLength} total length
       </p>
       <div>
-        {sections.map(
-          (sec, index) =>
-            sec.numOfVideos > 0 && <Section key={index} {...sec} />
-        )}
+        {sections.map((sec, index) => (
+          <Section key={index} {...sec} />
+        ))}
       </div>
       {remainingSections > 0 && (
         <button onClick={() => setSections(course.sections)}>

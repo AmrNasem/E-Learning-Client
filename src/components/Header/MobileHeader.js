@@ -1,8 +1,7 @@
-import { useContext, useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { cartActions } from "../../store/cart-slice";
-import HeaderContext from "../../store/header-context";
 import Cart from "../Cart/Cart";
 import Categories from "../categories/Categories";
 import classes from "./Header.module.css";
@@ -20,17 +19,17 @@ import {
 import { authActions } from "../../store/auth-slice";
 import useHttp from "../../hooks/use-http";
 import LoadingSpinner from "../UI/LoadingSpinner";
-import { useRef } from "react";
-import { useEffect } from "react";
+import { categoriesActions } from "../../store/categories-slice";
 
 const MobileHeader = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cartRef = useRef();
-  const isCartOpened = useSelector((state) => state.cart.isOpened);
-  const totalAmount = useSelector((state) => state.cart.totalAmount);
+  const { isOpened: isCartOpened, totalAmount } = useSelector(
+    (state) => state.cart
+  );
   const authedUser = useSelector((state) => state.auth.user);
-  const headerCtx = useContext(HeaderContext);
+  const areCategoriesOpen = useSelector((state) => state.categories.isOpen);
   const [openedSearch, setOpenedSearch] = useState(false);
   const { isLoading, sendRequest: becomeInstructor } = useHttp();
 
@@ -44,7 +43,9 @@ const MobileHeader = () => {
 
   const toggleAsideHandler = (e) => {
     e.stopPropagation();
-    headerCtx.setVisibleCategories((prevState) => !prevState);
+    dispatch(
+      categoriesActions.toggleCategories(areCategoriesOpen ? false : true)
+    );
   };
 
   const instructorUIHandler = (e) => {
@@ -84,8 +85,10 @@ const MobileHeader = () => {
   return (
     <header className={styles["mobile-header"]}>
       <MenuBarIcon onClick={toggleAsideHandler} />
-      {headerCtx.visibleCategories && <div className={styles.outlayer}></div>}
-      <aside className={headerCtx.visibleCategories ? styles.show : ""}>
+      {areCategoriesOpen && (
+        <div onClick={toggleAsideHandler} className={styles.outlayer}></div>
+      )}
+      <aside className={areCategoriesOpen ? styles.show : ""}>
         {authedUser ? (
           <div
             className={`py-3 px-2 w-100 d-flex gap-2 align-items-center ${styles["user-info"]}`}
@@ -156,7 +159,9 @@ const MobileHeader = () => {
       {openedSearch && searchBar}
       <div
         ref={cartRef}
-        onClick={() => dispatch(cartActions.toggleCart())}
+        onClick={() =>
+          dispatch(cartActions.toggleCart(isCartOpened ? false : true))
+        }
         className={classes.cart}
       >
         <FontAwesomeIcon icon={faCartShopping} className="me-2" />

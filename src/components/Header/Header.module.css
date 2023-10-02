@@ -4,14 +4,8 @@ header {
   align-items: center;
   gap: 20px;
   padding: 10px 4%;
-  position: relative;
   background-color: var(--secondary-color);
   box-shadow: #ab64648e 1px 1px 20px 1px;
-}
-@media (max-width: 660px) {
-  .main-header {
-    display: none;
-  }
 }
 .logo {
   font-family: abril fatface;
@@ -33,29 +27,17 @@ header {
 }
 
 .active {
-  color: var(--main-color);
-}
-
-.categories:hover {
-  color: var(--main-color);
+  color: var(--main-color) !important;
 }
 
 .main-categories {
   position: absolute;
-  left: 4%;
-  top: 150%;
-  transform: translateX(50%);
+  left: 0;
+  top: calc(100% + 17px);
   background-color: white;
-  box-shadow: 0 1px 5px #ccc;
-  transition: 0.3s;
-  z-index: -1;
-  opacity: 0;
-}
-
-.show-categories {
-  opacity: 1;
-  z-index: 50;
-  top: 105%;
+  box-shadow: 1px 1px 10px #5555559b;
+  z-index: 10;
+  animation: show-list 0.1s;
 }
 
 .search {
@@ -82,9 +64,34 @@ input[type="search"] {
   background-color: transparent;
   width: 100%;
 }
+.learnings {
+  top: calc(100% + 17px);
+  box-shadow: -1px 1px 10px #5555559b;
+  animation: show-list 0.1s;
+  max-height: 400px;
+  min-width: 200px;
+}
+.learnings::-webkit-scrollbar {
+  width: 6px;
+  background-color: #ccc;
+}
+.learnings::-webkit-scrollbar-thumb {
+  background-color: var(--secondary-color);
+  border-radius: 20px;
+}
+@keyframes show-list {
+  0% {
+    transform: translateY(30px) scale(0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+}
 
-.instructor {
-  color: var(--third-color) !important;
+.header-button {
+  color: var(--third-color);
 }
 
 .cart {

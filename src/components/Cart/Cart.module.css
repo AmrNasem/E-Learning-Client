@@ -1,6 +1,22 @@
+.cart {
+  animation: listing-animation 0.4s;
+}
+.list-out {
+  animation: listing-animation 0.4s alternate-reverse !important;
+}
 .cart-list {
   max-height: 500px;
   overflow: auto;
+}
+@keyframes listing-animation {
+  0% {
+    opacity: 0;
+    transform: translateY(-400px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(50px);
+  }
 }
 
 @media (max-width: 550px) {

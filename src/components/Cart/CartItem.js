@@ -5,6 +5,7 @@ import { cartActions } from "../../store/cart-slice";
 import { useNavigate } from "react-router";
 import useHttp from "../../hooks/use-http";
 import LoadingSpinner from "../UI/LoadingSpinner";
+import { memo } from "react";
 
 const CartItem = (props) => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const CartItem = (props) => {
 
   const goToTheCourse = () => {
     navigate(`/course/${props.id}`);
-    dispatch(cartActions.toggleCart());
+    dispatch(cartActions.toggleCart(false));
   };
 
   const removeTheCourse = (e) => {
@@ -47,7 +48,7 @@ const CartItem = (props) => {
             ${price - (price * (props.discount || 10)) / 100}
           </span>
           <span className={classes["initial-price"]}>
-            <del>${price}</del>
+            <del>${price || 0}</del>
           </span>
         </div>
         {removeFromCartLoading ? (
@@ -62,4 +63,4 @@ const CartItem = (props) => {
   );
 };
 
-export default CartItem;
+export default memo(CartItem);

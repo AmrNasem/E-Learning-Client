@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 import Footer from "../../components/Footer";
 import { Suspense, lazy } from "react";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const Login = lazy(() => import("./Login"));
 const SignUp = lazy(() => import("./SignUp"));
@@ -15,11 +17,17 @@ const User = lazy(() => import("./User"));
 
 const Student = (props) => {
   const authedUser = useSelector((state) => state.auth.user);
+  const [screenSize, setScreenSize] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleScreenSize = () => setScreenSize(window.innerWidth);
+    window.addEventListener("resize", handleScreenSize);
+    return () => window.removeEventListener("resize", handleScreenSize);
+  }, []);
 
   return (
     <>
-      <MainHeader />
-      <MobileHeader />
+      {screenSize >= 750 ? <MainHeader /> : <MobileHeader />}
       <Suspense fallback={<LoadingSpinner side={70} />}>
         <Routes>
           <Route path="" element={<LandingPage />} />

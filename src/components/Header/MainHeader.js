@@ -1,8 +1,6 @@
-import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { cartActions } from "../../store/cart-slice";
-import HeaderContext from "../../store/header-context";
 import Cart from "../Cart/Cart";
 import Categories from "../categories/Categories";
 import classes from "./Header.module.css";
@@ -14,16 +12,30 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { useRef } from "react";
 import { useEffect } from "react";
+import LearningItem from "./LearningItem";
+import { useState } from "react";
+import { enrolledCoursesActions } from "../../store/enrolled-courses-slice";
+import { categoriesActions } from "../../store/categories-slice";
 
 const MainHeader = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cartRef = useRef();
-  const isCartOpened = useSelector((state) => state.cart.isOpened);
-  const totalAmount = useSelector((state) => state.cart.totalAmount);
+  const [isLearningOpen, setIsLearningOpen] = useState(false);
+  const { isOpened: isCartOpened, totalAmount } = useSelector(
+    (state) => state.cart
+  );
+  const areCategoriesOpen = useSelector((state) => state.categories.isOpen);
   const authedUser = useSelector((state) => state.auth.user);
+  const enrolledCourses = useSelector((state) => state.enrolledCourses.items);
   const { isLoading, sendRequest: becomeInstructor } = useHttp();
+  const {
+    isLoading: gettingEnrolledCourses,
+    sendRequest: getEnrolledCourses,
+    error,
+  } = useHttp();
 
+  // Cart toggler animation
   useEffect(() => {
     cartRef.current.classList.add(classes.refresh);
     const timeout = setTimeout(() => {
@@ -32,8 +44,44 @@ const MainHeader = () => {
     return () => clearTimeout(timeout);
   }, [totalAmount]);
 
-  const headerCtx = useContext(HeaderContext);
+  // Change categories request state
+  useEffect(() => {
+    dispatch(
+      enrolledCoursesActions.setState({
+        isLoading: gettingEnrolledCourses,
+        error,
+      })
+    );
+  }, [gettingEnrolledCourses, error, dispatch]);
 
+  // Window events
+  useEffect(() => {
+    const closeLearning = () => setIsLearningOpen(false);
+    window.addEventListener("click", closeLearning);
+    return () => window.removeEventListener("click", closeLearning);
+  }, []);
+
+  useEffect(() => {
+    const closeCategories = () =>
+      dispatch(categoriesActions.toggleCategories(false));
+    window.addEventListener("click", closeCategories);
+    return () => window.removeEventListener("click", closeCategories);
+  }, [dispatch]);
+
+  // Get enrolled courses
+  useEffect(() => {
+    if (isLearningOpen && !enrolledCourses) {
+      getEnrolledCourses(
+        { endPoint: "enrollments/enrolledCourses" },
+        (payload) => {
+          console.log(payload);
+          dispatch(enrolledCoursesActions.setCourses(payload.enrolledCourses));
+        }
+      );
+    }
+  }, [isLearningOpen, getEnrolledCourses, enrolledCourses, dispatch]);
+
+  // Handlers
   const instructorUIHandler = () => {
     if (authedUser.role !== "instructor") {
       becomeInstructor(
@@ -53,9 +101,12 @@ const MainHeader = () => {
   };
 
   const toggleCategoriesHandler = (e) => {
-    headerCtx.setVisibleCategories((prevState) => !prevState);
     e.stopPropagation();
+    dispatch(
+      categoriesActions.toggleCategories(areCategoriesOpen ? false : true)
+    );
   };
+
   return (
     <header className={classes["main-header"]}>
       <div className={classes.logo}>
@@ -63,19 +114,19 @@ const MainHeader = () => {
           E-Learning
         </Link>
       </div>
-      <button
-        onClick={toggleCategoriesHandler}
-        className={`${classes.categories} ${
-          headerCtx.visibleCategories && classes.active
-        }`}
-      >
-        Categories
-      </button>
-      <Categories
-        className={`${classes["main-categories"]} ${
-          headerCtx.visibleCategories && classes["show-categories"]
-        }`}
-      />
+      <div className="position-relative">
+        <button
+          onClick={toggleCategoriesHandler}
+          className={`btn px-1 border-0 ${classes["header-button"]} ${
+            areCategoriesOpen && classes.active
+          }`}
+        >
+          Categories
+        </button>
+        {areCategoriesOpen && (
+          <Categories className={`${classes["main-categories"]}`} />
+        )}
+      </div>
       <form className={classes.search}>
         <button className={classes["search-icon"]}>
           <FontAwesomeIcon icon={faSearch} />
@@ -83,9 +134,37 @@ const MainHeader = () => {
         <input type="search" placeholder="Search for anything" />
       </form>
       {authedUser && (
+        <div className="position-relative">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsLearningOpen((prevState) => !prevState);
+            }}
+            className={`btn px-1 border-0 ${classes["header-button"]} ${
+              isLearningOpen && classes.active
+            }`}
+          >
+            My learning
+          </button>
+          {isLearningOpen && (
+            <div
+              className={`position-absolute end-0 bg-white z-3 overflow-auto ${classes.learnings}`}
+            >
+              {!enrolledCourses && !error ? (
+                <LoadingSpinner side={50} className="my-3" />
+              ) : (
+                enrolledCourses.map((course, index) => (
+                  <LearningItem key={index} {...course} />
+                ))
+              )}
+            </div>
+          )}
+        </div>
+      )}
+      {authedUser && (
         <button
           onClick={instructorUIHandler}
-          className={`btn border-0 ${classes.instructor}`}
+          className={`btn px-1 border-0 ${classes["header-button"]}`}
           disabled={isLoading}
         >
           {isLoading ? (
@@ -98,7 +177,9 @@ const MainHeader = () => {
         </button>
       )}
       <div
-        onClick={() => dispatch(cartActions.toggleCart())}
+        onClick={() =>
+          dispatch(cartActions.toggleCart(isCartOpened ? false : true))
+        }
         className={classes.cart}
         ref={cartRef}
       >

@@ -5,6 +5,7 @@ import authSlice from "./auth-slice";
 import qnaSlice from "./qna-slice";
 import courseSlice from "./course-slice";
 import categoriesSlice from "./categories-slice";
+import enrolledCoursesSlice from "./enrolled-courses-slice";
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     qna: qnaSlice,
     course: courseSlice,
     categories: categoriesSlice,
+    enrolledCourses: enrolledCoursesSlice,
   },
 });
 

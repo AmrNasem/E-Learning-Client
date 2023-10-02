@@ -1,15 +1,14 @@
-import { useContext } from "react";
-import HeaderContext from "../../store/header-context";
 import classes from "./MenuBarIcon.module.css";
+import { useSelector } from "react-redux";
 
 const MenuBarIcon = (props) => {
-  const headerCtx = useContext(HeaderContext);
+  const areCategoriesOpen = useSelector((state) => state.categories.isOpen);
 
   return (
     <div
       onClick={props.onClick}
       className={`${classes["menu-bar"]} ${
-        headerCtx.visibleCategories && classes["mob-active"]
+        areCategoriesOpen && classes["mob-active"]
       }`}
     >
       <span></span>

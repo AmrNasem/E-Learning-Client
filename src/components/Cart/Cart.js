@@ -5,20 +5,28 @@ import Modal from "../UI/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
 import LoadingSpinner from "../UI/LoadingSpinner";
+import { useRef } from "react";
+import { useCallback } from "react";
 
 const Cart = (props) => {
   const dispatch = useDispatch();
+  const cartRef = useRef();
   const {
     totalPrice,
     items: cartItems,
     error,
   } = useSelector((state) => state.cart);
 
+  const closeCartHandler = useCallback(() => {
+    cartRef.current.classList.add(classes["list-out"]);
+    const timeout = setTimeout(() => {
+      dispatch(cartActions.toggleCart(false));
+    }, 399);
+    return () => clearTimeout(timeout);
+  }, [dispatch]);
+
   return (
-    <Modal
-      onClick={() => dispatch(cartActions.toggleCart())}
-      className={classes.cart}
-    >
+    <Modal onClick={closeCartHandler} className={classes.cart} ref={cartRef}>
       {!cartItems && !error ? (
         <LoadingSpinner side={50} />
       ) : (
@@ -36,10 +44,7 @@ const Cart = (props) => {
         </span>
       </div>
       <div className={classes.actions}>
-        <Button
-          onClick={() => dispatch(cartActions.toggleCart())}
-          className={classes.cancel}
-        >
+        <Button onClick={closeCartHandler} className={classes.cancel}>
           Cancel
         </Button>
         <Button className={classes.checkout}>Checkout</Button>

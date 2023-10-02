@@ -16,13 +16,15 @@ const cartSlice = createSlice({
       const courses = action.payload;
       state.items = courses;
       if (courses && courses.length) {
+        console.log(courses);
         const netPrices = courses.map((course) => course.price);
-        state.totalPrice = netPrices.reduce((prev, current) => prev + current);
+        state.totalPrice =
+          netPrices.reduce((prev, current) => prev + current) || 0;
         state.totalAmount = courses.length;
       }
     },
-    toggleCart(state) {
-      state.isOpened = !state.isOpened;
+    toggleCart(state, action) {
+      state.isOpened = action.payload;
     },
     toggleError(state, action) {
       state.error = action.payload;

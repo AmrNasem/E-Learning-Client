@@ -1,0 +1,18 @@
+.thumbnail {
+  min-width: 75px;
+  width: 75px;
+  height: 75px;
+}
+.learning {
+  min-width: 300px;
+}
+.learning-body h6 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.learning-body button {
+  color: var(--secondary-color);
+}
