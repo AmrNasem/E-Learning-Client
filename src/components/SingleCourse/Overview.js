@@ -20,7 +20,9 @@ const Overview = (props) => {
   const { course } = props;
   const cartItems = useSelector((state) => state.cart.items);
   const authedUser = useSelector((state) => state.auth.user);
-  const price = course.price || 404;
+  const initialPrice = course.price || 0;
+  const discount = course.discount || 10;
+  const finalPrice = initialPrice - (initialPrice * discount) / 100;
   const { sendRequest: addToCart, isLoading: addToCartLoading } = useHttp();
   const { sendRequest: removeFromCart, isLoading: removeFromCartLoading } =
     useHttp();
@@ -81,21 +83,33 @@ const Overview = (props) => {
       <div className={classes.body}>
         <div className={classes.price}>
           <span className={classes["final-price"]}>
-            ${price - price * (course.discount || 10 / 100)}
+            {initialPrice ? `$${finalPrice}` : "Free"}
           </span>
-          <span className={classes["initial-price"]}>
-            <del>${price}</del>
-          </span>
-          <span className={classes.discount}>{course.discount || 10}% off</span>
+          {!!(discount && initialPrice) && (
+            <>
+              <span className={classes["initial-price"]}>
+                <del>${initialPrice}</del>
+              </span>
+              <span className={classes.discount}>{discount}% off</span>
+            </>
+          )}
         </div>
-        {addToCartLoading || removeFromCartLoading ? (
-          <LoadingSpinner side={40} />
+        {!!finalPrice &&
+          (addToCartLoading || removeFromCartLoading ? (
+            <LoadingSpinner side={40} />
+          ) : (
+            <button
+              onClick={addToCartHandler}
+              className={classes["add-to-cart"]}
+            >
+              {isPurchased ? "Remove from cart" : "Add to cart"}
+            </button>
+          ))}
+        {finalPrice ? (
+          <button className={classes["buy"]}>Buy now</button>
         ) : (
-          <button onClick={addToCartHandler} className={classes["add-to-cart"]}>
-            {isPurchased ? "Remove from cart" : "Add to cart"}
-          </button>
+          <button className={classes["buy"]}>Enroll now</button>
         )}
-        <button className={classes["buy"]}>Buy now</button>
         <h6 className={classes.refund}>30-Day Money-Back Guarantee</h6>
         <div className={classes["course-features"]}>
           <h5>This course includes:</h5>

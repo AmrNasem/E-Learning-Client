@@ -4,7 +4,7 @@ import classes from "./LearningItem.module.css";
 const LearningItem = (props) => {
   return (
     <Link
-      className={`d-flex text-decoration-none ${classes.learning} border-bottom border-1 p-3 gap-3`}
+      className={`d-flex text-decoration-none border-bottom border-1 p-3 gap-3`}
       to={`/course/${props.id}`}
     >
       <div className={classes.thumbnail}>

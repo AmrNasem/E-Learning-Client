@@ -21,7 +21,7 @@ const Cart = (props) => {
     cartRef.current.classList.add(classes["list-out"]);
     const timeout = setTimeout(() => {
       dispatch(cartActions.toggleCart(false));
-    }, 399);
+    }, 390);
     return () => clearTimeout(timeout);
   }, [dispatch]);
 

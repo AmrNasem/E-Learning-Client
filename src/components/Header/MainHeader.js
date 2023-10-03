@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { cartActions } from "../../store/cart-slice";
 import Cart from "../Cart/Cart";
-import Categories from "../categories/Categories";
+import Categories from "./Categories";
 import classes from "./Header.module.css";
 import Button from "../UI/Button";
 import useHttp from "../../hooks/use-http";
@@ -12,10 +12,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { useRef } from "react";
 import { useEffect } from "react";
-import LearningItem from "./LearningItem";
 import { useState } from "react";
 import { enrolledCoursesActions } from "../../store/enrolled-courses-slice";
 import { categoriesActions } from "../../store/categories-slice";
+import Learning from "./Learning";
 
 const MainHeader = () => {
   const navigate = useNavigate();
@@ -70,7 +70,7 @@ const MainHeader = () => {
 
   // Get enrolled courses
   useEffect(() => {
-    if (isLearningOpen && !enrolledCourses) {
+    if (isLearningOpen && !enrolledCourses && !gettingEnrolledCourses) {
       getEnrolledCourses(
         { endPoint: "enrollments/enrolledCourses" },
         (payload) => {
@@ -79,7 +79,13 @@ const MainHeader = () => {
         }
       );
     }
-  }, [isLearningOpen, getEnrolledCourses, enrolledCourses, dispatch]);
+  }, [
+    isLearningOpen,
+    getEnrolledCourses,
+    gettingEnrolledCourses,
+    enrolledCourses,
+    dispatch,
+  ]);
 
   // Handlers
   const instructorUIHandler = () => {
@@ -147,17 +153,10 @@ const MainHeader = () => {
             My learning
           </button>
           {isLearningOpen && (
-            <div
+            <Learning
               className={`position-absolute end-0 bg-white z-3 overflow-auto ${classes.learnings}`}
-            >
-              {!enrolledCourses && !error ? (
-                <LoadingSpinner side={50} className="my-3" />
-              ) : (
-                enrolledCourses.map((course, index) => (
-                  <LearningItem key={index} {...course} />
-                ))
-              )}
-            </div>
+              isOpen={isLearningOpen}
+            />
           )}
         </div>
       )}

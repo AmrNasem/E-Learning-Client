@@ -3,9 +3,6 @@
   width: 75px;
   height: 75px;
 }
-.learning {
-  min-width: 300px;
-}
 .learning-body h6 {
   display: -webkit-box;
   -webkit-box-orient: vertical;

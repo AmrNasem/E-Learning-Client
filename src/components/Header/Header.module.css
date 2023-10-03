@@ -68,8 +68,7 @@ input[type="search"] {
   top: calc(100% + 17px);
   box-shadow: -1px 1px 10px #5555559b;
   animation: show-list 0.1s;
-  max-height: 400px;
-  min-width: 200px;
+  min-width: 320px;
 }
 .learnings::-webkit-scrollbar {
   width: 6px;
@@ -84,7 +83,7 @@ input[type="search"] {
     transform: translateY(30px) scale(0);
     opacity: 0;
   }
-  30% {
+  10% {
     opacity: 0;
     transform: translateY(30px);
   }

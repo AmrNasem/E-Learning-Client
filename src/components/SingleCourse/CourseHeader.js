@@ -18,6 +18,9 @@ const CourseHeader = (props) => {
   const { sendRequest: addToCart, isLoading: addToCartLoading } = useHttp();
   const { sendRequest: removeFromCart, isLoading: removeFromCartLoading } =
     useHttp();
+  const initialPrice = course.price || 0;
+  const discount = course.discount || 10;
+  const finalPrice = initialPrice - (initialPrice * discount) / 100;
 
   useEffect(() => {
     const time = setTimeout(() => {
@@ -98,25 +101,28 @@ const CourseHeader = (props) => {
       </p>
       <div className={classes.body}>
         <div className={classes.price}>
-          <span className={classes["final-price"]}>
-            $
-            {!course.price
-              ? 2000
-              : course.price - (course.price * course.discount) / 100}
-          </span>
+          <span className={classes["final-price"]}>${finalPrice}</span>
           <span className={classes["initial-price"]}>
-            <del>${course.price ? course.price : 2000}</del>
+            <del>${initialPrice}</del>
           </span>
-          <span className={classes.discount}>{course.discount || 10}% off</span>
+          <span className={classes.discount}>{discount}% off</span>
         </div>
-        {addToCartLoading || removeFromCartLoading ? (
-          <LoadingSpinner side={40} className="my-3" />
+        {!!finalPrice &&
+          (addToCartLoading || removeFromCartLoading ? (
+            <LoadingSpinner side={40} className="my-3" />
+          ) : (
+            <button
+              onClick={addToCartHandler}
+              className={classes["add-to-cart"]}
+            >
+              {isPurchased ? "Remove from cart" : "Add to cart"}
+            </button>
+          ))}
+        {finalPrice ? (
+          <button className={`${classes["buy"]} border-0`}>Buy now</button>
         ) : (
-          <button onClick={addToCartHandler} className={classes["add-to-cart"]}>
-            {isPurchased ? "Remove from cart" : "Add to cart"}
-          </button>
+          <button className={`${classes["buy"]} border-0`}>Enroll now</button>
         )}
-        <button className={`${classes["buy"]} border-0`}>Buy now</button>
         <span className={classes.refund}>30-Day Money-Back Guarantee</span>
         <div className={classes.buyButtons}>
           {isCopied && <div className={classes.popup}>Link Copied!</div>}

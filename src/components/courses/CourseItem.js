@@ -22,7 +22,7 @@ const CourseItem = React.forwardRef((props, ref) => {
         <Card.Body>
           <Card.Title>{title}</Card.Title>
           <Card.Text>{teacherNames || "No Instructor"}</Card.Text>
-          <span>${price || "No Price"}</span>
+          <span>{price ? `$${price}` : "Free"}</span>
         </Card.Body>
       </Link>
     </Card>
