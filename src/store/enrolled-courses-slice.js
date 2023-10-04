@@ -9,7 +9,7 @@ const enrolledCoursesSlice = createSlice({
     setCourses(state, action) {
       state.items = action.payload;
     },
-    setState(state, action) {
+    setStates(state, action) {
       state.isLoading = action.payload.isLoading;
       state.error = action.payload.error;
     },

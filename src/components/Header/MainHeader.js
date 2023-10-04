@@ -13,27 +13,22 @@ import { faSearch, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { enrolledCoursesActions } from "../../store/enrolled-courses-slice";
 import { categoriesActions } from "../../store/categories-slice";
 import Learning from "./Learning";
+import UserInfo from "./UserInfo";
 
 const MainHeader = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cartRef = useRef();
   const [isLearningOpen, setIsLearningOpen] = useState(false);
+  const [isUserInfoOpen, setIsUserInfoOpen] = useState(false);
   const { isOpened: isCartOpened, totalAmount } = useSelector(
     (state) => state.cart
   );
   const areCategoriesOpen = useSelector((state) => state.categories.isOpen);
   const authedUser = useSelector((state) => state.auth.user);
-  const enrolledCourses = useSelector((state) => state.enrolledCourses.items);
   const { isLoading, sendRequest: becomeInstructor } = useHttp();
-  const {
-    isLoading: gettingEnrolledCourses,
-    sendRequest: getEnrolledCourses,
-    error,
-  } = useHttp();
 
   // Cart toggler animation
   useEffect(() => {
@@ -44,21 +39,14 @@ const MainHeader = () => {
     return () => clearTimeout(timeout);
   }, [totalAmount]);
 
-  // Change categories request state
-  useEffect(() => {
-    dispatch(
-      enrolledCoursesActions.setState({
-        isLoading: gettingEnrolledCourses,
-        error,
-      })
-    );
-  }, [gettingEnrolledCourses, error, dispatch]);
-
   // Window events
   useEffect(() => {
-    const closeLearning = () => setIsLearningOpen(false);
-    window.addEventListener("click", closeLearning);
-    return () => window.removeEventListener("click", closeLearning);
+    const closeState = () => {
+      setIsLearningOpen(false);
+      setIsUserInfoOpen(false);
+    };
+    window.addEventListener("click", closeState);
+    return () => window.removeEventListener("click", closeState);
   }, []);
 
   useEffect(() => {
@@ -67,25 +55,6 @@ const MainHeader = () => {
     window.addEventListener("click", closeCategories);
     return () => window.removeEventListener("click", closeCategories);
   }, [dispatch]);
-
-  // Get enrolled courses
-  useEffect(() => {
-    if (isLearningOpen && !enrolledCourses && !gettingEnrolledCourses) {
-      getEnrolledCourses(
-        { endPoint: "enrollments/enrolledCourses" },
-        (payload) => {
-          console.log(payload);
-          dispatch(enrolledCoursesActions.setCourses(payload.enrolledCourses));
-        }
-      );
-    }
-  }, [
-    isLearningOpen,
-    getEnrolledCourses,
-    gettingEnrolledCourses,
-    enrolledCourses,
-    dispatch,
-  ]);
 
   // Handlers
   const instructorUIHandler = () => {
@@ -155,7 +124,6 @@ const MainHeader = () => {
           {isLearningOpen && (
             <Learning
               className={`position-absolute end-0 bg-white z-3 overflow-auto ${classes.learnings}`}
-              isOpen={isLearningOpen}
             />
           )}
         </div>
@@ -187,15 +155,26 @@ const MainHeader = () => {
       </div>
       {isCartOpened && <Cart />}
       {authedUser ? (
-        <button
-          className={`overflow-hidden border-0 text-white fw-bold rounded-circle d-flex align-items-center justify-content-center ${classes.avatar}`}
-        >
-          {authedUser.avatarUrl ? (
-            <img className="w-100" src={authedUser.avatarUrl} alt="" />
-          ) : (
-            authedUser.fullname.split(" ")[0][0]
+        <div className="position-relative">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsUserInfoOpen((prevState) => !prevState);
+            }}
+            className={`overflow-hidden border-0 text-white fw-bold rounded-circle d-flex align-items-center justify-content-center ${classes.avatar}`}
+          >
+            {authedUser.avatarUrl ? (
+              <img className="w-100" src={authedUser.avatarUrl} alt="" />
+            ) : (
+              authedUser.fullname.split(" ")[0][0]
+            )}
+          </button>
+          {isUserInfoOpen && (
+            <UserInfo
+              className={`position-absolute end-0 z-3 ${classes["user-info"]}`}
+            />
           )}
-        </button>
+        </div>
       ) : (
         <div className={classes.actions}>
           <Button onClick={() => navigate("/login")} className={classes.login}>

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  items: [],
+  items: null,
   totalPrice: 0,
   totalAmount: 0,
   isOpened: false,
@@ -15,12 +15,13 @@ const cartSlice = createSlice({
     setCart(state, action) {
       const courses = action.payload;
       state.items = courses;
+      state.totalAmount = !!courses && courses.length;
       if (courses && courses.length) {
-        console.log(courses);
         const netPrices = courses.map((course) => course.price);
         state.totalPrice =
           netPrices.reduce((prev, current) => prev + current) || 0;
-        state.totalAmount = courses.length;
+      } else {
+        state.totalPrice = 0;
       }
     },
     toggleCart(state, action) {

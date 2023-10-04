@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import classes from "./LearningItem.module.css";
+import { memo } from "react";
 
 const LearningItem = (props) => {
   return (
@@ -24,4 +25,4 @@ const LearningItem = (props) => {
   );
 };
 
-export default LearningItem;
+export default memo(LearningItem);

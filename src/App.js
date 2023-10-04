@@ -8,6 +8,7 @@ import Student from "./pages/Student/Student";
 import { authActions } from "./store/auth-slice";
 import useHttp from "./hooks/use-http";
 import { cartActions } from "./store/cart-slice";
+import { enrolledCoursesActions } from "./store/enrolled-courses-slice";
 
 export const backend = "https://e-learning-5rhj.onrender.com/api/v1";
 
@@ -29,6 +30,13 @@ function App() {
       });
     }
   }, [authedUser, getCart, dispatch]);
+
+  useEffect(() => {
+    if (!authedUser) {
+      dispatch(cartActions.setCart([]));
+      dispatch(enrolledCoursesActions.setCourses(null));
+    }
+  }, [authedUser, dispatch]);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));

@@ -25,11 +25,7 @@ const CourseList = (props) => {
   return (
     <section className={classes["courses-section"]}>
       <h3>{listClass}</h3>
-      {!courses && !error ? (
-        <LoadingSpinner side={60} />
-      ) : error ? (
-        <h4 className="text-center my-3">{error}</h4>
-      ) : (
+      {courses ? (
         <>
           <BackwardIcon
             onClick={() => swipeHandler(false)}
@@ -47,6 +43,10 @@ const CourseList = (props) => {
           </div>
           <ForwardIcon onClick={swipeHandler} className={classes.forward} />
         </>
+      ) : error ? (
+        <h4 className="text-center my-3">{error}</h4>
+      ) : (
+        <LoadingSpinner side={60} />
       )}
     </section>
   );

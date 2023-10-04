@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import classes from "./Categories.module.css";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 import useHttp from "../../hooks/use-http";
 import { categoriesActions } from "../../store/categories-slice";
 
@@ -16,7 +16,7 @@ const Categories = (props) => {
   } = useHttp();
 
   useEffect(() => {
-    if (!categories) {
+    if (!categories && !isLoading && !categoriesError) {
       getCategories({ endPoint: "categories/getAllCategories" }, (payload) => {
         console.log(payload);
         dispatch(
@@ -33,7 +33,7 @@ const Categories = (props) => {
         );
       });
     }
-  }, [categories, getCategories, dispatch]);
+  }, [categories, isLoading, categoriesError, getCategories, dispatch]);
 
   useEffect(() => {
     dispatch(
@@ -43,24 +43,29 @@ const Categories = (props) => {
 
   return (
     <div className={`${classes.categories} ${props.className}`}>
-      {error && <p className="text-center">{error}</p>}
-      {!categories && !error ? (
-        <LoadingSpinner side={40} className="my-3" />
-      ) : (
+      {categories ? (
         categories.map((cat, index) => (
           <NavLink
             key={index}
             className={(activeClass) =>
               activeClass.isActive ? classes.active : ""
             }
+            onClick={() =>
+              props.propagate &&
+              dispatch(categoriesActions.toggleCategories(false))
+            }
             to={`category/${cat.id}`}
           >
             {cat.text}
           </NavLink>
         ))
+      ) : error ? (
+        <p className="text-center my-2">{error}</p>
+      ) : (
+        <LoadingSpinner side={40} className="my-3" />
       )}
     </div>
   );
 };
 
-export default Categories;
+export default memo(Categories);

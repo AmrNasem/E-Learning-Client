@@ -10,16 +10,30 @@ import useHttp from "../../hooks/use-http";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../../store/auth-slice";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Learning from "./Learning";
+import Avatar from "./Avatar";
+import UserInfo from "./UserInfo";
+import { categoriesActions } from "../../store/categories-slice";
 
 const Aside = (props) => {
   const authedUser = useSelector((state) => state.auth.user);
   const areCategoriesOpen = useSelector((state) => state.categories.isOpen);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isLearningOpen, setLearningIsOpen] = useState(false);
+  const [isUserInfoOpen, setUserInfoIsOpen] = useState(false);
   const { isLoading, sendRequest: becomeInstructor } = useHttp();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const loginHandler = useCallback(() => {
+    dispatch(categoriesActions.toggleCategories(false));
+    navigate("/login");
+  }, [navigate, dispatch]);
+
+  const signupHandler = useCallback(() => {
+    dispatch(categoriesActions.toggleCategories(false));
+    navigate("/signup");
+  }, [navigate, dispatch]);
 
   const instructorUIHandler = (e) => {
     if (authedUser.role !== "instructor") {
@@ -33,6 +47,8 @@ const Aside = (props) => {
     } else navigate("/instructor");
   };
 
+  const toggleUserInfoHandler = useCallback(() => setUserInfoIsOpen(true), []);
+
   return (
     <OutLayer onClick={props.toggleAsideHandler}>
       <aside
@@ -41,46 +57,18 @@ const Aside = (props) => {
       >
         <div
           className={`${styles.holder} position-relative end-0 ${
-            isOpen && "end-100"
+            (isLearningOpen || isUserInfoOpen) && "end-100"
           } d-flex`}
         >
-          <div className={`${isOpen ? "w-100" : "w-50"}`}>
+          <div className={`w-100`}>
             {authedUser ? (
-              <div
-                className={`py-3 px-2 w-100 d-flex gap-2 position-relative align-items-center ${styles["user-info"]}`}
-              >
-                <button
-                  className={`text-white border-0 fw-bold overflow-hidden rounded-circle d-flex align-items-center justify-content-center ${styles.avatar}`}
-                >
-                  {authedUser.avatarUrl ? (
-                    <img className="w-100" src={authedUser.avatarUrl} alt="" />
-                  ) : (
-                    authedUser.fullname.split(" ")[0][0]
-                  )}
-                </button>
-                <div className="flex-grow-1">
-                  <h5 className="mb-0">
-                    Hi, {authedUser.fullname.split(" ")[0]}
-                  </h5>
-                  <p className="mb-0">Welcome back!</p>
-                </div>
-                <FontAwesomeIcon
-                  icon={faAngleRight}
-                  className="position-absolute me-3 text-dark end-0"
-                />
-              </div>
+              <Avatar onClick={toggleUserInfoHandler} mobile />
             ) : (
               <div className={classes.actions}>
-                <Button
-                  onClick={() => navigate("/login")}
-                  className={classes.login}
-                >
+                <Button onClick={loginHandler} className={classes.login}>
                   Log in
                 </Button>
-                <Button
-                  onClick={() => navigate("/signup")}
-                  className={classes.signup}
-                >
+                <Button onClick={signupHandler} className={classes.signup}>
                   Sign up
                 </Button>
               </div>
@@ -103,37 +91,40 @@ const Aside = (props) => {
               </button>
             )}
             <hr className="my-1" />
-            <div className="p-2">
-              <h6 className="text-secondary">Learn</h6>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setIsOpen(true);
-                }}
-                className={`d-flex gap-3 align-items-center justify-content-between w-100 border-0 bg-transparent p-2 ps-0 ${classes["header-button"]}`}
-              >
-                <span>My learning</span>
-                <FontAwesomeIcon icon={faAngleRight} />
-              </button>
-            </div>
-            <hr className="my-1" />
+            {authedUser && (
+              <>
+                <div className="p-2">
+                  <h6 className="text-secondary">Learn</h6>
+                  <button
+                    onClick={() => setLearningIsOpen(true)}
+                    className={`d-flex gap-3 align-items-center justify-content-between w-100 border-0 bg-transparent p-2 ps-0 ${classes["header-button"]}`}
+                  >
+                    <span>My learning</span>
+                    <FontAwesomeIcon icon={faAngleRight} />
+                  </button>
+                </div>
+                <hr className="my-1" />
+              </>
+            )}
             <div>
               <h6 className="text-secondary mx-2 my-3">Categories</h6>
-              <Categories className={styles["mobile-categories"]} />
+              <Categories propagate className={styles["mobile-categories"]} />
             </div>
           </div>
-          {isOpen && (
-            <div className={`w-100`}>
-              <button
-                onClick={(e) => setIsOpen(false)}
-                className="border-0 bg-transparent p-2 mx-1"
-              >
-                <FontAwesomeIcon icon={faArrowLeft} />
-                <span className="ms-2 d-inline-block">Back</span>
-              </button>
-              <Learning isOpen={isOpen} />
-            </div>
-          )}
+          <div className={`w-100`}>
+            <button
+              onClick={() => {
+                if (isLearningOpen) setLearningIsOpen(false);
+                else if (isUserInfoOpen) setUserInfoIsOpen(false);
+              }}
+              className="border-0 px-3 mb-2 py-3 w-100 text-start text-secondary"
+            >
+              <FontAwesomeIcon icon={faArrowLeft} />
+              <span className="ms-2 d-inline-block">Menu</span>
+            </button>
+            {isLearningOpen && <Learning propagate />}
+            {isUserInfoOpen && <UserInfo propagate mobile />}
+          </div>
         </div>
       </aside>
     </OutLayer>
